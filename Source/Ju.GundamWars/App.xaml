@@ -1,0 +1,39 @@
+﻿<Application x:Class="Ju.GundamWars.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    Startup="OnStartup"
+    Exit="OnExit"
+    >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- RX-0 ユニコーンガンダム2号機バンシィ（ユニコーンモード） -->
+                <!--<materialDesign:MahAppsCustomColorTheme BaseTheme="Dark" PrimaryColor="#FFB721" SecondaryColor="#D30301" />-->
+                <!-- RX-93 νガンダム -->
+                <materialDesign:MahAppsCustomColorTheme BaseTheme="Dark" PrimaryColor="#F99427" SecondaryColor="#E7233A" />
+
+                <!-- MahApps -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+
+                <!-- Material Design -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <!-- Material Design: MahApps Compatibility -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>
+
+                <!-- GundamWars -->
+                <ResourceDictionary Source="/Views/Themes/GundamWars.Defaults.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- RX-0 ユニコーンガンダム2号機バンシィ（ユニコーンモード） -->
+            <!--<SolidColorBrush x:Key="GwBackground" Color="#303148" />-->
+            <!-- RX-93 νガンダム -->
+            <SolidColorBrush x:Key="GwBackground" Color="#13131F" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

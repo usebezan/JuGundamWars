@@ -1,0 +1,110 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:app="clr-namespace:Ju.GundamWars"
+    xmlns:appSv="clr-namespace:Ju.GundamWars.Models.Services"
+    xmlns:appVm="clr-namespace:Ju.GundamWars.ViewModels"
+    xmlns:appVw="clr-namespace:Ju.GundamWars.Views"
+    xmlns:appAs="clr-namespace:Ju.GundamWars.Views.Assists"
+    >
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+        <ResourceDictionary Source="GundamWars.Commons.xaml"/>
+        <ResourceDictionary Source="GundamWars.Entry.xaml"/>
+        <ResourceDictionary Source="GundamWars.Filter.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="GwFilterSubSerialComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
+        <Setter Property="Width" Value="240" />
+        <Setter Property="DisplayMemberPath" Value="Name" />
+        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringSerials}" />
+        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.SubSerialFilter.Value}" />
+        <Setter Property="materialDesign:HintAssist.Hint" Value="Sub Series" />
+    </Style>
+
+
+    <DataTemplate x:Key="GwDataGridInitialGradeTemplate">
+        <ContentControl VerticalAlignment="Center" Content="{Binding InitialGradeType.Value}" ContentTemplate="{StaticResource GwGradeTemplate}" />
+    </DataTemplate>
+
+
+
+
+
+
+    <!-- TODO: ▼未整理▼ -->
+
+    <Style x:Key="GwEntryPilotComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
+        <Setter Property="DisplayMemberPath" Value="Entity.Name" />
+        <Setter Property="ItemsSource" Value="{Binding OptionalPilots}" />
+        <Setter Property="SelectedItem" Value="{Binding Pilot.Value}" />
+        <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+        <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
+    </Style>
+
+    <Style x:Key="GwEntrySupportComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
+        <Setter Property="DisplayMemberPath" Value="Entity.Name" />
+        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.OptionalSupports}" />
+        <Setter Property="SelectedItem" Value="{Binding Item1}" />
+        <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+        <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
+        <Setter Property="IsEditable" Value="True" />
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Entity.Name}">
+                        <TextBlock.ToolTip>
+                            <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding Enhancements}" Grid.IsSharedSizeScope="True">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 0 0 4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SecondColumn" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="{Binding Key}" />
+                                            <TextBlock Grid.Column="1" Margin="16 0 0 0" VerticalAlignment="Center" Text="{Binding Value}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="GwEntryInitialGradeListBox" TargetType="ListBox" BasedOn="{StaticResource GwEntryGeneralListBox}">
+        <Setter Property="ItemTemplate" Value="{StaticResource GwGradeTemplate}" />
+        <Setter Property="ItemsSource" Value="{Binding OptionalInitialGrades}" />
+        <Setter Property="SelectedValue" Value="{Binding InitialGrade.Value}" />
+        <Setter Property="Width" Value="360" />
+    </Style>
+
+    <Style x:Key="GwEntryRoleListBox" TargetType="ListBox" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
+        <Setter Property="Margin" Value="8 0 8 8" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="materialDesign:ListBoxAssist.IsToggle" Value="False" />
+        <Setter Property="DisplayMemberPath" Value="Name" />
+        <Setter Property="SelectedValuePath" Value="Value" />
+        <Setter Property="ItemsSource" Value="{Binding OptionalRoles}" />
+        <Setter Property="SelectedValue" Value="{Binding Role.Value}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- TODO: ▲未整理▲ -->
+
+</ResourceDictionary>

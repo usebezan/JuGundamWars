@@ -1,0 +1,305 @@
+﻿<UserControl x:Class="Ju.GundamWars.Views.SupportEntryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:app="clr-namespace:Ju.GundamWars"
+    xmlns:appSv="clr-namespace:Ju.GundamWars.Models.Services"
+    xmlns:appVm="clr-namespace:Ju.GundamWars.ViewModels"
+    xmlns:appVw="clr-namespace:Ju.GundamWars.Views"
+    xmlns:appAs="clr-namespace:Ju.GundamWars.Views.Assists"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance appVm:SupportEntryViewModel}"
+    d:DesignHeight="1000"
+    d:DesignWidth="400"
+    >
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <Grid Margin="24 16 24 0">
+                <GroupBox Style="{StaticResource GwEntryField}">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Name" />
+                    </GroupBox.Header>
+                    <TextBox Style="{StaticResource GwEntryFullTextBox}" Text="{Binding Name.Value}" />
+                </GroupBox>
+            </Grid>
+            <Expander
+                Style="{StaticResource MaterialDesignExpander}"
+                Background="Transparent"
+                materialDesign:ExpanderAssist.HorizontalHeaderPadding="16 8"
+                IsExpanded="{Binding IsAdd, Mode=OneWay}"
+                >
+                <Expander.Header>
+                    <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}" Text="Default" FontSize="16" />
+                </Expander.Header>
+                <StackPanel Style="{StaticResource GwEntryArea}">
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="For" />
+                        </GroupBox.Header>
+                        <ListBox Style="{StaticResource GwEntryUnitListBox}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Series" />
+                        </GroupBox.Header>
+                        <ComboBox Style="{StaticResource GwEntrySerialComboBox}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Limited Series" />
+                        </GroupBox.Header>
+                        <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding LimitedSerials}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!--Grid に乗せないと ComboBox の ClearButton が効かない-->
+                                    <Grid>
+                                        <ComboBox Style="{StaticResource GwEntrySupportLimitedSerialComboBox}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Grade" />
+                        </GroupBox.Header>
+                        <ListBox Style="{StaticResource GwEntryGradeListBox}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Slots" />
+                        </GroupBox.Header>
+                        <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding SlotBadges}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- Grid に乗せないと ComboBox の ClearButton が効かない -->
+                                    <Grid>
+                                        <ComboBox Style="{StaticResource GwEntrySupportSlotComboBox}">
+                                            <ComboBox.GroupStyle>
+                                                <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                            </ComboBox.GroupStyle>
+                                        </ComboBox>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Border Height="40" Padding="16 8">
+                <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}" Text="Custom" FontSize="16" />
+            </Border>
+            <StackPanel Style="{StaticResource GwEntryArea}">
+                <GroupBox Style="{StaticResource GwEntryField}">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Enhancements" />
+                    </GroupBox.Header>
+                    <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding EnhancementsSummary}" Grid.IsSharedSizeScope="True">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0 0 0 4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="SecondColumn" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Margin="8 0 8 8" VerticalAlignment="Center" Text="{Binding Key}" />
+                                    <TextBlock Grid.Column="1" Margin="8 0 8 8" VerticalAlignment="Center" Text="{Binding Value}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+                <GroupBox Style="{StaticResource GwEntryField}">
+                    <GroupBox.Header>
+                        <DockPanel>
+                            <Button
+                                    DockPanel.Dock="Right"
+                                    Style="{StaticResource GwInnerButton}"
+                                    Command="{Binding DetachAllBadgesCommand}"
+                                    Content="{materialDesign:PackIcon Kind=HexagonOutline}"
+                                    ToolTip="Detach all Badges"
+                                />
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Badges" />
+                        </DockPanel>
+                    </GroupBox.Header>
+                    <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding SlotBadges}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="200" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Margin="8 0 8 8" VerticalAlignment="Center" Text="{Binding Item1.Name}" />
+                                    <ComboBox Grid.Column="1" Style="{StaticResource GwEntrySupportBadgeComboBox}">
+                                        <ComboBox.GroupStyle>
+                                            <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                        </ComboBox.GroupStyle>
+                                    </ComboBox>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+                <GroupBox Style="{StaticResource GwEntryField}">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Tag" />
+                    </GroupBox.Header>
+                    <ListBox Style="{StaticResource GwEntryTagListBox}" />
+                </GroupBox>
+                <GroupBox Style="{StaticResource GwEntryField}">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Memo" />
+                    </GroupBox.Header>
+                    <TextBox Style="{StaticResource GwEntryMemoTextBox}" />
+                </GroupBox>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+
+    <!--<TabControl Style="{StaticResource GwEntryTabControl}">
+        <TabItem Header="Default">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Style="{StaticResource GwEntryArea}">
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Name" />
+                        </GroupBox.Header>
+                        <TextBox Style="{StaticResource GwEntryFullTextBox}" Text="{Binding Name.Value}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="For" />
+                        </GroupBox.Header>
+                        <ListBox Style="{StaticResource GwEntryUnitListBox}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Series" />
+                        </GroupBox.Header>
+                        <ComboBox Style="{StaticResource GwEntrySerialComboBox}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Limited Series" />
+                        </GroupBox.Header>
+                        <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding LimitedSerials}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    --><!--Grid に乗せないと ComboBox の ClearButton が効かない--><!--
+                                    <Grid>
+                                        <ComboBox Style="{StaticResource GwEntrySupportLimitedSerialComboBox}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Grade" />
+                        </GroupBox.Header>
+                        <ListBox Style="{StaticResource GwEntryGradeListBox}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Slots" />
+                        </GroupBox.Header>
+                        <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding SlotBadges}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    --><!-- Grid に乗せないと ComboBox の ClearButton が効かない --><!--
+                                    <Grid>
+                                        <ComboBox Style="{StaticResource GwEntrySupportSlotComboBox}">
+                                            <ComboBox.GroupStyle>
+                                                <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                            </ComboBox.GroupStyle>
+                                        </ComboBox>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+        <TabItem Header="Custom">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Style="{StaticResource GwEntryArea}">
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Name" />
+                        </GroupBox.Header>
+                        <TextBox Style="{StaticResource GwEntryFullTextBox}" Text="{Binding Name.Value}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Enhancements" />
+                        </GroupBox.Header>
+                        <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding EnhancementsSummary}" Grid.IsSharedSizeScope="True">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0 0 0 4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="SecondColumn" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Margin="8 0 8 8" VerticalAlignment="Center" Text="{Binding Key}" />
+                                        <TextBlock Grid.Column="1" Margin="8 0 8 8" VerticalAlignment="Center" Text="{Binding Value}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <DockPanel>
+                                <Button
+                                    DockPanel.Dock="Right"
+                                    Style="{StaticResource GwInnerButton}"
+                                    Command="{Binding DetachAllBadgesCommand}"
+                                    Content="{materialDesign:PackIcon Kind=HexagonOutline}"
+                                    ToolTip="Detach all Badges"
+                                />
+                                <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Badges" />
+                            </DockPanel>
+                        </GroupBox.Header>
+                        <ItemsControl Style="{StaticResource GwEntryItemsControl}" ItemsSource="{Binding SlotBadges}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="200" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Margin="8 0 8 8" VerticalAlignment="Center" Text="{Binding Item1.Name}" />
+                                        <ComboBox Grid.Column="1" Style="{StaticResource GwEntrySupportBadgeComboBox}">
+                                            <ComboBox.GroupStyle>
+                                                <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                            </ComboBox.GroupStyle>
+                                        </ComboBox>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Tag" />
+                        </GroupBox.Header>
+                        <ListBox Style="{StaticResource GwEntryTagListBox}" />
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource GwEntryField}">
+                        <GroupBox.Header>
+                            <TextBlock Style="{StaticResource GwEntryHeaderTextBlock}" Text="Memo" />
+                        </GroupBox.Header>
+                        <TextBox Style="{StaticResource GwEntryMemoTextBox}" />
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>-->
+</UserControl>

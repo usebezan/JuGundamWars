@@ -1,0 +1,194 @@
+﻿<UserControl x:Class="Ju.GundamWars.Views.SupportListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:app="clr-namespace:Ju.GundamWars"
+    xmlns:appSv="clr-namespace:Ju.GundamWars.Models.Services"
+    xmlns:appVm="clr-namespace:Ju.GundamWars.ViewModels"
+    xmlns:appVw="clr-namespace:Ju.GundamWars.Views"
+    xmlns:appAs="clr-namespace:Ju.GundamWars.Views.Assists"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance appVm:SupportListViewModel}"
+    d:DesignHeight="400"
+    d:DesignWidth="1600"
+    >
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar Style="{StaticResource GwFilterToolBar}" HorizontalAlignment="Stretch">
+                <ToolBar.Resources>
+                    <!-- for ClearButton, but applies to all -->
+                    <Style TargetType="materialDesign:PackIcon">
+                        <Setter Property="FrameworkElement.Width" Value="16" />
+                        <Setter Property="FrameworkElement.Height" Value="16" />
+                    </Style>
+                </ToolBar.Resources>
+                <Button Style="{StaticResource GwFilterToolButton}" Command="{Binding NewCommand}" Content="Add New" />
+                <Separator Margin="0 4" />
+                <TextBox Style="{StaticResource GwFilterWordTextBox}" />
+                <ComboBox Style="{StaticResource GwFilterUnitComboBox}" />
+                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}">
+                    <materialDesign:PackIcon Kind="TooltipText" />
+                </ToggleButton>
+                <ComboBox Style="{StaticResource GwFilterSupportBadgeComboBox}">
+                    <ComboBox.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                    </ComboBox.GroupStyle>
+                </ComboBox>
+                <ComboBox Style="{StaticResource GwFilterSupportSlotComboBox}" />
+                <ComboBox Style="{StaticResource GwFilterSupportLimitedSerialComboBox}" />
+                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
+            </ToolBar>
+        </ToolBarTray>
+        <ContentControl DockPanel.Dock="Bottom" Content="{Binding}" ContentTemplate="{StaticResource GwDataGridStatusBarTemplate}" />
+        <DataGrid Style="{StaticResource GwDataGrid}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Name"
+                    CellTemplate="{StaticResource GwDataGridName2Template}"
+                    SortMemberPath="Name.Value"
+                />
+
+                <DataGridTextColumn Header="HP"
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding Hp.Value, Mode=OneWay}"
+                />
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding BeamAttack.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Beam<LineBreak />Attack</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding PhysicalAttack.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Physical<LineBreak />Attack</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding BeamDefence.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Beam<LineBreak />Defence</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding PhysicalDefence.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Physical<LineBreak />Defence</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <!--<DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding CriticalRate.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Critical<LineBreak />Rate</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>-->
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding CriticalDamage.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Critical<LineBreak />Damage</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Accuracy"
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding Accuracy.Value, Mode=OneWay}"
+                />
+                <DataGridTextColumn Header="Evasion"
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding Evasion.Value, Mode=OneWay}"
+                />
+                <DataGridTextColumn Header="Mobility"
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding Mobility.Value, Mode=OneWay}"
+                />
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding EnRecovery.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>EN<LineBreak />Recovery</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding SuperPower.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Super<LineBreak />Power</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding AcePower.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Ace<LineBreak />Power</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding RecoveryPower.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Recovery<LineBreak />Power</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Badges"
+                    ElementStyle="{StaticResource GwDataGridTextColumn}"
+                    Width="200"
+                    Binding="{Binding BadgesText.Value, Mode=OneWay}"
+                />
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding BadgesCount.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Badges<LineBreak />Count</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Slots"
+                    ElementStyle="{StaticResource GwDataGridTextColumn}"
+                    Width="200"
+                    Binding="{Binding SlotsText.Value, Mode=OneWay}"
+                />
+                <DataGridTextColumn
+                    ElementStyle="{StaticResource GwDataGridRightTextColumn}"
+                    Binding="{Binding SlotsCount.Value, Mode=OneWay}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock>Slots<LineBreak />Count</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <!--<DataGridTextColumn Header="Limited Series"
+                    ElementStyle="{StaticResource GwDataGridTextColumn}"
+                    Width="200"
+                    Binding="{Binding LimitedSerialsText.Value, Mode=OneWay}"
+                />
+                <DataGridTextColumn Header="Series"
+                    ElementStyle="{StaticResource GwDataGridTextColumn}"
+                    Binding="{Binding Serial.Value.Name, Mode=OneWay}"
+                    SortMemberPath="Serial.Value.Order"
+                />-->
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>
