@@ -16,7 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="data\GundamWars.master.db">
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Data\GundamWars.master.db" Link="Data\GundamWars.master.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
