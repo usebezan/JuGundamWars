@@ -23,6 +23,13 @@
     SaveWindowPosition="True"
     SnapsToDevicePixels="True"
     >
+    <mahApps:MetroWindow.RightWindowCommands>
+        <mahApps:WindowCommands>
+            <Button Command="{Binding VisitGitHubCommand}" ToolTip="Visit GitHub">
+                <materialDesign:PackIcon Kind="Github" />
+            </Button>
+        </mahApps:WindowCommands>
+    </mahApps:MetroWindow.RightWindowCommands>
     <Grid>
         <materialDesign:DialogHost Identifier="{Binding Source={x:Static appSv:WindowService.DialogIdentifier}}">
             <materialDesign:DrawerHost IsRightDrawerOpen="{Binding IsDrawerOpen.Value}" OpenMode="Standard">
