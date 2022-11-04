@@ -41,7 +41,7 @@
 
     <Style x:Key="GwEntryPilotComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="DisplayMemberPath" Value="Entity.Name" />
-        <Setter Property="ItemsSource" Value="{Binding OptionalPilots}" />
+        <Setter Property="ItemsSource" Value="{Binding Optional.OptionalPilots}" />
         <Setter Property="SelectedItem" Value="{Binding Pilot.Value}" />
         <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
@@ -49,7 +49,7 @@
 
     <Style x:Key="GwEntrySupportComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="DisplayMemberPath" Value="Entity.Name" />
-        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.OptionalSupports}" />
+        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.Optional.OptionalSupports}" />
         <Setter Property="SelectedItem" Value="{Binding Item1}" />
         <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
@@ -83,7 +83,7 @@
 
     <Style x:Key="GwEntryInitialGradeListBox" TargetType="ListBox" BasedOn="{StaticResource GwEntryGeneralListBox}">
         <Setter Property="ItemTemplate" Value="{StaticResource GwGradeTemplate}" />
-        <Setter Property="ItemsSource" Value="{Binding OptionalInitialGrades}" />
+        <Setter Property="ItemsSource" Value="{Binding Optional.OptionalInitialGrades}" />
         <Setter Property="SelectedValue" Value="{Binding InitialGrade.Value}" />
         <Setter Property="Width" Value="360" />
     </Style>
@@ -94,7 +94,7 @@
         <Setter Property="materialDesign:ListBoxAssist.IsToggle" Value="False" />
         <Setter Property="DisplayMemberPath" Value="Name" />
         <Setter Property="SelectedValuePath" Value="Value" />
-        <Setter Property="ItemsSource" Value="{Binding OptionalRoles}" />
+        <Setter Property="ItemsSource" Value="{Binding Optional.OptionalRoles}" />
         <Setter Property="SelectedValue" Value="{Binding Role.Value}" />
         <Setter Property="ItemsPanel">
             <Setter.Value>

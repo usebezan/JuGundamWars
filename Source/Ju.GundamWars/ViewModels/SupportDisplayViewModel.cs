@@ -94,24 +94,10 @@ namespace Ju.GundamWars.ViewModels
 
 
         protected override SupportEntryViewModel CreateEditViewModel() =>
-            new(
-                EntryType.Edit,
-                Model,
-                GetRequiredService<SupportSlotRepository>(),
-                GetRequiredService<SupportBadgeRepository>(),
-                GetRequiredService<SerialRepository>(),
-                GetRequiredService<MiscRepository>(),
-                WindowService);
+            new(EntryType.Edit, Model, GetRequiredService<SupportOptionalViewModel>(), WindowService);
 
         protected override SupportEntryViewModel CreateCopyViewModel() =>
-            new(
-                EntryType.Copy,
-                SupportModel.Create(Model.CloneEntity()),
-                GetRequiredService<SupportSlotRepository>(),
-                GetRequiredService<SupportBadgeRepository>(),
-                GetRequiredService<SerialRepository>(),
-                GetRequiredService<MiscRepository>(),
-                WindowService);
+            new(EntryType.Copy, new(Model.CloneEntity(), GetRequiredService<SupportRepository>()), GetRequiredService<SupportOptionalViewModel>(), WindowService);
 
     }
 

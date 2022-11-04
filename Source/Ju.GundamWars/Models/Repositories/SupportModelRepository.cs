@@ -3,6 +3,7 @@ using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
 using System.Linq;
+using static Ju.GundamWars.App;
 
 
 namespace Ju.GundamWars.Models.Repositories
@@ -13,7 +14,7 @@ namespace Ju.GundamWars.Models.Repositories
 
         public SupportModelRepository(SupportRepository repository)
         {
-            Models = repository.Entities.ToReadOnlyReactiveCollection(SupportModel.Create).AddTo(Disposables);
+            Models = repository.Entities.ToReadOnlyReactiveCollection(e => new SupportModel(e, GetRequiredService<SupportRepository>())).AddTo(Disposables);
         }
 
 

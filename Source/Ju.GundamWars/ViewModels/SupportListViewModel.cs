@@ -18,14 +18,7 @@ namespace Ju.GundamWars.ViewModels
 
 
         protected override SupportEntryViewModel CreateEntryViewModel() =>
-            new(
-                EntryType.Add,
-                SupportModel.Create(),
-                GetRequiredService<SupportSlotRepository>(),
-                GetRequiredService<SupportBadgeRepository>(),
-                GetRequiredService<SerialRepository>(),
-                GetRequiredService<MiscRepository>(),
-                WindowService);
+            new(EntryType.Add, new(new(), GetRequiredService<SupportRepository>()), GetRequiredService<SupportOptionalViewModel>(), WindowService);
 
         protected override SupportDisplayViewModel CreateDisplayViewModel(SupportModel model) =>
             new(model, GetRequiredService<MiscRepository>(), WindowService);

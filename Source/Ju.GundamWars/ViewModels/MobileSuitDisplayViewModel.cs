@@ -103,6 +103,7 @@ namespace Ju.GundamWars.ViewModels
             new(
                 EntryType.Edit,
                 Model,
+                GetRequiredService<MobileSuitOptionalViewModel>(),
                 GetRequiredService<PilotModelRepository>(),
                 GetRequiredService<SupportModelRepository>(),
                 GetRequiredService<UnitSAbilityRepository>(),
@@ -114,6 +115,7 @@ namespace Ju.GundamWars.ViewModels
             new(
                 EntryType.Copy,
                 MobileSuitModel.Create(Model.CloneEntity()),
+                GetRequiredService<MobileSuitOptionalViewModel>(),
                 GetRequiredService<PilotModelRepository>(),
                 GetRequiredService<SupportModelRepository>(),
                 GetRequiredService<UnitSAbilityRepository>(),

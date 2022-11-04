@@ -97,24 +97,10 @@ namespace Ju.GundamWars.ViewModels
 
 
         protected override PilotEntryViewModel CreateEditViewModel() =>
-            new(
-                EntryType.Edit,
-                Model,
-                GetRequiredService<PilotSkillRepository>(),
-                GetRequiredService<PilotAbilityRepository>(),
-                GetRequiredService<SerialRepository>(),
-                GetRequiredService<MiscRepository>(),
-                WindowService);
+            new(EntryType.Edit, Model, GetRequiredService<PilotOptionalViewModel>(), WindowService);
 
         protected override PilotEntryViewModel CreateCopyViewModel() =>
-            new(
-                EntryType.Copy,
-                PilotModel.Create(Model.CloneEntity()),
-                GetRequiredService<PilotSkillRepository>(),
-                GetRequiredService<PilotAbilityRepository>(),
-                GetRequiredService<SerialRepository>(),
-                GetRequiredService<MiscRepository>(),
-                WindowService);
+            new(EntryType.Copy, new(Model.CloneEntity(), GetRequiredService<PilotRepository>()), GetRequiredService<PilotOptionalViewModel>(), WindowService);
 
     }
 

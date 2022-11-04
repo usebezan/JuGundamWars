@@ -1,26 +1,23 @@
 ﻿using Ju.GundamWars.Models;
 using Ju.GundamWars.Models.Entities;
-using Ju.GundamWars.Models.Repositories;
 using Ju.GundamWars.Models.Services;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Windows.Data;
 
 
 namespace Ju.GundamWars.ViewModels
 {
 
-    public class PilotEntryViewModel : EntryViewModelBase<PilotModel>
+    public class PilotEntryViewModel : EntryViewModelBase<PilotModel, PilotOptionalViewModel>
     {
 
-        public PilotEntryViewModel(EntryType type, PilotModel model, PilotSkillRepository pilotSkillRepository, PilotAbilityRepository pilotAbilityRepository, SerialRepository serialRepository, MiscRepository miscRepository, WindowService windowService)
-            : base(type, model, serialRepository, windowService)
+        public PilotEntryViewModel(EntryType type, PilotModel model, PilotOptionalViewModel optionalViewModel, WindowService windowService)
+            : base(type, model, optionalViewModel, windowService)
         {
             Name = Model.Entity.ToReactivePropertyAsSynchronized(e => e.Name).AddTo(Disposables);
             Unit = Model.Entity.ToReactivePropertySlimAsSynchronized(e => e.Unit).AddTo(Disposables);
@@ -76,14 +73,6 @@ namespace Ju.GundamWars.ViewModels
                 .Select(v => !v)
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(Disposables);
-
-            OptionalUnits = miscRepository.Units.Where(e => e.Type == UnitType.MobileSuit || e.Type == UnitType.MobileArmor).ToList();
-            OptionalGrades = miscRepository.Grades.Where(e => e.Value <= 6).ToList();
-            OptionalTags = miscRepository.PilotTags;
-            OptionalSkills = pilotSkillRepository.Entities;
-            OptionalSlotRanks = miscRepository.PilotSlotRanks;
-            OptionalAbilities = new ListCollectionView(pilotAbilityRepository.Entities);
-            OptionalAbilities.GroupDescriptions.Add(new PropertyGroupDescription("TargetTypeText"));
 
             ResetPracticedCommand = new ReactiveCommand().WithSubscribe(Model.ResetPracticed).AddTo(Disposables);
         }
@@ -146,13 +135,6 @@ namespace Ju.GundamWars.ViewModels
         public ReadOnlyReactivePropertySlim<int> PracticedTotal { get; }
 
         public override ReadOnlyReactivePropertySlim<bool> HasErrors { get; }
-
-        public List<ByteType<UnitType>> OptionalUnits { get; }
-        public List<GradeType> OptionalGrades { get; }
-        public List<ByteType<PilotTagType>> OptionalTags { get; }
-        public ObservableCollection<PilotSkill> OptionalSkills { get; }
-        public List<byte> OptionalSlotRanks { get; }
-        public ListCollectionView OptionalAbilities { get; }
 
         public ReactiveCommand ResetPracticedCommand { get; }
 

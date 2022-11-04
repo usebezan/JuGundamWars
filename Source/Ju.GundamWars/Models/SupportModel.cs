@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
-using static Ju.GundamWars.App;
 
 
 namespace Ju.GundamWars.Models
@@ -14,13 +13,6 @@ namespace Ju.GundamWars.Models
 
     public class SupportModel : ModelBase<Support, SupportRepository>
     {
-
-        public static SupportModel Create() =>
-            Create(new());
-
-        public static SupportModel Create(Support entity) =>
-            new(entity, GetRequiredService<SupportRepository>());
-
 
         public SupportModel(Support entity, SupportRepository repository)
             : base(entity, repository)

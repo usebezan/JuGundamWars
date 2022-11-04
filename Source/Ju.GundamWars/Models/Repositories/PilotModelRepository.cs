@@ -3,6 +3,7 @@ using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
 using System.Linq;
+using static Ju.GundamWars.App;
 
 
 namespace Ju.GundamWars.Models.Repositories
@@ -13,7 +14,7 @@ namespace Ju.GundamWars.Models.Repositories
 
         public PilotModelRepository(PilotRepository repository)
         {
-            Models = repository.Entities.ToReadOnlyReactiveCollection(PilotModel.Create).AddTo(Disposables);
+            Models = repository.Entities.ToReadOnlyReactiveCollection(e => new PilotModel(e, GetRequiredService<PilotRepository>())).AddTo(Disposables);
         }
 
 

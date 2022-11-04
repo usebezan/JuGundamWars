@@ -38,7 +38,7 @@
 
     <Style x:Key="GwEntryPilotSkillComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding OptionalSkills}" />
+        <Setter Property="ItemsSource" Value="{Binding Optional.OptionalSkills}" />
         <Setter Property="SelectedItem" Value="{Binding Skill.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
     </Style>
@@ -46,13 +46,13 @@
     <Style x:Key="GwEntryPilotSlotRankComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="Width" Value="40" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
-        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.OptionalSlotRanks}" />
+        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.Optional.OptionalSlotRanks}" />
         <Setter Property="SelectedItem" Value="{Binding Item1}" />
     </Style>
 
     <Style x:Key="GwEntryPilotAbilityComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.OptionalAbilities}" />
+        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.Optional.OptionalAbilities}" />
         <Setter Property="SelectedItem" Value="{Binding Item2}" />
         <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Select to Learn" />

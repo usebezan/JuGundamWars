@@ -14,11 +14,11 @@ using System.Reactive.Linq;
 namespace Ju.GundamWars.ViewModels
 {
 
-    public class MobileSuitEntryViewModel : EntryViewModelBase<MobileSuitModel>
+    public class MobileSuitEntryViewModel : EntryViewModelBase<MobileSuitModel, MobileSuitOptionalViewModel>
     {
 
-        public MobileSuitEntryViewModel(EntryType type, MobileSuitModel model, PilotModelRepository pilotModelRepository, SupportModelRepository supportModelRepository, UnitSAbilityRepository unitAbilityRepository, SerialRepository serialRepository, MiscRepository miscRepository, WindowService windowService)
-            : base(type, model, serialRepository, windowService)
+        public MobileSuitEntryViewModel(EntryType type, MobileSuitModel model, MobileSuitOptionalViewModel optionalViewModel, PilotModelRepository pilotModelRepository, SupportModelRepository supportModelRepository, UnitSAbilityRepository unitAbilityRepository, SerialRepository serialRepository, MiscRepository miscRepository, WindowService windowService)
+            : base(type, model, optionalViewModel, windowService)
         {
             Name = Model.Entity.ToReactivePropertyAsSynchronized(e => e.Name).AddTo(Disposables);
             InitialGrade = Model.Entity.ToReactivePropertySlimAsSynchronized(e => e.InitialGrade).AddTo(Disposables);
@@ -102,13 +102,6 @@ namespace Ju.GundamWars.ViewModels
                 .Select(v => !v)
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(Disposables);
-
-            OptionalRoles = miscRepository.MobileSuitRoles;
-            OptionalInitialGrades = miscRepository.Grades.Where(e => e.Value <= 6).ToList();
-            OptionalGrades = miscRepository.Grades;
-            OptionalTags = miscRepository.MobileSuitTags;
-            OptionalPilots = pilotModelRepository.Models;
-            OptionalSupports = supportModelRepository.Models;
         }
 
 
@@ -198,13 +191,6 @@ namespace Ju.GundamWars.ViewModels
         //public ObservableCollection<KeyValuePair<string, string>> Enhancements { get; }
 
         public override ReadOnlyReactivePropertySlim<bool> HasErrors { get; }
-
-        public List<ByteType<MobileSuitRoleType>> OptionalRoles { get; }
-        public List<GradeType> OptionalInitialGrades { get; }
-        public List<GradeType> OptionalGrades { get; }
-        public List<ByteType<MobileSuitTagType>> OptionalTags { get; }
-        public ReadOnlyReactiveCollection<PilotModel> OptionalPilots { get; }
-        public ReadOnlyReactiveCollection<SupportModel> OptionalSupports { get; }
 
     }
 

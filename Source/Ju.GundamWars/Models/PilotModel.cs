@@ -4,7 +4,6 @@ using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static Ju.GundamWars.App;
 
 
 namespace Ju.GundamWars.Models
@@ -12,13 +11,6 @@ namespace Ju.GundamWars.Models
 
     public class PilotModel : ModelBase<Pilot, PilotRepository>
     {
-
-        public static PilotModel Create() =>
-            Create(new());
-
-        public static PilotModel Create(Pilot entity) =>
-            new(entity, GetRequiredService<PilotRepository>());
-
 
         public PilotModel(Pilot entity, PilotRepository repository)
             : base(entity, repository)

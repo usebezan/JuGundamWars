@@ -18,14 +18,7 @@ namespace Ju.GundamWars.ViewModels
 
 
         protected override PilotEntryViewModel CreateEntryViewModel() =>
-            new(
-                EntryType.Add,
-                PilotModel.Create(),
-                GetRequiredService<PilotSkillRepository>(),
-                GetRequiredService<PilotAbilityRepository>(),
-                GetRequiredService<SerialRepository>(),
-                GetRequiredService<MiscRepository>(),
-                WindowService);
+            new(EntryType.Add, new(new(), GetRequiredService<PilotRepository>()), GetRequiredService<PilotOptionalViewModel>(), WindowService);
 
         protected override PilotDisplayViewModel CreateDisplayViewModel(PilotModel model) =>
             new(model, GetRequiredService<MiscRepository>(), WindowService);

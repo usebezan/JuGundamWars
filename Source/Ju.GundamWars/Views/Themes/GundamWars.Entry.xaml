@@ -95,7 +95,7 @@
 
     <Style x:Key="GwEntrySerialComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding OptionalSerials}" />
+        <Setter Property="ItemsSource" Value="{Binding Optional.OptionalSerials}" />
         <Setter Property="SelectedItem" Value="{Binding Serial.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
     </Style>
@@ -118,19 +118,19 @@
     </Style>
 
     <Style x:Key="GwEntryUnitListBox" TargetType="ListBox" BasedOn="{StaticResource GwEntryGeneralListBox}">
-        <Setter Property="ItemsSource" Value="{Binding OptionalUnits}" />
+        <Setter Property="ItemsSource" Value="{Binding Optional.OptionalUnits}" />
         <Setter Property="SelectedValue" Value="{Binding Unit.Value}" />
     </Style>
 
     <Style x:Key="GwEntryGradeListBox" TargetType="ListBox" BasedOn="{StaticResource GwEntryGeneralListBox}">
         <Setter Property="Width" Value="360" />
         <Setter Property="ItemTemplate" Value="{StaticResource GwGradeTemplate}" />
-        <Setter Property="ItemsSource" Value="{Binding OptionalGrades}" />
+        <Setter Property="ItemsSource" Value="{Binding Optional.OptionalGrades}" />
         <Setter Property="SelectedValue" Value="{Binding Grade.Value}" />
     </Style>
 
     <Style x:Key="GwEntryTagListBox" TargetType="ListBox" BasedOn="{StaticResource GwEntryGeneralListBox}">
-        <Setter Property="ItemsSource" Value="{Binding OptionalTags}" />
+        <Setter Property="ItemsSource" Value="{Binding Optional.OptionalTags}" />
         <Setter Property="SelectedValue" Value="{Binding Tag.Value}" />
     </Style>
 

@@ -1,6 +1,5 @@
 ﻿using Ju.GundamWars.Models;
 using Ju.GundamWars.Models.Entities;
-using Ju.GundamWars.Models.Repositories;
 using Ju.GundamWars.Models.Services;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -10,17 +9,16 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Windows.Data;
 
 
 namespace Ju.GundamWars.ViewModels
 {
 
-    public class SupportEntryViewModel : EntryViewModelBase<SupportModel>
+    public class SupportEntryViewModel : EntryViewModelBase<SupportModel, SupportOptionalViewModel>
     {
 
-        public SupportEntryViewModel(EntryType type, SupportModel model, SupportSlotRepository supportSlotRepository, SupportBadgeRepository supportBadgeRepository, SerialRepository serialRepository, MiscRepository miscRepository, WindowService windowService)
-            : base(type, model, serialRepository, windowService)
+        public SupportEntryViewModel(EntryType type, SupportModel model, SupportOptionalViewModel optionalViewModel, WindowService windowService)
+            : base(type, model, optionalViewModel, windowService)
         {
             Name = Model.Entity.ToReactivePropertyAsSynchronized(e => e.Name).AddTo(Disposables);
             Unit = Model.Entity.ToReactivePropertySlimAsSynchronized(e => e.Unit).AddTo(Disposables);
@@ -43,14 +41,6 @@ namespace Ju.GundamWars.ViewModels
                 .Select(v => !v)
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(Disposables);
-
-            OptionalUnits = miscRepository.Units.Where(e => e.Type == UnitType.MobileSuit || e.Type == UnitType.MobileArmor).ToList();
-            OptionalGrades = miscRepository.Grades.Where(e => e.Value <= 6).ToList();
-            OptionalTags = miscRepository.SupportTags;
-            OptionalSlots = new ListCollectionView(supportSlotRepository.Entities);
-            OptionalSlots.GroupDescriptions.Add(new PropertyGroupDescription("TargetTypeText"));
-            OptionalBadges = new ListCollectionView(supportBadgeRepository.Entities);
-            OptionalBadges.GroupDescriptions.Add(new PropertyGroupDescription("TargetTypeText"));
 
             DetachAllBadgesCommand = new ReactiveCommand().WithSubscribe(Model.DetachAllBadges).AddTo(Disposables);
         }
@@ -80,12 +70,6 @@ namespace Ju.GundamWars.ViewModels
         public ObservableCollection<KeyValuePair<string, string>> EnhancementsSummary { get; }
 
         public override ReadOnlyReactivePropertySlim<bool> HasErrors { get; }
-
-        public List<ByteType<UnitType>> OptionalUnits { get; }
-        public List<GradeType> OptionalGrades { get; }
-        public List<ByteType<SupportTagType>> OptionalTags { get; }
-        public ListCollectionView OptionalSlots { get; }
-        public ListCollectionView OptionalBadges { get; }
 
         public ReactiveCommand DetachAllBadgesCommand { get; }
 

@@ -1,29 +1,26 @@
 ﻿using Ju.GundamWars.Models;
-using Ju.GundamWars.Models.Entities;
-using Ju.GundamWars.Models.Repositories;
 using Ju.GundamWars.Models.Services;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 
 namespace Ju.GundamWars.ViewModels
 {
 
-    public abstract class EntryViewModelBase<TModel> : ViewModelBase, IEntryViewModel
+    public abstract class EntryViewModelBase<TModel, TOptionalViewModel> : ViewModelBase, IEntryViewModel
         where TModel : DisposableBindableBase, IModel
+        where TOptionalViewModel : DisposableBindableBase
     {
 
-        public EntryViewModelBase(EntryType type, TModel model, SerialRepository serialRepository, WindowService windowService)
+        public EntryViewModelBase(EntryType type, TModel model, TOptionalViewModel optionalViewModel, WindowService windowService)
             : base(windowService)
         {
             Model = model ?? throw new ArgumentNullException(nameof(model));
+            Optional = optionalViewModel ?? throw new ArgumentNullException(nameof(optionalViewModel));
 
             Type = type;
-
-            OptionalSerials = serialRepository.Entities;
 
             AddCommand = new AsyncReactiveCommand().WithSubscribe(Add).AddTo(Disposables);
             RemoveCommand = new AsyncReactiveCommand().WithSubscribe(Remove).AddTo(Disposables);
@@ -47,10 +44,10 @@ namespace Ju.GundamWars.ViewModels
         public bool IsEdit => Type == EntryType.Edit;
         public int Index => Type == EntryType.Add ? 0 : 1;
         public bool IsDirty => Model.IsDirty();
+        public TOptionalViewModel Optional { get; }
+
 
         public abstract ReadOnlyReactivePropertySlim<bool> HasErrors { get; }
-
-        public ObservableCollection<Serial> OptionalSerials { get; }
 
         public AsyncReactiveCommand AddCommand { get; }
         public AsyncReactiveCommand RemoveCommand { get; }

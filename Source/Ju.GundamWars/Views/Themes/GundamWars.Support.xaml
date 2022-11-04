@@ -46,7 +46,7 @@
 
     <Style x:Key="GwEntrySupportLimitedSerialComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.OptionalSerials}" />
+        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.Optional.OptionalSerials}" />
         <Setter Property="SelectedItem" Value="{Binding Item1}" />
         <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
@@ -54,7 +54,7 @@
 
     <Style x:Key="GwEntrySupportSlotComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.OptionalSlots}" />
+        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.Optional.OptionalSlots}" />
         <Setter Property="SelectedItem" Value="{Binding Item1}" />
         <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
@@ -62,7 +62,7 @@
 
     <Style x:Key="GwEntrySupportBadgeComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwEntryComboBox}">
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.OptionalBadges}" />
+        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.Optional.OptionalBadges}" />
         <Setter Property="SelectedItem" Value="{Binding Item2}" />
         <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Select to Attach" />
