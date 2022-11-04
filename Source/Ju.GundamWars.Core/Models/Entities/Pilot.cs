@@ -10,6 +10,8 @@ namespace Ju.GundamWars.Models.Entities
         public Pilot()
         {
             Unit = 1;
+            Grade = 1;
+            Level = 1;
             SlotRank1 = 1;
             SlotRank2 = 1;
             SlotRank3 = 1;
