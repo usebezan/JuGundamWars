@@ -47,7 +47,7 @@
         <Setter Property="InputMethod.PreferredImeConversionMode" Value="FullShape,Native" />
         <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Free Word" />
-        <Setter Property="Text" Value="{Binding FilterViewModel.WordFilter.Value, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Text" Value="{Binding Filtering.WordFilter.Value, UpdateSourceTrigger=PropertyChanged}" />
         <Setter Property="appAs:TextFieldAssist.IsSelectAllOnGotFocus" Value="True" />
     </Style>
 
@@ -55,24 +55,24 @@
     <Style x:Key="GwFilterUnitComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="56" />
         <Setter Property="ItemTemplate" Value="{StaticResource GwGeneralTypeTemplate}" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringUnits}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.UnitFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringUnits}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.UnitFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="For" />
     </Style>
 
     <Style x:Key="GwFilterTagComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="56" />
         <Setter Property="ItemTemplate" Value="{StaticResource GwGeneralTypeTemplate}" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringTags}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.TagFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringTags}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.TagFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Tag" />
     </Style>
 
     <Style x:Key="GwFilterSerialComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="240" />
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringSerials}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.SerialFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringSerials}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.SerialFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Series" />
     </Style>
 
@@ -80,7 +80,7 @@
     <Style x:Key="GwFilterHasMemoToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
         <Setter Property="Margin" Value="8" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="IsChecked" Value="{Binding FilterViewModel.HasMemoFilter.Value}" />
+        <Setter Property="IsChecked" Value="{Binding Filtering.HasMemoFilter.Value}" />
         <Setter Property="ToolTip" Value="Has Memo" />
     </Style>
 

@@ -13,10 +13,10 @@ using System.Windows.Data;
 namespace Ju.GundamWars.ViewModels
 {
 
-    public class MobileSuitFilterViewModel : FilterViewModelBase<MobileSuitDisplayViewModel>
+    public class MobileSuitFilteringViewModel : FilteringViewModelBase<MobileSuitDisplayViewModel>
     {
 
-        public MobileSuitFilterViewModel(SerialRepository serialRepository, WindowService windowService)
+        public MobileSuitFilteringViewModel(SerialRepository serialRepository, WindowService windowService)
             : base(serialRepository, windowService)
         {
         }

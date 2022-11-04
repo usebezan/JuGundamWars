@@ -59,15 +59,15 @@ namespace Ju.GundamWars
             services.AddSingleton<YesNoDialog>();
 
             services.AddSingleton<MobileSuitModelRepository>();
-            services.AddSingleton<MobileSuitFilterViewModel>();
+            services.AddSingleton<MobileSuitFilteringViewModel>();
             services.AddSingleton<MobileSuitListViewModel>();
 
             services.AddSingleton<PilotModelRepository>();
-            services.AddSingleton<PilotFilterViewModel>();
+            services.AddSingleton<PilotFilteringViewModel>();
             services.AddSingleton<PilotListViewModel>();
 
             services.AddSingleton<SupportModelRepository>();
-            services.AddSingleton<SupportFilterViewModel>();
+            services.AddSingleton<SupportFilteringViewModel>();
             services.AddSingleton<SupportListViewModel>();
 
             services.AddSingleton<MainViewModel>();

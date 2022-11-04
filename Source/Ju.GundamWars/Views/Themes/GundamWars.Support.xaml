@@ -22,24 +22,24 @@
     <Style x:Key="GwFilterSupportBadgeComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="160" />
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringBadges}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.BadgeFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringBadges}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.BadgeFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Badge" />
     </Style>
 
     <Style x:Key="GwFilterSupportSlotComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="160" />
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringSlots}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.SlotFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringSlots}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.SlotFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Slot" />
     </Style>
 
     <Style x:Key="GwFilterSupportLimitedSerialComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="240" />
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringSerials}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.LimitedSerialFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringSerials}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.LimitedSerialFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Limited Series" />
     </Style>
 

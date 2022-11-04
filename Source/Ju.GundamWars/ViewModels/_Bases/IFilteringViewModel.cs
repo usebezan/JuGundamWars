@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace Ju.GundamWars.ViewModels
 {
 
-    public interface IFilterViewModel<TDisplayViewModel> : IDisposable, INotifyPropertyChanged
+    public interface IFilteringViewModel<TDisplayViewModel> : IDisposable, INotifyPropertyChanged
         where TDisplayViewModel : IDisplayViewModel
     {
 

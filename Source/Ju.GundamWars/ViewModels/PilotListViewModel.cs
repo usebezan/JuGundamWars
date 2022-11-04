@@ -8,11 +8,11 @@ using static Ju.GundamWars.App;
 namespace Ju.GundamWars.ViewModels
 {
 
-    public class PilotListViewModel : ListViewModelBase<PilotModel, PilotModelRepository, PilotFilterViewModel, PilotEntryViewModel, PilotDisplayViewModel>
+    public class PilotListViewModel : ListViewModelBase<PilotModel, PilotModelRepository, PilotFilteringViewModel, PilotEntryViewModel, PilotDisplayViewModel>
     {
 
-        public PilotListViewModel(PilotModelRepository repository, PilotFilterViewModel filterViewModel, WindowService windowService)
-            : base(repository, filterViewModel, windowService)
+        public PilotListViewModel(PilotModelRepository repository, PilotFilteringViewModel filteringViewModel, WindowService windowService)
+            : base(repository, filteringViewModel, windowService)
         {
         }
 

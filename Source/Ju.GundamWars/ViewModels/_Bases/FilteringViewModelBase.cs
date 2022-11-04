@@ -11,11 +11,11 @@ using System.Collections.ObjectModel;
 namespace Ju.GundamWars.ViewModels
 {
 
-    public abstract class FilterViewModelBase<TDisplayViewModel> : ViewModelBase, IFilterViewModel<TDisplayViewModel>
+    public abstract class FilteringViewModelBase<TDisplayViewModel> : ViewModelBase, IFilteringViewModel<TDisplayViewModel>
         where TDisplayViewModel : DisposableBindableBase, IDisplayViewModel
     {
 
-        public FilterViewModelBase(SerialRepository serialRepository, WindowService windowService)
+        public FilteringViewModelBase(SerialRepository serialRepository, WindowService windowService)
             : base(windowService)
         {
             IsReady = false;

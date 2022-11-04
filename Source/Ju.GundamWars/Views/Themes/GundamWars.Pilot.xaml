@@ -22,16 +22,16 @@
     <Style x:Key="GwFilterPilotAbilityComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="160" />
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringAbilities}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.AbilityFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringAbilities}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.AbilityFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Ability" />
     </Style>
 
     <Style x:Key="GwFilterPilotSkillComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="200" />
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringSkills}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.SkillFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringSkills}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.SkillFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Skill" />
     </Style>
 

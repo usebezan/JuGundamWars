@@ -12,10 +12,10 @@ using System.Linq;
 namespace Ju.GundamWars.ViewModels
 {
 
-    public class PilotFilterViewModel : FilterViewModelBase<PilotDisplayViewModel>
+    public class PilotFilteringViewModel : FilteringViewModelBase<PilotDisplayViewModel>
     {
 
-        public PilotFilterViewModel(PilotSkillRepository pilotSkillRepository, PilotAbilityRepository pilotAbilityRepository, SerialRepository serialRepository, MiscRepository miscRepository, WindowService windowService)
+        public PilotFilteringViewModel(PilotSkillRepository pilotSkillRepository, PilotAbilityRepository pilotAbilityRepository, SerialRepository serialRepository, MiscRepository miscRepository, WindowService windowService)
             : base(serialRepository, windowService)
         {
             FilteringUnits = miscRepository.Units.Where(e => e.Type == UnitType.MobileSuit || e.Type == UnitType.MobileArmor).ToList();

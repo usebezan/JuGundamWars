@@ -22,8 +22,8 @@
     <Style x:Key="GwFilterSubSerialComboBox" TargetType="ComboBox" BasedOn="{StaticResource GwFilterComboBox}">
         <Setter Property="Width" Value="240" />
         <Setter Property="DisplayMemberPath" Value="Name" />
-        <Setter Property="ItemsSource" Value="{Binding FilterViewModel.FilteringSerials}" />
-        <Setter Property="SelectedItem" Value="{Binding FilterViewModel.SubSerialFilter.Value}" />
+        <Setter Property="ItemsSource" Value="{Binding Filtering.FilteringSerials}" />
+        <Setter Property="SelectedItem" Value="{Binding Filtering.SubSerialFilter.Value}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="Sub Series" />
     </Style>
 

@@ -13,10 +13,10 @@ using System.Windows.Data;
 namespace Ju.GundamWars.ViewModels
 {
 
-    public class SupportFilterViewModel : FilterViewModelBase<SupportDisplayViewModel>
+    public class SupportFilteringViewModel : FilteringViewModelBase<SupportDisplayViewModel>
     {
 
-        public SupportFilterViewModel(SupportSlotRepository supportSlotRepository, SupportBadgeRepository supportBadgeRepository, SerialRepository serialRepository, MiscRepository miscRepository, WindowService windowService)
+        public SupportFilteringViewModel(SupportSlotRepository supportSlotRepository, SupportBadgeRepository supportBadgeRepository, SerialRepository serialRepository, MiscRepository miscRepository, WindowService windowService)
             : base(serialRepository, windowService)
         {
             FilteringUnits = miscRepository.Units.Where(e => e.Type == UnitType.MobileSuit || e.Type == UnitType.MobileArmor).ToList();

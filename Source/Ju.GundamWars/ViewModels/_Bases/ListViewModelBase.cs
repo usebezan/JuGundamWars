@@ -10,28 +10,28 @@ using System;
 namespace Ju.GundamWars.ViewModels
 {
 
-    public abstract class ListViewModelBase<TModel, TRepository, TFilterViewModel,TEntryViewModel, TDisplayViewModel> : ViewModelBase
+    public abstract class ListViewModelBase<TModel, TRepository, TFilteringViewModel, TEntryViewModel, TDisplayViewModel> : ViewModelBase
         where TModel : DisposableBindableBase, IModel
         where TRepository : class, IModelRepository<TModel>
-        where TFilterViewModel : IFilterViewModel<TDisplayViewModel>
+        where TFilteringViewModel : IFilteringViewModel<TDisplayViewModel>
         where TEntryViewModel : DisposableBindableBase, IEntryViewModel
         where TDisplayViewModel : DisposableBindableBase, IDisplayViewModel
     {
 
-        public ListViewModelBase(TRepository repository, TFilterViewModel filterViewModel, WindowService windowService)
+        public ListViewModelBase(TRepository repository, TFilteringViewModel filteringViewModel, WindowService windowService)
             : base(windowService)
         {
-            FilterViewModel = filterViewModel ?? throw new ArgumentNullException(nameof(filterViewModel));
+            Filtering = filteringViewModel ?? throw new ArgumentNullException(nameof(filteringViewModel));
 
             Items = repository.Models.ToReadOnlyReactiveCollection(CreateDisplayViewModel).AddTo(Disposables);
 
-            FilterViewModel.Initialize(Items);
+            Filtering.Initialize(Items);
 
             NewCommand = new ReactiveCommand().WithSubscribe(New).AddTo(Disposables);
         }
 
 
-        public TFilterViewModel FilterViewModel { get; }
+        public TFilteringViewModel Filtering { get; }
         public ReadOnlyReactiveCollection<TDisplayViewModel> Items { get; }
 
         public ReactiveCommand NewCommand { get; }
