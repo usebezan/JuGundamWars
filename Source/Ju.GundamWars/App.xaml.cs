@@ -2,7 +2,6 @@
 using Ju.GundamWars.Models.Services;
 using Ju.GundamWars.ViewModels;
 using Ju.GundamWars.Views;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -36,19 +35,8 @@ namespace Ju.GundamWars
 
         private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
-
             // add services:
             CoreHosting.ConfigureServices(context, services);
-
-            // build config
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(currentDirectory)
-                .AddJsonFile("AppSettings.json", false)
-                .Build();
-
-            // add config
-            services.Configure<UserSetting>(configuration.GetSection(nameof(UserSetting)));
 
             // add services:
             services.AddSingleton<MiscRepository>();

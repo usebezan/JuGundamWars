@@ -1,6 +1,7 @@
 ﻿using Ju.GundamWars.Models.Repositories;
 using Ju.GundamWars.Models.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -27,7 +28,17 @@ namespace Ju.GundamWars
             {
                 File.Copy(masterDbFile, userDbFile);
             }
-            
+
+            // build config
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(currentDirectory)
+                .AddJsonFile("AppSettings.json", false)
+                .Build();
+
+            // add config
+            services.Configure<SystemSetting>(configuration.GetSection(nameof(SystemSetting)));
+            services.Configure<UserSetting>(configuration.GetSection(nameof(UserSetting)));
+
             // add DbContext
             services
                 .AddDbContext<GwDbContext>(options =>
