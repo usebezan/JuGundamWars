@@ -1,5 +1,6 @@
 ﻿using Ju.GundamWars.Models.Services;
 using MaterialDesignThemes.Wpf;
+using Microsoft.Extensions.Options;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
@@ -12,9 +13,11 @@ namespace Ju.GundamWars.ViewModels
     public class MainViewModel : ViewModelBase
     {
 
-        public MainViewModel(WindowService windowService)
+        public MainViewModel(IOptions<SystemSetting> systemSetting, WindowService windowService)
             : base(windowService)
         {
+            this.systemSetting = systemSetting?.Value ?? throw new ArgumentNullException(nameof(systemSetting));
+
             MessageQueue = WindowService.Snackbar;
             DrawerContent = WindowService.DrawerContent;
             IsDrawerOpen = WindowService.IsDrawerOpen;
@@ -25,6 +28,8 @@ namespace Ju.GundamWars.ViewModels
         }
 
 
+        private readonly SystemSetting systemSetting;
+
         public SnackbarMessageQueue MessageQueue { get; }
         public ReadOnlyReactivePropertySlim<IEntryViewModel?> DrawerContent { get; }
         public ReactivePropertySlim<bool> IsDrawerOpen { get; }
@@ -33,7 +38,7 @@ namespace Ju.GundamWars.ViewModels
 
 
         private void VisitGitHub() =>
-            Process.Start(new ProcessStartInfo("cmd", $"/c start https://github.com/usebezan/JuGundamWars") { CreateNoWindow = true });
+            Process.Start(new ProcessStartInfo("cmd", $"/c start {systemSetting.AppRepositoryUri}") { CreateNoWindow = true });
 
     }
 
