@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection;
+using Version = Ju.GundamWars.Models.Entities.Version;
 
 
 namespace Ju.GundamWars.Models.Services
@@ -10,6 +11,9 @@ namespace Ju.GundamWars.Models.Services
     {
 
         public GwDbContext(DbContextOptions<GwDbContext> options) : base(options) { }
+
+
+        public DbSet<Version> Versions => Set<Version>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
