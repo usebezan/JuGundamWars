@@ -55,12 +55,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="AppSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Update="Views\Themes\GundamWars.Unit.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
