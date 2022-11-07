@@ -51,6 +51,8 @@ namespace Ju.GundamWars
                 });
 
             // add services:
+            services.AddSingleton<HttpGetService>();
+            services.AddSingleton<SyncService>();
             services.AddSingleton<MobileArmorRepository>();
             services.AddSingleton<MobileSuitRepository>();
             services.AddSingleton<PilotAbilityRepository>();
