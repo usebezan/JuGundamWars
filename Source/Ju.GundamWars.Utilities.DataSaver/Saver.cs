@@ -22,6 +22,8 @@ namespace Ju.GundamWars.Utilities.DataSaver
         public void Run()
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
+            File.WriteAllText("Serial.json", JsonSerializer.Serialize(dbContext.Set<Serial>().ToList(), options));
+            File.WriteAllText("PilotSkill.json", JsonSerializer.Serialize(dbContext.Set<PilotSkill>().ToList(), options));
             File.WriteAllText("PilotAbility.json", JsonSerializer.Serialize(dbContext.Set<PilotAbility>().ToList(), options));
             File.WriteAllText("SupportSlot.json", JsonSerializer.Serialize(dbContext.Set<SupportSlot>().ToList(), options));
             File.WriteAllText("SupportBadge.json", JsonSerializer.Serialize(dbContext.Set<SupportBadge>().ToList(), options));
