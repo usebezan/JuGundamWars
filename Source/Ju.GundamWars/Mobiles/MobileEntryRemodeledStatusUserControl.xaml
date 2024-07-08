@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Ju.GundamWars.Mobiles.MobileEntryRemodeledStatusUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:domain="clr-namespace:Ju.GundamWars.Domain.Mobiles;assembly=Ju.GundamWars.Core"
+    xmlns:const="clr-namespace:Ju.GundamWars.Const;assembly=Ju.GundamWars.Core"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance domain:MobileRemodeledStatusSubject}"
+    SnapsToDevicePixels="True"
+    >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Row="0" Grid.Column="0" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding Hp}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Hp}}" />
+        <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding BeamAttack}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.BeamAttack}}" />
+        <TextBox Grid.Row="0" Grid.Column="2" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding PhysicalAttack}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.PhysicalAttack}}" />
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding BeamDefence}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.BeamDefence}}" />
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding PhysicalDefence}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.PhysicalDefence}}" />
+        <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding CriticalRate}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.CriticalRate}}" materialDesign:TextFieldAssist.SuffixText="%" />
+        <TextBox Grid.Row="2" Grid.Column="0" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding CriticalDamage}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.CriticalDamage}}" />
+        <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding Accuracy}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Accuracy}}" />
+        <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding Evasion}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Evasion}}" />
+        <TextBox Grid.Row="3" Grid.Column="0" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding Mobility}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Mobility}}" />
+        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding EnRecovery}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.EnRecovery}}" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Ju.GundamWars.Mobiles.MobileSelectionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="clr-namespace:Ju.GundamWars.Controls"
+    xmlns:local="clr-namespace:Ju.GundamWars.Mobiles"
+    xmlns:const="clr-namespace:Ju.GundamWars.Const;assembly=Ju.GundamWars.Core"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:MobileSelectionViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    SnapsToDevicePixels="True"
+    >
+    <DockPanel>
+        <ctrl:SelectionTitleUserControl DockPanel.Dock="Top" Margin="16" />
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Command="{Binding ClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="Clear filter" />
+                <TextBox Style="{StaticResource GwFilterWordTextBox}" />
+                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
+                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
+            </ToolBar>
+        </ToolBarTray>
+        <DataGrid FrozenColumnCount="1">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Name"
+                    CellTemplate="{StaticResource GwSelectionDataGridNameTemplate}"
+                    SortMemberPath="Name"
+                    SortDirection="Ascending"
+                />
+
+                <DataGridTextColumn Header="Pair"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding Pair.Name}"
+                />
+
+                <DataGridTextColumn Header="Kind"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding Kind.Name}"
+                />
+                <DataGridTextColumn Header="Role"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding Role.Name}"
+                />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

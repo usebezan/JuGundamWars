@@ -1,0 +1,196 @@
+﻿<UserControl x:Class="Ju.GundamWars.CoMobiles.CoMobileListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Ju.GundamWars.CoMobiles"
+    xmlns:const="clr-namespace:Ju.GundamWars.Const;assembly=Ju.GundamWars.Core"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:CoMobileListViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    SnapsToDevicePixels="True"
+    >
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Command="{Binding OpenEntryAsNewForMsCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
+                        <TextBlock VerticalAlignment="Center" Text="New" FontFamily="Yu Gothic UI" FontSize="13" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Button>
+                <Separator Margin="4" />
+                <Button Command="{Binding ChechAllCommand}" Content="{materialDesign:PackIcon CheckboxMultipleMarked}" ToolTip="Chech all filtered" />
+                <Button Command="{Binding UnchechAllCommand}" Content="{materialDesign:PackIcon CheckboxMultipleBlankOutline}" ToolTip="Unchech all filtered" />
+                <Button Command="{Binding ClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="Clear filter" />
+                <ToggleButton Style="{StaticResource GwFilterCheckedToggleButton}" />
+                <TextBox Style="{StaticResource GwFilterWordTextBox}" />
+                <ComboBox Style="{StaticResource GwFilterCategoryComboBox}" />
+                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilterPinnedToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilterHasMobileToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
+                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
+            </ToolBar>
+        </ToolBarTray>
+        <DataGrid FrozenColumnCount="2">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Id}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Name"
+                    CellTemplate="{StaticResource GwListNameCellTemplate}"
+                    SortMemberPath="Name"
+                    SortDirection="Ascending"
+                />
+
+                <DataGridTextColumn Header="Mobile"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding Mobile.Name}"
+                    Width="120"
+                />
+
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.Hp}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;HP"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.HpText}"
+                    SortMemberPath="UpgradedCount.Hp"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.BeamAttack}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;Beam Atk"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.BeamAttackText}"
+                    SortMemberPath="UpgradedCount.BeamAttack"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.PhysicalAttack}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;Physical Atk"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.PhysicalAttackText}"
+                    SortMemberPath="UpgradedCount.PhysicalAttack"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.BeamDefence}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;Beam Def"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.BeamDefenceText}"
+                    SortMemberPath="UpgradedCount.BeamDefence"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.PhysicalDefence}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;Physical Def"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.PhysicalDefenceText}"
+                    SortMemberPath="UpgradedCount.PhysicalDefence"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.CriticalDamage}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;Critical Dmg"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.CriticalDamageText}"
+                    SortMemberPath="UpgradedCount.CriticalDamage"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.Accuracy}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;Accuracy"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.AccuracyText}"
+                    SortMemberPath="UpgradedCount.Accuracy"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.Evasion}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;Evasion"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.EvasionText}"
+                    SortMemberPath="UpgradedCount.Evasion"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.Mobility}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}}"
+                />
+                <!-- TODO: 名前埋め込み -->
+                <DataGridTextColumn Header="Upgraded&#x0a;Mobility"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding UpgradedCount.MobilityText}"
+                    SortMemberPath="UpgradedCount.Mobility"
+                />
+
+                <DataGridTemplateColumn Header="Upgraded&#x0a;Startup"
+                    SortMemberPath="UpgradedCount.Startup"
+                    >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{StaticResource GwListRightTextColumn}" Text="{Binding UpgradedCount.StartupText}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Upgraded&#x0a;Super Move"
+                    SortMemberPath="UpgradedCount.SuperMove"
+                    >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{StaticResource GwListRightTextColumn}" Text="{Binding UpgradedCount.SuperMoveText}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Upgraded&#x0a;Total"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding UpgradedCountTotal}"
+                />
+
+                <DataGridTextColumn Header="Level"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding Level}"
+                />
+                <DataGridTextColumn Header="Role"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding Role.Name}"
+                    SortMemberPath="Role.Value"
+                />
+                <DataGridTextColumn Header="Series"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding Serial.Name}"
+                    SortMemberPath="Serial.Order"
+                />
+                <DataGridTextColumn Header="Tags"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding TagsText}"
+                />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,280 @@
+﻿<UserControl x:Class="Ju.GundamWars.Mobiles.MobileEntryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:assist="clr-namespace:Ju.GundamWars.Assists"
+    xmlns:ctrl="clr-namespace:Ju.GundamWars.Controls"
+    xmlns:local="clr-namespace:Ju.GundamWars.Mobiles"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:MobileEntryViewModel}"
+    d:DesignHeight="1200"
+    d:DesignWidth="1200"
+    SnapsToDevicePixels="True"
+    >
+    <UserControl.Resources>
+        <Style x:Key="GwEntryMobileSSkillComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <ContentControl Margin="0 0 8 0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwGradeTemplate}" />
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsSource" Value="{Binding SSkills}" />
+        </Style>
+        <Style x:Key="GwEntryMobileSSkillTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntryFullTextBox}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="520" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <ctrl:EntryTitleUserControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="16" />
+        <Grid Grid.Row="1" Grid.Column="0" Margin="16 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Margin="0 0 0 16" Header="Name">
+                <DockPanel>
+                    <ToggleButton DockPanel.Dock="Right" IsChecked="{Binding Entry.IsPinned}" Content="{materialDesign:PackIcon Kind=Pin}" />
+                    <TextBox Style="{StaticResource GwEntryFullTextBox}" Text="{Binding Entry.Name}" />
+                </DockPanel>
+            </GroupBox>
+            <TabControl Grid.Row="1" Margin="0 0 0 16" SelectedIndex="{Binding TabIndex, Mode=OneWay}">
+                <TabItem Header="Default">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Header="Series">
+                                <ComboBox Style="{StaticResource GwEntrySerialComboBox}" />
+                            </GroupBox>
+                            <GroupBox Header="Sub Series">
+                                <StackPanel>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="0 0 0 8"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding AddSubSerialCommand}"
+                                            Content="{materialDesign:PackIcon PlusCircleOutline}"
+                                            ToolTip="Add Limited Serial"
+                                        />
+                                        <ComboBox Style="{StaticResource GwEntryMobileSubSerialComboBox}" />
+                                    </DockPanel>
+                                    <Separator Style="{StaticResource MaterialDesignLightSeparator}" Margin="0 0 0 8" Height="1" />
+                                    <ItemsControl ItemsSource="{Binding Entry.SubSerials}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <DockPanel>
+                                                    <Button
+                                                        DockPanel.Dock="Right"
+                                                        Margin="0 0 0 8"
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource GwEntryToolButton}"
+                                                        Command="{Binding DataContext.RemoveSubSerialCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="{materialDesign:PackIcon MinusCircleOutline}"
+                                                        ToolTip="Remove Limited Serial"
+                                                    />
+                                                    <TextBlock Style="{StaticResource GwEntryTextBlock}" Text="{Binding Name}" />
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Kind">
+                                <ListBox Style="{StaticResource GwEntryRecordTextListBox}" ItemsSource="{Binding Kinds}" SelectedItem="{Binding Entry.Kind}" />
+                            </GroupBox>
+                            <GroupBox Header="Pair">
+                                <ContentControl Style="{StaticResource PairControl}" assist:BoostControlAttached.Index="0" assist:BoostControlAttached.Text="{Binding Entry.Pair.Name}" IsEnabled="{Binding Entry.IsPairable}" />
+                            </GroupBox>
+                            <GroupBox Header="Role">
+                                <ListBox Style="{StaticResource GwEntryRecordTextListBox}" ItemsSource="{Binding Roles}" SelectedItem="{Binding Entry.Role}" />
+                            </GroupBox>
+                            <GroupBox Header="Default Position">
+                                <ListBox Style="{StaticResource GwEntryRecordTextListBox}" ItemsSource="{Binding Positions}" SelectedItem="{Binding Entry.DefaultPosition}" />
+                            </GroupBox>
+                            <GroupBox Header="Initial Grade">
+                                <ListBox Style="{StaticResource GwEntryGradeListBox}" ItemsSource="{Binding InitialGrades}" SelectedItem="{Binding Entry.InitialGrade}" />
+                            </GroupBox>
+                            <GroupBox Header="Terrain">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource GwEntryTextBlock}" Text="宇宙" />
+                                    <ListBox Grid.Row="0" Grid.Column="1" Style="{StaticResource GwEntryRecordTextListBox}" ItemsSource="{Binding Terrains}" SelectedItem="{Binding Entry.Terrain1}" IsSynchronizedWithCurrentItem="False" />
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource GwEntryTextBlock}" Text="地上" />
+                                    <ListBox Grid.Row="1" Grid.Column="1" Style="{StaticResource GwEntryRecordTextListBox}" ItemsSource="{Binding Terrains}" SelectedItem="{Binding Entry.Terrain2}" IsSynchronizedWithCurrentItem="False" />
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource GwEntryTextBlock}" Text="水中" />
+                                    <ListBox Grid.Row="2" Grid.Column="1" Style="{StaticResource GwEntryRecordTextListBox}" ItemsSource="{Binding Terrains}" SelectedItem="{Binding Entry.Terrain3}" IsSynchronizedWithCurrentItem="False" />
+                                </Grid>
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Leveling">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Header="Grade">
+                                <StackPanel>
+                                    <StackPanel Margin="0 0 0 8" Orientation="Horizontal">
+                                        <TextBox Style="{StaticResource GwEntryStatusTextBox}" HorizontalAlignment="Left" Text="{Binding Entry.Blueprint}" materialDesign:TextFieldAssist.PrefixText="Blueprint" />
+                                        <TextBox Style="{StaticResource GwEntryStatusTextBox}" HorizontalAlignment="Left" Text="{Binding Entry.Proof}" materialDesign:TextFieldAssist.PrefixText="Proof" />
+                                    </StackPanel>
+                                    <ListBox Style="{StaticResource GwEntryGradeListBox}" ItemsSource="{Binding Grades}" SelectedItem="{Binding Entry.Grade}" />
+                                </StackPanel>
+                            </GroupBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <GroupBox Grid.Column="0" Header="Level">
+                                    <TextBox Style="{StaticResource GwEntryLevelTextBox}" />
+                                </GroupBox>
+                                <GroupBox Grid.Column="1" Header="Version">
+                                    <TextBox Style="{StaticResource GwEntryLevelTextBox}" Text="{Binding Entry.Version}" />
+                                </GroupBox>
+                            </Grid>
+                            <GroupBox Header="Basic Status">
+                                <local:MobileEntryStatusUserControl DataContext="{Binding Entry.BasicStatus}" />
+                            </GroupBox>
+                            <GroupBox Header="Remodeled Status">
+                                <local:MobileEntryRemodeledStatusUserControl DataContext="{Binding Entry.RemodeledStatus}" />
+                            </GroupBox>
+                            <GroupBox Header="Ace Move">
+                                <ListBox Style="{StaticResource GwEntryRecordTextListBox}" ItemsSource="{Binding HasAces}" SelectedItem="{Binding Entry.HasAce}" />
+                            </GroupBox>
+                            <GroupBox Header="EN">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Grid.Column="0" Style="{StaticResource GwEntryStatusTextBox}" HorizontalAlignment="Left" Text="{Binding Entry.SuperEnGrade}" materialDesign:TextFieldAssist.PrefixText="Super EN Grade" />
+                                    <TextBox Grid.Column="1" Style="{StaticResource GwEntryStatusTextBox}" HorizontalAlignment="Left" Text="{Binding Entry.AceEnGrade}" materialDesign:TextFieldAssist.PrefixText="Ace EN Grade" />
+                                    <TextBox Grid.Column="2" Style="{StaticResource GwEntryStatusTextBox}" HorizontalAlignment="Left" Text="{Binding Entry.EnTank}" materialDesign:TextFieldAssist.PrefixText="EN Tank" />
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="S-Ability">
+                                <StackPanel>
+                                    <ComboBox Style="{StaticResource GwEntryMobileSSkillComboBox}" SelectedItem="{Binding Entry.SSkill1}">
+                                        <ComboBox.GroupStyle>
+                                            <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                        </ComboBox.GroupStyle>
+                                    </ComboBox>
+                                    <TextBox Style="{StaticResource GwEntryMobileSSkillTextBox}" Text="{Binding Entry.SSkillText1}" />
+                                    <ComboBox Style="{StaticResource GwEntryMobileSSkillComboBox}" SelectedItem="{Binding Entry.SSkill2}">
+                                        <ComboBox.GroupStyle>
+                                            <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                        </ComboBox.GroupStyle>
+                                    </ComboBox>
+                                    <TextBox Style="{StaticResource GwEntryMobileSSkillTextBox}" Text="{Binding Entry.SSkillText2}" />
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Custom">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Header="Pilot">
+                                <ContentControl Style="{StaticResource PilotControl}" assist:BoostControlAttached.Index="0" assist:BoostControlAttached.Text="{Binding Entry.Pilot.Name}" />
+                            </GroupBox>
+                            <GroupBox Header="Cuspas">
+                                <StackPanel Orientation="Vertical">
+                                    <ContentControl Style="{StaticResource NCuspaControl}" assist:BoostControlAttached.Index="0" assist:BoostControlAttached.Text="{Binding Entry.Cuspa1.Name}" />
+                                    <ContentControl Style="{StaticResource NCuspaControl}" assist:BoostControlAttached.Index="1" assist:BoostControlAttached.Text="{Binding Entry.Cuspa2.Name}" />
+                                    <ContentControl Style="{StaticResource NCuspaControl}" assist:BoostControlAttached.Index="2" assist:BoostControlAttached.Text="{Binding Entry.Cuspa3.Name}" />
+                                    <ContentControl Style="{StaticResource NCuspaControl}" assist:BoostControlAttached.Index="3" assist:BoostControlAttached.Text="{Binding Entry.Cuspa4.Name}" />
+                                    <ContentControl Style="{StaticResource NCuspaControl}" assist:BoostControlAttached.Index="4" assist:BoostControlAttached.Text="{Binding Entry.Cuspa5.Name}" />
+                                    <ContentControl Style="{StaticResource NCuspaControl}" assist:BoostControlAttached.Index="5" assist:BoostControlAttached.Text="{Binding Entry.Cuspa6.Name}" />
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="S-Cuspas">
+                                <StackPanel Orientation="Vertical">
+                                    <ContentControl Style="{StaticResource SCuspaControl}" assist:BoostControlAttached.Index="0" assist:BoostControlAttached.Text="{Binding Entry.SCuspa1.Name}" />
+                                    <ContentControl Style="{StaticResource SCuspaControl}" assist:BoostControlAttached.Index="1" assist:BoostControlAttached.Text="{Binding Entry.SCuspa2.Name}" />
+                                    <ContentControl Style="{StaticResource SCuspaControl}" assist:BoostControlAttached.Index="2" assist:BoostControlAttached.Text="{Binding Entry.SCuspa3.Name}" />
+                                    <ContentControl Style="{StaticResource SCuspaControl}" assist:BoostControlAttached.Index="3" assist:BoostControlAttached.Text="{Binding Entry.SCuspa4.Name}" />
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Supports">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Margin="0 0 0 8" Orientation="Horizontal">
+                                        <TextBox Style="{StaticResource GwEntryStatusTextBox}" HorizontalAlignment="Left" Text="{Binding Entry.SupportUnlock}" materialDesign:TextFieldAssist.PrefixText="Unlocked Count" />
+                                        <TextBox Style="{StaticResource GwEntryStatusTextBox}" HorizontalAlignment="Left" Text="{Binding Entry.SupportProof}" materialDesign:TextFieldAssist.PrefixText="Unlock Code" />
+                                    </StackPanel>
+                                    <ContentControl Style="{StaticResource SupportControl}" assist:BoostControlAttached.Index="0" assist:BoostControlAttached.Text="{Binding Entry.Support1.Name}" />
+                                    <ContentControl Style="{StaticResource SupportControl}" assist:BoostControlAttached.Index="1" assist:BoostControlAttached.Text="{Binding Entry.Support2.Name}" />
+                                    <ContentControl Style="{StaticResource SupportControl}" assist:BoostControlAttached.Index="2" assist:BoostControlAttached.Text="{Binding Entry.Support3.Name}" />
+                                    <ContentControl Style="{StaticResource SupportControl}" assist:BoostControlAttached.Index="3" assist:BoostControlAttached.Text="{Binding Entry.Support4.Name}" />
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Co-Units">
+                                <StackPanel Orientation="Vertical">
+                                    <ContentControl Style="{StaticResource CoMobileControl}" assist:BoostControlAttached.Index="0" assist:BoostControlAttached.Text="{Binding Entry.CoMobile1.Name}" />
+                                    <ContentControl Style="{StaticResource CoMobileControl}" assist:BoostControlAttached.Index="1" assist:BoostControlAttached.Text="{Binding Entry.CoMobile2.Name}" />
+                                    <ContentControl Style="{StaticResource CoMobileControl}" assist:BoostControlAttached.Index="2" assist:BoostControlAttached.Text="{Binding Entry.CoMobile3.Name}" />
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Style="{StaticResource GwGroupBox}" Margin="0 0 16 16">
+                                <GroupBox.Header>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="8 0 0 0"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding UncheckAllTagsCommand}"
+                                            Content="{materialDesign:PackIcon CircleOutline}"
+                                            ToolTip="Uncheck all Tags"
+                                        />
+                                        <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Tags" />
+                                    </DockPanel>
+                                </GroupBox.Header>
+                                <ListBox Style="{StaticResource GwEntryTagListBox}" />
+                            </GroupBox>
+                            <GroupBox Header="Memo">
+                                <TextBox Style="{StaticResource GwEntryMemoTextBox}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+            <ctrl:EntryButtonUserControl Grid.Row="2" Margin="0 0 0 16" />
+        </Grid>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border Style="{StaticResource GwSummaryBorder}" Margin="0 0 8 0" DataContext="{Binding Entry}">
+                    <local:MobileSummaryUserControl />
+                </Border>
+                <Border Style="{StaticResource GwSummaryBorder}" Margin="0 16 8 0" DataContext="{Binding Entry.Pair}">
+                    <local:MobileSummaryUserControl />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        <Border Grid.Row="1" Grid.Column="2" Margin="16 0 0 0" Style="{StaticResource GwSummaryBorder}" DataContext="{Binding Entry}">
+            <local:MobileEntryListView />
+        </Border>
+    </Grid>
+</UserControl>

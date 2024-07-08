@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="Ju.GundamWars.Supports.SupportListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="clr-namespace:Ju.GundamWars.Controls"
+    xmlns:local="clr-namespace:Ju.GundamWars.Supports"
+    xmlns:const="clr-namespace:Ju.GundamWars.Const;assembly=Ju.GundamWars.Core"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:SupportListViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    SnapsToDevicePixels="True"
+    >
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <ctrl:AddMenuUserControl />
+                <Separator Margin="4" />
+                <Button Command="{Binding ChechAllCommand}" Content="{materialDesign:PackIcon CheckboxMultipleMarked}" ToolTip="Chech all filtered" />
+                <Button Command="{Binding UnchechAllCommand}" Content="{materialDesign:PackIcon CheckboxMultipleBlankOutline}" ToolTip="Unchech all filtered" />
+                <Button Command="{Binding ClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="Clear filter" />
+                <ToggleButton Style="{StaticResource GwFilterCheckedToggleButton}" />
+                <TextBox Style="{StaticResource GwFilterWordTextBox}" />
+                <ComboBox Style="{StaticResource GwFilterCategoryComboBox}" />
+                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilterPinnedToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilterHasMobileToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
+                <ComboBox Style="{StaticResource GwFilterSupportBadgeComboBox}">
+                    <ComboBox.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                    </ComboBox.GroupStyle>
+                </ComboBox>
+                <ComboBox Style="{StaticResource GwFilterSupportSlotComboBox}">
+                    <ComboBox.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                    </ComboBox.GroupStyle>
+                </ComboBox>
+                <ComboBox Style="{StaticResource GwFilterUnlockSlotComboBox}">
+                    <ComboBox.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                    </ComboBox.GroupStyle>
+                </ComboBox>
+                <ComboBox Style="{StaticResource GwFilterBonusSlotComboBox}">
+                    <ComboBox.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                    </ComboBox.GroupStyle>
+                </ComboBox>
+                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
+                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" SelectedItem="{Binding LimitedSerial}" materialDesign:HintAssist.Hint="Limited Series" />
+            </ToolBar>
+        </ToolBarTray>
+        <DataGrid FrozenColumnCount="3">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Id}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Name"
+                    CellTemplate="{StaticResource GwListNameCellTemplate}"
+                    SortMemberPath="Name"
+                    SortDirection="Ascending"
+                />
+                <DataGridTemplateColumn Header="Grade"
+                    CellTemplate="{StaticResource GwGradeTemplate}"
+                    SortMemberPath="Grade.Value"
+                />
+
+                <DataGridTextColumn Header="Mobile"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding Mobile.Name}"
+                    Width="120"
+                />
+
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.Hp}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.BeamAttack}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.PhysicalAttack}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.BeamDefence}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.PhysicalDefence}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.CriticalDamage}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.Accuracy}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.Evasion}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.Mobility}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.EnRecovery}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.EnRecovery, StringFormat={}{0:N0}}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.SuperPower}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.SuperPower, StringFormat={}{0:N0}%}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.AcePower}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.AcePower, StringFormat={}{0:N0}%}"
+                />
+                <DataGridTextColumn Header="{Binding Source={x:Static const:GwText.RecoveryPower}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.RecoveryPower, StringFormat={}{0:N0}%}"
+                />
+
+                <DataGridTemplateColumn Header="Slots &amp; Badges"
+                    CellTemplate="{StaticResource GwListSupportSlotBadgesTemplate}"
+                />
+
+                <DataGridTextColumn  Header="Attachable&#x0a;Slots"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding AttachableSlotsCount}"
+                />
+                <DataGridTextColumn Header="Attached&#x0a;Badges"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding AttachedBadgesCount}"
+                />
+
+                <DataGridTextColumn Header="Series"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding Serial.Name}"
+                    SortMemberPath="Serial.Order"
+                />
+                <DataGridTextColumn Header="Limited Series"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding LimitedSerialsText}"
+                />
+                <DataGridTextColumn Header="Tags"
+                    ElementStyle="{StaticResource GwListTextColumn}"
+                    Binding="{Binding TagsText}"
+                />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

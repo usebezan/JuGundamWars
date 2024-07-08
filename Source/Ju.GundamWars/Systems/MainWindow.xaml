@@ -1,0 +1,286 @@
+﻿<mahApps:MetroWindow
+    x:Class="Ju.GundamWars.Systems.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:coMobile="clr-namespace:Ju.GundamWars.CoMobiles"
+    xmlns:cuspa="clr-namespace:Ju.GundamWars.Cuspas"
+    xmlns:mobile="clr-namespace:Ju.GundamWars.Mobiles"
+    xmlns:pilot="clr-namespace:Ju.GundamWars.Pilots"
+    xmlns:support="clr-namespace:Ju.GundamWars.Supports"
+    xmlns:tag="clr-namespace:Ju.GundamWars.Tags"
+    xmlns:local="clr-namespace:Ju.GundamWars.Systems"
+    xmlns:const="clr-namespace:Ju.GundamWars.Const;assembly=Ju.GundamWars.Core"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:MainViewModel}"
+    Style="{StaticResource MaterialDesignWindow}"
+    Title="J.U Gundam Wars"
+    TitleAlignment="Center"
+    FontFamily="Yu Gothic UI"
+    Height="600"
+    Width="1000"
+    BorderThickness="0"
+    SaveWindowPosition="True"
+    SnapsToDevicePixels="True"
+    ContentRendered="MetroWindow_ContentRendered"
+    >
+    <mahApps:MetroWindow.LeftWindowCommands>
+        <mahApps:WindowCommands>
+            <Button Command="{Binding ReloadCommand}" ToolTip="Reload" Content="{materialDesign:PackIcon Refresh}" />
+        </mahApps:WindowCommands>
+    </mahApps:MetroWindow.LeftWindowCommands>
+    <mahApps:MetroWindow.RightWindowCommands>
+        <mahApps:WindowCommands>
+            <Button Command="{Binding VisitGitHubCommand}" ToolTip="Visit GitHub" Content="{materialDesign:PackIcon Github}" />
+        </mahApps:WindowCommands>
+    </mahApps:MetroWindow.RightWindowCommands>
+    <Grid>
+        <materialDesign:DialogHost Identifier="DialogHost" CloseOnClickAway="False">
+            <materialDesign:DialogHost.DialogContentTemplate>
+                <DataTemplate DataType="{x:Type local:AskDialogViewModel}">
+                    <local:AskDialogView />
+                </DataTemplate>
+            </materialDesign:DialogHost.DialogContentTemplate>
+            <DockPanel>
+                <StatusBar DockPanel.Dock="Bottom" Height="24" Padding="4 0" Background="Transparent" Foreground="{DynamicResource MaterialDesignBody}">
+                    <StatusBarItem DockPanel.Dock="Right">
+                        <TextBlock Margin="8 0 16 0" VerticalAlignment="Center">
+                            <Run Text="Ver." />
+                            <Run Text="{Binding WindowStatus.Version, Mode=OneWay}" />
+                        </TextBlock>
+                    </StatusBarItem>
+                    <Separator DockPanel.Dock="Right" />
+                    <StatusBarItem DockPanel.Dock="Right" DataContext="{Binding ActiveList}">
+                        <TextBlock Margin="8 0" VerticalAlignment="Center">
+                            <Run Text="{Binding Inventory.Count, Mode=OneWay}"/>
+                            <Run Text="items" />
+                            <Run Text="/" />
+                            <Run Text="{Binding CheckedCount, Mode=OneWay}"/>
+                            <Run Text="checked" />
+                            <Run Text="(" />
+                            <Run Text="{Binding ItemsView.Count, Mode=OneWay}"/>
+                            <Run Text="filtered" />
+                            <Run Text="/" />
+                            <Run Text="{Binding FilteredCheckedCount, Mode=OneWay}"/>
+                            <Run Text="checked" />
+                            <Run Text=")" />
+                        </TextBlock>
+                    </StatusBarItem>
+                    <StatusBarItem>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="0 0 4 0" Kind="{Binding WindowStatus.StatusbarIcon}" />
+                            <TextBlock VerticalAlignment="Center" Text="{Binding WindowStatus.StatusbarMessage}" />
+                        </StackPanel>
+                    </StatusBarItem>
+                </StatusBar>
+                <Separator DockPanel.Dock="Bottom" Style="{StaticResource MaterialDesignLightSeparator}" Margin="0" Height="1" />
+                <materialDesign:Transitioner SelectedIndex="{Binding WindowStatus.SlideIndex, Mode=OneWay}">
+                    <!-- 0.Progress -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:CircleWipe />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <local:ProgressView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 1.Main -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:CircleWipe />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <TabControl Style="{StaticResource MaterialDesignNavigationRailTabControl}" SelectedIndex="{Binding WindowStatus.TabIndex}">
+                            <!-- Mobile -->
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel>
+                                        <StackPanel Margin="0 0 0 4" HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="{Binding Source={x:Static const:GwIcon.MobileSuit}}" />
+                                            <materialDesign:PackIcon Margin="2 0 0 0" Kind="{Binding Source={x:Static const:GwIcon.MobileArmor}}" />
+                                        </StackPanel>
+                                        <TextBlock Style="{StaticResource GwTabText}">
+                                        <Run Text="{Binding Source={x:Static const:GwText.MobileSuit}, Mode=OneWay}" />
+                                        <Run Text="/" />
+                                        <Run Text="{Binding Source={x:Static const:GwText.MobileArmor}, Mode=OneWay}" />
+                                        </TextBlock>
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <mobile:MobileListView />
+                            </TabItem>
+                            <!-- Pilot -->
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Style="{StaticResource GwTabIcon}" Kind="{Binding Source={x:Static const:GwIcon.Pilot}}" />
+                                        <TextBlock Style="{StaticResource GwTabText}" Text="{Binding Source={x:Static const:GwText.Pilot}}" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <pilot:PilotListView />
+                            </TabItem>
+                            <!-- Support -->
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Style="{StaticResource GwTabIcon}" Kind="{Binding Source={x:Static const:GwIcon.Support}}" />
+                                        <TextBlock Style="{StaticResource GwTabText}" Text="{Binding Source={x:Static const:GwText.Support}}" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <support:SupportListView />
+                            </TabItem>
+                            <!-- CoMobile -->
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel>
+                                        <StackPanel Margin="0 0 0 4" HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="{Binding Source={x:Static const:GwIcon.CoMobileSuit}}" />
+                                            <materialDesign:PackIcon Margin="2 0 0 0" Kind="{Binding Source={x:Static const:GwIcon.CoMobileArmor}}" />
+                                        </StackPanel>
+                                        <TextBlock Style="{StaticResource GwTabText}" Text="Co-Unit" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <coMobile:CoMobileListView />
+                            </TabItem>
+                            <!-- Cuspa -->
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Style="{StaticResource GwTabIcon}" Kind="{Binding Source={x:Static const:GwIcon.Cuspa}}" />
+                                        <TextBlock Style="{StaticResource GwTabText}" Text="{Binding Source={x:Static const:GwText.Cuspa}}" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <cuspa:CuspaListView />
+                            </TabItem>
+                            <!-- Tag -->
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Style="{StaticResource GwTabIcon}" Kind="Tags" />
+                                        <TextBlock Style="{StaticResource GwTabText}" Text="Tag" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <tag:TagListView />
+                            </TabItem>
+                        </TabControl>
+                    </materialDesign:TransitionerSlide>
+                    <!-- 2.Mobile Entry -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <mobile:MobileEntryView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 3.Pilot Entry -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <pilot:PilotEntryView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 4.Cuspa Entry -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <cuspa:CuspaEntryView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 5.Support Entry -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <support:SupportEntryView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 6.CoMobile Entry -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <coMobile:CoMobileEntryView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 7.Pair Selection -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <mobile:MobileSelectionView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 8.Pilot Selection -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <pilot:PilotSelectionView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 9.NCuspa Selection -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <cuspa:NCuspaSelectionView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 10.SCuspa Selection -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <cuspa:SCuspaSelectionView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 11.Support Selection -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <support:SupportSelectionView />
+                    </materialDesign:TransitionerSlide>
+                    <!-- 12.CoMobile Selection -->
+                    <materialDesign:TransitionerSlide>
+                        <materialDesign:TransitionerSlide.BackwardWipe>
+                            <materialDesign:SlideWipe Direction="Right" />
+                        </materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:TransitionerSlide.ForwardWipe>
+                            <materialDesign:SlideWipe Direction="Left" />
+                        </materialDesign:TransitionerSlide.ForwardWipe>
+                        <coMobile:CoMobileSelectionView />
+                    </materialDesign:TransitionerSlide>
+                </materialDesign:Transitioner>
+            </DockPanel>
+        </materialDesign:DialogHost>
+        <materialDesign:Snackbar Margin="16 0 16 32" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MessageQueue="{Binding Snackbar}"
+            ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionDarkButton}"
+        />
+    </Grid>
+</mahApps:MetroWindow>

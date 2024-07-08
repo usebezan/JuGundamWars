@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="Ju.GundamWars.Cuspas.CuspaEntryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="clr-namespace:Ju.GundamWars.Controls"
+    xmlns:local="clr-namespace:Ju.GundamWars.Cuspas"
+    xmlns:mobile="clr-namespace:Ju.GundamWars.Mobiles"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:CuspaEntryViewModel}"
+    d:DesignHeight="1200"
+    d:DesignWidth="1200"
+    SnapsToDevicePixels="True"
+    >
+    <UserControl.Resources>
+        <Style x:Key="GwEntryCuspaKindComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+            <Setter Property="DisplayMemberPath" Value="Name" />
+            <Setter Property="ItemsSource" Value="{Binding Kinds}" />
+            <Setter Property="SelectedItem" Value="{Binding Entry.Kind}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="520" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <ctrl:EntryTitleUserControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="16" />
+        <Grid Grid.Row="1" Grid.Column="0" Margin="16 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Margin="0 0 0 16" Header="Name">
+                <TextBox Style="{StaticResource GwEntryFullTextBox}" Text="{Binding Entry.SubName}" materialDesign:TextFieldAssist.PrefixText="{Binding Entry.KindName}" />
+            </GroupBox>
+            <TabControl Grid.Row="1" Margin="0 0 0 16" SelectedIndex="{Binding TabIndex, Mode=OneWay}">
+                <TabItem Header="Default">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Header="Kind">
+                                <ComboBox Style="{StaticResource GwEntryCuspaKindComboBox}">
+                                    <ComboBox.GroupStyle>
+                                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                    </ComboBox.GroupStyle>
+                                </ComboBox>
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Leveling">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Header="Level">
+                                <TextBox Style="{StaticResource GwEntryLevelTextBox}" />
+                            </GroupBox>
+                            <GroupBox Header="Basic Status">
+                                <local:CuspaEntryStatusUserControl DataContext="{Binding Entry.BasicStatus}" />
+                            </GroupBox>
+                            <GroupBox Header="Bonus Status">
+                                <local:CuspaEntryStatusUserControl DataContext="{Binding Entry.BonusStatus}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Custom">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Style="{StaticResource GwGroupBox}" Margin="0 0 16 16">
+                                <GroupBox.Header>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="8 0 0 0"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding UncheckAllTagsCommand}"
+                                            Content="{materialDesign:PackIcon CircleOutline}"
+                                            ToolTip="Uncheck all Tags"
+                                        />
+                                        <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Tags" />
+                                    </DockPanel>
+                                </GroupBox.Header>
+                                <ListBox Style="{StaticResource GwEntryTagListBox}" />
+                            </GroupBox>
+                            <GroupBox Header="Memo">
+                                <TextBox Style="{StaticResource GwEntryMemoTextBox}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+            <ctrl:EntryButtonUserControl Grid.Row="2" Margin="0 0 0 16" />
+        </Grid>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">
+            <Border Style="{StaticResource GwSummaryBorder}" DataContext="{Binding Entry}">
+                <local:CuspaSummaryUserControl />
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

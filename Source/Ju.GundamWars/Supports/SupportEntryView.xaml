@@ -1,0 +1,293 @@
+﻿<UserControl
+    x:Class="Ju.GundamWars.Supports.SupportEntryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="clr-namespace:Ju.GundamWars.Controls"
+    xmlns:mobile="clr-namespace:Ju.GundamWars.Mobiles"
+    xmlns:local="clr-namespace:Ju.GundamWars.Supports"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:SupportEntryViewModel}"
+    d:DesignHeight="1200"
+    d:DesignWidth="1200"
+    SnapsToDevicePixels="True"
+    >
+    <UserControl.Resources>
+        <Style x:Key="GwEntrySupportLimitedSerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+            <Setter Property="DisplayMemberPath" Value="Name" />
+            <Setter Property="ItemsSource" Value="{Binding Serials}" />
+            <Setter Property="SelectedItem" Value="{Binding Serial}" />
+            <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+        </Style>
+        <Style x:Key="GwEntrySupportUnlockSlotComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+            <Setter Property="DisplayMemberPath" Value="Name" />
+            <Setter Property="ItemsSource" Value="{Binding UnlockSlots}" />
+            <Setter Property="SelectedItem" Value="{Binding UnlockSlot}" />
+            <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+        </Style>
+        <Style x:Key="GwEntrySupportBonusSlotComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+            <Setter Property="DisplayMemberPath" Value="Name" />
+            <Setter Property="ItemsSource" Value="{Binding BonusSlots}" />
+            <Setter Property="SelectedItem" Value="{Binding BonusSlot}" />
+            <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+        </Style>
+        <Style x:Key="GwEntrySupportSlotComboBox2" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+            <Setter Property="DisplayMemberPath" Value="Name" />
+            <Setter Property="ItemsSource" Value="{Binding DataContext.Slots, RelativeSource={RelativeSource AncestorType=ItemsControl}}" />
+            <Setter Property="SelectedItem" Value="{Binding Slot}" />
+        </Style>
+        <Style x:Key="GwEntrySupportBadgeComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+            <Setter Property="DisplayMemberPath" Value="Name" />
+            <Setter Property="ItemsSource" Value="{Binding DataContext.Badges, RelativeSource={RelativeSource AncestorType=ItemsControl}}" />
+            <Setter Property="SelectedItem" Value="{Binding Badge}" />
+            <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+            <Setter Property="IsEditable" Value="True" />
+            <Setter Property="Visibility" Value="Hidden" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Slot.IsAttachable}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <!--<DataTrigger Binding="{Binding IsBonused}" Value="True">
+                    <Setter Property="Foreground" Value="#BCF7B5" />
+                </DataTrigger>-->
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="520" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <ctrl:EntryTitleUserControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="16" />
+        <Grid Grid.Row="1" Grid.Column="0" Margin="16 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Margin="0 0 0 16" Header="Name">
+                <DockPanel>
+                    <materialDesign:PackIcon DockPanel.Dock="Left" VerticalAlignment="Center" Margin="8 0 0 8" Kind="{Binding Entry.CategoryIcon}" />
+                    <ToggleButton DockPanel.Dock="Right" IsChecked="{Binding Entry.IsPinned}" Content="{materialDesign:PackIcon Kind=Pin}" />
+                    <TextBox VerticalAlignment="Center" Style="{StaticResource GwEntryFullTextBox}" Text="{Binding Entry.Name}" />
+                </DockPanel>
+            </GroupBox>
+            <TabControl Grid.Row="1" Margin="0 0 0 16" SelectedIndex="{Binding TabIndex, Mode=OneWay}">
+                <TabItem Header="Default">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Header="Series">
+                                <ComboBox Style="{StaticResource GwEntrySerialComboBox}" />
+                            </GroupBox>
+                            <GroupBox Header="Limited Series">
+                                <StackPanel>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="0 0 0 8"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding AddLimitedSerialCommand}"
+                                            Content="{materialDesign:PackIcon PlusCircleOutline}"
+                                            ToolTip="Add Limited Serial"
+                                        />
+                                        <ComboBox Style="{StaticResource GwEntrySupportLimitedSerialComboBox}" />
+                                    </DockPanel>
+                                    <Separator Style="{StaticResource MaterialDesignLightSeparator}" Margin="0 0 0 8" Height="1" />
+                                    <ItemsControl ItemsSource="{Binding Entry.LimitedSerials}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <DockPanel>
+                                                    <Button
+                                                        DockPanel.Dock="Right"
+                                                        Margin="0 0 0 8"
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource GwEntryToolButton}"
+                                                        Command="{Binding DataContext.RemoveLimitedSerialCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="{materialDesign:PackIcon MinusCircleOutline}"
+                                                        ToolTip="Remove Limited Serial"
+                                                    />
+                                                    <TextBlock Style="{StaticResource GwEntryTextBlock}" Text="{Binding Name}" />
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Grade">
+                                <ListBox Style="{StaticResource GwEntryGradeListBox}" />
+                            </GroupBox>
+                            <GroupBox Style="{StaticResource GwGroupBox}" Margin="0 0 16 16">
+                                <GroupBox.Header>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="8 0 0 0"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding RemoveAllSlotBadgesCommand}"
+                                            Content="{materialDesign:PackIcon CircleOutline}"
+                                            ToolTip="Remove all Slots"
+                                        />
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="8 0 0 0"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding AddNormalSlotBadgeCommand}"
+                                            Content="{materialDesign:PackIcon AlphaNCircleOutline}"
+                                            ToolTip="Add Normal Slot"
+                                        />
+                                        <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Slots" />
+                                    </DockPanel>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="0 0 0 8"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding AddUnlockSlotBadgeCommand}"
+                                            Content="{materialDesign:PackIcon PlusCircleOutline}"
+                                            ToolTip="Add Slot"
+                                        />
+                                        <ComboBox Style="{StaticResource GwEntrySupportUnlockSlotComboBox}">
+                                            <ComboBox.GroupStyle>
+                                                <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                            </ComboBox.GroupStyle>
+                                        </ComboBox>
+                                    </DockPanel>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="0 0 0 8"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding AddBonusSlotBadgeCommand}"
+                                            Content="{materialDesign:PackIcon PlusCircleOutline}"
+                                            ToolTip="Add Slot"
+                                        />
+                                        <ComboBox Style="{StaticResource GwEntrySupportBonusSlotComboBox}">
+                                            <ComboBox.GroupStyle>
+                                                <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                            </ComboBox.GroupStyle>
+                                        </ComboBox>
+                                    </DockPanel>
+                                    <Separator Style="{StaticResource MaterialDesignLightSeparator}" Margin="0 0 0 8" Height="1" />
+                                    <ItemsControl ItemsSource="{Binding Entry.SlotBadges}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <DockPanel>
+                                                    <Button
+                                                        DockPanel.Dock="Right"
+                                                        Margin="0 0 0 8"
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource GwEntryToolButton}"
+                                                        Command="{Binding DataContext.RemoveSlotBadgeCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="{materialDesign:PackIcon MinusCircleOutline}"
+                                                        ToolTip="Remove Slot"
+                                                    />
+                                                    <ComboBox Style="{StaticResource GwEntrySupportSlotComboBox2}">
+                                                        <ComboBox.GroupStyle>
+                                                            <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                                        </ComboBox.GroupStyle>
+                                                    </ComboBox>
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Custom">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Style="{StaticResource GwGroupBox}" Margin="0 0 16 16">
+                                <GroupBox.Header>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="8 0 0 0"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding DetachAllBadgesCommand}"
+                                            Content="{materialDesign:PackIcon CircleOutline}"
+                                            ToolTip="Detach all Badges"
+                                        />
+                                        <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Badges" />
+                                    </DockPanel>
+                                </GroupBox.Header>
+                                <ItemsControl ItemsSource="{Binding Entry.SlotBadges}" Grid.IsSharedSizeScope="True">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="208" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Style="{StaticResource GwEntryTextBlock}" Text="{Binding Slot.Name}" />
+                                                <ComboBox Grid.Column="1" Style="{StaticResource GwEntrySupportBadgeComboBox}">
+                                                    <ComboBox.GroupStyle>
+                                                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                                                    </ComboBox.GroupStyle>
+                                                </ComboBox>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </GroupBox>
+                            <GroupBox Style="{StaticResource GwGroupBox}" Margin="0 0 16 16">
+                                <GroupBox.Header>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="8 0 0 0"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding UncheckAllTagsCommand}"
+                                            Content="{materialDesign:PackIcon CircleOutline}"
+                                            ToolTip="Uncheck all Tags"
+                                        />
+                                        <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Tags" />
+                                    </DockPanel>
+                                </GroupBox.Header>
+                                <ListBox Style="{StaticResource GwEntryTagListBox}" />
+                            </GroupBox>
+                            <GroupBox Header="Memo">
+                                <TextBox Style="{StaticResource GwEntryMemoTextBox}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+            <ctrl:EntryButtonUserControl Grid.Row="2" Margin="0 0 0 16" />
+        </Grid>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">
+            <Border Style="{StaticResource GwSummaryBorder}" DataContext="{Binding Entry}">
+                <local:SupportSummaryUserControl />
+            </Border>
+        </ScrollViewer>
+        <ScrollViewer Grid.Row="1" Grid.Column="2" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border Style="{StaticResource GwSummaryBorder}" DataContext="{Binding Entry.Mobile}">
+                    <mobile:MobileSummaryUserControl />
+                </Border>
+                <Border Style="{StaticResource GwSummaryBorder}" Margin="0 8 0 0" DataContext="{Binding Entry.Mobile.Pair}">
+                    <mobile:MobileSummaryUserControl />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

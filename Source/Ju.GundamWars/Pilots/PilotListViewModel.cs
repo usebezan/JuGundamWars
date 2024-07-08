@@ -1,0 +1,118 @@
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Ju.GundamWars.Const;
+using Ju.GundamWars.Domain.Pilots;
+using Ju.GundamWars.Domain.Systems;
+using Ju.GundamWars.UseCase.Pilots;
+using Ju.GundamWars.UseCase.Systems;
+using Ju.GundamWars.UseCase.Tags;
+using System;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Windows.Data;
+
+namespace Ju.GundamWars.Pilots;
+
+public partial class PilotListViewModel : PilotListViewModelBase
+{
+
+    public PilotListViewModel(
+        PilotListController controller,
+        IPilotInventory pilotInventory,
+        ICategoryInventory categoryInventory,
+        ISerialInventory serialInventory,
+        ITagInventory tagInventory,
+        IPilotAbilityInventory pilotAbilityInventory,
+        IPilotSkillInventory pilotSkillInventory)
+        : base(pilotInventory, serialInventory, tagInventory, pilotAbilityInventory, pilotSkillInventory)
+    {
+        this.controller = controller;
+
+        Inventory = pilotInventory;
+        Categories = new(categoryInventory) { Filter = FilterCategory, };
+
+        Inventory.ItemPropertyChanged.Where(n => n == "IsChecked").Subscribe(WhenIsCheckedChanged).AddTo(Disposables);
+
+        IsIdle = true;
+    }
+
+
+    private readonly PilotListController controller;
+
+    public IPilotInventory Inventory { get; }
+    public ListCollectionView Categories { get; }
+
+    [ObservableProperty]
+    private bool _IsChecked = false;
+    [ObservableProperty]
+    private bool _IsPinned = false;
+    [ObservableProperty]
+    private bool _HasMobile = false;
+
+    [ObservableProperty]
+    private int _CheckedCount = 0;
+    [ObservableProperty]
+    private int _FilteredCheckedCount = 0;
+
+
+    partial void OnIsCheckedChanged(bool value) => Refresh();
+    partial void OnIsPinnedChanged(bool value) => Refresh();
+    partial void OnHasMobileChanged(bool value) => Refresh();
+
+    private void WhenIsCheckedChanged(string? _) => SetCount();
+
+    private bool FilterCategory(object obj)
+    {
+        if (obj is not Category item) return false;
+        return item.Type.ForPilot();
+    }
+
+    protected override bool Filter(object obj)
+    {
+        if (obj is not PilotSubject item) return false;
+        if (IsChecked && !item.IsChecked) return false;
+        if (IsPinned && !item.IsPinned) return false;
+        if (HasMobile && item.Mobile == null) return false;
+        if (!FilterCore(item)) return false;
+        return true;
+    }
+
+    protected override void Refresh()
+    {
+        base.Refresh();
+        if (!IsIdle) return;
+        SetCount();
+    }
+
+    private void SetCount()
+    {
+        CheckedCount = Inventory.Where(e => e.IsChecked).Count();
+        FilteredCheckedCount = ItemsView.OfType<PilotSubject>().Where(e => e.IsChecked).Count();
+    }
+
+    [RelayCommand]
+    private void OpenEntryAsNewForMs() => controller.OpenEntryAsNew();
+    [RelayCommand]
+    private void OpenEntryAsNewForMa() => controller.OpenEntryAsNewForMa();
+    [RelayCommand]
+    private void OpenEntryAsEdit(PilotSubject pilot) => controller.OpenEntryAsEdit(pilot);
+    [RelayCommand]
+    private void OpenEntryAsCopy(PilotSubject pilot) => controller.OpenEntryAsCopy(pilot);
+
+    [RelayCommand]
+    private void ChechAll() => ItemsView.ChechAll<PilotSubject>(true);
+    [RelayCommand]
+    private void UnchechAll() => ItemsView.ChechAll<PilotSubject>(false);
+
+    [RelayCommand]
+    private void Clear()
+    {
+        IsIdle = false;
+        ClearCore();
+        Category = null;
+        IsChecked = false;
+        IsIdle = true;
+        Refresh();
+    }
+
+}

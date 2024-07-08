@@ -1,0 +1,180 @@
+﻿<UserControl x:Class="Ju.GundamWars.Mobiles.MobileSummaryUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:domain="clr-namespace:Ju.GundamWars.Domain.Mobiles;assembly=Ju.GundamWars.Core"
+    xmlns:const="clr-namespace:Ju.GundamWars.Const;assembly=Ju.GundamWars.Core"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance domain:MobileSubject}"
+    SnapsToDevicePixels="True"
+    >
+    <StackPanel>
+        <TextBlock Text="{Binding Name}" Margin="4 0 4 4" />
+        <Separator />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.Hp}}" />
+            <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.BeamAttack}}" />
+            <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.PhysicalAttack}}" />
+            <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.BeamDefence}}" />
+            <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.PhysicalDefence}}" />
+            <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.CriticalRate}}" />
+            <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.CriticalDamage}}" />
+            <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.Accuracy}}" />
+            <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.Evasion}}" />
+            <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.Mobility}}" />
+            <TextBlock Grid.Column="0" Grid.Row="11" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.SuperEnRecovery}}" />
+            <TextBlock Grid.Column="0" Grid.Row="12" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.AceEnRecovery}}" />
+            <TextBlock Grid.Column="0" Grid.Row="13" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.SuperPower}}" />
+            <TextBlock Grid.Column="0" Grid.Row="14" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.AcePower}}" />
+            <TextBlock Grid.Column="0" Grid.Row="15" Style="{StaticResource GwEntryStatusLabelRightTextBlock}" Text="{Binding Source={x:Static const:GwText.RecoveryPower}}" />
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource GwEntryStatusLabelTextBlock}" Text="Actual" />
+            <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.Hp}" />
+            <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.BeamAttack}" />
+            <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.PhysicalAttack}" />
+            <TextBlock Grid.Column="1" Grid.Row="4" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.BeamDefence}" />
+            <TextBlock Grid.Column="1" Grid.Row="5" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.PhysicalDefence}" />
+            <TextBlock Grid.Column="1" Grid.Row="6" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding ActualStatus.CriticalRate}" />
+            <TextBlock Grid.Column="1" Grid.Row="7" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.CriticalDamage}" />
+            <TextBlock Grid.Column="1" Grid.Row="8" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.Accuracy}" />
+            <TextBlock Grid.Column="1" Grid.Row="9" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.Evasion}" />
+            <TextBlock Grid.Column="1" Grid.Row="10" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.Mobility}" />
+            <TextBlock Grid.Column="1" Grid.Row="11" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.SuperEnRecovery}" />
+            <TextBlock Grid.Column="1" Grid.Row="12" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding ActualStatus.AceEnRecovery}" />
+            <TextBlock Grid.Column="1" Grid.Row="13" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding ActualStatus.SuperPower}" />
+            <TextBlock Grid.Column="1" Grid.Row="14" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding ActualStatus.AcePower}" />
+            <TextBlock Grid.Column="1" Grid.Row="15" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding ActualStatus.RecoveryPower}" />
+
+            <Border Grid.Column="2" Grid.Row="0" Grid.RowSpan="16" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="3" BorderThickness="1 0 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" />
+            <TextBlock Grid.Column="2" Grid.Row="0" Style="{StaticResource GwEntryStatusLabelTextBlock}" Text="Basic" />
+            <TextBlock Grid.Column="2" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.Hp}" />
+            <TextBlock Grid.Column="2" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.BeamAttack}" />
+            <TextBlock Grid.Column="2" Grid.Row="3" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.PhysicalAttack}" />
+            <TextBlock Grid.Column="2" Grid.Row="4" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.BeamDefence}" />
+            <TextBlock Grid.Column="2" Grid.Row="5" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.PhysicalDefence}" />
+            <TextBlock Grid.Column="2" Grid.Row="6" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding BasicStatus.CriticalRate}" />
+            <TextBlock Grid.Column="2" Grid.Row="7" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.CriticalDamage}" />
+            <TextBlock Grid.Column="2" Grid.Row="8" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.Accuracy}" />
+            <TextBlock Grid.Column="2" Grid.Row="9" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.Evasion}" />
+            <TextBlock Grid.Column="2" Grid.Row="10" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.Mobility}" />
+            <TextBlock Grid.Column="2" Grid.Row="11" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.SuperEnRecovery}" />
+            <TextBlock Grid.Column="2" Grid.Row="12" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BasicStatus.AceEnRecovery}" />
+
+            <TextBlock Grid.Column="3" Grid.Row="0" Style="{StaticResource GwEntryStatusLabelTextBlock}" Text="Boost" />
+            <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.Hp}" />
+            <TextBlock Grid.Column="3" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.BeamAttack}" />
+            <TextBlock Grid.Column="3" Grid.Row="3" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.PhysicalAttack}" />
+            <TextBlock Grid.Column="3" Grid.Row="4" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.BeamDefence}" />
+            <TextBlock Grid.Column="3" Grid.Row="5" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.PhysicalDefence}" />
+            <TextBlock Grid.Column="3" Grid.Row="6" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding BoostStatus.CriticalRate}" />
+            <TextBlock Grid.Column="3" Grid.Row="7" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.CriticalDamage}" />
+            <TextBlock Grid.Column="3" Grid.Row="8" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.Accuracy}" />
+            <TextBlock Grid.Column="3" Grid.Row="9" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.Evasion}" />
+            <TextBlock Grid.Column="3" Grid.Row="10" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.Mobility}" />
+            <TextBlock Grid.Column="3" Grid.Row="11" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.SuperEnRecovery}" />
+            <TextBlock Grid.Column="3" Grid.Row="12" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding BoostStatus.AceEnRecovery}" />
+            <TextBlock Grid.Column="3" Grid.Row="13" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding BoostStatus.SuperPower}" />
+            <TextBlock Grid.Column="3" Grid.Row="14" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding BoostStatus.AcePower}" />
+            <TextBlock Grid.Column="3" Grid.Row="15" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding BoostStatus.RecoveryPower}" />
+
+            <Border Grid.Column="4" Grid.Row="0" Grid.RowSpan="16" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="3" BorderThickness="1 0 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}" />
+            <TextBlock Grid.Column="4" Grid.Row="0" Style="{StaticResource GwEntryStatusLabelTextBlock}" Text="Remodeled" />
+            <TextBlock Grid.Column="4" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.Hp}" />
+            <TextBlock Grid.Column="4" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.BeamAttack}" />
+            <TextBlock Grid.Column="4" Grid.Row="3" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.PhysicalAttack}" />
+            <TextBlock Grid.Column="4" Grid.Row="4" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.BeamDefence}" />
+            <TextBlock Grid.Column="4" Grid.Row="5" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.PhysicalDefence}" />
+            <TextBlock Grid.Column="4" Grid.Row="6" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding RemodeledStatus.CriticalRate}" />
+            <TextBlock Grid.Column="4" Grid.Row="7" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.CriticalDamage}" />
+            <TextBlock Grid.Column="4" Grid.Row="8" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.Accuracy}" />
+            <TextBlock Grid.Column="4" Grid.Row="9" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.Evasion}" />
+            <TextBlock Grid.Column="4" Grid.Row="10" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.Mobility}" />
+            <TextBlock Grid.Column="4" Grid.Row="11" Grid.RowSpan="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding RemodeledStatus.EnRecovery}" />
+
+            <TextBlock Grid.Column="5" Grid.Row="0" Style="{StaticResource GwEntryStatusLabelTextBlock}" Text="Pilot" />
+            <TextBlock Grid.Column="5" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.Hp}" />
+            <TextBlock Grid.Column="5" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.BeamAttack}" />
+            <TextBlock Grid.Column="5" Grid.Row="3" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.PhysicalAttack}" />
+            <TextBlock Grid.Column="5" Grid.Row="4" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.BeamDefence}" />
+            <TextBlock Grid.Column="5" Grid.Row="5" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.PhysicalDefence}" />
+            <TextBlock Grid.Column="5" Grid.Row="6" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding PilotBoost.CriticalRate}" />
+            <TextBlock Grid.Column="5" Grid.Row="7" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.CriticalDamage}" />
+            <TextBlock Grid.Column="5" Grid.Row="8" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.Accuracy}" />
+            <TextBlock Grid.Column="5" Grid.Row="9" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.Evasion}" />
+            <TextBlock Grid.Column="5" Grid.Row="10" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.Mobility}" />
+            <TextBlock Grid.Column="5" Grid.Row="11" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.SuperEnRecovery}" />
+            <TextBlock Grid.Column="5" Grid.Row="12" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding PilotBoost.AceEnRecovery}" />
+
+            <TextBlock Grid.Column="6" Grid.Row="0" Style="{StaticResource GwEntryStatusLabelTextBlock}" Text="Cuspa" />
+            <TextBlock Grid.Column="6" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.Hp}" />
+            <TextBlock Grid.Column="6" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.BeamAttack}" />
+            <TextBlock Grid.Column="6" Grid.Row="3" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.PhysicalAttack}" />
+            <TextBlock Grid.Column="6" Grid.Row="4" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.BeamDefence}" />
+            <TextBlock Grid.Column="6" Grid.Row="5" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.PhysicalDefence}" />
+            <TextBlock Grid.Column="6" Grid.Row="6" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding CuspaBoost.CriticalRate}" />
+            <TextBlock Grid.Column="6" Grid.Row="7" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.CriticalDamage}" />
+            <TextBlock Grid.Column="6" Grid.Row="8" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.Accuracy}" />
+            <TextBlock Grid.Column="6" Grid.Row="9" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.Evasion}" />
+            <TextBlock Grid.Column="6" Grid.Row="10" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CuspaBoost.Mobility}" />
+            <TextBlock Grid.Column="6" Grid.Row="11" Grid.RowSpan="2" Style="{StaticResource GwEntryStatusTextBlock}" Text="{Binding CuspaBoost.EnRecovery}" />
+
+            <TextBlock Grid.Column="7" Grid.Row="0" Style="{StaticResource GwEntryStatusLabelTextBlock}" Text="Support" />
+            <TextBlock Grid.Column="7" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.Hp}" />
+            <TextBlock Grid.Column="7" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.BeamAttack}" />
+            <TextBlock Grid.Column="7" Grid.Row="3" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.PhysicalAttack}" />
+            <TextBlock Grid.Column="7" Grid.Row="4" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.BeamDefence}" />
+            <TextBlock Grid.Column="7" Grid.Row="5" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.PhysicalDefence}" />
+            <TextBlock Grid.Column="7" Grid.Row="7" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.CriticalDamage}" />
+            <TextBlock Grid.Column="7" Grid.Row="8" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.Accuracy}" />
+            <TextBlock Grid.Column="7" Grid.Row="9" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.Evasion}" />
+            <TextBlock Grid.Column="7" Grid.Row="10" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.Mobility}" />
+            <TextBlock Grid.Column="7" Grid.Row="11" Grid.RowSpan="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding SupportBoost.EnRecovery}" />
+            <TextBlock Grid.Column="7" Grid.Row="13" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding SupportBoost.SuperPower}" />
+            <TextBlock Grid.Column="7" Grid.Row="14" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding SupportBoost.AcePower}" />
+            <TextBlock Grid.Column="7" Grid.Row="15" Style="{StaticResource GwEntryPerStatusTextBlock}" DataContext="{Binding SupportBoost.RecoveryPower}" />
+
+            <TextBlock Grid.Column="8" Grid.Row="0" Style="{StaticResource GwEntryStatusLabelTextBlock}" Text="Co-Unit" />
+            <TextBlock Grid.Column="8" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.Hp}" />
+            <TextBlock Grid.Column="8" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.BeamAttack}" />
+            <TextBlock Grid.Column="8" Grid.Row="3" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.PhysicalAttack}" />
+            <TextBlock Grid.Column="8" Grid.Row="4" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.BeamDefence}" />
+            <TextBlock Grid.Column="8" Grid.Row="5" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.PhysicalDefence}" />
+            <TextBlock Grid.Column="8" Grid.Row="7" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.CriticalDamage}" />
+            <TextBlock Grid.Column="8" Grid.Row="8" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.Accuracy}" />
+            <TextBlock Grid.Column="8" Grid.Row="9" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.Evasion}" />
+            <TextBlock Grid.Column="8" Grid.Row="10" Style="{StaticResource GwEntryStatusTextBlock}" DataContext="{Binding CoMobileBoost.Mobility}" />
+
+        </Grid>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Ju.GundamWars.Controls.EntryButtonUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:root="clr-namespace:Ju.GundamWars"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance root:EntryViewModelBase`3}"
+    SnapsToDevicePixels="True"
+    >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" Style="{StaticResource GwEntryDeleteButton}" Command="{Binding DeleteCommand}" />
+        <Button Grid.Column="2" Style="{StaticResource GwEntryEnterButton}" Margin="16 0" Command="{Binding EnterCommand}" />
+        <Button Grid.Column="3" Style="{StaticResource GwEntryCancelButton}" Command="{Binding CancelCommand}" />
+    </Grid>
+</UserControl>

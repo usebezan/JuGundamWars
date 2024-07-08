@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars", "Ju.GundamWars\Ju.GundamWars.csproj", "{0A187D05-288E-4407-981B-078957FD9123}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.Core", "Ju.GundamWars.Core\Ju.GundamWars.Core.csproj", "{BE35DD9C-EAAC-4290-810A-E04F5038CC38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.Persistence", "Ju.GundamWars.Persistence\Ju.GundamWars.Persistence.csproj", "{7F651611-295C-4A78-BE75-C42A1ED8E199}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.Persistence2", "Ju.GundamWars.Persistence2\Ju.GundamWars.Persistence2.csproj", "{980D5C5C-C016-4955-A4F0-E2E35BC8F0FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.Application", "Ju.GundamWars.Application\Ju.GundamWars.Application.csproj", "{7E1F3502-2CD5-4B3C-88E5-733913B96792}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A187D05-288E-4407-981B-078957FD9123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A187D05-288E-4407-981B-078957FD9123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A187D05-288E-4407-981B-078957FD9123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A187D05-288E-4407-981B-078957FD9123}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE35DD9C-EAAC-4290-810A-E04F5038CC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE35DD9C-EAAC-4290-810A-E04F5038CC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE35DD9C-EAAC-4290-810A-E04F5038CC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE35DD9C-EAAC-4290-810A-E04F5038CC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F651611-295C-4A78-BE75-C42A1ED8E199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F651611-295C-4A78-BE75-C42A1ED8E199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F651611-295C-4A78-BE75-C42A1ED8E199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F651611-295C-4A78-BE75-C42A1ED8E199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980D5C5C-C016-4955-A4F0-E2E35BC8F0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980D5C5C-C016-4955-A4F0-E2E35BC8F0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980D5C5C-C016-4955-A4F0-E2E35BC8F0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980D5C5C-C016-4955-A4F0-E2E35BC8F0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1F3502-2CD5-4B3C-88E5-733913B96792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1F3502-2CD5-4B3C-88E5-733913B96792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1F3502-2CD5-4B3C-88E5-733913B96792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1F3502-2CD5-4B3C-88E5-733913B96792}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FED6AFF9-FFD5-48E6-8B9C-E668E6131973}
+	EndGlobalSection
+EndGlobal
