@@ -13,6 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.Persistence2"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.Application", "Ju.GundamWars.Application\Ju.GundamWars.Application.csproj", "{7E1F3502-2CD5-4B3C-88E5-733913B96792}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ju.GundamWars.Server", "Ju.GundamWars.Server\Ju.GundamWars.Server.csproj", "{3EFC3ECF-5451-45A7-9BD8-ACFF261D75BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ju.GundamWars.Domain", "Ju.GundamWars.Domain\Ju.GundamWars.Domain.csproj", "{FAD280CC-EB7B-4FB0-99C0-62F4CABC3446}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ju.GundamWars.UseCase", "Ju.GundamWars.UseCase\Ju.GundamWars.UseCase.csproj", "{4E88A5E2-3CBE-4EAD-8FDD-586A8FACFF9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,18 @@ Global
 		{7E1F3502-2CD5-4B3C-88E5-733913B96792}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E1F3502-2CD5-4B3C-88E5-733913B96792}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E1F3502-2CD5-4B3C-88E5-733913B96792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EFC3ECF-5451-45A7-9BD8-ACFF261D75BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EFC3ECF-5451-45A7-9BD8-ACFF261D75BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EFC3ECF-5451-45A7-9BD8-ACFF261D75BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EFC3ECF-5451-45A7-9BD8-ACFF261D75BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD280CC-EB7B-4FB0-99C0-62F4CABC3446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD280CC-EB7B-4FB0-99C0-62F4CABC3446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD280CC-EB7B-4FB0-99C0-62F4CABC3446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD280CC-EB7B-4FB0-99C0-62F4CABC3446}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E88A5E2-3CBE-4EAD-8FDD-586A8FACFF9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E88A5E2-3CBE-4EAD-8FDD-586A8FACFF9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E88A5E2-3CBE-4EAD-8FDD-586A8FACFF9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E88A5E2-3CBE-4EAD-8FDD-586A8FACFF9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
