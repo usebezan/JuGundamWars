@@ -1,5 +1,5 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain;
+using Ju.GundamWars.Core.Common.Domain;
 
 namespace Ju.GundamWars;
 

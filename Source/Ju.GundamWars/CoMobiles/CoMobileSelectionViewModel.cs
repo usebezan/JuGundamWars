@@ -2,39 +2,39 @@
 using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.CoMobiles;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoUnits;
+using Ju.GundamWars.Domain.CoMobiles;
 using Ju.GundamWars.Domain.Systems;
-using Ju.GundamWars.UseCase.CoUnits;
+using Ju.GundamWars.UseCase.CoMobiles;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
 using System;
 using System.Reactive.Linq;
 
-namespace Ju.GundamWars.CoUnits;
+namespace Ju.GundamWars.CoMobiles;
 
-public partial class CoUnitSelectionViewModel : CoUnitListViewModelBase
+public partial class CoMobileSelectionViewModel : CoMobileListViewModelBase
 {
 
-    public CoUnitSelectionViewModel(
-        CoUnitSelectionController controller,
-        ICoUnitInventory CoUnitInventory,
+    public CoMobileSelectionViewModel(
+        CoMobileSelectionController controller,
+        ICoMobileInventory CoMobileInventory,
         ISerialInventory serialInventory,
         ITagInventory tagInventory,
         WindowStatus windowStatus)
-        : base(CoUnitInventory, serialInventory, tagInventory)
+        : base(CoMobileInventory, serialInventory, tagInventory)
     {
         this.controller = controller;
 
         Icon = GwIcon.Unknown;
         Text = GwText.Unknown;
 
-        windowStatus.PropertyChanged.Where(n => n == "SlideIndex" && windowStatus.SlideIndexType == SlideIndexType.CoUnitSelection).Subscribe(WhenSlideIndexChanged).AddTo(Disposables);
+        windowStatus.PropertyChanged.Where(n => n == "SlideIndex" && windowStatus.SlideIndexType == SlideIndexType.CoMobileSelection).Subscribe(WhenSlideIndexChanged).AddTo(Disposables);
 
         IsIdle = true;
     }
 
 
-    private readonly CoUnitSelectionController controller;
+    private readonly CoMobileSelectionController controller;
 
     [ObservableProperty]
     private string _Icon;
@@ -51,13 +51,13 @@ public partial class CoUnitSelectionViewModel : CoUnitListViewModelBase
 
         if (Category?.Type == CategoryType.MobileSuit)
         {
-            Icon = GwIcon.CoUnitSuit;
-            Text = GwText.CoUnitSuit;
+            Icon = GwIcon.CoMobileSuit;
+            Text = GwText.CoMobileSuit;
         }
         else if (Category?.Type == CategoryType.MobileArmor)
         {
-            Icon = GwIcon.CoUnitArmor;
-            Text = GwText.CoUnitArmor;
+            Icon = GwIcon.CoMobileArmor;
+            Text = GwText.CoMobileArmor;
         }
         else
         {
@@ -68,14 +68,14 @@ public partial class CoUnitSelectionViewModel : CoUnitListViewModelBase
 
     protected override bool Filter(object obj)
     {
-        if (obj is not CoUnitSubject item) return false;
+        if (obj is not CoMobileSubject item) return false;
         if (!item.IsPinned) return false;
         if (!FilterCore(item)) return false;
         return true;
     }
 
     [RelayCommand]
-    private void Select(CoUnitSubject CoUnit) => controller.Select(CoUnit);
+    private void Select(CoMobileSubject CoMobile) => controller.Select(CoMobile);
     [RelayCommand]
     private void Cancel() => controller.Cancel();
 

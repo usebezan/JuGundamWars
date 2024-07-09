@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Cuspas;
-using Ju.GundamWars.Domain.Cuspas.Entities;
-using Ju.GundamWars.Domain.Cuspas.Factories;
+using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
+using Ju.GundamWars.Cuspas.Domain.Entities;
+using Ju.GundamWars.Cuspas.Domain.Factories;
 using Ju.GundamWars.Domain.Systems;
 
 namespace Ju.GundamWars.Cuspas;

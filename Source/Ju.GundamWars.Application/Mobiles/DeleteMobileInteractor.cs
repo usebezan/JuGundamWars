@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Application.Mobiles.Repositories;
-using Ju.GundamWars.Domain.Mobiles;
 using Ju.GundamWars.Domain.Mobiles.Mappers;
-using Ju.GundamWars.UseCase.CoUnits;
+using Ju.GundamWars.Mobiles.Domain;
+using Ju.GundamWars.UseCase.CoMobiles;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Pilots;
 using Ju.GundamWars.UseCase.Supports;
@@ -16,7 +16,7 @@ public class DeleteMobileInteractor(
     IMobileInventory inventory,
     IPilotInventory pilotInventory,
     ISupportInventory supportInventory,
-    ICoUnitInventory CoUnitInventory,
+    ICoMobileInventory CoMobileInventory,
     IEnterPresenter presenter,
     ILogger<DeleteMobileInteractor> logger)
     : IDeleteMobileUseCase
@@ -46,7 +46,7 @@ public class DeleteMobileInteractor(
                 inventory.Where(i => entity.PairMaps.Any(r => r.PairId == i.Id)).ToList().ForEach(i => i.Pair = null);
                 pilotInventory.Where(i => entity.PilotMaps.Any(r => r.PilotId == i.Id)).ToList().ForEach(i => i.Mobile = null);
                 supportInventory.Where(i => entity.Supports.Any(r => r.SupportId == i.Id)).ToList().ForEach(i => i.Mobile = null);
-                CoUnitInventory.Where(i => entity.CoUnits.Any(r => r.CoUnitId == i.Id)).ToList().ForEach(i => i.Mobile = null);
+                CoMobileInventory.Where(i => entity.CoMobiles.Any(r => r.CoMobileId == i.Id)).ToList().ForEach(i => i.Mobile = null);
             }
 
             presenter.Complete($"Mobile '{subject.Name}' deleted.");

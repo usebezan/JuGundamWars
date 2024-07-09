@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain;
+﻿using Ju.GundamWars.Core.Common.Domain;
 using Ju.GundamWars.UseCase;
 using Ju.GundamWars.UseCase.Systems;
 using Microsoft.Extensions.Logging;

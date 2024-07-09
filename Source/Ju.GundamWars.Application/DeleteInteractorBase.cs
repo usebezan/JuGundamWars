@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain;
+﻿using Ju.GundamWars.Core.Common.Domain;
 using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.UseCase;
 using Ju.GundamWars.UseCase.Mobiles;

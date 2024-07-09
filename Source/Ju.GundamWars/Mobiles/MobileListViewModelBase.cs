@@ -1,9 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Mobiles;
+using Ju.GundamWars.Core;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Systems.Entities;
 using Ju.GundamWars.Domain.Tags;
+using Ju.GundamWars.Mobiles.Domain;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;

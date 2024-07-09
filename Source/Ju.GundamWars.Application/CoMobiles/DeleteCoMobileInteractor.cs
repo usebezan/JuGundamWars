@@ -1,25 +1,25 @@
 ﻿using Ju.GundamWars.Application.CoMobiles.Repositories;
-using Ju.GundamWars.Domain.CoUnits;
-using Ju.GundamWars.Domain.CoUnits.Entities;
+using Ju.GundamWars.Domain.CoMobiles;
+using Ju.GundamWars.Domain.CoMobiles.Entities;
 using Ju.GundamWars.Domain.Mobiles.Mappers;
-using Ju.GundamWars.UseCase.CoUnits;
+using Ju.GundamWars.UseCase.CoMobiles;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Application.CoMobiles;
 
-public class DeleteCoUnitInteractor(
-    ICoUnitRepository repository,
+public class DeleteCoMobileInteractor(
+    ICoMobileRepository repository,
     MobileSubjectMapper mobileSubjectMapper,
-    ICoUnitInventory inventory,
+    ICoMobileInventory inventory,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
-    ILogger<DeleteCoUnitInteractor> logger)
-    : DeleteInteractorBase<CoUnit, CoUnitSubject, ICoUnitRepository, ICoUnitInventory>(repository, mobileSubjectMapper, inventory, mobileInventory, presenter, logger),
-        IDeleteCoUnitUseCase
+    ILogger<DeleteCoMobileInteractor> logger)
+    : DeleteInteractorBase<CoMobile, CoMobileSubject, ICoMobileRepository, ICoMobileInventory>(repository, mobileSubjectMapper, inventory, mobileInventory, presenter, logger),
+        IDeleteCoMobileUseCase
 {
 
-    protected override string GetName(CoUnitSubject subject) => $"Co-Unit '{subject.Name}'";
+    protected override string GetName(CoMobileSubject subject) => $"Co-Unit '{subject.Name}'";
 
 }

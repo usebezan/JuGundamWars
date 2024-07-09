@@ -6,20 +6,16 @@ using Ju.GundamWars.Application.Services;
 using Ju.GundamWars.Application.Supports;
 using Ju.GundamWars.Application.Systems;
 using Ju.GundamWars.Application.Tags;
-using Ju.GundamWars.Domain.CoUnits.Mappers;
-using Ju.GundamWars.Domain.CoUnits.Factories;
+using Ju.GundamWars.Domain.CoMobiles.Mappers;
+using Ju.GundamWars.Domain.CoMobiles.Factories;
 using Ju.GundamWars.Domain.Cuspas.Mappers;
-using Ju.GundamWars.Domain.Cuspas.Factories;
 using Ju.GundamWars.Domain.Mobiles.Mappers;
-using Ju.GundamWars.Domain.Mobiles.Factories;
 using Ju.GundamWars.Domain.Pilots.Mappers;
-using Ju.GundamWars.Domain.Pilots.Factories;
 using Ju.GundamWars.Domain.Supports.Mappers;
-using Ju.GundamWars.Domain.Supports.Factories;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Tags.Mappers;
 using Ju.GundamWars.Domain.Tags.Factories;
-using Ju.GundamWars.UseCase.CoUnits;
+using Ju.GundamWars.UseCase.CoMobiles;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Pilots;
@@ -28,6 +24,10 @@ using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Ju.GundamWars.Cuspas.Domain.Factories;
+using Ju.GundamWars.Mobiles.Domain.Factories;
+using Ju.GundamWars.Pilots.Domain.Factories;
+using Ju.GundamWars.Supports.Domain.Factories;
 
 namespace Ju.GundamWars.Application;
 
@@ -43,14 +43,14 @@ public static class ApplicationHosting
 
             services.AddSingleton<WindowStatus>();
 
-            services.AddSingleton<CoUnitMapper>();
-            services.AddSingleton<CoUnitFactory>();
-            services.AddSingleton<CoUnitSubjectMapper>();
-            services.AddSingleton<CoUnitSubjectFactory>();
-            services.AddSingleton<IInsertCoUnitUseCase, InsertCoUnitInteractor>();
-            services.AddSingleton<IUpdateCoUnitUseCase, UpdateCoUnitInteractor>();
-            services.AddSingleton<IDeleteCoUnitUseCase, DeleteCoUnitInteractor>();
-            services.AddSingleton<ICancelCoUnitUseCase, CancelCoUnitInteractor>();
+            services.AddSingleton<CoMobileMapper>();
+            services.AddSingleton<CoMobileFactory>();
+            services.AddSingleton<CoMobileSubjectMapper>();
+            services.AddSingleton<CoMobileSubjectFactory>();
+            services.AddSingleton<IInsertCoMobileUseCase, InsertCoMobileInteractor>();
+            services.AddSingleton<IUpdateCoMobileUseCase, UpdateCoMobileInteractor>();
+            services.AddSingleton<IDeleteCoMobileUseCase, DeleteCoMobileInteractor>();
+            services.AddSingleton<ICancelCoMobileUseCase, CancelCoMobileInteractor>();
 
             services.AddSingleton<CuspaMapper>();
             services.AddSingleton<CuspaFactory>();

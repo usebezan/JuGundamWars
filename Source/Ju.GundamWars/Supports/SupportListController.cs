@@ -1,8 +1,8 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Supports;
-using Ju.GundamWars.Domain.Supports.Entities;
-using Ju.GundamWars.Domain.Supports.Factories;
 using Ju.GundamWars.Domain.Systems;
+using Ju.GundamWars.Supports.Domain;
+using Ju.GundamWars.Supports.Domain.Entities;
+using Ju.GundamWars.Supports.Domain.Factories;
 
 namespace Ju.GundamWars.Supports;
 

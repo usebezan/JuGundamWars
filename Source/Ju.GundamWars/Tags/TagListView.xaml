@@ -63,7 +63,7 @@
                 <ItemsControl ItemsSource="{Binding SupportTags}" Focusable="False" />
             </GroupBox>
             <GroupBox Grid.Column="3" Header="Co-Unit">
-                <ItemsControl ItemsSource="{Binding CoUnitTags}" Focusable="False" />
+                <ItemsControl ItemsSource="{Binding CoMobileTags}" Focusable="False" />
             </GroupBox>
             <GroupBox Grid.Column="4" Header="Cuspa">
                 <ItemsControl ItemsSource="{Binding CuspaTags}" Focusable="False" />

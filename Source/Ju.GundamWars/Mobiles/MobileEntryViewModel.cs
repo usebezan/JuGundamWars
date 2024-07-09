@@ -1,15 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoUnits;
-using Ju.GundamWars.Domain.Cuspas;
-using Ju.GundamWars.Domain.Mobiles;
-using Ju.GundamWars.Domain.Mobiles.Factories;
-using Ju.GundamWars.Domain.Pilots;
-using Ju.GundamWars.Domain.Supports;
+using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
+using Ju.GundamWars.Domain.CoMobiles;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Systems.Entities;
 using Ju.GundamWars.Domain.Tags;
+using Ju.GundamWars.Mobiles.Domain;
+using Ju.GundamWars.Mobiles.Domain.Factories;
+using Ju.GundamWars.Pilots.Domain;
+using Ju.GundamWars.Supports.Domain;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
@@ -60,11 +60,11 @@ public partial class MobileEntryViewModel : EntryViewModelBase<MobileSubject, Mo
             v => Entry.Support3 = v,
             v => Entry.Support4 = v,
         ];
-        CoUnitSetters =
+        CoMobileSetters =
         [
-            v => Entry.CoUnit1 = v,
-            v => Entry.CoUnit2 = v,
-            v => Entry.CoUnit3 = v,
+            v => Entry.CoMobile1 = v,
+            v => Entry.CoMobile2 = v,
+            v => Entry.CoMobile3 = v,
         ];
         PairSetter = v =>
         {
@@ -75,7 +75,7 @@ public partial class MobileEntryViewModel : EntryViewModelBase<MobileSubject, Mo
         NCuspaSetter = null!;
         SCuspaSetter = null!;
         SupportSetter = null!;
-        CoUnitSetter = null!;
+        CoMobileSetter = null!;
 
         Serials = new(serialInventory);
         Kinds = new(mobileKindInventory);
@@ -95,7 +95,7 @@ public partial class MobileEntryViewModel : EntryViewModelBase<MobileSubject, Mo
     private readonly List<Action<CuspaSubject?>> nCuspaSetters;
     private readonly List<Action<CuspaSubject?>> sCuspaSetters;
     private readonly List<Action<SupportSubject?>> supportSetters;
-    private readonly List<Action<CoUnitSubject?>> CoUnitSetters;
+    private readonly List<Action<CoMobileSubject?>> CoMobileSetters;
 
     private CategoryType CategoryType => Entry?.Category?.Type ?? CategoryType.Unknown;
 
@@ -104,7 +104,7 @@ public partial class MobileEntryViewModel : EntryViewModelBase<MobileSubject, Mo
     public Action<CuspaSubject> NCuspaSetter { get; private set; }
     public Action<CuspaSubject> SCuspaSetter { get; private set; }
     public Action<SupportSubject> SupportSetter { get; private set; }
-    public Action<CoUnitSubject> CoUnitSetter { get; private set; }
+    public Action<CoMobileSubject> CoMobileSetter { get; private set; }
 
     public ListCollectionView Serials { get; }
     public ListCollectionView Kinds { get; }
@@ -225,13 +225,13 @@ public partial class MobileEntryViewModel : EntryViewModelBase<MobileSubject, Mo
     private void DetachSupport(int index) => supportSetters[index](null);
 
     [RelayCommand]
-    private void ShowCoUnitSelection(int index)
+    private void ShowCoMobileSelection(int index)
     {
-        CoUnitSetter = CoUnitSetters[index];
-        Controller.MoveToCoUnitSelection();
+        CoMobileSetter = CoMobileSetters[index];
+        Controller.MoveToCoMobileSelection();
     }
 
     [RelayCommand]
-    private void DetachCoUnit(int index) => CoUnitSetters[index](null);
+    private void DetachCoMobile(int index) => CoMobileSetters[index](null);
 
 }

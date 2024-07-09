@@ -1,11 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoUnits;
-using Ju.GundamWars.Domain.Mobiles;
-using Ju.GundamWars.Domain.Pilots;
-using Ju.GundamWars.Domain.Supports;
+using Ju.GundamWars.Domain.CoMobiles;
 using Ju.GundamWars.Domain.Systems;
+using Ju.GundamWars.Mobiles.Domain;
+using Ju.GundamWars.Pilots.Domain;
+using Ju.GundamWars.Supports.Domain;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
@@ -101,7 +101,7 @@ public partial class MobileListViewModel : MobileListViewModelBase
     [RelayCommand]
     private void OpenSupportAsEdit(SupportSubject support) => controller.OpenSupportAsEdit(support);
     [RelayCommand]
-    private void OpenCoUnitAsEdit(CoUnitSubject CoUnit) => controller.OpenCoUnitAsEdit(CoUnit);
+    private void OpenCoMobileAsEdit(CoMobileSubject CoMobile) => controller.OpenCoMobileAsEdit(CoMobile);
 
     [RelayCommand]
     private void ChechAll() => ItemsView.ChechAll<MobileSubject>(true);

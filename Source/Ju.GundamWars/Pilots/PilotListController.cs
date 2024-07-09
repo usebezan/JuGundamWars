@@ -1,8 +1,8 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Pilots;
-using Ju.GundamWars.Domain.Pilots.Entities;
-using Ju.GundamWars.Domain.Pilots.Factories;
 using Ju.GundamWars.Domain.Systems;
+using Ju.GundamWars.Pilots.Domain;
+using Ju.GundamWars.Pilots.Domain.Entities;
+using Ju.GundamWars.Pilots.Domain.Factories;
 
 namespace Ju.GundamWars.Pilots;
 

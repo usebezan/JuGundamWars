@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.Cuspas.Entities;
+﻿using Ju.GundamWars.Cuspas.Domain.Entities;
 
 namespace Ju.GundamWars.Application.Cuspas.Repositories;
 

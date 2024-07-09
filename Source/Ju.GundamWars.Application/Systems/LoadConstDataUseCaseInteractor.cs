@@ -30,7 +30,7 @@ public class LoadConstDataUseCaseInteractor(
         presenter.ShowMessage("Loading data...");
 
         // 1
-        presenter.Increment(() => boostInventory.ReAddRange(GetEnumValues<BoostType>(t => t != BoostType.Unknown && t != BoostType.Mobile && t != BoostType.Pilot && t != BoostType.Badge).Select(t => new Boost(t))));
+        presenter.Increment(() => boostInventory.ReAddRange(GetEnumValues<BoostStatusType>(t => t != BoostStatusType.Unknown && t != BoostStatusType.Mobile && t != BoostStatusType.Pilot && t != BoostStatusType.Badge).Select(t => new Boost(t))));
         // 2
         presenter.Increment(() => categoryInventory.ReAddRange(GetEnumValues<CategoryType>(t => t != CategoryType.Unknown).Select(t => new Category(t))));
         // 3

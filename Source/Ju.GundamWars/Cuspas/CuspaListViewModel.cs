@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Cuspas;
+using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Systems;

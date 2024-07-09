@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Pilots;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Mobiles;
+using Ju.GundamWars.Pilots.Domain;
 
 namespace Ju.GundamWars.Pilots;
 

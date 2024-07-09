@@ -1,0 +1,10 @@
+﻿using Ju.GundamWars.Domain.Tags.Model;
+using Ju.GundamWars.Tags.Domain.Dto;
+
+namespace Ju.GundamWars.Tags.Domain.Service.Mapping;
+
+public class TagDtoMapper : TagMapperBase<TagSubject, Tag>
+{
+    public override Tag Map(TagSubject model, Tag dto) =>
+        Map(model, dto, null!);
+}

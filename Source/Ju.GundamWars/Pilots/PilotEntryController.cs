@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.Pilots;
+﻿using Ju.GundamWars.Pilots.Domain;
 using Ju.GundamWars.UseCase.Pilots;
 
 namespace Ju.GundamWars.Pilots;

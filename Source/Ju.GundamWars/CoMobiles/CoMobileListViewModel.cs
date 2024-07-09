@@ -2,9 +2,9 @@
 using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.CoMobiles;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoUnits;
+using Ju.GundamWars.Domain.CoMobiles;
 using Ju.GundamWars.Domain.Systems;
-using Ju.GundamWars.UseCase.CoUnits;
+using Ju.GundamWars.UseCase.CoMobiles;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
 using System;
@@ -12,22 +12,22 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Data;
 
-namespace Ju.GundamWars.CoUnits;
+namespace Ju.GundamWars.CoMobiles;
 
-public partial class CoUnitListViewModel : CoUnitListViewModelBase
+public partial class CoMobileListViewModel : CoMobileListViewModelBase
 {
 
-    public CoUnitListViewModel(
-        CoUnitListController controller,
-        ICoUnitInventory CoUnitInventory,
+    public CoMobileListViewModel(
+        CoMobileListController controller,
+        ICoMobileInventory CoMobileInventory,
         ICategoryInventory categoryInventory,
         ISerialInventory serialInventory,
         ITagInventory tagInventory)
-        : base(CoUnitInventory, serialInventory, tagInventory)
+        : base(CoMobileInventory, serialInventory, tagInventory)
     {
         this.controller = controller;
 
-        Inventory = CoUnitInventory;
+        Inventory = CoMobileInventory;
         Categories = new(categoryInventory) { Filter = FilterCategory, };
 
         Inventory.ItemPropertyChanged.Where(n => n == "IsChecked").Subscribe(WhenIsCheckedChanged).AddTo(Disposables);
@@ -36,9 +36,9 @@ public partial class CoUnitListViewModel : CoUnitListViewModelBase
     }
 
 
-    private readonly CoUnitListController controller;
+    private readonly CoMobileListController controller;
 
-    public ICoUnitInventory Inventory { get; }
+    public ICoMobileInventory Inventory { get; }
     public ListCollectionView Categories { get; }
 
     [ObservableProperty]
@@ -63,12 +63,12 @@ public partial class CoUnitListViewModel : CoUnitListViewModelBase
     private bool FilterCategory(object obj)
     {
         if (obj is not Category item) return false;
-        return item.Type.ForCoUnit();
+        return item.Type.ForCoMobile();
     }
 
     protected override bool Filter(object obj)
     {
-        if (obj is not CoUnitSubject item) return false;
+        if (obj is not CoMobileSubject item) return false;
         if (IsChecked && !item.IsChecked) return false;
         if (IsPinned && !item.IsPinned) return false;
         if (HasMobile && item.Mobile == null) return false;
@@ -86,7 +86,7 @@ public partial class CoUnitListViewModel : CoUnitListViewModelBase
     private void SetCount()
     {
         CheckedCount = Inventory.Where(e => e.IsChecked).Count();
-        FilteredCheckedCount = ItemsView.OfType<CoUnitSubject>().Where(e => e.IsChecked).Count();
+        FilteredCheckedCount = ItemsView.OfType<CoMobileSubject>().Where(e => e.IsChecked).Count();
     }
 
     [RelayCommand]
@@ -94,14 +94,14 @@ public partial class CoUnitListViewModel : CoUnitListViewModelBase
     [RelayCommand]
     private void OpenEntryAsNewForMa() => controller.OpenEntryAsNewForMa();
     [RelayCommand]
-    private void OpenEntryAsEdit(CoUnitSubject CoUnit) => controller.OpenEntryAsEdit(CoUnit);
+    private void OpenEntryAsEdit(CoMobileSubject CoMobile) => controller.OpenEntryAsEdit(CoMobile);
     [RelayCommand]
-    private void OpenEntryAsCopy(CoUnitSubject CoUnit) => controller.OpenEntryAsCopy(CoUnit);
+    private void OpenEntryAsCopy(CoMobileSubject CoMobile) => controller.OpenEntryAsCopy(CoMobile);
 
     [RelayCommand]
-    private void ChechAll() => ItemsView.ChechAll<CoUnitSubject>(true);
+    private void ChechAll() => ItemsView.ChechAll<CoMobileSubject>(true);
     [RelayCommand]
-    private void UnchechAll() => ItemsView.ChechAll<CoUnitSubject>(false);
+    private void UnchechAll() => ItemsView.ChechAll<CoMobileSubject>(false);
 
     [RelayCommand]
     private void Clear()

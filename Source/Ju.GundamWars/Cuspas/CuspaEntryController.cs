@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.Cuspas;
+﻿using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
 using Ju.GundamWars.UseCase.Cuspas;
 
 namespace Ju.GundamWars.Cuspas;

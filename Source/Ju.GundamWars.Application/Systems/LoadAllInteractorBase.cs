@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.UseCase.Systems;
+﻿using Ju.GundamWars.Core;
+using Ju.GundamWars.UseCase.Systems;
 
 namespace Ju.GundamWars.Application.Systems;
 

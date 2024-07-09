@@ -1,8 +1,8 @@
-﻿using Ju.GundamWars.Domain.CoUnits.Entities;
-using Ju.GundamWars.Domain.Cuspas.Entities;
-using Ju.GundamWars.Domain.Mobiles.Entities;
-using Ju.GundamWars.Domain.Pilots.Entities;
-using Ju.GundamWars.Domain.Supports.Entities;
+﻿using Ju.GundamWars.Cuspas.Domain.Entities;
+using Ju.GundamWars.Domain.CoMobiles.Entities;
+using Ju.GundamWars.Mobiles.Domain.Entities;
+using Ju.GundamWars.Pilots.Domain.Entities;
+using Ju.GundamWars.Supports.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -19,7 +19,7 @@ public class GwDbContext : DbContext
     }
 
 
-    public IQueryable<CoUnit> IncludedCoUnits => Set<CoUnit>()
+    public IQueryable<CoMobile> IncludedCoMobiles => Set<CoMobile>()
         .Include(e => e.TagMaps);
 
     public IQueryable<Cuspa> IncludedCuspas => Set<Cuspa>()
@@ -32,7 +32,7 @@ public class GwDbContext : DbContext
         .Include(e => e.PilotMaps)
         .Include(e => e.Cuspas)
         .Include(e => e.Supports)
-        .Include(e => e.CoUnits);
+        .Include(e => e.CoMobiles);
 
     public IQueryable<Pilot> IncludedPilots => Set<Pilot>()
         .Include(e => e.TagMaps);

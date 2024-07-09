@@ -1,4 +1,5 @@
 ﻿using Ju.GundamWars.Const;
+using Ju.GundamWars.Core;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Tags;
 using Ju.GundamWars.UseCase.Tags;
@@ -21,7 +22,7 @@ public partial class TagListViewModel : GwObservableObject
         PilotTags = new(tagInventory) { Filter = FilterPilotTag, };
         SupportTags = new(tagInventory) { Filter = FilterSupportTag, };
         CuspaTags = new(tagInventory) { Filter = FilterCuspaTag, };
-        CoUnitTags = new(tagInventory) { Filter = FilterCoUnitTag, };
+        CoMobileTags = new(tagInventory) { Filter = FilterCoMobileTag, };
 
         windowStatus.PropertyChanged.Where(n => n == "TabIndex").Subscribe(WhenTabIndexChanged).AddTo(Disposables);
     }
@@ -37,7 +38,7 @@ public partial class TagListViewModel : GwObservableObject
     public ListCollectionView PilotTags { get; }
     public ListCollectionView SupportTags { get; }
     public ListCollectionView CuspaTags { get; }
-    public ListCollectionView CoUnitTags { get; }
+    public ListCollectionView CoMobileTags { get; }
 
     private async void WhenTabIndexChanged(string? _)
     {
@@ -82,10 +83,10 @@ public partial class TagListViewModel : GwObservableObject
         return item.KindType.ForCuspa();
     }
 
-    private bool FilterCoUnitTag(object obj)
+    private bool FilterCoMobileTag(object obj)
     {
         if (obj is not TagSubject item) return false;
-        return item.KindType.ForCoUnit();
+        return item.KindType.ForCoMobile();
     }
 
 }

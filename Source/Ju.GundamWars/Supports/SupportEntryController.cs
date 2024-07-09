@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.Supports;
+﻿using Ju.GundamWars.Supports.Domain;
 using Ju.GundamWars.UseCase.Supports;
 
 namespace Ju.GundamWars.Supports;

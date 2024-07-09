@@ -1,9 +1,9 @@
-﻿using Ju.GundamWars.Domain.CoUnits;
-using Ju.GundamWars.UseCase.CoUnits;
+﻿using Ju.GundamWars.Domain.CoMobiles;
+using Ju.GundamWars.UseCase.CoMobiles;
 
 namespace Ju.GundamWars.CoMobiles;
 
-public class CoUnitEntryController(IInsertCoUnitUseCase insertUseCase, IUpdateCoUnitUseCase updateUseCase, IDeleteCoUnitUseCase deleteUseCase, ICancelCoUnitUseCase cancelUseCase)
-    : EntryControllerBase<CoUnitSubject, IInsertCoUnitUseCase, IUpdateCoUnitUseCase, IDeleteCoUnitUseCase, ICancelCoUnitUseCase>(insertUseCase, updateUseCase, deleteUseCase, cancelUseCase)
+public class CoMobileEntryController(IInsertCoMobileUseCase insertUseCase, IUpdateCoMobileUseCase updateUseCase, IDeleteCoMobileUseCase deleteUseCase, ICancelCoMobileUseCase cancelUseCase)
+    : EntryControllerBase<CoMobileSubject, IInsertCoMobileUseCase, IUpdateCoMobileUseCase, IDeleteCoMobileUseCase, ICancelCoMobileUseCase>(insertUseCase, updateUseCase, deleteUseCase, cancelUseCase)
 {
 }

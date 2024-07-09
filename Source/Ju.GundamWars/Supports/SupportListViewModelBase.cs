@@ -1,10 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Supports;
-using Ju.GundamWars.Domain.Supports.Entities;
+using Ju.GundamWars.Core;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Systems.Entities;
 using Ju.GundamWars.Domain.Tags;
+using Ju.GundamWars.Supports.Domain;
+using Ju.GundamWars.Supports.Domain.Entities;
 using Ju.GundamWars.UseCase.Supports;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;

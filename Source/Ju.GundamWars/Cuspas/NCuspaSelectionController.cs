@@ -1,5 +1,5 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Cuspas;
+using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Mobiles;
 

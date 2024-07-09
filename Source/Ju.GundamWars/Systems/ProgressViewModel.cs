@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.Core;
 
 namespace Ju.GundamWars.Systems;
 

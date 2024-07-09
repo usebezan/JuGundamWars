@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Pilots;
-using Ju.GundamWars.Domain.Pilots.Factories;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Tags;
+using Ju.GundamWars.Pilots.Domain;
+using Ju.GundamWars.Pilots.Domain.Factories;
 using Ju.GundamWars.UseCase.Pilots;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;

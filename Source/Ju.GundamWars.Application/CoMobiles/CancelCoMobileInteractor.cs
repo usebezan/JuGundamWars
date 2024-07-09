@@ -1,21 +1,21 @@
 ﻿using Ju.GundamWars.Application.CoMobiles.Repositories;
-using Ju.GundamWars.Domain.CoUnits;
-using Ju.GundamWars.Domain.CoUnits.Mappers;
-using Ju.GundamWars.Domain.CoUnits.Entities;
-using Ju.GundamWars.Domain.CoUnits.Factories;
-using Ju.GundamWars.UseCase.CoUnits;
+using Ju.GundamWars.Domain.CoMobiles;
+using Ju.GundamWars.Domain.CoMobiles.Mappers;
+using Ju.GundamWars.Domain.CoMobiles.Entities;
+using Ju.GundamWars.Domain.CoMobiles.Factories;
+using Ju.GundamWars.UseCase.CoMobiles;
 using Ju.GundamWars.UseCase.Systems;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Application.CoMobiles;
 
-public class CancelCoUnitInteractor(
-    ICoUnitRepository repository,
-    CoUnitFactory entityFactory,
-    CoUnitSubjectMapper subjectMapper,
+public class CancelCoMobileInteractor(
+    ICoMobileRepository repository,
+    CoMobileFactory entityFactory,
+    CoMobileSubjectMapper subjectMapper,
     IEnterPresenter presenter,
-    ILogger<CancelCoUnitInteractor> logger)
-    : CancelInteractorBase<CoUnit, CoUnitSubject, ICoUnitRepository, CoUnitFactory, CoUnitSubjectMapper>(repository, entityFactory, subjectMapper, presenter, logger),
-        ICancelCoUnitUseCase
+    ILogger<CancelCoMobileInteractor> logger)
+    : CancelInteractorBase<CoMobile, CoMobileSubject, ICoMobileRepository, CoMobileFactory, CoMobileSubjectMapper>(repository, entityFactory, subjectMapper, presenter, logger),
+        ICancelCoMobileUseCase
 {
 }

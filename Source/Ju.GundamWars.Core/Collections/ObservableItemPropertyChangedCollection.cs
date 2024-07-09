@@ -1,5 +1,4 @@
 ﻿using Ju.GundamWars.ComponentModel;
-using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -11,6 +10,12 @@ namespace Ju.GundamWars.Collections;
 public sealed class ObservableItemPropertyChangedCollection<T> : ObservableCollection<T>, IDisposable
     where T : class, IObservableNotifyPropertyChanged
 {
+
+    public ObservableItemPropertyChangedCollection()
+    {
+        System.Diagnostics.Debug.WriteLine($"Create {this}.");
+    }
+
 
     public new void Add(T item)
     {

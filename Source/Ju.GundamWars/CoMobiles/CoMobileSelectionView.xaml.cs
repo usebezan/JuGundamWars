@@ -1,17 +1,17 @@
-﻿using Ju.GundamWars.CoUnits;
+﻿using Ju.GundamWars.CoMobiles;
 using System.Windows.Controls;
 using static Ju.GundamWars.App;
 
 namespace Ju.GundamWars.CoMobiles;
 
 /// <summary>
-/// CoUnitSelectionView.xaml の相互作用ロジック
+/// CoMobileSelectionView.xaml の相互作用ロジック
 /// </summary>
-public partial class CoUnitSelectionView : UserControl
+public partial class CoMobileSelectionView : UserControl
 {
-    public CoUnitSelectionView()
+    public CoMobileSelectionView()
     {
         InitializeComponent();
-        DataContext = GetRequiredService<CoUnitSelectionViewModel>();
+        DataContext = GetRequiredService<CoMobileSelectionViewModel>();
     }
 }

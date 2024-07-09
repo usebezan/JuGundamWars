@@ -1,6 +1,6 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Cuspas;
-using Ju.GundamWars.Domain.Cuspas.Factories;
+using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
+using Ju.GundamWars.Cuspas.Domain.Factories;
 using Ju.GundamWars.Domain.Tags;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;

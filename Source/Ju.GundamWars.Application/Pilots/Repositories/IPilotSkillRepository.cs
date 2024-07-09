@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.Pilots.Entities;
+﻿using Ju.GundamWars.Pilots.Domain.Entities;
 
 namespace Ju.GundamWars.Application.Pilots.Repositories;
 

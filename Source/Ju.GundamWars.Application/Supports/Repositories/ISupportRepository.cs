@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.Supports.Entities;
+﻿using Ju.GundamWars.Supports.Domain.Entities;
 
 namespace Ju.GundamWars.Application.Supports.Repositories;
 

@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.Mobiles.Entities;
+﻿using Ju.GundamWars.Mobiles.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

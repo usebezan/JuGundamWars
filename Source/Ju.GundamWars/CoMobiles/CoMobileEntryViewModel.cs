@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.CoMobiles;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoUnits;
-using Ju.GundamWars.Domain.CoUnits.Factories;
+using Ju.GundamWars.Domain.CoMobiles;
+using Ju.GundamWars.Domain.CoMobiles.Factories;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Tags;
 using Ju.GundamWars.UseCase.Systems;
@@ -10,14 +10,14 @@ using Ju.GundamWars.UseCase.Tags;
 using System.Collections.Generic;
 using System.Windows.Data;
 
-namespace Ju.GundamWars.CoUnits;
+namespace Ju.GundamWars.CoMobiles;
 
-public partial class CoUnitEntryViewModel : EntryViewModelBase<CoUnitSubject, CoUnitEntryController, CoUnitSubjectFactory>
+public partial class CoMobileEntryViewModel : EntryViewModelBase<CoMobileSubject, CoMobileEntryController, CoMobileSubjectFactory>
 {
 
-    public CoUnitEntryViewModel(
-        CoUnitEntryController controller,
-        CoUnitSubjectFactory subjectFactory,
+    public CoMobileEntryViewModel(
+        CoMobileEntryController controller,
+        CoMobileSubjectFactory subjectFactory,
         ISerialInventory serialInventory,
         IRoleInventory roleInventory,
         ITagInventory tagInventory)
@@ -48,22 +48,22 @@ public partial class CoUnitEntryViewModel : EntryViewModelBase<CoUnitSubject, Co
     private bool FilterTag(object obj)
     {
         if (obj is not TagSubject item) return false;
-        return item.KindType.ForCoUnit();
+        return item.KindType.ForCoMobile();
     }
 
-    public override void SetEntry(EntryMode mode, CoUnitSubject entry)
+    public override void SetEntry(EntryMode mode, CoMobileSubject entry)
     {
         base.SetEntry(mode, entry);
 
         if (CategoryType == CategoryType.MobileSuit)
         {
-            Icon = GwIcon.CoUnitSuit;
-            Text = GwText.CoUnitSuit;
+            Icon = GwIcon.CoMobileSuit;
+            Text = GwText.CoMobileSuit;
         }
         else if (CategoryType == CategoryType.MobileArmor)
         {
-            Icon = GwIcon.CoUnitArmor;
-            Text = GwText.CoUnitArmor;
+            Icon = GwIcon.CoMobileArmor;
+            Text = GwText.CoMobileArmor;
         }
 
         Roles.Refresh();

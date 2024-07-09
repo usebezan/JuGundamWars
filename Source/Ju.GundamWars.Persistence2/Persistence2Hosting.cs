@@ -39,7 +39,7 @@ public static class Persistence2Hosting
                 options.UseSqlite($@"Filename={dbFilePath}");
             });
 
-            services.AddSingleton<ICoUnitRepository, CoUnitRepository>();
+            services.AddSingleton<ICoMobileRepository, CoMobileRepository>();
             services.AddSingleton<ICuspaRepository, CuspaRepository>();
             services.AddSingleton<IMobileRepository, MobileRepository>();
             services.AddSingleton<IPilotRepository, PilotRepository>();

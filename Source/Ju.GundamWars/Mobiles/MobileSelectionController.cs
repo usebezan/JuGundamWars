@@ -1,6 +1,6 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Mobiles;
 using Ju.GundamWars.Domain.Systems;
+using Ju.GundamWars.Mobiles.Domain;
 
 namespace Ju.GundamWars.Mobiles;
 

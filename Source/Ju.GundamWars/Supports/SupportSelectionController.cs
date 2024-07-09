@@ -1,8 +1,8 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Supports;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Systems.Entities;
 using Ju.GundamWars.Mobiles;
+using Ju.GundamWars.Supports.Domain;
 using System.Collections.Generic;
 
 namespace Ju.GundamWars.Supports;

@@ -1,24 +1,25 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoUnits;
+using Ju.GundamWars.Core;
+using Ju.GundamWars.Domain.CoMobiles;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Domain.Systems.Entities;
 using Ju.GundamWars.Domain.Tags;
-using Ju.GundamWars.UseCase.CoUnits;
+using Ju.GundamWars.UseCase.CoMobiles;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 
-namespace Ju.GundamWars.CoUnits;
+namespace Ju.GundamWars.CoMobiles;
 
-public abstract partial class CoUnitListViewModelBase : GwObservableObject
+public abstract partial class CoMobileListViewModelBase : GwObservableObject
 {
 
-    public CoUnitListViewModelBase(ICoUnitInventory CoUnitInventory, ISerialInventory serialInventory, ITagInventory tagInventory)
+    public CoMobileListViewModelBase(ICoMobileInventory CoMobileInventory, ISerialInventory serialInventory, ITagInventory tagInventory)
     {
-        ItemsView = new(CoUnitInventory) { Filter = Filter, };
+        ItemsView = new(CoMobileInventory) { Filter = Filter, };
         Serials = new(serialInventory);
         Tags = new(tagInventory) { Filter = FilterTag, };
 
@@ -55,12 +56,12 @@ public abstract partial class CoUnitListViewModelBase : GwObservableObject
     {
         if (obj is not TagSubject item) return false;
         if (string.IsNullOrEmpty(item.Name)) return false;
-        return item.KindType.ForCoUnit();
+        return item.KindType.ForCoMobile();
     }
 
     protected abstract bool Filter(object obj);
 
-    protected bool FilterCore(CoUnitSubject item)
+    protected bool FilterCore(CoMobileSubject item)
     {
         if (Category != null && item.Category?.Type != Category.Type) return false;
         if (!string.IsNullOrEmpty(Word) &&

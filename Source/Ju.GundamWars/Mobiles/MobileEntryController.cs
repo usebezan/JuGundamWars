@@ -1,6 +1,6 @@
 ﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Mobiles;
 using Ju.GundamWars.Domain.Systems;
+using Ju.GundamWars.Mobiles.Domain;
 using Ju.GundamWars.UseCase.Mobiles;
 
 namespace Ju.GundamWars.Mobiles;
@@ -14,6 +14,6 @@ public class MobileEntryController(IInsertMobileUseCase insertUseCase, IUpdateMo
     public void MoveToNCuspaSelection() => windowStatus.SlideIndexType = SlideIndexType.NCuspaSelection;
     public void MoveToSCuspaSelection() => windowStatus.SlideIndexType = SlideIndexType.SCuspaSelection;
     public void MoveToSupportSelection() => windowStatus.SlideIndexType = SlideIndexType.SupportSelection;
-    public void MoveToCoUnitSelection() => windowStatus.SlideIndexType = SlideIndexType.CoUnitSelection;
+    public void MoveToCoMobileSelection() => windowStatus.SlideIndexType = SlideIndexType.CoMobileSelection;
 
 }

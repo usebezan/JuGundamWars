@@ -1,5 +1,5 @@
 ﻿using Ju.GundamWars.Application.Mobiles.Repositories;
-using Ju.GundamWars.Domain.Mobiles.Entities;
+using Ju.GundamWars.Mobiles.Domain.Entities;
 using Ju.GundamWars.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -54,22 +54,22 @@ public class MobileRepository(IDbContextFactory<GwDbContext> factory, ILogger<Mo
     {
         var pairIds = entity.PairMaps.Select(e => e.PairId).ToArray();
         var supportIds = entity.Supports.Select(e => e.SupportId).ToArray();
-        var CoUnitIds = entity.CoUnits.Select(e => e.CoUnitId).ToArray();
+        var CoMobileIds = entity.CoMobiles.Select(e => e.CoMobileId).ToArray();
         // 外す MobileId を抽出
         var exMobileIds = dbContext.Set<Mobile>()
             .Include(e => e.PairMaps)
             .Include(e => e.Supports)
-            .Include(e => e.CoUnits)
+            .Include(e => e.CoMobiles)
             .Where(e => e.Id != entity.Id)
             .Where(e =>
                 e.PairMaps.Any(r => pairIds.Contains(r.PairId)) ||
                 e.Supports.Any(r => supportIds.Contains(r.SupportId)) ||
-                e.CoUnits.Any(r => CoUnitIds.Contains(r.CoUnitId)))
+                e.CoMobiles.Any(r => CoMobileIds.Contains(r.CoMobileId)))
             .Select(e => e.Id).Distinct().ToList();
         // 外す Mobile の紐付けを削除
         dbContext.Set<MobilePairMap>().RemoveRange(e => pairIds.Contains(e.PairId));
         dbContext.Set<MobileSupport>().RemoveRange(e => supportIds.Contains(e.SupportId));
-        dbContext.Set<MobileCoUnit>().RemoveRange(e => CoUnitIds.Contains(e.CoUnitId));
+        dbContext.Set<MobileCoMobile>().RemoveRange(e => CoMobileIds.Contains(e.CoMobileId));
         return exMobileIds;
     }
 
@@ -82,7 +82,7 @@ public class MobileRepository(IDbContextFactory<GwDbContext> factory, ILogger<Mo
         dbContext.Set<MobilePilotMap>().RemoveRange(p => p.MobileId == id);
         dbContext.Set<MobileCuspa>().RemoveRange(e => e.MobileId == id);
         dbContext.Set<MobileSupport>().RemoveRange(e => e.MobileId == id);
-        dbContext.Set<MobileCoUnit>().RemoveRange(e => e.MobileId == id);
+        dbContext.Set<MobileCoMobile>().RemoveRange(e => e.MobileId == id);
     }
 
     // DbUpdateConcurrencyException
@@ -94,7 +94,7 @@ public class MobileRepository(IDbContextFactory<GwDbContext> factory, ILogger<Mo
         entity.PilotMaps.ForEach(e => e.MobileId = 0);
         entity.Cuspas.ForEach(e => e.MobileId = 0);
         entity.Supports.ForEach(e => e.MobileId = 0);
-        entity.CoUnits.ForEach(e => e.MobileId = 0);
+        entity.CoMobiles.ForEach(e => e.MobileId = 0);
     }
 
 }
