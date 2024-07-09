@@ -2,13 +2,10 @@
 
 namespace Ju.GundamWars.Domain.Common.Service.Factory;
 
-public abstract class FactoryBase<TSrc, TDest, TApplier>(TApplier applier)
-    : IFactory<TSrc, TDest>
+public abstract class FactoryBase<TSrc, TDest, TMapper>(TMapper Mapper) : IFactory<TSrc, TDest>
     where TSrc : class
     where TDest : class, new()
-    where TApplier : IApplier<TSrc, TDest>
+    where TMapper : IMapper<TSrc, TDest>
 {
-
-    public TDest Create(TSrc src) => applier.Apply(src, new());
-
+    public TDest Create(TSrc src) => Mapper.Map(src, new());
 }

@@ -21,7 +21,7 @@ public partial class TagListViewModel : GwObservableObject
         PilotTags = new(tagInventory) { Filter = FilterPilotTag, };
         SupportTags = new(tagInventory) { Filter = FilterSupportTag, };
         CuspaTags = new(tagInventory) { Filter = FilterCuspaTag, };
-        CoMobileTags = new(tagInventory) { Filter = FilterCoMobileTag, };
+        CoUnitTags = new(tagInventory) { Filter = FilterCoUnitTag, };
 
         windowStatus.PropertyChanged.Where(n => n == "TabIndex").Subscribe(WhenTabIndexChanged).AddTo(Disposables);
     }
@@ -37,7 +37,7 @@ public partial class TagListViewModel : GwObservableObject
     public ListCollectionView PilotTags { get; }
     public ListCollectionView SupportTags { get; }
     public ListCollectionView CuspaTags { get; }
-    public ListCollectionView CoMobileTags { get; }
+    public ListCollectionView CoUnitTags { get; }
 
     private async void WhenTabIndexChanged(string? _)
     {
@@ -82,10 +82,10 @@ public partial class TagListViewModel : GwObservableObject
         return item.KindType.ForCuspa();
     }
 
-    private bool FilterCoMobileTag(object obj)
+    private bool FilterCoUnitTag(object obj)
     {
         if (obj is not TagSubject item) return false;
-        return item.KindType.ForCoMobile();
+        return item.KindType.ForCoUnit();
     }
 
 }

@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.Tags.Entities;
+﻿using Ju.GundamWars.Domain.Tags.Dto;
 
 namespace Ju.GundamWars.Domain.Supports.Entities;
 

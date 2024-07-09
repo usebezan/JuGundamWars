@@ -1,8 +1,8 @@
 ﻿using Ju.GundamWars.Application.Cuspas.Repositories;
 using Ju.GundamWars.Domain.Cuspas;
-using Ju.GundamWars.Domain.Cuspas.Appliers;
+using Ju.GundamWars.Domain.Cuspas.Mappers;
 using Ju.GundamWars.Domain.Cuspas.Entities;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
@@ -12,13 +12,13 @@ namespace Ju.GundamWars.Application.Cuspas;
 
 public class UpdateCuspaInteractor(
     ICuspaRepository repository,
-    CuspaApplier entityApplier,
-    CuspaSubjectApplier subjectApplier,
-    MobileSubjectApplier mobileSubjectApplier,
+    CuspaMapper entityMapper,
+    CuspaSubjectMapper subjectMapper,
+    MobileSubjectMapper mobileSubjectMapper,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger<UpdateCuspaInteractor> logger)
-    : UpdateInteractorBase<Cuspa, CuspaSubject, ICuspaRepository, CuspaApplier, CuspaSubjectApplier>(repository, entityApplier, subjectApplier, mobileSubjectApplier, mobileInventory, presenter, logger),
+    : UpdateInteractorBase<Cuspa, CuspaSubject, ICuspaRepository, CuspaMapper, CuspaSubjectMapper>(repository, entityMapper, subjectMapper, mobileSubjectMapper, mobileInventory, presenter, logger),
         IUpdateCuspaUseCase
 {
 

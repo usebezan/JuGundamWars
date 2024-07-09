@@ -3,10 +3,10 @@ using Ju.GundamWars.Domain.Pilots.Entities;
 
 namespace Ju.GundamWars.Domain.Pilots.Appliers;
 
-public class PilotApplier : IApplier<PilotSubject, Pilot>
+public class PilotMapper : IMapper<PilotSubject, Pilot>
 {
 
-    public Pilot Apply(PilotSubject subject, Pilot entity)
+    public Pilot Map(PilotSubject subject, Pilot entity)
     {
         entity.Id = subject.Id;
         entity.Name = subject.Name;

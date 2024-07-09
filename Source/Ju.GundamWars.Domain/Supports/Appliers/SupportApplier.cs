@@ -3,10 +3,10 @@ using Ju.GundamWars.Domain.Supports.Entities;
 
 namespace Ju.GundamWars.Domain.Supports.Appliers;
 
-public class SupportApplier : IApplier<SupportSubject, Support>
+public class SupportMapper : IMapper<SupportSubject, Support>
 {
 
-    public Support Apply(SupportSubject subject, Support entity)
+    public Support Map(SupportSubject subject, Support entity)
     {
         entity.Id = subject.Id;
         entity.Name = subject.Name;

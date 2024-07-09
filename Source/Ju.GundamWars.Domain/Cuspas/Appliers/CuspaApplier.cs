@@ -3,10 +3,10 @@ using Ju.GundamWars.Domain.Cuspas.Entities;
 
 namespace Ju.GundamWars.Domain.Cuspas.Appliers;
 
-public class CuspaApplier : IApplier<CuspaSubject, Cuspa>
+public class CuspaMapper : IMapper<CuspaSubject, Cuspa>
 {
 
-    public Cuspa Apply(CuspaSubject subject, Cuspa entity)
+    public Cuspa Map(CuspaSubject subject, Cuspa entity)
     {
         entity.Id = subject.Id;
         entity.Name = subject.SubName;

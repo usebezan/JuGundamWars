@@ -1,6 +1,6 @@
-﻿using Ju.GundamWars.CoMobiles;
+﻿using Ju.GundamWars.CoUnits;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoMobiles;
+using Ju.GundamWars.Domain.CoUnits;
 using Ju.GundamWars.Domain.Mobiles;
 using Ju.GundamWars.Domain.Mobiles.Entities;
 using Ju.GundamWars.Domain.Mobiles.Factories;
@@ -18,7 +18,7 @@ public class MobileListController(
     MobileSubjectFactory subjectFactory,
     PilotEntryViewModel pilotEntryViewModel,
     SupportEntryViewModel supportEntryViewModel,
-    CoMobileEntryViewModel coMobileEntryViewModel,
+    CoUnitEntryViewModel CoUnitEntryViewModel,
     WindowStatus windowStatus)
     : ListControllerBase<Mobile, MobileSubject, MobileEntryViewModel, MobileFactory, MobileSubjectFactory>(viewModel, entityFactory, subjectFactory)
 {
@@ -35,9 +35,9 @@ public class MobileListController(
         newSubject.Support2 = null;
         newSubject.Support3 = null;
         newSubject.Support4 = null;
-        newSubject.CoMobile1 = null;
-        newSubject.CoMobile2 = null;
-        newSubject.CoMobile3 = null;
+        newSubject.CoUnit1 = null;
+        newSubject.CoUnit2 = null;
+        newSubject.CoUnit3 = null;
         OpenEntry(EntryMode.Copy, newSubject);
     }
 
@@ -55,10 +55,10 @@ public class MobileListController(
         windowStatus.SlideIndexType = SlideIndexType.SupportEntry;
     }
 
-    public void OpenCoMobileAsEdit(CoMobileSubject coMobile)
+    public void OpenCoUnitAsEdit(CoUnitSubject CoUnit)
     {
-        coMobileEntryViewModel.SetEntry(EntryMode.Edit, coMobile);
-        windowStatus.SlideIndexType = SlideIndexType.CoMobileEntry;
+        CoUnitEntryViewModel.SetEntry(EntryMode.Edit, CoUnit);
+        windowStatus.SlideIndexType = SlideIndexType.CoUnitEntry;
     }
 
 }

@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Ju.GundamWars.Domain.Common.Gateway;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Xosmos.Domain;
-using Xosmos.Domain.Gateway;
 
 namespace Ju.GundamWars.Server.Infrastructure.Persistence.Common;
 

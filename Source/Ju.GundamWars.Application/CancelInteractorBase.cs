@@ -9,10 +9,10 @@ using System.Text.Unicode;
 
 namespace Ju.GundamWars.Application;
 
-public abstract class CancelInteractorBase<TEntity, TSubject, TRepository, TEntityFactory, TSubjectApplier>(
+public abstract class CancelInteractorBase<TEntity, TSubject, TRepository, TEntityFactory, TSubjectMapper>(
     TRepository repository,
     TEntityFactory entityFactory,
-    TSubjectApplier subjectApplier,
+    TSubjectMapper subjectMapper,
     IEnterPresenter presenter,
     ILogger logger)
     : ICancelUseCase<TSubject>
@@ -20,7 +20,7 @@ public abstract class CancelInteractorBase<TEntity, TSubject, TRepository, TEnti
     where TSubject : class, IIdentify
     where TRepository : IRepository<TEntity>
     where TEntityFactory : IFactory<TSubject, TEntity>
-    where TSubjectApplier : IApplier<TEntity, TSubject>
+    where TSubjectMapper : IMapper<TEntity, TSubject>
 {
 
     private static readonly JsonSerializerOptions options = new()
@@ -51,7 +51,7 @@ public abstract class CancelInteractorBase<TEntity, TSubject, TRepository, TEnti
         {
             if (curEntity != null)
             {
-                subjectApplier.Apply(curEntity, entry);
+                subjectMapper.Apply(curEntity, entry);
             }
             presenter.Cancel();
         }

@@ -6,17 +6,17 @@ using Ju.GundamWars.UseCase.Tags;
 
 namespace Ju.GundamWars.Domain.Supports.Appliers;
 
-public class SupportSubjectApplier(
+public class SupportSubjectMapper(
     ICategoryInventory categoryInventory,
     ISerialInventory serialInventory,
     IGradeInventory gradeInventory,
     ITagInventory tagInventory,
     ISupportSlotInventory supportSlotInventory,
     ISupportBadgeInventory supportBadgeInventory)
-    : IApplier<Support, SupportSubject>
+    : IMapper<Support, SupportSubject>
 {
 
-    public SupportSubject Apply(Support entity, SupportSubject subject)
+    public SupportSubject Map(Support entity, SupportSubject subject)
     {
         subject.Initialize(() =>
         {

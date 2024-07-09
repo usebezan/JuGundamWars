@@ -2,17 +2,17 @@
 
 namespace Ju.GundamWars.Domain.Common.Service.Factory;
 
-public abstract class SubjectFactoryBase<TEntity, TSubject, TSubjectApplier>(TSubjectApplier subjectApplier)
+public abstract class SubjectFactoryBase<TEntity, TSubject, TSubjectMapper>(TSubjectMapper subjectMapper)
     : IFactory<TSubject>, IFactory<TEntity, TSubject>
     where TEntity : class, new()
     where TSubject : class, new()
-    where TSubjectApplier : IApplier<TEntity, TSubject>
+    where TSubjectMapper : IMapper<TEntity, TSubject>
 {
 
-    protected readonly TSubjectApplier SubjectApplier = subjectApplier;
+    protected readonly TSubjectMapper SubjectMapper = subjectMapper;
 
 
-    public TSubject Create() => SubjectApplier.Apply(new TEntity(), new());
-    public TSubject Create(TEntity src) => SubjectApplier.Apply(src, new());
+    public TSubject Create() => SubjectMapper.Map(new TEntity(), new());
+    public TSubject Create(TEntity src) => SubjectMapper.Map(src, new());
 
 }

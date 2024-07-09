@@ -1,5 +1,5 @@
-﻿using Ju.GundamWars.Domain.CoMobiles.Entities;
+﻿using Ju.GundamWars.Domain.CoUnits.Entities;
 
 namespace Ju.GundamWars.Application.CoMobiles.Repositories;
 
-public interface ICoMobileRepository : IRepository<CoMobile> { }
+public interface ICoUnitRepository : IRepository<CoUnit> { }

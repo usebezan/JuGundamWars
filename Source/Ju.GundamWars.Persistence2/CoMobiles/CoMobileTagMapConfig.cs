@@ -1,16 +1,16 @@
-﻿using Ju.GundamWars.Domain.CoMobiles.Entities;
+﻿using Ju.GundamWars.Domain.CoUnits.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ju.GundamWars.Persistence2.CoMobiles;
 
-public class CoMobileTagMapConfig : IEntityTypeConfiguration<CoMobileTagMap>
+public class CoUnitTagMapConfig : IEntityTypeConfiguration<CoUnitTagMap>
 {
 
-    public void Configure(EntityTypeBuilder<CoMobileTagMap> builder)
+    public void Configure(EntityTypeBuilder<CoUnitTagMap> builder)
     {
-        builder.ToTable(nameof(CoMobileTagMap));
-        builder.HasKey(e => new { e.CoMobileId, e.TagId, });
+        builder.ToTable(nameof(CoUnitTagMap));
+        builder.HasKey(e => new { e.CoUnitId, e.TagId, });
     }
 
 }

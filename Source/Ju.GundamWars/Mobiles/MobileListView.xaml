@@ -203,39 +203,39 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn Header="Co-Unit1"
-                    SortMemberPath="CoMobile1.Name"
+                    SortMemberPath="CoUnit1.Name"
                     >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock VerticalAlignment="Center">
-                                <Hyperlink Command="{Binding DataContext.OpenCoMobileAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding CoMobile1}">
-                                    <TextBlock Text="{Binding CoMobile1.Name}" />
+                                <Hyperlink Command="{Binding DataContext.OpenCoUnitAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding CoUnit1}">
+                                    <TextBlock Text="{Binding CoUnit1.Name}" />
                                 </Hyperlink>
                             </TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Co-Unit2"
-                    SortMemberPath="CoMobile2.Name"
+                    SortMemberPath="CoUnit2.Name"
                     >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock VerticalAlignment="Center">
-                                <Hyperlink Command="{Binding DataContext.OpenCoMobileAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding CoMobile2}">
-                                    <TextBlock Text="{Binding CoMobile2.Name}" />
+                                <Hyperlink Command="{Binding DataContext.OpenCoUnitAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding CoUnit2}">
+                                    <TextBlock Text="{Binding CoUnit2.Name}" />
                                 </Hyperlink>
                             </TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Co-Unit3"
-                    SortMemberPath="CoMobile3.Name"
+                    SortMemberPath="CoUnit3.Name"
                     >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock VerticalAlignment="Center">
-                                <Hyperlink Command="{Binding DataContext.OpenCoMobileAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding CoMobile3}">
-                                    <TextBlock Text="{Binding CoMobile3.Name}" />
+                                <Hyperlink Command="{Binding DataContext.OpenCoUnitAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding CoUnit3}">
+                                    <TextBlock Text="{Binding CoUnit3.Name}" />
                                 </Hyperlink>
                             </TextBlock>
                         </DataTemplate>

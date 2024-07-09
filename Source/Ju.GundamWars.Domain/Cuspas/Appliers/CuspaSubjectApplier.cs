@@ -5,14 +5,14 @@ using Ju.GundamWars.UseCase.Tags;
 
 namespace Ju.GundamWars.Domain.Cuspas.Appliers;
 
-public class CuspaSubjectApplier(
+public class CuspaSubjectMapper(
     ICategoryInventory categoryInventory,
     ICuspaKindInventory cuspaKindInventory,
     ITagInventory tagInventory)
-    : IApplier<Cuspa, CuspaSubject>
+    : IMapper<Cuspa, CuspaSubject>
 {
 
-    public CuspaSubject Apply(Cuspa entity, CuspaSubject subject)
+    public CuspaSubject Map(Cuspa entity, CuspaSubject subject)
     {
         subject.Initialize(() =>
         {

@@ -1,4 +1,10 @@
-﻿using Ju.GundamWars.Const;
+﻿using Ju.GundamWars.Domain.AceImpls;
+using Ju.GundamWars.Domain.Categories;
+using Ju.GundamWars.Domain.Grades;
+using Ju.GundamWars.Domain.MobileKinds;
+using Ju.GundamWars.Domain.Positions;
+using Ju.GundamWars.Domain.Roles;
+using Ju.GundamWars.Domain.Terrains;
 
 namespace Ju.GundamWars.Domain.Mobiles.Entities;
 
@@ -44,7 +50,7 @@ public class Mobile : IIdentify
     public int RemodeledEvasion { get; set; }
     public int RemodeledMobility { get; set; }
     public int RemodeledEnRecovery { get; set; }
-    public HasAceType HasAce { get; set; } = HasAceType.Unimplemented;
+    public AceImplType HasAce { get; set; } = AceImplType.Unimplemented;
     public byte SuperEnGrade { get; set; }
     public byte AceEnGrade { get; set; }
     public int EnTank { get; set; }
@@ -63,6 +69,6 @@ public class Mobile : IIdentify
     public List<MobilePilotMap> PilotMaps { get; set; } = [];
     public List<MobileCuspa> Cuspas { get; set; } = [];
     public List<MobileSupport> Supports { get; set; } = [];
-    public List<MobileCoMobile> CoMobiles { get; set; } = [];
+    public List<MobileCoUnit> CoUnits { get; set; } = [];
 
 }

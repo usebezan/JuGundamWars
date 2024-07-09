@@ -6,17 +6,17 @@ using Ju.GundamWars.UseCase.Tags;
 
 namespace Ju.GundamWars.Domain.Pilots.Appliers;
 
-public class PilotSubjectApplier(
+public class PilotSubjectMapper(
     ICategoryInventory categoryInventory,
     ISerialInventory serialInventory,
     IGradeInventory gradeInventory,
     ITagInventory tagInventory,
     IPilotSkillInventory pilotSkillInventory,
     IPilotAbilityInventory pilotAbilityInventory)
-    : IApplier<Pilot, PilotSubject>
+    : IMapper<Pilot, PilotSubject>
 {
 
-    public PilotSubject Apply(Pilot entity, PilotSubject subject)
+    public PilotSubject Map(Pilot entity, PilotSubject subject)
     {
         subject.Initialize(() =>
         {

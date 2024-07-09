@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Application.Pilots.Repositories;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.Domain.Pilots;
-using Ju.GundamWars.Domain.Pilots.Appliers;
+using Ju.GundamWars.Domain.Pilots.Mappers;
 using Ju.GundamWars.Domain.Pilots.Entities;
 using Ju.GundamWars.Domain.Pilots.Factories;
 using Ju.GundamWars.UseCase.Mobiles;
@@ -14,13 +14,13 @@ namespace Ju.GundamWars.Application.Pilots;
 public class InsertPilotInteractor(
     IPilotRepository repository,
     PilotFactory entityFactory,
-    PilotSubjectApplier subjectApplier,
-    MobileSubjectApplier mobileSubjectApplier,
+    PilotSubjectMapper subjectMapper,
+    MobileSubjectMapper mobileSubjectMapper,
     IPilotInventory inventory,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger<InsertPilotInteractor> logger)
-    : InsertInteractorBase<Pilot, PilotSubject, IPilotRepository, PilotFactory, PilotSubjectApplier, IPilotInventory>(repository, entityFactory, subjectApplier, mobileSubjectApplier, inventory, mobileInventory, presenter, logger),
+    : InsertInteractorBase<Pilot, PilotSubject, IPilotRepository, PilotFactory, PilotSubjectMapper, IPilotInventory>(repository, entityFactory, subjectMapper, mobileSubjectMapper, inventory, mobileInventory, presenter, logger),
         IInsertPilotUseCase
 {
 

@@ -1,21 +1,21 @@
-﻿<UserControl x:Class="Ju.GundamWars.CoMobiles.CoMobileEntryView"
+﻿<UserControl x:Class="Ju.GundamWars.CoUnits.CoUnitEntryView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:Ju.GundamWars.CoMobiles"
+    xmlns:local="clr-namespace:Ju.GundamWars.CoUnits"
     xmlns:ctrl="clr-namespace:Ju.GundamWars.Controls"
     xmlns:mobile="clr-namespace:Ju.GundamWars.Mobiles"
     xmlns:const="clr-namespace:Ju.GundamWars.Const;assembly=Ju.GundamWars.Core"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance local:CoMobileEntryViewModel}"
+    d:DataContext="{d:DesignInstance local:CoUnitEntryViewModel}"
     d:DesignHeight="1200"
     d:DesignWidth="1200"
     SnapsToDevicePixels="True"
     >
     <UserControl.Resources>
-        <Style x:Key="GwEntryCoMobileUpgradedCountComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+        <Style x:Key="GwEntryCoUnitUpgradedCountComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
             <Setter Property="Width" Value="120" />
             <Setter Property="ItemsSource" Value="{Binding UpgradedCounts}" />
         </Style>
@@ -63,7 +63,7 @@
                                 <TextBox Style="{StaticResource GwEntryLevelTextBox}" />
                             </GroupBox>
                             <GroupBox Header="Basic Status">
-                                <local:CoMobileEntryStatusUserControl DataContext="{Binding Entry.BasicStatus}" />
+                                <local:CoUnitEntryStatusUserControl DataContext="{Binding Entry.BasicStatus}" />
                             </GroupBox>
                         </StackPanel>
                     </ScrollViewer>
@@ -101,17 +101,17 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <ComboBox Grid.Column="0" Grid.Row="0" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Hp}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Hp}}" />
-                                    <ComboBox Grid.Column="1" Grid.Row="0" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.BeamAttack}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.BeamAttack}}" />
-                                    <ComboBox Grid.Column="2" Grid.Row="0" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.PhysicalAttack}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.PhysicalAttack}}" />
-                                    <ComboBox Grid.Column="0" Grid.Row="1" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.BeamDefence}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.BeamDefence}}" />
-                                    <ComboBox Grid.Column="1" Grid.Row="1" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.PhysicalDefence}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.PhysicalDefence}}" />
-                                    <ComboBox Grid.Column="2" Grid.Row="1" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.CriticalDamage}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.CriticalDamage}}" />
-                                    <ComboBox Grid.Column="0" Grid.Row="2" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Accuracy}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Accuracy}}" />
-                                    <ComboBox Grid.Column="1" Grid.Row="2" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Evasion}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Evasion}}" />
-                                    <ComboBox Grid.Column="2" Grid.Row="2" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Mobility}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Mobility}}" />
-                                    <ComboBox Grid.Column="0" Grid.Row="3" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Startup}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Startup}}" />
-                                    <ComboBox Grid.Column="1" Grid.Row="3" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.SuperMove}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.SuperMove}}" />
+                                    <ComboBox Grid.Column="0" Grid.Row="0" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Hp}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Hp}}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="0" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.BeamAttack}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.BeamAttack}}" />
+                                    <ComboBox Grid.Column="2" Grid.Row="0" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.PhysicalAttack}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.PhysicalAttack}}" />
+                                    <ComboBox Grid.Column="0" Grid.Row="1" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.BeamDefence}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.BeamDefence}}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="1" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.PhysicalDefence}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.PhysicalDefence}}" />
+                                    <ComboBox Grid.Column="2" Grid.Row="1" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.CriticalDamage}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.CriticalDamage}}" />
+                                    <ComboBox Grid.Column="0" Grid.Row="2" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Accuracy}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Accuracy}}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="2" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Evasion}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Evasion}}" />
+                                    <ComboBox Grid.Column="2" Grid.Row="2" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Mobility}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Mobility}}" />
+                                    <ComboBox Grid.Column="0" Grid.Row="3" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.Startup}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.Startup}}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="3" Style="{StaticResource GwEntryCoUnitUpgradedCountComboBox}" SelectedValue="{Binding Entry.UpgradedCount.SuperMove}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static const:GwText.SuperMove}}" />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Style="{StaticResource GwGroupBox}" Margin="0 0 16 16">
@@ -127,7 +127,7 @@
                                         <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Upgraded Status" />
                                     </DockPanel>
                                 </GroupBox.Header>
-                                <local:CoMobileEntryStatusUserControl DataContext="{Binding Entry.UpgradedStatus}" />
+                                <local:CoUnitEntryStatusUserControl DataContext="{Binding Entry.UpgradedStatus}" />
                             </GroupBox>
                             <GroupBox Style="{StaticResource GwGroupBox}" Margin="0 0 16 16">
                                 <GroupBox.Header>
@@ -157,7 +157,7 @@
         </Grid>
         <ScrollViewer Grid.Row="1" Grid.Column="1" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">
             <Border Style="{StaticResource GwSummaryBorder}" DataContext="{Binding Entry}">
-                <local:CoMobileSummaryUserControl />
+                <local:CoUnitSummaryUserControl />
             </Border>
         </ScrollViewer>
         <ScrollViewer Grid.Row="1" Grid.Column="2" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">

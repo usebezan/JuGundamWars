@@ -38,7 +38,7 @@ public class LoadConstDataUseCaseInteractor(
         // 4
         presenter.Increment(() => gradeInventory.ReAddRange(GetEnumValues<GradeType>(t => t != GradeType.Unknown).Select(t => new Grade(t))));
         // 5
-        presenter.Increment(() => hasAceInventory.ReAddRange(GetEnumValues<HasAceType>(t => t != HasAceType.Unknown).Select(t => new HasAce(t))));
+        presenter.Increment(() => hasAceInventory.ReAddRange(GetEnumValues<AceImplType>(t => t != AceImplType.Unknown).Select(t => new HasAce(t))));
         // 6
         presenter.Increment(() => mobileKindInventory.ReAddRange(GetEnumValues<MobileKindType>(t => t != MobileKindType.Unknown).Select(t => new MobileKind(t))));
         // 7

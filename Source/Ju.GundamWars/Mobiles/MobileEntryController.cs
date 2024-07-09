@@ -14,6 +14,6 @@ public class MobileEntryController(IInsertMobileUseCase insertUseCase, IUpdateMo
     public void MoveToNCuspaSelection() => windowStatus.SlideIndexType = SlideIndexType.NCuspaSelection;
     public void MoveToSCuspaSelection() => windowStatus.SlideIndexType = SlideIndexType.SCuspaSelection;
     public void MoveToSupportSelection() => windowStatus.SlideIndexType = SlideIndexType.SupportSelection;
-    public void MoveToCoMobileSelection() => windowStatus.SlideIndexType = SlideIndexType.CoMobileSelection;
+    public void MoveToCoUnitSelection() => windowStatus.SlideIndexType = SlideIndexType.CoUnitSelection;
 
 }

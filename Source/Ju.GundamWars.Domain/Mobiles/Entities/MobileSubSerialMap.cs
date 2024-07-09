@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Domain.System.Entities;
+﻿using Ju.GundamWars.Domain.Serials.Dto;
 
 namespace Ju.GundamWars.Domain.Mobiles.Entities;
 

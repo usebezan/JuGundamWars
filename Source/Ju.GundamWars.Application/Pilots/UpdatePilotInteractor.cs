@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Application.Pilots.Repositories;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.Domain.Pilots;
-using Ju.GundamWars.Domain.Pilots.Appliers;
+using Ju.GundamWars.Domain.Pilots.Mappers;
 using Ju.GundamWars.Domain.Pilots.Entities;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Pilots;
@@ -12,13 +12,13 @@ namespace Ju.GundamWars.Application.Pilots;
 
 public class UpdatePilotInteractor(
     IPilotRepository repository,
-    PilotApplier entityApplier,
-    PilotSubjectApplier subjectApplier,
-    MobileSubjectApplier mobileSubjectApplier,
+    PilotMapper entityMapper,
+    PilotSubjectMapper subjectMapper,
+    MobileSubjectMapper mobileSubjectMapper,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger<UpdatePilotInteractor> logger)
-    : UpdateInteractorBase<Pilot, PilotSubject, IPilotRepository, PilotApplier, PilotSubjectApplier>(repository, entityApplier, subjectApplier, mobileSubjectApplier, mobileInventory, presenter, logger),
+    : UpdateInteractorBase<Pilot, PilotSubject, IPilotRepository, PilotMapper, PilotSubjectMapper>(repository, entityMapper, subjectMapper, mobileSubjectMapper, mobileInventory, presenter, logger),
         IUpdatePilotUseCase
 {
 

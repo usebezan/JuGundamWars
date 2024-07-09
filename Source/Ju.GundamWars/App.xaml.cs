@@ -1,5 +1,6 @@
 ﻿using Ju.GundamWars.Application;
 using Ju.GundamWars.CoMobiles;
+using Ju.GundamWars.CoUnits;
 using Ju.GundamWars.Cuspas;
 using Ju.GundamWars.Domain.Systems;
 using Ju.GundamWars.Mobiles;
@@ -9,7 +10,7 @@ using Ju.GundamWars.Pilots;
 using Ju.GundamWars.Supports;
 using Ju.GundamWars.Systems;
 using Ju.GundamWars.Tags;
-using Ju.GundamWars.UseCase.CoMobiles;
+using Ju.GundamWars.UseCase.CoUnits;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Pilots;
@@ -87,13 +88,13 @@ public partial class App : System.Windows.Application
                     services.AddInventory<ISupportBadgeInventory, SupportBadgeInventory>();
                     services.AddInventory<ISupportSlotInventory, SupportSlotInventory>();
 
-                    services.AddInventory<ICoMobileInventory, CoMobileInventory>();
-                    services.AddSingleton<CoMobileEntryController>();
-                    services.AddSingleton<CoMobileEntryViewModel>();
-                    services.AddSingleton<CoMobileListController>();
-                    services.AddSingleton<CoMobileListViewModel>();
-                    services.AddSingleton<CoMobileSelectionController>();
-                    services.AddSingleton<CoMobileSelectionViewModel>();
+                    services.AddInventory<ICoUnitInventory, CoUnitInventory>();
+                    services.AddSingleton<CoUnitEntryController>();
+                    services.AddSingleton<CoUnitEntryViewModel>();
+                    services.AddSingleton<CoUnitListController>();
+                    services.AddSingleton<CoUnitListViewModel>();
+                    services.AddSingleton<CoUnitSelectionController>();
+                    services.AddSingleton<CoUnitSelectionViewModel>();
 
                     services.AddInventory<ICuspaInventory, CuspaInventory>();
                     services.AddSingleton<CuspaEntryController>();

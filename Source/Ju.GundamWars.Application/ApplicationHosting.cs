@@ -6,20 +6,20 @@ using Ju.GundamWars.Application.Services;
 using Ju.GundamWars.Application.Supports;
 using Ju.GundamWars.Application.Systems;
 using Ju.GundamWars.Application.Tags;
-using Ju.GundamWars.Domain.CoMobiles.Appliers;
-using Ju.GundamWars.Domain.CoMobiles.Factories;
-using Ju.GundamWars.Domain.Cuspas.Appliers;
+using Ju.GundamWars.Domain.CoUnits.Mappers;
+using Ju.GundamWars.Domain.CoUnits.Factories;
+using Ju.GundamWars.Domain.Cuspas.Mappers;
 using Ju.GundamWars.Domain.Cuspas.Factories;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.Domain.Mobiles.Factories;
-using Ju.GundamWars.Domain.Pilots.Appliers;
+using Ju.GundamWars.Domain.Pilots.Mappers;
 using Ju.GundamWars.Domain.Pilots.Factories;
-using Ju.GundamWars.Domain.Supports.Appliers;
+using Ju.GundamWars.Domain.Supports.Mappers;
 using Ju.GundamWars.Domain.Supports.Factories;
 using Ju.GundamWars.Domain.Systems;
-using Ju.GundamWars.Domain.Tags.Appliers;
+using Ju.GundamWars.Domain.Tags.Mappers;
 using Ju.GundamWars.Domain.Tags.Factories;
-using Ju.GundamWars.UseCase.CoMobiles;
+using Ju.GundamWars.UseCase.CoUnits;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Pilots;
@@ -43,45 +43,45 @@ public static class ApplicationHosting
 
             services.AddSingleton<WindowStatus>();
 
-            services.AddSingleton<CoMobileApplier>();
-            services.AddSingleton<CoMobileFactory>();
-            services.AddSingleton<CoMobileSubjectApplier>();
-            services.AddSingleton<CoMobileSubjectFactory>();
-            services.AddSingleton<IInsertCoMobileUseCase, InsertCoMobileInteractor>();
-            services.AddSingleton<IUpdateCoMobileUseCase, UpdateCoMobileInteractor>();
-            services.AddSingleton<IDeleteCoMobileUseCase, DeleteCoMobileInteractor>();
-            services.AddSingleton<ICancelCoMobileUseCase, CancelCoMobileInteractor>();
+            services.AddSingleton<CoUnitMapper>();
+            services.AddSingleton<CoUnitFactory>();
+            services.AddSingleton<CoUnitSubjectMapper>();
+            services.AddSingleton<CoUnitSubjectFactory>();
+            services.AddSingleton<IInsertCoUnitUseCase, InsertCoUnitInteractor>();
+            services.AddSingleton<IUpdateCoUnitUseCase, UpdateCoUnitInteractor>();
+            services.AddSingleton<IDeleteCoUnitUseCase, DeleteCoUnitInteractor>();
+            services.AddSingleton<ICancelCoUnitUseCase, CancelCoUnitInteractor>();
 
-            services.AddSingleton<CuspaApplier>();
+            services.AddSingleton<CuspaMapper>();
             services.AddSingleton<CuspaFactory>();
-            services.AddSingleton<CuspaSubjectApplier>();
+            services.AddSingleton<CuspaSubjectMapper>();
             services.AddSingleton<CuspaSubjectFactory>();
             services.AddSingleton<IInsertCuspaUseCase, InsertCuspaInteractor>();
             services.AddSingleton<IUpdateCuspaUseCase, UpdateCuspaInteractor>();
             services.AddSingleton<IDeleteCuspaUseCase, DeleteCuspaInteractor>();
             services.AddSingleton<ICancelCuspaUseCase, CancelCuspaInteractor>();
 
-            services.AddSingleton<MobileApplier>();
+            services.AddSingleton<MobileMapper>();
             services.AddSingleton<MobileFactory>();
-            services.AddSingleton<MobileSubjectApplier>();
+            services.AddSingleton<MobileSubjectMapper>();
             services.AddSingleton<MobileSubjectFactory>();
             services.AddSingleton<IInsertMobileUseCase, InsertMobileInteractor>();
             services.AddSingleton<IUpdateMobileUseCase, UpdateMobileInteractor>();
             services.AddSingleton<IDeleteMobileUseCase, DeleteMobileInteractor>();
             services.AddSingleton<ICancelMobileUseCase, CancelMobileInteractor>();
 
-            services.AddSingleton<PilotApplier>();
+            services.AddSingleton<PilotMapper>();
             services.AddSingleton<PilotFactory>();
-            services.AddSingleton<PilotSubjectApplier>();
+            services.AddSingleton<PilotSubjectMapper>();
             services.AddSingleton<PilotSubjectFactory>();
             services.AddSingleton<IInsertPilotUseCase, InsertPilotInteractor>();
             services.AddSingleton<IUpdatePilotUseCase, UpdatePilotInteractor>();
             services.AddSingleton<IDeletePilotUseCase, DeletePilotInteractor>();
             services.AddSingleton<ICancelPilotUseCase, CancelPilotInteractor>();
 
-            services.AddSingleton<SupportApplier>();
+            services.AddSingleton<SupportMapper>();
             services.AddSingleton<SupportFactory>();
-            services.AddSingleton<SupportSubjectApplier>();
+            services.AddSingleton<SupportSubjectMapper>();
             services.AddSingleton<SupportSubjectFactory>();
             services.AddSingleton<IInsertSupportUseCase, InsertSupportInteractor>();
             services.AddSingleton<IUpdateSupportUseCase, UpdateSupportInteractor>();
@@ -89,7 +89,7 @@ public static class ApplicationHosting
             services.AddSingleton<ICancelSupportUseCase, CancelSupportInteractor>();
 
             services.AddSingleton<TagFactory>();
-            services.AddSingleton<TagSubjectApplier>();
+            services.AddSingleton<TagSubjectMapper>();
             services.AddSingleton<TagSubjectFactory>();
             services.AddSingleton<IUpdateTagsUseCase, UpdateTagsInteractor>();
 

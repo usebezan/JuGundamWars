@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoMobiles;
+using Ju.GundamWars.Domain.CoUnits;
 using Ju.GundamWars.Domain.Mobiles;
 using Ju.GundamWars.Domain.Pilots;
 using Ju.GundamWars.Domain.Supports;
@@ -101,7 +101,7 @@ public partial class MobileListViewModel : MobileListViewModelBase
     [RelayCommand]
     private void OpenSupportAsEdit(SupportSubject support) => controller.OpenSupportAsEdit(support);
     [RelayCommand]
-    private void OpenCoMobileAsEdit(CoMobileSubject coMobile) => controller.OpenCoMobileAsEdit(coMobile);
+    private void OpenCoUnitAsEdit(CoUnitSubject CoUnit) => controller.OpenCoUnitAsEdit(CoUnit);
 
     [RelayCommand]
     private void ChechAll() => ItemsView.ChechAll<MobileSubject>(true);

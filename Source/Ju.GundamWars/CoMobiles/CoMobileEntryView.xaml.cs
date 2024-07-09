@@ -1,16 +1,17 @@
-﻿using System.Windows.Controls;
+﻿using Ju.GundamWars.CoUnits;
+using System.Windows.Controls;
 using static Ju.GundamWars.App;
 
 namespace Ju.GundamWars.CoMobiles;
 
 /// <summary>
-/// CoMobileEntryView.xaml の相互作用ロジック
+/// CoUnitEntryView.xaml の相互作用ロジック
 /// </summary>
-public partial class CoMobileEntryView : UserControl
+public partial class CoUnitEntryView : UserControl
 {
-    public CoMobileEntryView()
+    public CoUnitEntryView()
     {
         InitializeComponent();
-        DataContext = GetRequiredService<CoMobileEntryViewModel>();
+        DataContext = GetRequiredService<CoUnitEntryViewModel>();
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Ju.GundamWars.Domain.Common.Model;
 
-public record TypeRecord<T>(T Type, byte Value, string Name, string General) where T : Enum { }
-
-public record TypeRecord2<T>(T Type, int Value, string Name, string General) where T : Enum { }
+public record TypeRecord<T, TValue>(T Type, TValue Value, string Name)
+    where T : Enum
+{
+}

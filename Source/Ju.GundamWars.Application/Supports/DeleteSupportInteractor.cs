@@ -1,5 +1,5 @@
 ﻿using Ju.GundamWars.Application.Supports.Repositories;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.Domain.Supports;
 using Ju.GundamWars.Domain.Supports.Entities;
 using Ju.GundamWars.UseCase.Mobiles;
@@ -11,12 +11,12 @@ namespace Ju.GundamWars.Application.Supports;
 
 public class DeleteSupportInteractor(
     ISupportRepository repository,
-    MobileSubjectApplier mobileSubjectApplier,
+    MobileSubjectMapper mobileSubjectMapper,
     ISupportInventory inventory,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger<DeleteSupportInteractor> logger)
-    : DeleteInteractorBase<Support, SupportSubject, ISupportRepository, ISupportInventory>(repository, mobileSubjectApplier, inventory, mobileInventory, presenter, logger),
+    : DeleteInteractorBase<Support, SupportSubject, ISupportRepository, ISupportInventory>(repository, mobileSubjectMapper, inventory, mobileInventory, presenter, logger),
         IDeleteSupportUseCase
 {
 

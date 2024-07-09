@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoMobiles;
+using Ju.GundamWars.Domain.CoUnits;
 using Ju.GundamWars.Domain.Cuspas;
 using Ju.GundamWars.Domain.Supports;
 
@@ -103,7 +102,7 @@ public partial class MobileStatusSubject : GwObservableObject
         return this;
     }
 
-    public MobileStatusSubject Add(CoMobileStatusSubject boost)
+    public MobileStatusSubject Add(CoUnitStatusSubject boost)
     {
         Hp += boost.Hp;
         BeamAttack += boost.BeamAttack;

@@ -1,6 +1,6 @@
 ﻿using Ju.GundamWars.Application.Pilots.Repositories;
 using Ju.GundamWars.Domain.Pilots;
-using Ju.GundamWars.Domain.Pilots.Appliers;
+using Ju.GundamWars.Domain.Pilots.Mappers;
 using Ju.GundamWars.Domain.Pilots.Entities;
 using Ju.GundamWars.Domain.Pilots.Factories;
 using Ju.GundamWars.UseCase.Pilots;
@@ -12,10 +12,10 @@ namespace Ju.GundamWars.Application.Pilots;
 public class CancelPilotInteractor(
     IPilotRepository repository,
     PilotFactory entityFactory,
-    PilotSubjectApplier subjectApplier,
+    PilotSubjectMapper subjectMapper,
     IEnterPresenter presenter,
     ILogger<CancelPilotInteractor> logger)
-    : CancelInteractorBase<Pilot, PilotSubject, IPilotRepository, PilotFactory, PilotSubjectApplier>(repository, entityFactory, subjectApplier, presenter, logger),
+    : CancelInteractorBase<Pilot, PilotSubject, IPilotRepository, PilotFactory, PilotSubjectMapper>(repository, entityFactory, subjectMapper, presenter, logger),
         ICancelPilotUseCase
 {
 }

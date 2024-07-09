@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Ju.GundamWars.CoMobiles;
+using Ju.GundamWars.CoUnits;
 using Ju.GundamWars.Const;
 using Ju.GundamWars.Cuspas;
 using Ju.GundamWars.Domain.Systems;
@@ -19,7 +19,7 @@ public partial class MainViewModel : GwObservableObject
 
     public MainViewModel(
         MainController controller,
-        CoMobileListViewModel coMobileListViewModel,
+        CoUnitListViewModel CoUnitListViewModel,
         CuspaListViewModel cuspaListViewModel,
         MobileListViewModel mobileListViewModel,
         PilotListViewModel pilotListViewModel,
@@ -28,7 +28,7 @@ public partial class MainViewModel : GwObservableObject
         ISnackbarPresenter snackbar)
     {
         this.controller = controller;
-        this.coMobileListViewModel = coMobileListViewModel;
+        this.CoUnitListViewModel = CoUnitListViewModel;
         this.cuspaListViewModel = cuspaListViewModel;
         this.mobileListViewModel = mobileListViewModel;
         this.pilotListViewModel = pilotListViewModel;
@@ -42,7 +42,7 @@ public partial class MainViewModel : GwObservableObject
 
 
     private readonly MainController controller;
-    private readonly CoMobileListViewModel coMobileListViewModel;
+    private readonly CoUnitListViewModel CoUnitListViewModel;
     private readonly CuspaListViewModel cuspaListViewModel;
     private readonly MobileListViewModel mobileListViewModel;
     private readonly PilotListViewModel pilotListViewModel;
@@ -59,8 +59,8 @@ public partial class MainViewModel : GwObservableObject
     {
         switch (WindowStatus.TabIndexType)
         {
-            case TabIndexType.CoMobile:
-                ActiveList = coMobileListViewModel;
+            case TabIndexType.CoUnit:
+                ActiveList = CoUnitListViewModel;
                 break;
             case TabIndexType.Cuspa:
                 //ActiveList = cuspaListViewModel;

@@ -1,13 +1,13 @@
-﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Common.Service.Factory;
-using Ju.GundamWars.Domain.Cuspas.Appliers;
+﻿using Ju.GundamWars.Domain.Common.Service.Factory;
 using Ju.GundamWars.Domain.Cuspas.Entities;
+using Ju.GundamWars.Domain.Cuspas.Appliers;
+using Ju.GundamWars.Domain.Categories;
 
 namespace Ju.GundamWars.Domain.Cuspas.Factories;
 
-public class CuspaSubjectFactory(CuspaSubjectApplier applier) : SubjectFactoryBase<Cuspa, CuspaSubject, CuspaSubjectApplier>(applier)
+public class CuspaSubjectFactory(CuspaSubjectMapper Mapper) : SubjectFactoryBase<Cuspa, CuspaSubject, CuspaSubjectMapper>(Mapper)
 {
 
-    public CuspaSubject CreateForBs() => SubjectApplier.Apply(new Cuspa() { Category = CategoryType.Battleship, }, new());
+    public CuspaSubject CreateForBs() => SubjectMapper.Map(new Cuspa() { Category = CategoryType.Battleship, }, new());
 
 }

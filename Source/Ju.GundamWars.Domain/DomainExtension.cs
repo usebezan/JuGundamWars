@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.Const;
+﻿using Ju.GundamWars.Domain.Calcs;
+using Ju.GundamWars.Domain.System;
 
 namespace Ju.GundamWars.Domain;
 

@@ -1,13 +1,23 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.CoMobiles;
-using Ju.GundamWars.Domain.CoMobiles.Model;
+using Ju.GundamWars.Domain.AceImpls.Model;
+using Ju.GundamWars.Domain.Calcs;
+using Ju.GundamWars.Domain.Categories.Model;
+using Ju.GundamWars.Domain.CoUnits;
+using Ju.GundamWars.Domain.CoUnits.Model;
+using Ju.GundamWars.Domain.CuspaKinds;
 using Ju.GundamWars.Domain.Cuspas;
+using Ju.GundamWars.Domain.Grades.Model;
+using Ju.GundamWars.Domain.MobileKinds;
+using Ju.GundamWars.Domain.MobileKinds.Model;
 using Ju.GundamWars.Domain.Mobiles.Entities;
 using Ju.GundamWars.Domain.Pilots;
+using Ju.GundamWars.Domain.Positions.Model;
+using Ju.GundamWars.Domain.Roles;
+using Ju.GundamWars.Domain.Roles.Model;
+using Ju.GundamWars.Domain.Serials.Dto;
 using Ju.GundamWars.Domain.Supports;
 using Ju.GundamWars.Domain.System;
-using Ju.GundamWars.Domain.System.Entities;
+using Ju.GundamWars.Domain.Terrains.Model;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
@@ -26,7 +36,7 @@ public partial class MobileSubject : SubjectBase
         CuspaBoost = new CuspaStatusSubject().AddTo(Disposables);
         SupportBoost = new SupportStatusSubject().AddTo(Disposables);
         SupportBoostOwn = new SupportStatusSubject().AddTo(Disposables);
-        CoMobileBoost = new CoMobileStatusSubject().AddTo(Disposables);
+        CoUnitBoost = new CoUnitStatusSubject().AddTo(Disposables);
         BoostStatus = new MobileStatusSubject().AddTo(Disposables);
         ActualStatus = new MobileStatusSubject().AddTo(Disposables);
 
@@ -97,7 +107,7 @@ public partial class MobileSubject : SubjectBase
     [ObservableProperty, Required, NotifyPropertyChangedFor(nameof(GradeText)), NotifyPropertyChangedFor(nameof(GradeColor))]
     private Grade? _Grade;
     [ObservableProperty, Required]
-    private HasAce? _HasAce;
+    private AceImpl? _HasAce;
     [ObservableProperty]
     private MobileSSkill? _SSkill1;
     [ObservableProperty]
@@ -136,7 +146,7 @@ public partial class MobileSubject : SubjectBase
         SetJoinedTags();
         CalculateCuspaBoost();
         CalculateSupportBoost();
-        CalculateCoMobileBoost();
+        CalculateCoUnitBoost();
         CalculatePilotBoost();
         CalculateBoostStatus();
         CalculateActualStatus();
@@ -211,7 +221,7 @@ public partial class MobileSubject : SubjectBase
         PilotBoost.Reset();
         if (Pilot == null) return;
 
-        var withoutPilot = new MobileStatusSubject().Add(BasicStatus).Add(RemodeledStatus).Add(CuspaBoost).Add(SupportBoost).Add(CoMobileBoost);
+        var withoutPilot = new MobileStatusSubject().Add(BasicStatus).Add(RemodeledStatus).Add(CuspaBoost).Add(SupportBoost).Add(CoUnitBoost);
 
         Dictionary<MobileStatusType, decimal> boostBases = new()
         {
@@ -529,74 +539,74 @@ public partial class MobileSubject : SubjectBase
 
     #endregion
 
-    #region CoMobile
+    #region CoUnit
 
     [ObservableProperty]
-    private CoMobileSubject? _CoMobile1;
-    private IDisposable? coMobile1ChangedHandler = null;
+    private CoUnitSubject? _CoUnit1;
+    private IDisposable? CoUnit1ChangedHandler = null;
 
-    partial void OnCoMobile1Changed(CoMobileSubject? value)
+    partial void OnCoUnit1Changed(CoUnitSubject? value)
     {
-        coMobile1ChangedHandler?.Dispose();
-        coMobile1ChangedHandler = null;
-        coMobile1ChangedHandler = value?.PropertyChanged.Where(n => n == "MobileBoost").Subscribe(WhenCoMobileChanged).AddTo(Disposables);
-        WhenCoMobileChanged();
+        CoUnit1ChangedHandler?.Dispose();
+        CoUnit1ChangedHandler = null;
+        CoUnit1ChangedHandler = value?.PropertyChanged.Where(n => n == "MobileBoost").Subscribe(WhenCoUnitChanged).AddTo(Disposables);
+        WhenCoUnitChanged();
     }
 
     [ObservableProperty]
-    private CoMobileSubject? _CoMobile2;
-    private IDisposable? coMobile2ChangedHandler = null;
+    private CoUnitSubject? _CoUnit2;
+    private IDisposable? CoUnit2ChangedHandler = null;
 
-    partial void OnCoMobile2Changed(CoMobileSubject? value)
+    partial void OnCoUnit2Changed(CoUnitSubject? value)
     {
-        coMobile2ChangedHandler?.Dispose();
-        coMobile2ChangedHandler = null;
-        coMobile2ChangedHandler = value?.PropertyChanged.Where(n => n == "MobileBoost").Subscribe(WhenCoMobileChanged).AddTo(Disposables);
-        WhenCoMobileChanged();
+        CoUnit2ChangedHandler?.Dispose();
+        CoUnit2ChangedHandler = null;
+        CoUnit2ChangedHandler = value?.PropertyChanged.Where(n => n == "MobileBoost").Subscribe(WhenCoUnitChanged).AddTo(Disposables);
+        WhenCoUnitChanged();
     }
 
     [ObservableProperty]
-    private CoMobileSubject? _CoMobile3;
-    private IDisposable? coMobile3ChangedHandler = null;
+    private CoUnitSubject? _CoUnit3;
+    private IDisposable? CoUnit3ChangedHandler = null;
 
-    partial void OnCoMobile3Changed(CoMobileSubject? value)
+    partial void OnCoUnit3Changed(CoUnitSubject? value)
     {
-        coMobile3ChangedHandler?.Dispose();
-        coMobile3ChangedHandler = null;
-        coMobile3ChangedHandler = value?.PropertyChanged.Where(n => n == "MobileBoost").Subscribe(WhenCoMobileChanged).AddTo(Disposables);
-        WhenCoMobileChanged();
+        CoUnit3ChangedHandler?.Dispose();
+        CoUnit3ChangedHandler = null;
+        CoUnit3ChangedHandler = value?.PropertyChanged.Where(n => n == "MobileBoost").Subscribe(WhenCoUnitChanged).AddTo(Disposables);
+        WhenCoUnitChanged();
     }
 
-    public CoMobileStatusSubject CoMobileBoost { get; }
+    public CoUnitStatusSubject CoUnitBoost { get; }
 
-    private void WhenCoMobileChanged(string? _ = "")
+    private void WhenCoUnitChanged(string? _ = "")
     {
         if (!IsIdle) return;
-        CalculateCoMobileBoost();
+        CalculateCoUnitBoost();
         CalculatePilotBoost();
         CalculateBoostStatus();
         CalculateActualStatus();
     }
 
-    private void CalculateCoMobileBoost(CoMobileSubject? coMobile)
+    private void CalculateCoUnitBoost(CoUnitSubject? CoUnit)
     {
-        if (coMobile == null) return;
-        if (Role != null && Role.Type == coMobile.Role?.Type)
+        if (CoUnit == null) return;
+        if (Role != null && Role.Type == CoUnit.Role?.Type)
         {
-            CoMobileBoost.AddWithBonus(coMobile.ActualStatus, (decimal)1.1);
+            CoUnitBoost.AddWithBonus(CoUnit.ActualStatus, (decimal)1.1);
         }
         else
         {
-            CoMobileBoost.Add(coMobile.ActualStatus);
+            CoUnitBoost.Add(CoUnit.ActualStatus);
         }
     }
 
-    private void CalculateCoMobileBoost()
+    private void CalculateCoUnitBoost()
     {
-        CoMobileBoost.Reset();
-        CalculateCoMobileBoost(CoMobile1);
-        CalculateCoMobileBoost(CoMobile2);
-        CalculateCoMobileBoost(CoMobile3);
+        CoUnitBoost.Reset();
+        CalculateCoUnitBoost(CoUnit1);
+        CalculateCoUnitBoost(CoUnit2);
+        CalculateCoUnitBoost(CoUnit3);
     }
 
     #endregion
@@ -621,7 +631,7 @@ public partial class MobileSubject : SubjectBase
     }
 
     private void CalculateBoostStatus() =>
-        BoostStatus.Reset().Add(RemodeledStatus).Add(PilotBoost).Add(CuspaBoost).Add(SupportBoost).Add(CoMobileBoost);
+        BoostStatus.Reset().Add(RemodeledStatus).Add(PilotBoost).Add(CuspaBoost).Add(SupportBoost).Add(CoUnitBoost);
 
     private void CalculateActualStatus() =>
         ActualStatus.Set(BasicStatus).Add(BoostStatus);

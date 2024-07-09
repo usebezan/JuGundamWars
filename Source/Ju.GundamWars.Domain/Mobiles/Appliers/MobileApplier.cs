@@ -1,15 +1,15 @@
 ﻿using Ju.GundamWars.Domain.Common.Service.Mapping;
-using Ju.GundamWars.Domain.CoMobiles.Model;
+using Ju.GundamWars.Domain.CoUnits.Model;
 using Ju.GundamWars.Domain.Cuspas;
 using Ju.GundamWars.Domain.Mobiles.Entities;
 using Ju.GundamWars.Domain.Supports;
 
 namespace Ju.GundamWars.Domain.Mobiles.Appliers;
 
-public class MobileApplier : IApplier<MobileSubject, Mobile>
+public class MobileMapper : IMapper<MobileSubject, Mobile>
 {
 
-    public Mobile Apply(MobileSubject subject, Mobile entity)
+    public Mobile Map(MobileSubject subject, Mobile entity)
     {
         entity.Id = subject.Id;
         entity.Name = subject.Name;
@@ -109,10 +109,10 @@ public class MobileApplier : IApplier<MobileSubject, Mobile>
         AddSupport(entity, 3, subject.Support3);
         AddSupport(entity, 4, subject.Support4);
 
-        entity.CoMobiles.Clear();
-        AddCoMobile(entity, 1, subject.CoMobile1);
-        AddCoMobile(entity, 2, subject.CoMobile2);
-        AddCoMobile(entity, 3, subject.CoMobile3);
+        entity.CoUnits.Clear();
+        AddCoUnit(entity, 1, subject.CoUnit1);
+        AddCoUnit(entity, 2, subject.CoUnit2);
+        AddCoUnit(entity, 3, subject.CoUnit3);
 
         return entity;
     }
@@ -133,11 +133,11 @@ public class MobileApplier : IApplier<MobileSubject, Mobile>
         }
     }
 
-    private void AddCoMobile(Mobile mobile, byte seq, CoMobileSubject? coMobile)
+    private void AddCoUnit(Mobile mobile, byte seq, CoUnitSubject? CoUnit)
     {
-        if (coMobile != null)
+        if (CoUnit != null)
         {
-            mobile.CoMobiles.Add(new() { MobileId = mobile.Id, Seq = seq, CoMobileId = coMobile.Id, Mobile = mobile, });
+            mobile.CoUnits.Add(new() { MobileId = mobile.Id, Seq = seq, CoUnitId = CoUnit.Id, Mobile = mobile, });
         }
     }
 

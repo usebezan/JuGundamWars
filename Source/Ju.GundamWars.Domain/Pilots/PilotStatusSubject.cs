@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Const;
 
 namespace Ju.GundamWars.Domain.Pilots;
 

@@ -1,5 +1,5 @@
 ﻿using Ju.GundamWars.Domain;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.UseCase;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
@@ -7,11 +7,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Application;
 
-public abstract class UpdateInteractorBase<TEntity, TSubject, TRepository, TEntityApplier, TSubjectApplier>(
+public abstract class UpdateInteractorBase<TEntity, TSubject, TRepository, TEntityMapper, TSubjectMapper>(
     TRepository repository,
-    TEntityApplier entityApplier,
-    TSubjectApplier subjectApplier,
-    MobileSubjectApplier mobileSubjectApplier,
+    TEntityMapper entityMapper,
+    TSubjectMapper subjectMapper,
+    MobileSubjectMapper mobileSubjectMapper,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger logger)
@@ -19,8 +19,8 @@ public abstract class UpdateInteractorBase<TEntity, TSubject, TRepository, TEnti
     where TEntity : class, new()
     where TSubject : GwObservableValidator, IKeyValues
     where TRepository : IRepository<TEntity>
-    where TEntityApplier : IApplier<TSubject, TEntity>
-    where TSubjectApplier : IApplier<TEntity, TSubject>
+    where TEntityMapper : IMapper<TSubject, TEntity>
+    where TSubjectMapper : IMapper<TEntity, TSubject>
 {
 
     protected abstract string GetName(TSubject subject);
@@ -41,16 +41,16 @@ public abstract class UpdateInteractorBase<TEntity, TSubject, TRepository, TEnti
             presenter.Abort("No updates were found!");
             return;
         }
-        var (self, exes) = await repository.UpdateAsync(entityApplier.Apply(subject, entity));
+        var (self, exes) = await repository.UpdateAsync(entityMapper.Apply(subject, entity));
         exes?.ForEach(e =>
         {
             var i = mobileInventory.FirstOrDefault(i => i.Id == e.Id);
             if (i != null)
             {
-                mobileSubjectApplier.Apply(e, i);
+                mobileSubjectMapper.Apply(e, i);
             }
         });
-        subjectApplier.Apply(self, subject);
+        subjectMapper.Apply(self, subject);
         presenter.Complete($"{name} registered.");
         logger.LogDebug("HandleAsync end.");
     }

@@ -1,9 +1,9 @@
 ﻿using Ju.GundamWars.Domain.Common.Service.Mapping;
-using Ju.GundamWars.Domain.CoMobiles.Model;
+using Ju.GundamWars.Domain.CoUnits.Model;
 using Ju.GundamWars.Domain.Cuspas;
 using Ju.GundamWars.Domain.Mobiles.Entities;
 using Ju.GundamWars.Domain.Supports;
-using Ju.GundamWars.UseCase.CoMobiles;
+using Ju.GundamWars.UseCase.CoUnits;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Pilots;
@@ -13,7 +13,7 @@ using Ju.GundamWars.UseCase.Tags;
 
 namespace Ju.GundamWars.Domain.Mobiles.Appliers;
 
-public class MobileSubjectApplier(
+public class MobileSubjectMapper(
     ICategoryInventory categoryInventory,
     ISerialInventory serialInventory,
     IMobileKindInventory mobileKindInventory,
@@ -26,13 +26,13 @@ public class MobileSubjectApplier(
     IPilotInventory pilotInventory,
     ICuspaInventory cuspaInventory,
     ISupportInventory supportInventory,
-    ICoMobileInventory coMobileInventory,
+    ICoUnitInventory CoUnitInventory,
     IMobileInventory mobileInventory,
     ITagInventory tagInventory)
-    : IApplier<Mobile, MobileSubject>
+    : IMapper<Mobile, MobileSubject>
 {
 
-    public MobileSubject Apply(Mobile entity, MobileSubject subject)
+    public MobileSubject Map(Mobile entity, MobileSubject subject)
     {
         subject.Initialize(() =>
         {
@@ -112,9 +112,9 @@ public class MobileSubjectApplier(
             subject.Support2 = GetSupport(entity, 2, subject);
             subject.Support3 = GetSupport(entity, 3, subject);
             subject.Support4 = GetSupport(entity, 4, subject);
-            subject.CoMobile1 = GetCoMobile(entity, 1, subject);
-            subject.CoMobile2 = GetCoMobile(entity, 2, subject);
-            subject.CoMobile3 = GetCoMobile(entity, 3, subject);
+            subject.CoUnit1 = GetCoUnit(entity, 1, subject);
+            subject.CoUnit2 = GetCoUnit(entity, 2, subject);
+            subject.CoUnit3 = GetCoUnit(entity, 3, subject);
 
             subject.SubSerials.Clear();
             entity.SubSerialMaps.ForEach(m =>
@@ -152,14 +152,14 @@ public class MobileSubjectApplier(
         return support;
     }
 
-    private CoMobileSubject? GetCoMobile(Mobile entity, byte seq, MobileSubject subject)
+    private CoUnitSubject? GetCoUnit(Mobile entity, byte seq, MobileSubject subject)
     {
-        var coMobile = coMobileInventory.FirstOrDefault(i => i.Id == (entity.CoMobiles.FirstOrDefault(r => r.Seq == seq)?.CoMobileId ?? -1));
-        if (coMobile != null)
+        var CoUnit = CoUnitInventory.FirstOrDefault(i => i.Id == (entity.CoUnits.FirstOrDefault(r => r.Seq == seq)?.CoUnitId ?? -1));
+        if (CoUnit != null)
         {
-            coMobile.Mobile = subject;
+            CoUnit.Mobile = subject;
         }
-        return coMobile;
+        return CoUnit;
     }
 
 }

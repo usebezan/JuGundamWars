@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Application.Mobiles.Repositories;
 using Ju.GundamWars.Domain.Mobiles;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
-using Ju.GundamWars.UseCase.CoMobiles;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
+using Ju.GundamWars.UseCase.CoUnits;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Pilots;
 using Ju.GundamWars.UseCase.Supports;
@@ -12,11 +12,11 @@ namespace Ju.GundamWars.Application.Mobiles;
 
 public class DeleteMobileInteractor(
     IMobileRepository repository,
-    MobileSubjectApplier mobileSubjectApplier,
+    MobileSubjectMapper mobileSubjectMapper,
     IMobileInventory inventory,
     IPilotInventory pilotInventory,
     ISupportInventory supportInventory,
-    ICoMobileInventory coMobileInventory,
+    ICoUnitInventory CoUnitInventory,
     IEnterPresenter presenter,
     ILogger<DeleteMobileInteractor> logger)
     : IDeleteMobileUseCase
@@ -36,7 +36,7 @@ public class DeleteMobileInteractor(
                 var i = inventory.FirstOrDefault(i => i.Id == e.Id);
                 if (i != null)
                 {
-                    mobileSubjectApplier.Apply(e, i);
+                    mobileSubjectMapper.Apply(e, i);
                 }
             });
             inventory.Remove(subject);
@@ -46,7 +46,7 @@ public class DeleteMobileInteractor(
                 inventory.Where(i => entity.PairMaps.Any(r => r.PairId == i.Id)).ToList().ForEach(i => i.Pair = null);
                 pilotInventory.Where(i => entity.PilotMaps.Any(r => r.PilotId == i.Id)).ToList().ForEach(i => i.Mobile = null);
                 supportInventory.Where(i => entity.Supports.Any(r => r.SupportId == i.Id)).ToList().ForEach(i => i.Mobile = null);
-                coMobileInventory.Where(i => entity.CoMobiles.Any(r => r.CoMobileId == i.Id)).ToList().ForEach(i => i.Mobile = null);
+                CoUnitInventory.Where(i => entity.CoUnits.Any(r => r.CoUnitId == i.Id)).ToList().ForEach(i => i.Mobile = null);
             }
 
             presenter.Complete($"Mobile '{subject.Name}' deleted.");

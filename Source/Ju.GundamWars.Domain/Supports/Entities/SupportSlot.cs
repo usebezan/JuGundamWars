@@ -1,4 +1,7 @@
-﻿using Ju.GundamWars.Const;
+﻿using Ju.GundamWars.Domain.Boosts;
+using Ju.GundamWars.Domain.Calcs;
+using Ju.GundamWars.Domain.Supports;
+using Ju.GundamWars.Domain.System;
 
 namespace Ju.GundamWars.Domain.Supports.Entities;
 

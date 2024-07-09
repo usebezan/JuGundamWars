@@ -1,6 +1,6 @@
 ﻿using Ju.GundamWars.Application.Mobiles.Repositories;
 using Ju.GundamWars.Domain.Mobiles;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.Domain.Mobiles.Entities;
 using Ju.GundamWars.Domain.Mobiles.Factories;
 using Ju.GundamWars.UseCase.Mobiles;
@@ -12,11 +12,11 @@ namespace Ju.GundamWars.Application.Mobiles;
 public class InsertMobileInteractor(
     IMobileRepository repository,
     MobileFactory entityFactory,
-    MobileSubjectApplier subjectApplier,
+    MobileSubjectMapper subjectMapper,
     IMobileInventory inventory,
     IEnterPresenter presenter,
     ILogger<InsertMobileInteractor> logger)
-    : InsertInteractorBase<Mobile, MobileSubject, IMobileRepository, MobileFactory, MobileSubjectApplier, IMobileInventory>(repository, entityFactory, subjectApplier, subjectApplier, inventory, inventory, presenter, logger),
+    : InsertInteractorBase<Mobile, MobileSubject, IMobileRepository, MobileFactory, MobileSubjectMapper, IMobileInventory>(repository, entityFactory, subjectMapper, subjectMapper, inventory, inventory, presenter, logger),
         IInsertMobileUseCase
 {
 

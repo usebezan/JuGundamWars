@@ -759,7 +759,7 @@
             <!--#endregion-->
 
 
-            <!--#region CoMobile-->
+            <!--#region CoUnit-->
             <!--#endregion-->
 
             <!--#region Cuspa-->
@@ -865,9 +865,9 @@
                 <Setter Property="assist:BoostControlAttached.DetachCommand" Value="{Binding DetachSupportCommand}" />
             </Style>
 
-            <Style x:Key="CoMobileControl" TargetType="{x:Type ContentControl}" BasedOn="{StaticResource GwBoostControl}">
-                <Setter Property="assist:BoostControlAttached.ShowCommand" Value="{Binding ShowCoMobileSelectionCommand}" />
-                <Setter Property="assist:BoostControlAttached.DetachCommand" Value="{Binding DetachCoMobileCommand}" />
+            <Style x:Key="CoUnitControl" TargetType="{x:Type ContentControl}" BasedOn="{StaticResource GwBoostControl}">
+                <Setter Property="assist:BoostControlAttached.ShowCommand" Value="{Binding ShowCoUnitSelectionCommand}" />
+                <Setter Property="assist:BoostControlAttached.DetachCommand" Value="{Binding DetachCoUnitCommand}" />
             </Style>
 
             <!--#endregion-->

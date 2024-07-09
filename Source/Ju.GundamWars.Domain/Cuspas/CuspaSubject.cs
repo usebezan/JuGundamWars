@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Const;
+using Ju.GundamWars.Domain.Categories.Model;
+using Ju.GundamWars.Domain.CuspaKinds.Model;
 using Ju.GundamWars.Domain.System;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;

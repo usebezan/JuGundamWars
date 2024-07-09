@@ -1,6 +1,6 @@
 ﻿using Ju.GundamWars.Application.Mobiles.Repositories;
 using Ju.GundamWars.Domain.Mobiles;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.Domain.Mobiles.Entities;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
@@ -10,12 +10,12 @@ namespace Ju.GundamWars.Application.Mobiles;
 
 public class UpdateMobileInteractor(
     IMobileRepository repository,
-    MobileApplier entityApplier,
-    MobileSubjectApplier subjectApplier,
+    MobileMapper entityMapper,
+    MobileSubjectMapper subjectMapper,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger<UpdateMobileInteractor> logger)
-    : UpdateInteractorBase<Mobile, MobileSubject, IMobileRepository, MobileApplier, MobileSubjectApplier>(repository, entityApplier, subjectApplier, subjectApplier, mobileInventory, presenter, logger),
+    : UpdateInteractorBase<Mobile, MobileSubject, IMobileRepository, MobileMapper, MobileSubjectMapper>(repository, entityMapper, subjectMapper, subjectMapper, mobileInventory, presenter, logger),
         IUpdateMobileUseCase
 {
 

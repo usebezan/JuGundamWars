@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Const;
+using Ju.GundamWars.Domain.Categories.Model;
+using Ju.GundamWars.Domain.Grades.Model;
 using Ju.GundamWars.Domain.Mobiles;
+using Ju.GundamWars.Domain.Serials.Dto;
 using Ju.GundamWars.Domain.System;
-using Ju.GundamWars.Domain.System.Entities;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;

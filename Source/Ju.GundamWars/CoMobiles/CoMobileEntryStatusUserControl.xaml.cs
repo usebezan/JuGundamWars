@@ -3,11 +3,11 @@
 namespace Ju.GundamWars.CoMobiles
 {
     /// <summary>
-    /// CoMobileEntryStatusUserControl.xaml の相互作用ロジック
+    /// CoUnitEntryStatusUserControl.xaml の相互作用ロジック
     /// </summary>
-    public partial class CoMobileEntryStatusUserControl : UserControl
+    public partial class CoUnitEntryStatusUserControl : UserControl
     {
-        public CoMobileEntryStatusUserControl()
+        public CoUnitEntryStatusUserControl()
         {
             InitializeComponent();
         }

@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Application.Supports.Repositories;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.Domain.Supports;
-using Ju.GundamWars.Domain.Supports.Appliers;
+using Ju.GundamWars.Domain.Supports.Mappers;
 using Ju.GundamWars.Domain.Supports.Entities;
 using Ju.GundamWars.Domain.Supports.Factories;
 using Ju.GundamWars.UseCase.Mobiles;
@@ -14,13 +14,13 @@ namespace Ju.GundamWars.Application.Supports;
 public class InsertSupportInteractor(
     ISupportRepository repository,
     SupportFactory entityFactory,
-    SupportSubjectApplier subjectApplier,
-    MobileSubjectApplier mobileSubjectApplier,
+    SupportSubjectMapper subjectMapper,
+    MobileSubjectMapper mobileSubjectMapper,
     ISupportInventory inventory,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger<InsertSupportInteractor> logger)
-    : InsertInteractorBase<Support, SupportSubject, ISupportRepository, SupportFactory, SupportSubjectApplier, ISupportInventory>(repository, entityFactory, subjectApplier, mobileSubjectApplier, inventory, mobileInventory, presenter, logger),
+    : InsertInteractorBase<Support, SupportSubject, ISupportRepository, SupportFactory, SupportSubjectMapper, ISupportInventory>(repository, entityFactory, subjectMapper, mobileSubjectMapper, inventory, mobileInventory, presenter, logger),
         IInsertSupportUseCase
 {
 

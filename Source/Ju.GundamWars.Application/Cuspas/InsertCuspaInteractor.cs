@@ -1,9 +1,9 @@
 ﻿using Ju.GundamWars.Application.Cuspas.Repositories;
 using Ju.GundamWars.Domain.Cuspas;
-using Ju.GundamWars.Domain.Cuspas.Appliers;
+using Ju.GundamWars.Domain.Cuspas.Mappers;
 using Ju.GundamWars.Domain.Cuspas.Entities;
 using Ju.GundamWars.Domain.Cuspas.Factories;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
@@ -14,13 +14,13 @@ namespace Ju.GundamWars.Application.Cuspas;
 public class InsertCuspaInteractor(
     ICuspaRepository repository,
     CuspaFactory entityFactory,
-    CuspaSubjectApplier subjectApplier,
-    MobileSubjectApplier mobileSubjectApplier,
+    CuspaSubjectMapper subjectMapper,
+    MobileSubjectMapper mobileSubjectMapper,
     ICuspaInventory inventory,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger<InsertCuspaInteractor> logger)
-    : InsertInteractorBase<Cuspa, CuspaSubject, ICuspaRepository, CuspaFactory, CuspaSubjectApplier, ICuspaInventory>(repository, entityFactory, subjectApplier, mobileSubjectApplier, inventory, mobileInventory, presenter, logger),
+    : InsertInteractorBase<Cuspa, CuspaSubject, ICuspaRepository, CuspaFactory, CuspaSubjectMapper, ICuspaInventory>(repository, entityFactory, subjectMapper, mobileSubjectMapper, inventory, mobileInventory, presenter, logger),
         IInsertCuspaUseCase
 {
 

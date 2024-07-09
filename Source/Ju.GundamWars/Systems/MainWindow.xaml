@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:coMobile="clr-namespace:Ju.GundamWars.CoMobiles"
+    xmlns:CoUnit="clr-namespace:Ju.GundamWars.CoUnits"
     xmlns:cuspa="clr-namespace:Ju.GundamWars.Cuspas"
     xmlns:mobile="clr-namespace:Ju.GundamWars.Mobiles"
     xmlns:pilot="clr-namespace:Ju.GundamWars.Pilots"
@@ -131,18 +131,18 @@
                                 </TabItem.Header>
                                 <support:SupportListView />
                             </TabItem>
-                            <!-- CoMobile -->
+                            <!-- CoUnit -->
                             <TabItem>
                                 <TabItem.Header>
                                     <StackPanel>
                                         <StackPanel Margin="0 0 0 4" HorizontalAlignment="Center" Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="{Binding Source={x:Static const:GwIcon.CoMobileSuit}}" />
-                                            <materialDesign:PackIcon Margin="2 0 0 0" Kind="{Binding Source={x:Static const:GwIcon.CoMobileArmor}}" />
+                                            <materialDesign:PackIcon Kind="{Binding Source={x:Static const:GwIcon.CoUnitSuit}}" />
+                                            <materialDesign:PackIcon Margin="2 0 0 0" Kind="{Binding Source={x:Static const:GwIcon.CoUnitArmor}}" />
                                         </StackPanel>
                                         <TextBlock Style="{StaticResource GwTabText}" Text="Co-Unit" />
                                     </StackPanel>
                                 </TabItem.Header>
-                                <coMobile:CoMobileListView />
+                                <CoUnit:CoUnitListView />
                             </TabItem>
                             <!-- Cuspa -->
                             <TabItem>
@@ -206,7 +206,7 @@
                         </materialDesign:TransitionerSlide.ForwardWipe>
                         <support:SupportEntryView />
                     </materialDesign:TransitionerSlide>
-                    <!-- 6.CoMobile Entry -->
+                    <!-- 6.CoUnit Entry -->
                     <materialDesign:TransitionerSlide>
                         <materialDesign:TransitionerSlide.BackwardWipe>
                             <materialDesign:SlideWipe Direction="Right" />
@@ -214,7 +214,7 @@
                         <materialDesign:TransitionerSlide.ForwardWipe>
                             <materialDesign:SlideWipe Direction="Left" />
                         </materialDesign:TransitionerSlide.ForwardWipe>
-                        <coMobile:CoMobileEntryView />
+                        <CoUnit:CoUnitEntryView />
                     </materialDesign:TransitionerSlide>
                     <!-- 7.Pair Selection -->
                     <materialDesign:TransitionerSlide>
@@ -266,7 +266,7 @@
                         </materialDesign:TransitionerSlide.ForwardWipe>
                         <support:SupportSelectionView />
                     </materialDesign:TransitionerSlide>
-                    <!-- 12.CoMobile Selection -->
+                    <!-- 12.CoUnit Selection -->
                     <materialDesign:TransitionerSlide>
                         <materialDesign:TransitionerSlide.BackwardWipe>
                             <materialDesign:SlideWipe Direction="Right" />
@@ -274,7 +274,7 @@
                         <materialDesign:TransitionerSlide.ForwardWipe>
                             <materialDesign:SlideWipe Direction="Left" />
                         </materialDesign:TransitionerSlide.ForwardWipe>
-                        <coMobile:CoMobileSelectionView />
+                        <CoUnit:CoUnitSelectionView />
                     </materialDesign:TransitionerSlide>
                 </materialDesign:Transitioner>
             </DockPanel>

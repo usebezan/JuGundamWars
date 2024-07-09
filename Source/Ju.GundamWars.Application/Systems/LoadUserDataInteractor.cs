@@ -5,13 +5,13 @@ using Ju.GundamWars.Application.Pilots.Repositories;
 using Ju.GundamWars.Application.Supports.Repositories;
 using Ju.GundamWars.Application.Systems.Repositories;
 using Ju.GundamWars.Application.Tags.Repositories;
-using Ju.GundamWars.Domain.CoMobiles.Factories;
+using Ju.GundamWars.Domain.CoUnits.Factories;
 using Ju.GundamWars.Domain.Cuspas.Factories;
 using Ju.GundamWars.Domain.Mobiles.Factories;
 using Ju.GundamWars.Domain.Pilots.Factories;
 using Ju.GundamWars.Domain.Supports.Factories;
 using Ju.GundamWars.Domain.Tags.Factories;
-using Ju.GundamWars.UseCase.CoMobiles;
+using Ju.GundamWars.UseCase.CoUnits;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Pilots;
@@ -40,9 +40,9 @@ public class LoadUserDataInteractor(
     ISupportSlotRepository supportSlotRepository,
     ISupportSlotInventory supportSlotInventory,
 
-    ICoMobileRepository coMobileRepository,
-    CoMobileSubjectFactory coMobileSubjectFactory,
-    ICoMobileInventory coMobileInventory,
+    ICoUnitRepository CoUnitRepository,
+    CoUnitSubjectFactory CoUnitSubjectFactory,
+    ICoUnitInventory CoUnitInventory,
 
     ICuspaRepository cuspaRepository,
     CuspaSubjectFactory cuspaSubjectFactory,
@@ -91,7 +91,7 @@ public class LoadUserDataInteractor(
         presenter.Increment(() => tagInventory.ReAddRange(tagRepository.SelectAll().Select(tagSubjectFactory.Create)));
 
         // 8
-        presenter.Increment(() => coMobileInventory.ReAddRange(coMobileRepository.SelectAll().Select(coMobileSubjectFactory.Create)));
+        presenter.Increment(() => CoUnitInventory.ReAddRange(CoUnitRepository.SelectAll().Select(CoUnitSubjectFactory.Create)));
         // 9
         presenter.Increment(() => cuspaInventory.ReAddRange(cuspaRepository.SelectAll().Select(cuspaSubjectFactory.Create)));
         // 10

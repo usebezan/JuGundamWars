@@ -232,9 +232,9 @@
                             </GroupBox>
                             <GroupBox Header="Co-Units">
                                 <StackPanel Orientation="Vertical">
-                                    <ContentControl Style="{StaticResource CoMobileControl}" assist:BoostControlAttached.Index="0" assist:BoostControlAttached.Text="{Binding Entry.CoMobile1.Name}" />
-                                    <ContentControl Style="{StaticResource CoMobileControl}" assist:BoostControlAttached.Index="1" assist:BoostControlAttached.Text="{Binding Entry.CoMobile2.Name}" />
-                                    <ContentControl Style="{StaticResource CoMobileControl}" assist:BoostControlAttached.Index="2" assist:BoostControlAttached.Text="{Binding Entry.CoMobile3.Name}" />
+                                    <ContentControl Style="{StaticResource CoUnitControl}" assist:BoostControlAttached.Index="0" assist:BoostControlAttached.Text="{Binding Entry.CoUnit1.Name}" />
+                                    <ContentControl Style="{StaticResource CoUnitControl}" assist:BoostControlAttached.Index="1" assist:BoostControlAttached.Text="{Binding Entry.CoUnit2.Name}" />
+                                    <ContentControl Style="{StaticResource CoUnitControl}" assist:BoostControlAttached.Index="2" assist:BoostControlAttached.Text="{Binding Entry.CoUnit3.Name}" />
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox Style="{StaticResource GwGroupBox}" Margin="0 0 16 16">

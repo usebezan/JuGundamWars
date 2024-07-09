@@ -1,5 +1,5 @@
 ﻿using Ju.GundamWars.Application.Pilots.Repositories;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.Domain.Pilots;
 using Ju.GundamWars.Domain.Pilots.Entities;
 using Ju.GundamWars.UseCase.Mobiles;
@@ -11,12 +11,12 @@ namespace Ju.GundamWars.Application.Pilots;
 
 public class DeletePilotInteractor(
     IPilotRepository repository,
-    MobileSubjectApplier mobileSubjectApplier,
+    MobileSubjectMapper mobileSubjectMapper,
     IPilotInventory inventory,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
     ILogger<DeletePilotInteractor> logger)
-    : DeleteInteractorBase<Pilot, PilotSubject, IPilotRepository, IPilotInventory>(repository, mobileSubjectApplier, inventory, mobileInventory, presenter, logger),
+    : DeleteInteractorBase<Pilot, PilotSubject, IPilotRepository, IPilotInventory>(repository, mobileSubjectMapper, inventory, mobileInventory, presenter, logger),
         IDeletePilotUseCase
 {
 

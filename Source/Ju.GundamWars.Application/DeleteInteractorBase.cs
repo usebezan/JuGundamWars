@@ -1,5 +1,5 @@
 ﻿using Ju.GundamWars.Domain;
-using Ju.GundamWars.Domain.Mobiles.Appliers;
+using Ju.GundamWars.Domain.Mobiles.Mappers;
 using Ju.GundamWars.UseCase;
 using Ju.GundamWars.UseCase.Mobiles;
 using Ju.GundamWars.UseCase.Systems;
@@ -9,7 +9,7 @@ namespace Ju.GundamWars.Application;
 
 public abstract class DeleteInteractorBase<TEntity, TSubject, TRepository, TInventory>(
     TRepository repository,
-    MobileSubjectApplier mobileSubjectApplier,
+    MobileSubjectMapper mobileSubjectMapper,
     TInventory inventory,
     IMobileInventory mobileInventory,
     IEnterPresenter presenter,
@@ -36,7 +36,7 @@ public abstract class DeleteInteractorBase<TEntity, TSubject, TRepository, TInve
                 var i = mobileInventory.FirstOrDefault(i => i.Id == e.Id);
                 if (i != null)
                 {
-                    mobileSubjectApplier.Apply(e, i);
+                    mobileSubjectMapper.Apply(e, i);
                 }
             });
             inventory.Remove(subject);

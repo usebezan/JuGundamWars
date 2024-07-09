@@ -16,7 +16,7 @@ public class MobileConfig : IEntityTypeConfiguration<Mobile>
         builder.HasMany(e => e.PilotMaps).WithOne(e => e.Mobile).HasForeignKey(e => e.MobileId).IsRequired(false);
         builder.HasMany(e => e.Cuspas).WithOne(e => e.Mobile).HasForeignKey(e => e.MobileId).IsRequired(false);
         builder.HasMany(e => e.Supports).WithOne(e => e.Mobile).HasForeignKey(e => e.MobileId).IsRequired(false);
-        builder.HasMany(e => e.CoMobiles).WithOne(e => e.Mobile).HasForeignKey(e => e.MobileId).IsRequired(false);
+        builder.HasMany(e => e.CoUnits).WithOne(e => e.Mobile).HasForeignKey(e => e.MobileId).IsRequired(false);
     }
 
 }

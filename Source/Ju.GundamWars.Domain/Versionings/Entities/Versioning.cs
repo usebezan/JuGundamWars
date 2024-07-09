@@ -4,6 +4,6 @@ public class Versioning : IIdentify
 {
 
     public int Id { get; set; }
-    public string Version { get; set; } = null!;
+    public string Version { get; set; } = string.Empty;
 
 }

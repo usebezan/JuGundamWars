@@ -1,14 +1,14 @@
-﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Common.Service.Factory;
-using Ju.GundamWars.Domain.Pilots.Appliers;
+﻿using Ju.GundamWars.Domain.Common.Service.Factory;
 using Ju.GundamWars.Domain.Pilots.Entities;
+using Ju.GundamWars.Domain.Pilots.Appliers;
+using Ju.GundamWars.Domain.Categories;
 
 namespace Ju.GundamWars.Domain.Pilots.Factories;
 
-public class PilotSubjectFactory(PilotSubjectApplier applier) : SubjectFactoryBase<Pilot, PilotSubject, PilotSubjectApplier>(applier)
+public class PilotSubjectFactory(PilotSubjectMapper Mapper) : SubjectFactoryBase<Pilot, PilotSubject, PilotSubjectMapper>(Mapper)
 {
 
     public PilotSubject CreateForMa() =>
-        SubjectApplier.Apply(new Pilot() { Category = CategoryType.MobileArmor, }, new());
+        SubjectMapper.Map(new Pilot() { Category = CategoryType.MobileArmor, }, new());
 
 }

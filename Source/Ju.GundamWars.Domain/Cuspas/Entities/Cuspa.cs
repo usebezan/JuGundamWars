@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.Const;
+﻿using Ju.GundamWars.Domain.Categories;
+using Ju.GundamWars.Domain.CuspaKinds;
 
 namespace Ju.GundamWars.Domain.Cuspas.Entities;
 
@@ -6,7 +7,7 @@ public class Cuspa : IIdentify
 {
 
     public int Id { get; set; }
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } = string.Empty;
     public CategoryType Category { get; set; } = CategoryType.MobileSuit;
     public CuspaKindType Kind { get; set; } = CuspaKindType.Hp2;
     public byte Level { get; set; } = 10;
