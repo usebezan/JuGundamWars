@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Biz.Supports.Domain.Model;
+using Ju.GundamWars.BizMaster.MobileStatuses;
 using Ju.GundamWars.Core;
 using Ju.GundamWars.Core.CoMobiles.Domain.Model;
 using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;

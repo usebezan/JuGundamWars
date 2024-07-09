@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.BizMaster.PilotStatuses;
 using Ju.GundamWars.Core;
-using Ju.GundamWars.Pilots.Domain;
 
 namespace Ju.GundamWars.Domain.Pilots;
 

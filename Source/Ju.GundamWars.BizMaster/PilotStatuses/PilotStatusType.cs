@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.Pilots.Domain;
+﻿namespace Ju.GundamWars.BizMaster.PilotStatuses;
 
 public enum PilotStatusType : byte
 {
@@ -8,7 +8,7 @@ public enum PilotStatusType : byte
     Evasion,
     Awakened,
     Defense,
-    Unknown = 255,
+    Unknown = byte.MaxValue,
 }
 
 public static class PilotStatusTypeExtension

@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.BizMaster.MobileStatuses;
 using Ju.GundamWars.BizMaster.SupportStatuses;
 using Ju.GundamWars.Core;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Boosts;
 using Ju.GundamWars.Core.Ju.GundamWars.System;
-using Ju.GundamWars.Mobiles.Domain;
 using Ju.GundamWars.Supports.Domain.Entities;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Model;

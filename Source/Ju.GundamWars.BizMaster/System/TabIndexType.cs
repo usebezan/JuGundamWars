@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.BizMaster._.System;
+﻿namespace Ju.GundamWars.BizMaster.System;
 
 public enum TabIndexType : byte
 {
@@ -8,7 +8,7 @@ public enum TabIndexType : byte
     CoMobile,
     Cuspa,
     Tag,
-    Unknown = 255,
+    Unknown = byte.MaxValue,
 }
 
 public static class TabIndexTypeExtension

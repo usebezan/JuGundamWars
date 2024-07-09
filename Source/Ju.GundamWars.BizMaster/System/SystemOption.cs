@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.BizMaster._.System;
+﻿namespace Ju.GundamWars.BizMaster.System;
 
 public class SystemOption
 {

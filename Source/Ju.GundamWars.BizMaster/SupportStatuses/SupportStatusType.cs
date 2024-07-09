@@ -15,7 +15,7 @@ public enum SupportStatusType : byte
     SuperPower,
     AcePower,
     RecoveryPower,
-    Unknown = 255,
+    Unknown = byte.MaxValue,
 }
 
 public static class SupportStatusTypeExtension

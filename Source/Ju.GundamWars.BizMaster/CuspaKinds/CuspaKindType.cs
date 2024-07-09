@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.BizMaster._.CuspaKinds;
+﻿namespace Ju.GundamWars.BizMaster.CuspaKinds;
 
 public enum CuspaKindType : byte
 {
@@ -47,7 +47,7 @@ public enum CuspaKindType : byte
     PhysicalDefence1,
     Mobility1,
 
-    Unknown = 255,
+    Unknown = byte.MaxValue,
 }
 
 public static class CuspaKindTypeExtension

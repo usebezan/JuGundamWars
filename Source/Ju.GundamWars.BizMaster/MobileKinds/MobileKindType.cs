@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.BizMaster._.MobileKinds;
+﻿namespace Ju.GundamWars.BizMaster.MobileKinds;
 
 public enum MobileKindType : byte
 {
@@ -8,7 +8,7 @@ public enum MobileKindType : byte
     Change,
     Lethal,
     Combi,
-    Unknown = 255,
+    Unknown = byte.MaxValue,
 }
 
 public static class MobileKindTypeExtension

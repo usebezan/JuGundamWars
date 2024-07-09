@@ -5,7 +5,7 @@ public enum SupportSlotKindType : byte
     Normal = 1,
     Unlock,
     Bonus,
-    Unknown = 255,
+    Unknown = byte.MaxValue,
 }
 
 public static class SupportSlotKindTypeExtension

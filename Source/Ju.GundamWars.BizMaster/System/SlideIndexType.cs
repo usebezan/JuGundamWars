@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.BizMaster._.System;
+﻿namespace Ju.GundamWars.BizMaster.System;
 
 public enum SlideIndexType : byte
 {
@@ -15,7 +15,7 @@ public enum SlideIndexType : byte
     SCuspaSelection,
     SupportSelection,
     CoMobileSelection,
-    Unknown = 255,
+    Unknown = byte.MaxValue,
 }
 
 public static class SlideIndexTypeExtension

@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.Core.Ju.GundamWars.System;
-
-namespace Ju.GundamWars.Mobiles.Domain;
+﻿namespace Ju.GundamWars.BizMaster.MobileStatuses;
 
 public enum MobileStatusType : byte
 {
@@ -19,7 +17,7 @@ public enum MobileStatusType : byte
     SuperPower,
     AcePower,
     RecoveryPower,
-    Unknown = 255,
+    Unknown = byte.MaxValue,
 }
 
 public static class MobileStatusTypeExtension
