@@ -1,5 +1,5 @@
 ﻿using Ju.GundamWars.BizMaster._.Categories;
-using Ju.GundamWars.BizMaster.Grades;
+using Ju.GundamWars.BizMaster.Grades.Domain;
 using Ju.GundamWars.Commons.Domain;
 
 namespace Ju.GundamWars.Supports.Domain.Entities;

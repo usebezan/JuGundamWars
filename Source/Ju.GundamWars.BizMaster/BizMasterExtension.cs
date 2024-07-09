@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.BizMaster.System;
+﻿using Ju.GundamWars.BizMaster._;
+using Ju.GundamWars.BizMaster._.System;
 
 namespace Ju.GundamWars.BizMaster;
 
