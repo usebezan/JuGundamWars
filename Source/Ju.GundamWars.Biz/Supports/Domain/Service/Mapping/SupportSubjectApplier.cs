@@ -1,11 +1,11 @@
-﻿using Ju.GundamWars.Common.Domain.Service.Mapping;
-using Ju.GundamWars.Supports.Domain;
+﻿using Ju.GundamWars.Biz.Supports.Domain.Model;
+using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.Supports.Domain.Entities;
 using Ju.GundamWars.UseCase.Supports;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
 
-namespace Ju.GundamWars.Supports.Domain.Appliers;
+namespace Ju.GundamWars.Biz.Supports.Domain.Service.Appliers;
 
 public class SupportSubjectMapper(
     ICategoryInventory categoryInventory,

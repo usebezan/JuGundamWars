@@ -1,7 +1,6 @@
-﻿using Ju.GundamWars.Core.Ju.GundamWars.Masters.TagGroups;
-using Ju.GundamWars.Tags.Domain;
+﻿using Ju.GundamWars.BizMaster.TagGroups;
 
-namespace Ju.GundamWars.Tags.Domain.Dto;
+namespace Ju.GundamWars.Biz.Tags.Domain.Dto;
 
 public class Tag : ITag
 {

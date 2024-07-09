@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using Ju.GundamWars.Domain.Tags.Model;
+using Ju.GundamWars.Biz.Tags.Domain.Model;
 
-namespace Ju.GundamWars.Tags.Domain.Model;
+namespace Ju.GundamWars.Biz.Tags.Domain.Inventory;
 
 public class TagInventory : ObservableCollection<TagSubject>
 {

@@ -1,7 +1,7 @@
-﻿using Ju.GundamWars.Core.Common.Domain;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.TagGroups;
+﻿using Ju.GundamWars.BizMaster.TagGroups;
+using Ju.GundamWars.Commons.Domain;
 
-namespace Ju.GundamWars.Tags.Domain;
+namespace Ju.GundamWars.Biz.Tags.Domain;
 
 public interface ITag : IIdentify
 {

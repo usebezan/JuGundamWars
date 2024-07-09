@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.Core.Ju.GundamWars.System;
-
-namespace Ju.GundamWars.Supports.Domain;
+﻿namespace Ju.GundamWars.BizMaster.SupportSlotKinds;
 
 public enum SupportSlotKindType : byte
 {

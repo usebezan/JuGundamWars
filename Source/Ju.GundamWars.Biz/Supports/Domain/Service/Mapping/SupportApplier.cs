@@ -1,9 +1,9 @@
-﻿using Ju.GundamWars.Common.Domain.Service.Mapping;
+﻿using Ju.GundamWars.Biz.Supports.Domain.Model;
+using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.Domain.Supports.Entities;
-using Ju.GundamWars.Supports.Domain;
 using Ju.GundamWars.Supports.Domain.Entities;
 
-namespace Ju.GundamWars.Supports.Domain.Appliers;
+namespace Ju.GundamWars.Biz.Supports.Domain.Service.Appliers;
 
 public class SupportMapper : IMapper<SupportSubject, Support>
 {

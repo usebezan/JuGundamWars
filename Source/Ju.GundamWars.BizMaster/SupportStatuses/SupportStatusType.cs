@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.Supports.Domain;
+﻿namespace Ju.GundamWars.BizMaster.SupportStatuses;
 
 public enum SupportStatusType : byte
 {

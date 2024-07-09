@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.Biz.Supports.Domain.Model;
 using Ju.GundamWars.Core;
 using Ju.GundamWars.Core.CoMobiles.Domain.Model;
 using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
@@ -18,10 +19,8 @@ using Ju.GundamWars.Domain.CoMobiles;
 using Ju.GundamWars.Domain.CoMobiles.Model;
 using Ju.GundamWars.Domain.Cuspas;
 using Ju.GundamWars.Domain.Mobiles;
-using Ju.GundamWars.Domain.Supports;
 using Ju.GundamWars.Mobiles.Domain.Entities;
 using Ju.GundamWars.Pilots.Domain;
-using Ju.GundamWars.Supports.Domain;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;

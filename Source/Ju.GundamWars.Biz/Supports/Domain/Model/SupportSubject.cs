@@ -1,16 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars;
+using Ju.GundamWars.BizMaster.SupportSlotKinds;
 using Ju.GundamWars.Core;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Categories.Model;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Grades.Model;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Serials.Dto;
 using Ju.GundamWars.Core.Ju.GundamWars.System;
-using Ju.GundamWars.Domain.Supports;
 using Ju.GundamWars.Mobiles.Domain;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
 
-namespace Ju.GundamWars.Supports.Domain;
+namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
 public partial class SupportSubject : SubjectBase
 {

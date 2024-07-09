@@ -1,10 +1,10 @@
-﻿using Ju.GundamWars.Common.Domain.Service.Mapping;
+﻿using Ju.GundamWars.Biz.Supports.Domain.Model;
+using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.Core.CoMobiles.Domain.Model;
 using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
 using Ju.GundamWars.Domain.Mobiles.Entities;
 using Ju.GundamWars.Mobiles.Domain;
 using Ju.GundamWars.Mobiles.Domain.Entities;
-using Ju.GundamWars.Supports.Domain;
 
 namespace Ju.GundamWars.Mobiles.Domain.Appliers;
 

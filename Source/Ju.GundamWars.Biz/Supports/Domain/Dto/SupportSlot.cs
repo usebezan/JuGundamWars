@@ -1,8 +1,8 @@
-﻿using Ju.GundamWars.Core.Common.Domain;
+﻿using Ju.GundamWars.BizMaster.SupportSlotKinds;
+using Ju.GundamWars.Core.Common.Domain;
 using Ju.GundamWars.Core.Ju.GundamWars;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Boosts;
 using Ju.GundamWars.Core.Ju.GundamWars.System;
-using Ju.GundamWars.Supports.Domain;
 
 namespace Ju.GundamWars.Supports.Domain.Entities;
 

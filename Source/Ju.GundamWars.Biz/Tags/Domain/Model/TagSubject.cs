@@ -1,11 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Core;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.TagGroups;
-using Ju.GundamWars.Tags.Domain;
+using Ju.GundamWars.BizMaster.TagGroups;
+using Ju.GundamWars.Commons.Domain.Model;
 
-namespace Ju.GundamWars.Domain.Tags.Model;
+namespace Ju.GundamWars.Biz.Tags.Domain.Model;
 
-public partial class TagSubject : GwObservableObject, ITag
+public partial class TagSubject : ModelBase, ITag
 {
 
     [ObservableProperty]

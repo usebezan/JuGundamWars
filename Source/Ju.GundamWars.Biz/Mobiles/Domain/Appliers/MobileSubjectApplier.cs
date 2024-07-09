@@ -1,9 +1,9 @@
-﻿using Ju.GundamWars.Common.Domain.Service.Mapping;
+﻿using Ju.GundamWars.Biz.Supports.Domain.Model;
+using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.Core.CoMobiles.Domain.Model;
 using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
 using Ju.GundamWars.Mobiles.Domain;
 using Ju.GundamWars.Mobiles.Domain.Entities;
-using Ju.GundamWars.Supports.Domain;
 using Ju.GundamWars.UseCase.CoMobiles;
 using Ju.GundamWars.UseCase.Cuspas;
 using Ju.GundamWars.UseCase.Mobiles;

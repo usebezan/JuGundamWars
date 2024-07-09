@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Domain.Tags.Model;
 using System.Collections.ObjectModel;
 
-namespace Ju.GundamWars.BizMaster;
+namespace Ju.GundamWars.Biz;
 
 public interface ITaggable
 {

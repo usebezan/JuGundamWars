@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.BizMaster.SupportStatuses;
 using Ju.GundamWars.Core;
-using Ju.GundamWars.Supports.Domain;
 
-namespace Ju.GundamWars.Domain.Supports;
+namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
 public partial class SupportStatusSubject : GwObservableObject
 {

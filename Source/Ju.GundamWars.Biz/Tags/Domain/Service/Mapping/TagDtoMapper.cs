@@ -1,7 +1,7 @@
-﻿using Ju.GundamWars.Domain.Tags.Model;
-using Ju.GundamWars.Tags.Domain.Dto;
+﻿using Ju.GundamWars.Biz.Tags.Domain.Dto;
+using Ju.GundamWars.Biz.Tags.Domain.Model;
 
-namespace Ju.GundamWars.Tags.Domain.Service.Mapping;
+namespace Ju.GundamWars.Biz.Tags.Domain.Service.Mapping;
 
 public class TagDtoMapper : TagMapperBase<TagSubject, Tag>
 {

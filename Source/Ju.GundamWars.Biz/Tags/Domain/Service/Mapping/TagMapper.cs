@@ -1,7 +1,6 @@
-﻿using Ju.GundamWars.Common.Domain.Service.Mapping;
-using Ju.GundamWars.Tags.Domain;
+﻿using Ju.GundamWars.Commons.Domain.Service.Mapping;
 
-namespace Ju.GundamWars.Tags.Domain.Service.Mapping;
+namespace Ju.GundamWars.Biz.Tags.Domain.Service.Mapping;
 
 public abstract class TagMapperBase<TSrc, TDest> : IMapper<TSrc, TDest>
     where TSrc : ITag

@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.BizMaster.SupportStatuses;
 using Ju.GundamWars.Core;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Boosts;
 using Ju.GundamWars.Core.Ju.GundamWars.System;
 using Ju.GundamWars.Mobiles.Domain;
-using Ju.GundamWars.Supports.Domain;
 using Ju.GundamWars.Supports.Domain.Entities;
 
-namespace Ju.GundamWars.Domain.Supports;
+namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
 public partial class SupportSlotBadgeSubject : GwObservableValidator
 {
