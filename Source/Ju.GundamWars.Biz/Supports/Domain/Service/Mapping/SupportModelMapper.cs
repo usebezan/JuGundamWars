@@ -14,9 +14,9 @@ public class SupportModelMapper(
     TagInventory tagInventory,
     SupportSlotInventory supportSlotInventory,
     SupportBadgeInventory supportBadgeInventory)
-        : SupportMapperBase<SupportDto, SupportSubject>
+        : SupportMapperBase<SupportDto, Support>
 {
-    public override SupportSubject Map(SupportDto dto, SupportSubject model) =>
+    public override Support Map(SupportDto dto, Support model) =>
         Map(dto, model, () =>
         {
             model.IsChecked = false;
@@ -33,7 +33,7 @@ public class SupportModelMapper(
                 .Where(i => i != null));
 
             model.SlotBadges.ReAddRange(dto.SlotBadges
-                .Select(d => new SupportSlotBadgeSubject()
+                .Select(d => new SupportSlotBadge()
                 {
                     Slot = supportSlotInventory.FirstOrDefault(i => i.Id == d.SlotId),
                     Badge = supportBadgeInventory.FirstOrDefault(i => i.Id == d.BadgeId),

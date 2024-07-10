@@ -135,7 +135,7 @@ public partial class MobileStatusSubject : GwObservableObject
         return this;
     }
 
-    public MobileStatusSubject Add(SupportStatusSubject boost)
+    public MobileStatusSubject Add(SupportStatus boost)
     {
         Hp += boost.Hp;
         BeamAttack += boost.BeamAttack;

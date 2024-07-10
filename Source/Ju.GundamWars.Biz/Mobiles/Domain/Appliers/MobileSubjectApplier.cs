@@ -143,7 +143,7 @@ public class MobileSubjectMapper(
     private CuspaSubject? GetCuspa(Mobile entity, byte seq) =>
         cuspaInventory.FirstOrDefault(i => i.Id == (entity.Cuspas.FirstOrDefault(r => r.Seq == seq)?.CuspaId ?? -1));
 
-    private SupportSubject? GetSupport(Mobile entity, byte seq, MobileSubject subject)
+    private Support? GetSupport(Mobile entity, byte seq, MobileSubject subject)
     {
         var support = supportInventory.FirstOrDefault(i => i.Id == (entity.Supports.FirstOrDefault(r => r.Seq == seq)?.SupportId ?? -1));
         if (support != null)

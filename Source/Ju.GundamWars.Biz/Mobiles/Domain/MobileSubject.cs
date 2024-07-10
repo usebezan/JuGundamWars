@@ -38,8 +38,8 @@ public partial class MobileSubject : SubjectBase
         SubSerials = [];
         PilotBoost = new MobileStatusSubject().AddTo(Disposables);
         CuspaBoost = new CuspaStatusSubject().AddTo(Disposables);
-        SupportBoost = new SupportStatusSubject().AddTo(Disposables);
-        SupportBoostOwn = new SupportStatusSubject().AddTo(Disposables);
+        SupportBoost = new SupportStatus().AddTo(Disposables);
+        SupportBoostOwn = new SupportStatus().AddTo(Disposables);
         CoMobileBoost = new CoMobileStatusSubject().AddTo(Disposables);
         BoostStatus = new MobileStatusSubject().AddTo(Disposables);
         ActualStatus = new MobileStatusSubject().AddTo(Disposables);
@@ -459,10 +459,10 @@ public partial class MobileSubject : SubjectBase
     #region Support
 
     [ObservableProperty]
-    private SupportSubject? _Support1;
+    private Support? _Support1;
     private IDisposable? support1ChangedHandler = null;
 
-    partial void OnSupport1Changed(SupportSubject? value)
+    partial void OnSupport1Changed(Support? value)
     {
         support1ChangedHandler?.Dispose();
         support1ChangedHandler = null;
@@ -471,10 +471,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private SupportSubject? _Support2;
+    private Support? _Support2;
     private IDisposable? support2ChangedHandler = null;
 
-    partial void OnSupport2Changed(SupportSubject? value)
+    partial void OnSupport2Changed(Support? value)
     {
         support2ChangedHandler?.Dispose();
         support2ChangedHandler = null;
@@ -483,10 +483,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private SupportSubject? _Support3;
+    private Support? _Support3;
     private IDisposable? support3ChangedHandler = null;
 
-    partial void OnSupport3Changed(SupportSubject? value)
+    partial void OnSupport3Changed(Support? value)
     {
         support3ChangedHandler?.Dispose();
         support3ChangedHandler = null;
@@ -495,10 +495,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private SupportSubject? _Support4;
+    private Support? _Support4;
     private IDisposable? support4ChangedHandler = null;
 
-    partial void OnSupport4Changed(SupportSubject? value)
+    partial void OnSupport4Changed(Support? value)
     {
         support4ChangedHandler?.Dispose();
         support4ChangedHandler = null;
@@ -506,8 +506,8 @@ public partial class MobileSubject : SubjectBase
         WhenSupportChanged();
     }
 
-    public SupportStatusSubject SupportBoost { get; }
-    public SupportStatusSubject SupportBoostOwn { get; }
+    public SupportStatus SupportBoost { get; }
+    public SupportStatus SupportBoostOwn { get; }
 
     private void WhenSupportChanged(string? _ = "")
     {
@@ -520,7 +520,7 @@ public partial class MobileSubject : SubjectBase
         RaisePairBoostChanged();
     }
 
-    private void CalculateSupportBoostOwn(SupportSubject? support)
+    private void CalculateSupportBoostOwn(Support? support)
     {
         if (support == null) return;
         SupportBoostOwn.Add(support.ActualStatus);

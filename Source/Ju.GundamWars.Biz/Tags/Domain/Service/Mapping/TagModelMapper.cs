@@ -3,9 +3,9 @@ using Ju.GundamWars.Biz.Tags.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Tags.Domain.Service.Mapping;
 
-public class TagModelMapper : TagMapperBase<TagDto, TagSubject>
+public class TagModelMapper : TagMapperBase<TagDto, Tag>
 {
-    public override TagSubject Map(TagDto dto, TagSubject model) =>
+    public override Tag Map(TagDto dto, Tag model) =>
         Map(dto, model, () =>
         {
             model.IsChecked = false;

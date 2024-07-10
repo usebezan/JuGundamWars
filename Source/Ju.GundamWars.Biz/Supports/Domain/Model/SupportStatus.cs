@@ -4,7 +4,7 @@ using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
-public partial class SupportStatusSubject : ModelBase
+public partial class SupportStatus : ModelBase
 {
 
     [ObservableProperty]
@@ -35,7 +35,7 @@ public partial class SupportStatusSubject : ModelBase
     private int _EnRecovery;
 
 
-    public SupportStatusSubject Reset()
+    public SupportStatus Reset()
     {
         Hp = 0;
         BeamAttack = 0;
@@ -53,7 +53,7 @@ public partial class SupportStatusSubject : ModelBase
         return this;
     }
 
-    public SupportStatusSubject Set(SupportStatusSubject status)
+    public SupportStatus Set(SupportStatus status)
     {
         Hp = status.Hp;
         BeamAttack = status.BeamAttack;
@@ -71,7 +71,7 @@ public partial class SupportStatusSubject : ModelBase
         return this;
     }
 
-    public SupportStatusSubject Add(SupportStatusSubject status)
+    public SupportStatus Add(SupportStatus status)
     {
         Hp += status.Hp;
         BeamAttack += status.BeamAttack;
@@ -89,7 +89,7 @@ public partial class SupportStatusSubject : ModelBase
         return this;
     }
 
-    public SupportStatusSubject Add(SupportStatusType type, int value)
+    public SupportStatus Add(SupportStatusType type, int value)
     {
         switch (type)
         {

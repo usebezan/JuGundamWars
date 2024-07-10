@@ -127,7 +127,7 @@ public class MobileMapper : IMapper<MobileSubject, Mobile>
         }
     }
 
-    private void AddSupport(Mobile mobile, byte seq, SupportSubject? support)
+    private void AddSupport(Mobile mobile, byte seq, Support? support)
     {
         if (support != null)
         {

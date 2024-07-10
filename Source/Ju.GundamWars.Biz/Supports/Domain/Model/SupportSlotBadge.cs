@@ -9,10 +9,10 @@ using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
-public partial class SupportSlotBadgeSubject : ModelBase
+public partial class SupportSlotBadge : ModelBase
 {
 
-    public SupportSlotBadgeSubject()
+    public SupportSlotBadge()
     {
         SupportStatusType = SupportStatusType.Unknown;
         StatusValue = 0;

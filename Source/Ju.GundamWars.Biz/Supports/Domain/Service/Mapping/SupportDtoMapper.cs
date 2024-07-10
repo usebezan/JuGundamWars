@@ -3,9 +3,9 @@ using Ju.GundamWars.Biz.Supports.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Service.Mapping;
 
-public class SupportDtoMapper : SupportMapperBase<SupportSubject, SupportDto>
+public class SupportDtoMapper : SupportMapperBase<Support, SupportDto>
 {
-    public override SupportDto Map(SupportSubject model, SupportDto dto) =>
+    public override SupportDto Map(Support model, SupportDto dto) =>
         Map(model, dto, () =>
         {
             dto.SerialId = model.Serial?.Id ?? 0;

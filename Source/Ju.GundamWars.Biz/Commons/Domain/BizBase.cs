@@ -31,7 +31,7 @@ public partial class BizBase : ModelBase
 
     #region Navigations
 
-    public ObservableItemPropertyChangedCollection<TagSubject> Tags { get; }
+    public ObservableItemPropertyChangedCollection<Tag> Tags { get; }
 
     #endregion
 
@@ -43,7 +43,7 @@ public partial class BizBase : ModelBase
     #endregion
 
 
-    public void ReAddTags(IList<TagSubject> tags)
+    public void ReAddTags(IList<Tag> tags)
     {
         Suspend(() => Tags.ReAddRange(tags));
         SetJoinedTags();

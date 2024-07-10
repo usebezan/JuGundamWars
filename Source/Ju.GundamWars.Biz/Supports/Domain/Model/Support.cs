@@ -14,18 +14,18 @@ using System.Reactive.Linq;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
-public partial class SupportSubject : BizBase, ISupport
+public partial class Support : BizBase, ISupport
 {
 
-    public SupportSubject()
+    public Support()
     {
         LimitedSerials = [];
-        SlotBadges = new ObservableItemPropertyChangedCollection<SupportSlotBadgeSubject>().AddTo(Disposables);
+        SlotBadges = new ObservableItemPropertyChangedCollection<SupportSlotBadge>().AddTo(Disposables);
 
-        NormalStatus = new SupportStatusSubject().AddTo(Disposables);
-        UnlockStatus = new SupportStatusSubject().AddTo(Disposables);
-        BonusStatus = new SupportStatusSubject().AddTo(Disposables);
-        ActualStatus = new SupportStatusSubject().AddTo(Disposables);
+        NormalStatus = new SupportStatus().AddTo(Disposables);
+        UnlockStatus = new SupportStatus().AddTo(Disposables);
+        BonusStatus = new SupportStatus().AddTo(Disposables);
+        ActualStatus = new SupportStatus().AddTo(Disposables);
 
         LimitedSerials.CollectionChanged.Subscribe(WhenLimitedSerialsChanged).AddTo(Disposables);
         SlotBadges.CollectionChanged.Subscribe(WhenSlotBadgesChanged).AddTo(Disposables);
@@ -62,7 +62,7 @@ public partial class SupportSubject : BizBase, ISupport
     #region Navigations
 
     public MasterObservableCollection<Serial> LimitedSerials { get; }
-    public ObservableItemPropertyChangedCollection<SupportSlotBadgeSubject> SlotBadges { get; }
+    public ObservableItemPropertyChangedCollection<SupportSlotBadge> SlotBadges { get; }
 
     #endregion
 
@@ -82,10 +82,10 @@ public partial class SupportSubject : BizBase, ISupport
     [ObservableProperty]
     private int _AttachedBadgesCount;
 
-    public SupportStatusSubject NormalStatus { get; }
-    public SupportStatusSubject UnlockStatus { get; }
-    public SupportStatusSubject BonusStatus { get; }
-    public SupportStatusSubject ActualStatus { get; }
+    public SupportStatus NormalStatus { get; }
+    public SupportStatus UnlockStatus { get; }
+    public SupportStatus BonusStatus { get; }
+    public SupportStatus ActualStatus { get; }
 
     [ObservableProperty]
     private MobileSubject? _Mobile;

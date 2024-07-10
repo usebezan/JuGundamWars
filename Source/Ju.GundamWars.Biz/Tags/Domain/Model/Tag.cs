@@ -4,7 +4,7 @@ using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Tags.Domain.Model;
 
-public partial class TagSubject : ModelBase, ITag
+public partial class Tag : ModelBase, ITag
 {
 
     [ObservableProperty]
