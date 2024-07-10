@@ -3,7 +3,7 @@
 public interface IBooster
 {
     BoostStatusType BoostStatus { get; }
-    CalcType Calc { get; }
+    CalcMethodType CalcMethod { get; }
     decimal Value { get; }
     string TargetText { get; }
     string BoostText { get; }

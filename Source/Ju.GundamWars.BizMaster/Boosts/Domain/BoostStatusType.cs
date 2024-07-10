@@ -1,8 +1,4 @@
-﻿using Ju.GundamWars.BizMaster.MobileStatuses.Domain;
-using Ju.GundamWars.BizMaster.PilotStatuses.Domain;
-using Ju.GundamWars.BizMaster.SupportStatuses.Domain;
-
-namespace Ju.GundamWars.BizMaster.Boosts.Domain;
+﻿namespace Ju.GundamWars.BizMaster.Boosts.Domain;
 
 public enum BoostStatusType : int
 {

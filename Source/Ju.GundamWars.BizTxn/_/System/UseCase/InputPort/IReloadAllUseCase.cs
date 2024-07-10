@@ -1,0 +1,7 @@
+﻿using Ju.GundamWars.UseCase.Common.InputPort;
+
+namespace Ju.GundamWars.BizTxn._.System.UseCase.InputPort;
+
+public interface IReloadAllUseCase : IUseCase
+{
+}
