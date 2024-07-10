@@ -2,6 +2,7 @@
 using Ju.GundamWars.BizMaster._.Categories.Domain;
 using Ju.GundamWars.BizMaster.Grades.Domain.Model;
 using Ju.GundamWars.BizMaster.Serials.Domain.Model;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.BizMaster.Units;
 using Ju.GundamWars.Collections;
 using Ju.GundamWars.Commons.Domain.Model;

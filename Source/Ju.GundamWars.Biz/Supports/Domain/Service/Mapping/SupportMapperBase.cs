@@ -11,6 +11,7 @@ public abstract class SupportMapperBase<TSrc, TDest> : IMapper<TSrc, TDest>
     {
         dest.Id = src.Id;
         dest.Name = src.Name;
+        dest.ForUnit = src.ForUnit;
         dest.Memo = src.Memo;
         dest.IsPinned = src.IsPinned;
         mapper?.Invoke();

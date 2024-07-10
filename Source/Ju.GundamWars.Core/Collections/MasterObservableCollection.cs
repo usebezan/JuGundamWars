@@ -7,6 +7,20 @@ namespace Ju.GundamWars.Collections;
 public class MasterObservableCollection<T> : ObservableCollection<T>
 {
 
+    public void AddRange(IEnumerable<T> collection)
+    {
+        foreach (var item in collection)
+        {
+            Add(item);
+        }
+    }
+
+    public void ReAddRange(IEnumerable<T> collection)
+    {
+        Clear();
+        AddRange(collection);
+    }
+
     public void AddRange<TEnum>(Func<TEnum, bool> predicate, Func<TEnum, T> creator) where TEnum : Enum =>
         Enum.GetValues(typeof(TEnum)).Cast<TEnum>().Where(predicate).ToList().ForEach(e => Add(creator(e)));
 
