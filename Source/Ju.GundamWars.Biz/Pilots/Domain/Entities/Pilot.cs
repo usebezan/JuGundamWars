@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.Core.Ju.GundamWars.Masters.Categories;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Grades;
 
-namespace Ju.GundamWars.Pilots.Domain.Entities;
+namespace Ju.GundamWars.Biz.Pilots.Domain.Entities;
 
 public class Pilot : IIdentify
 {

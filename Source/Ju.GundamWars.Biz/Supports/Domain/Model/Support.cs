@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.Biz._.Mobiles.Domain;
 using Ju.GundamWars.BizMaster._.Categories.Domain;
 using Ju.GundamWars.BizMaster.Grades.Domain.Model;
 using Ju.GundamWars.BizMaster.Serials.Domain.Model;
@@ -6,7 +7,6 @@ using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.BizMaster.Units;
 using Ju.GundamWars.Collections;
 using Ju.GundamWars.Commons.Domain.Model;
-using Ju.GundamWars.Mobiles.Domain;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

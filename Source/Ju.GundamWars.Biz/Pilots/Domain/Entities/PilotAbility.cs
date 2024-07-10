@@ -3,7 +3,7 @@ using Ju.GundamWars.Core.Ju.GundamWars.Masters.Boosts;
 using Ju.GundamWars.Core.Ju.GundamWars.System;
 using Ju.GundamWars.Domain.System;
 
-namespace Ju.GundamWars.Pilots.Domain.Entities;
+namespace Ju.GundamWars.Biz.Pilots.Domain.Entities;
 
 public class PilotAbility : IIdentify, IBooster
 {

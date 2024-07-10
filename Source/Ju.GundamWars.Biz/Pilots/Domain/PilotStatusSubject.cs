@@ -2,7 +2,7 @@
 using Ju.GundamWars.BizMaster.PilotStatuses;
 using Ju.GundamWars.Core;
 
-namespace Ju.GundamWars.Domain.Pilots;
+namespace Ju.GundamWars.Biz.Pilots.Domain;
 
 public partial class PilotStatusSubject : GwObservableObject
 {

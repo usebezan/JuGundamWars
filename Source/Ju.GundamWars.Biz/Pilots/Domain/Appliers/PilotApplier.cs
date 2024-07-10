@@ -1,9 +1,9 @@
-﻿using Ju.GundamWars.Common.Domain.Service.Mapping;
+﻿using Ju.GundamWars.Biz.Pilots.Domain.Entities;
+using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.Domain.Pilots.Entities;
-using Ju.GundamWars.Pilots.Domain;
 using Ju.GundamWars.Pilots.Domain.Entities;
 
-namespace Ju.GundamWars.Pilots.Domain.Appliers;
+namespace Ju.GundamWars.Biz.Pilots.Domain.Appliers;
 
 public class PilotMapper : IMapper<PilotSubject, Pilot>
 {

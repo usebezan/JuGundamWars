@@ -1,11 +1,10 @@
-﻿using Ju.GundamWars.Common.Domain.Service.Mapping;
-using Ju.GundamWars.Pilots.Domain;
-using Ju.GundamWars.Pilots.Domain.Entities;
+﻿using Ju.GundamWars.Biz.Pilots.Domain.Entities;
+using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.UseCase.Pilots;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
 
-namespace Ju.GundamWars.Pilots.Domain.Appliers;
+namespace Ju.GundamWars.Biz.Pilots.Domain.Appliers;
 
 public class PilotSubjectMapper(
     ICategoryInventory categoryInventory,

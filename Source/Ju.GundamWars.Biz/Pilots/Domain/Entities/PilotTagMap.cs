@@ -1,6 +1,6 @@
 ﻿using Ju.GundamWars.Tags.Domain.Dto;
 
-namespace Ju.GundamWars.Pilots.Domain.Entities;
+namespace Ju.GundamWars.Biz.Pilots.Domain.Entities;
 
 public class PilotTagMap
 {

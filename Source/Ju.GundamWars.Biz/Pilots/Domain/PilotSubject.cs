@@ -1,18 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars;
+using Ju.GundamWars.Biz._.Mobiles.Domain;
+using Ju.GundamWars.Biz.Pilots.Domain.Entities;
 using Ju.GundamWars.Core;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Boosts;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Categories.Model;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Grades.Model;
 using Ju.GundamWars.Core.Ju.GundamWars.Masters.Serials.Dto;
 using Ju.GundamWars.Core.Ju.GundamWars.System;
-using Ju.GundamWars.Domain.Pilots;
-using Ju.GundamWars.Mobiles.Domain;
-using Ju.GundamWars.Pilots.Domain;
-using Ju.GundamWars.Pilots.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
 
-namespace Ju.GundamWars.Pilots.Domain;
+namespace Ju.GundamWars.Biz.Pilots.Domain;
 
 public partial class PilotSubject : SubjectBase
 {

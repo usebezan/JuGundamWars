@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.Pilots.Domain.Entities;
+﻿namespace Ju.GundamWars.Biz.Pilots.Domain.Entities;
 
 public class PilotSkill : IIdentify
 {
