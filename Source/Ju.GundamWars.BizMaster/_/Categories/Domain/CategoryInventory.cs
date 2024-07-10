@@ -1,3 +1,7 @@
-﻿namespace Ju.GundamWars.BizMaster._.Categories.Domain;
+﻿using System.Collections.ObjectModel;
 
-public class CategoryInventory : ObservableCollection<Category>, ICategoryInventory { }
+namespace Ju.GundamWars.BizMaster._.Categories.Domain;
+
+public class CategoryInventory : ObservableCollection<Category>
+{
+}

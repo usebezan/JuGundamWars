@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.BizMaster._;
-
-namespace Ju.GundamWars.BizMaster.Grades.Domain;
+﻿namespace Ju.GundamWars.BizMaster.Grades.Domain;
 
 public enum GradeType : byte
 {

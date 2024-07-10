@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.BizMaster._;
-
-namespace Ju.GundamWars.BizMaster.MobileStatuses.Domain;
+﻿namespace Ju.GundamWars.BizMaster.MobileStatuses.Domain;
 
 public enum MobileStatusType : byte
 {

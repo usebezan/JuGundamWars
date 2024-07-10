@@ -1,0 +1,24 @@
+﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Reactive.Linq;
+
+namespace Ju.GundamWars.Collections;
+
+public class MasterObservableCollection<T> : ObservableCollection<T>
+{
+
+    public void AddRange<TEnum>(Func<TEnum, bool> predicate, Func<TEnum, T> creator) where TEnum : Enum =>
+        Enum.GetValues(typeof(TEnum)).Cast<TEnum>().Where(predicate).ToList().ForEach(e => Add(creator(e)));
+
+    #region ==== CollectionChanged ====
+
+    public new IObservable<NotifyCollectionChangedEventArgs> CollectionChanged =>
+        Observable
+            .FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
+                handler => base.CollectionChanged += handler,
+                handler => base.CollectionChanged -= handler)
+            .Select(x => x.EventArgs);
+
+    #endregion
+
+}

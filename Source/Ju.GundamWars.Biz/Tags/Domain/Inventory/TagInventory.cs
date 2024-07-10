@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Ju.GundamWars.Biz.Tags.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Tags.Domain.Inventory;
 

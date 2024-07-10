@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.BizMaster._;
-
-namespace Ju.GundamWars.BizMaster.Terrains.Domain;
+﻿namespace Ju.GundamWars.BizMaster.Terrains.Domain;
 
 public enum TerrainType : byte
 {

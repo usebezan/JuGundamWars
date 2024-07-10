@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.BizMaster._;
-
-namespace Ju.GundamWars.BizMaster.AceImpls.Domain;
+﻿namespace Ju.GundamWars.BizMaster.AceImpls.Domain;
 
 public enum AceImplType : byte
 {

@@ -1,25 +1,25 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars;
-using Ju.GundamWars.BizMaster.SupportSlotKinds;
-using Ju.GundamWars.Core;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Categories.Model;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Grades.Model;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Serials.Dto;
-using Ju.GundamWars.Core.Ju.GundamWars.System;
+using Ju.GundamWars.BizMaster._.Categories.Domain;
+using Ju.GundamWars.BizMaster.Grades.Domain.Model;
+using Ju.GundamWars.BizMaster.Serials.Domain.Model;
+using Ju.GundamWars.BizMaster.Units;
+using Ju.GundamWars.Collections;
+using Ju.GundamWars.Commons.Domain.Model;
 using Ju.GundamWars.Mobiles.Domain;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
-public partial class SupportSubject : SubjectBase
+public partial class SupportSubject : BizBase, ISupport
 {
 
     public SupportSubject()
     {
         LimitedSerials = [];
-        SlotBadges = new GwNotifiableCollection<SupportSlotBadgeSubject>().AddTo(Disposables);
+        SlotBadges = new ObservableItemPropertyChangedCollection<SupportSlotBadgeSubject>().AddTo(Disposables);
 
         NormalStatus = new SupportStatusSubject().AddTo(Disposables);
         UnlockStatus = new SupportStatusSubject().AddTo(Disposables);
@@ -28,18 +28,20 @@ public partial class SupportSubject : SubjectBase
 
         LimitedSerials.CollectionChanged.Subscribe(WhenLimitedSerialsChanged).AddTo(Disposables);
         SlotBadges.CollectionChanged.Subscribe(WhenSlotBadgesChanged).AddTo(Disposables);
-        SlotBadges.ItemPropertyChanged.Where(n => n == "Slot").Subscribe(WhenSlotChanged).AddTo(Disposables);
-        SlotBadges.ItemPropertyChanged.Where(n => n == "Badge").Subscribe(WhenBadgeChanged).AddTo(Disposables);
-        SlotBadges.ItemPropertyChanged.Where(n => n == "Status").Subscribe(WhenStatusChanged).AddTo(Disposables);
+        SlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "Slot").Subscribe(WhenSlotChanged).AddTo(Disposables);
+        SlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "Badge").Subscribe(WhenBadgeChanged).AddTo(Disposables);
+        SlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "Status").Subscribe(WhenStatusChanged).AddTo(Disposables);
 
         IsIdle = true;
     }
 
 
-    #region Entity fields
+    #region Primitives
 
     [ObservableProperty, Required]
-    private string _Name = null!;
+    private string _Name = string.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(UnitIcon))]
+    private UnitType _ForUnit = UnitType.MobileSuit;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(HasMemo))]
     private string? _Memo;
     [ObservableProperty]
@@ -47,40 +49,42 @@ public partial class SupportSubject : SubjectBase
 
     #endregion
 
-    #region Entity relationships
+    #region Primitive Models
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(CategoryIcon))]
-    private Category? _Category;
     [ObservableProperty, Required]
     private Serial? _Serial;
     [ObservableProperty, Required, NotifyPropertyChangedFor(nameof(GradeText)), NotifyPropertyChangedFor(nameof(GradeColor))]
     private Grade? _Grade;
 
-    public GwObservableCollection<Serial> LimitedSerials { get; }
-    public GwNotifiableCollection<SupportSlotBadgeSubject> SlotBadges { get; }
+    #endregion
+
+    #region Navigations
+
+    public MasterObservableCollection<Serial> LimitedSerials { get; }
+    public ObservableItemPropertyChangedCollection<SupportSlotBadgeSubject> SlotBadges { get; }
 
     #endregion
 
     #region Extensions
 
-    public string CategoryIcon => Category?.Icon ?? GwIcon.Unknown;
-    public string GradeText => Grade?.Name ?? string.Empty;
-    public string GradeColor => Grade?.Color ?? "White";
+    public string UnitIcon => ForUnit.ToIcon();
     public bool HasMemo => !string.IsNullOrEmpty(Memo);
+    public string GradeText => Grade?.Name ?? "?";
+    public string GradeColor => Grade?.Color ?? "White";
 
+    #endregion
+
+    [ObservableProperty]
+    private string _LimitedSerialsText = string.Empty;
     [ObservableProperty]
     private int _AttachableSlotsCount;
     [ObservableProperty]
     private int _AttachedBadgesCount;
-    [ObservableProperty]
-    private string _LimitedSerialsText = null!;
 
     public SupportStatusSubject NormalStatus { get; }
     public SupportStatusSubject UnlockStatus { get; }
     public SupportStatusSubject BonusStatus { get; }
     public SupportStatusSubject ActualStatus { get; }
-
-    #endregion
 
     [ObservableProperty]
     private MobileSubject? _Mobile;
@@ -123,19 +127,19 @@ public partial class SupportSubject : SubjectBase
         CalculateActualStatus();
     }
 
-    private void WhenSlotChanged(string? _)
+    private void WhenSlotChanged(PropertyChangedEventArgs _)
     {
         if (!IsIdle) return;
         SetAttachableSlotsCount();
     }
 
-    private void WhenBadgeChanged(string? _)
+    private void WhenBadgeChanged(PropertyChangedEventArgs _)
     {
         if (!IsIdle) return;
         SetAttachedBadgesCount();
     }
 
-    private void WhenStatusChanged(string? _)
+    private void WhenStatusChanged(PropertyChangedEventArgs _)
     {
         if (!IsIdle) return;
         CalculateActualStatus();

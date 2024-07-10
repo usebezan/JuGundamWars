@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizMaster.SupportStatuses;
-using Ju.GundamWars.Core;
+using Ju.GundamWars.BizMaster.SupportStatuses.Domain;
+using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
-public partial class SupportStatusSubject : GwObservableObject
+public partial class SupportStatusSubject : ModelBase
 {
 
     [ObservableProperty]
@@ -26,14 +26,13 @@ public partial class SupportStatusSubject : GwObservableObject
     [ObservableProperty]
     private int _Mobility;
     [ObservableProperty]
-    private int _EnRecovery;
-
-    [ObservableProperty]
     private int _SuperPower;
     [ObservableProperty]
     private int _AcePower;
     [ObservableProperty]
     private int _RecoveryPower;
+    [ObservableProperty]
+    private int _EnRecovery;
 
 
     public SupportStatusSubject Reset()
@@ -47,10 +46,10 @@ public partial class SupportStatusSubject : GwObservableObject
         Accuracy = 0;
         Evasion = 0;
         Mobility = 0;
-        EnRecovery = 0;
         SuperPower = 0;
         AcePower = 0;
         RecoveryPower = 0;
+        EnRecovery = 0;
         return this;
     }
 
@@ -65,10 +64,10 @@ public partial class SupportStatusSubject : GwObservableObject
         Accuracy = status.Accuracy;
         Evasion = status.Evasion;
         Mobility = status.Mobility;
-        EnRecovery = status.EnRecovery;
         SuperPower = status.SuperPower;
         AcePower = status.AcePower;
         RecoveryPower = status.RecoveryPower;
+        EnRecovery = status.EnRecovery;
         return this;
     }
 
@@ -83,10 +82,10 @@ public partial class SupportStatusSubject : GwObservableObject
         Accuracy += status.Accuracy;
         Evasion += status.Evasion;
         Mobility += status.Mobility;
-        EnRecovery += status.EnRecovery;
         SuperPower += status.SuperPower;
         AcePower += status.AcePower;
         RecoveryPower += status.RecoveryPower;
+        EnRecovery += status.EnRecovery;
         return this;
     }
 
@@ -121,9 +120,6 @@ public partial class SupportStatusSubject : GwObservableObject
             case SupportStatusType.Mobility:
                 Mobility += value;
                 break;
-            case SupportStatusType.EnRecovery:
-                EnRecovery += value;
-                break;
             case SupportStatusType.SuperPower:
                 SuperPower += value;
                 break;
@@ -132,6 +128,9 @@ public partial class SupportStatusSubject : GwObservableObject
                 break;
             case SupportStatusType.RecoveryPower:
                 RecoveryPower += value;
+                break;
+            case SupportStatusType.EnRecovery:
+                EnRecovery += value;
                 break;
         }
         return this;

@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.BizMaster.TagGroups;
+﻿using Ju.GundamWars.BizMaster.TagGroups.Domain;
 using Ju.GundamWars.Commons.Domain;
 
 namespace Ju.GundamWars.Biz.Tags.Domain;

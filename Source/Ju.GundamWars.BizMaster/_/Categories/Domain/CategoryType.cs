@@ -26,26 +26,26 @@ public static class CategoryTypeExtension
     public static string ToText(this CategoryType self) =>
         self switch
         {
-            CategoryType.MobileSuit => GwText.MobileSuit,
-            CategoryType.MobileArmor => GwText.MobileArmor,
-            CategoryType.Battleship => GwText.Battleship,
-            CategoryType.Pilot => GwText.Pilot,
-            CategoryType.Support => GwText.Support,
-            CategoryType.Cuspa => GwText.Cuspa,
-            CategoryType.CoMobile => GwText.CoMobile,
+            //CategoryType.MobileSuit => GwText.MobileSuit,
+            //CategoryType.MobileArmor => GwText.MobileArmor,
+            //CategoryType.Battleship => GwText.Battleship,
+            //CategoryType.Pilot => GwText.Pilot,
+            //CategoryType.Support => GwText.Support,
+            //CategoryType.Cuspa => GwText.Cuspa,
+            //CategoryType.CoMobile => GwText.CoMobile,
             _ => GwText.Unknown,
         };
 
     public static string ToIcon(this CategoryType self) =>
         self switch
         {
-            CategoryType.MobileSuit => GwIcon.MobileSuit,
-            CategoryType.MobileArmor => GwIcon.MobileArmor,
-            CategoryType.Battleship => GwIcon.Battleship,
-            CategoryType.Pilot => GwIcon.Pilot,
-            CategoryType.Support => GwIcon.Support,
-            CategoryType.Cuspa => GwIcon.Cuspa,
-            CategoryType.CoMobile => GwIcon.CoMobile,
+            //CategoryType.MobileSuit => GwIcon.MobileSuit,
+            //CategoryType.MobileArmor => GwIcon.MobileArmor,
+            //CategoryType.Battleship => GwIcon.Battleship,
+            //CategoryType.Pilot => GwIcon.Pilot,
+            //CategoryType.Support => GwIcon.Support,
+            //CategoryType.Cuspa => GwIcon.Cuspa,
+            //CategoryType.CoMobile => GwIcon.CoMobile,
             _ => GwIcon.Unknown,
         };
 

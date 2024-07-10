@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.BizMaster._;
-
-namespace Ju.GundamWars.BizMaster.Roles.Domain;
+﻿namespace Ju.GundamWars.BizMaster.Roles.Domain;
 
 public enum RoleType : byte
 {

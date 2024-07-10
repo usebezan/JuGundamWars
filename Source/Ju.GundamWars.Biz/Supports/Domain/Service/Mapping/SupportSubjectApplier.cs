@@ -1,11 +1,11 @@
-﻿using Ju.GundamWars.Biz.Supports.Domain.Model;
+﻿using Ju.GundamWars.Biz.Supports.Domain.Dto;
+using Ju.GundamWars.Biz.Supports.Domain.Model;
 using Ju.GundamWars.Common.Domain.Service.Mapping;
-using Ju.GundamWars.Supports.Domain.Entities;
 using Ju.GundamWars.UseCase.Supports;
 using Ju.GundamWars.UseCase.Systems;
 using Ju.GundamWars.UseCase.Tags;
 
-namespace Ju.GundamWars.Biz.Supports.Domain.Service.Appliers;
+namespace Ju.GundamWars.Biz.Supports.Domain.Service.Mapping;
 
 public class SupportSubjectMapper(
     ICategoryInventory categoryInventory,
@@ -14,10 +14,10 @@ public class SupportSubjectMapper(
     ITagInventory tagInventory,
     ISupportSlotInventory supportSlotInventory,
     ISupportBadgeInventory supportBadgeInventory)
-    : IMapper<Support, SupportSubject>
+    : IMapper<SupportDto, SupportSubject>
 {
 
-    public SupportSubject Map(Support entity, SupportSubject subject)
+    public SupportSubject Map(SupportDto entity, SupportSubject subject)
     {
         subject.Initialize(() =>
         {

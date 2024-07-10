@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.BizMaster._;
-
-namespace Ju.GundamWars.BizMaster.TagGroups.Domain;
+﻿namespace Ju.GundamWars.BizMaster.TagGroups.Domain;
 
 public enum TagGroupType : byte
 {

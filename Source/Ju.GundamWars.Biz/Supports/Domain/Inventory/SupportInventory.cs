@@ -1,6 +1,8 @@
-﻿using Ju.GundamWars.Biz.Supports.Domain.Model;
-using Ju.GundamWars.UseCase.Supports;
+﻿using System.Collections.ObjectModel;
+using Ju.GundamWars.Biz.Supports.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Inventory;
 
-public class SupportInventory : GwNotifiableCollection<SupportSubject>, ISupportInventory { }
+public class SupportInventory : ObservableCollection<SupportSubject>
+{
+}

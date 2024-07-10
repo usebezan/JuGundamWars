@@ -94,7 +94,7 @@ public partial class PilotSubject : SubjectBase
     [ObservableProperty]
     private MobileSubject? _Mobile;
 
-    public List<PilotAbility> AbilitiesForMobile => new[] { Ability1, Ability2, Ability3 }.Where(i => i != null && i.BoostTarget == BoostUnitType.Mobile).Select(i => i!).ToList();
+    public List<PilotAbility> AbilitiesForMobile => new[] { Ability1, Ability2, Ability3 }.Where(i => i != null && i.BoostCategory == BoostUnitType.Mobile).Select(i => i!).ToList();
 
 
     public void Initialize(Action initializer)
@@ -165,7 +165,7 @@ public partial class PilotSubject : SubjectBase
     // パイロットは加算のみ
     private void CalculateAbilityStatus(PilotAbility? ability)
     {
-        if (ability != null && ability.BoostTarget == BoostUnitType.Pilot)
+        if (ability != null && ability.BoostCategory == BoostUnitType.Pilot)
         {
             AbilityStatus.Add(ability.Boost.ToPilotStatusType(), ability.Value);
         }

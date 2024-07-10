@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.BizMaster._;
-
-namespace Ju.GundamWars.BizMaster.MobileKinds.Domain;
+﻿namespace Ju.GundamWars.BizMaster.MobileKinds.Domain;
 
 public enum MobileKindType : byte
 {

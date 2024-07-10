@@ -6,7 +6,7 @@ using System.Reactive.Linq;
 
 namespace Ju.GundamWars.Commons.Domain.Model;
 
-public class ModelBase : ObservableValidator, IDisposable, IObservableNotifyPropertyChanging, IObservableNotifyPropertyChanged
+public partial class ModelBase : ObservableValidator, IDisposable, IObservableNotifyPropertyChanging, IObservableNotifyPropertyChanged
 {
 
     public ModelBase()

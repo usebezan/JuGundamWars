@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Supports.Domain.Entities;
+﻿using Ju.GundamWars.Biz.Supports.Domain.Dto;
 
 namespace Ju.GundamWars.Mobiles.Domain.Entities;
 
@@ -10,6 +10,6 @@ public class MobileSupport
     public int? SupportId { get; set; }
 
     public Mobile? Mobile { get; set; }
-    public Support? Support { get; set; }
+    public SupportDto? Support { get; set; }
 
 }

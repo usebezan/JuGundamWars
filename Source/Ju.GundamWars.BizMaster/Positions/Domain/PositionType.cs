@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.BizMaster._;
-
-namespace Ju.GundamWars.BizMaster.Positions.Domain;
+﻿namespace Ju.GundamWars.BizMaster.Positions.Domain;
 
 public enum PositionType : byte
 {

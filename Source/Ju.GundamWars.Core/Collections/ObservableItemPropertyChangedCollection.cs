@@ -8,7 +8,7 @@ using System.Reactive.Linq;
 namespace Ju.GundamWars.Collections;
 
 public sealed class ObservableItemPropertyChangedCollection<T> : ObservableCollection<T>, IDisposable
-    where T : class, IObservableNotifyPropertyChanged
+    where T : IObservableNotifyPropertyChanged
 {
 
     public ObservableItemPropertyChangedCollection()

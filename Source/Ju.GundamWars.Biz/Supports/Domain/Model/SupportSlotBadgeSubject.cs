@@ -1,20 +1,20 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizMaster.MobileStatuses;
-using Ju.GundamWars.BizMaster.SupportStatuses;
-using Ju.GundamWars.Core;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Boosts;
-using Ju.GundamWars.Core.Ju.GundamWars.System;
-using Ju.GundamWars.Supports.Domain.Entities;
+using Ju.GundamWars.BizMaster;
+using Ju.GundamWars.BizMaster.Boosts.Domain;
+using Ju.GundamWars.BizMaster.SupportBadges.Domain.Model;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain.Model;
+using Ju.GundamWars.BizMaster.SupportStatuses.Domain;
+using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Supports.Domain.Model;
 
-public partial class SupportSlotBadgeSubject : GwObservableValidator
+public partial class SupportSlotBadgeSubject : ModelBase
 {
 
     public SupportSlotBadgeSubject()
     {
         SupportStatusType = SupportStatusType.Unknown;
-        MobileStatusTypes = null;
         StatusValue = 0;
 
         isIdle = true;
@@ -23,17 +23,15 @@ public partial class SupportSlotBadgeSubject : GwObservableValidator
 
     private bool isIdle;
 
-    #region Entity fields
+    #region Primitives
 
     [ObservableProperty]
     private byte _Seq;
 
     #endregion
 
-    #region Entity relationships
+    #region Navigations
 
-    [ObservableProperty]
-    private SupportSubject? _Support;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(SlotName)), NotifyPropertyChangedFor(nameof(BadgeName)), NotifyPropertyChangedFor(nameof(IsBonused))]
     private SupportSlot? _Slot;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(BadgeName)), NotifyPropertyChangedFor(nameof(IsBonused))]
@@ -43,16 +41,14 @@ public partial class SupportSlotBadgeSubject : GwObservableValidator
 
     #region Extensions
 
-    public string SlotName => Slot?.Name ?? GwText.Unknown;
+    public string SlotName => Slot?.Name ?? GwText.None;
     public string BadgeName => Slot?.IsAttachable ?? false ? Badge?.Name ?? string.Empty : "---";
-    public bool IsBonused => (Slot?.IsBonusable ?? false) && Badge != null && Slot.Boost.IsSameStatus(Badge.Boost);
-
-    public BoostUnitType BoostUnitType { get; private set; }
-    public SupportStatusType SupportStatusType { get; private set; }
-    public MobileStatusType[]? MobileStatusTypes { get; private set; }
-    public int StatusValue { get; private set; }
+    public bool IsBonused => Slot != null && Slot.IsBonusable && Badge != null && Slot.BoostStatus == Badge.BoostStatus;
 
     #endregion
+
+    public SupportStatusType SupportStatusType { get; private set; }
+    public int StatusValue { get; private set; }
 
 
     public void Initialize(Action initializer)
@@ -71,14 +67,14 @@ public partial class SupportSlotBadgeSubject : GwObservableValidator
     partial void OnSlotChanged(SupportSlot? value)
     {
         if (!isIdle) return;
-        // そのままだと OnBadgeChanged() が発火し、CalculateStatus() を二重コールするため Suspend()
-        Suspend(() =>
+        if (!(Slot?.IsAttachable ?? false))
         {
-            if (!(Slot?.IsAttachable ?? false))
+            // そのままだと OnBadgeChanged() が発火し、CalculateStatus() を二重コールするため Suspend()
+            Suspend(() =>
             {
                 Badge = null;
-            }
-        });
+            });
+        }
         CalculateStatus();
     }
 
@@ -88,43 +84,35 @@ public partial class SupportSlotBadgeSubject : GwObservableValidator
         CalculateStatus();
     }
 
+    // 計算は SupportSlotKindType で判断する
+    // BoostCategoryType は SupportSlotKindType から固定で設定している
     private void CalculateStatus()
     {
-        BoostUnitType = Slot?.Boost.ToBoostUnitType() ?? BoostUnitType.Unknown;
         SupportStatusType = SupportStatusType.Unknown;
-        MobileStatusTypes = null;
         StatusValue = 0;
         if (Slot != null)
         {
-            if (BoostUnitType == BoostUnitType.Mobile)
+            if (Slot.Kind == SupportSlotKindType.Normal && Badge != null)
             {
-                SupportStatusType = Slot.Boost.ToSupportStatusType();
-                MobileStatusTypes = Slot.Boost.ToMobileStatusTypes();
-                StatusValue = decimal.ToInt32(Slot.Value);
+                // 通常スロットはバッジの値を機体へ
+                SupportStatusType = Badge.BoostStatus.ToSupportStatusType();
+                StatusValue = Badge.CalcBoostedValue();
             }
-            else if (BoostUnitType == BoostUnitType.Badge && Badge != null)
+            else if (Slot.Kind == SupportSlotKindType.Unlock)
             {
-                SupportStatusType = Badge.Boost.ToSupportStatusType();
-                MobileStatusTypes = Badge.Boost.ToMobileStatusTypes();
-                if (Badge.Calc == CalcType.Addition)
+                // 解放スロットはスロットの値を機体へ
+                SupportStatusType = Slot.BoostStatus.ToSupportStatusType();
+                StatusValue = Slot.CalcBoostedValue();
+            }
+            else if (Slot.Kind == SupportSlotKindType.Bonus && Badge != null)
+            {
+                // ボーナス スロットはバッジの値を機体へ
+                SupportStatusType = Badge.BoostStatus.ToSupportStatusType();
+                StatusValue = Badge.CalcBoostedValue();
+                if (IsBonused)
                 {
-                    StatusValue = decimal.ToInt32(Badge.Value);
-                }
-                else if (Badge.Calc == CalcType.Multiplication)
-                {
-                    StatusValue = 100.Multiply(Badge.Value);
-                }
-                if (Slot.Boost.IsSameStatus(Badge.Boost))
-                {
-                    // 必殺バッジ系は必殺回復のみ加算の設定になっている
-                    if (Slot.Calc == CalcType.Addition)
-                    {
-                        StatusValue += decimal.ToInt32(Slot.Value);
-                    }
-                    else if (Slot.Calc == CalcType.Multiplication)
-                    {
-                        StatusValue += StatusValue.Multiply(Slot.Value);
-                    }
+                    // ボーナス適用の場合はバッジの値とスロットの値を掛けて加算
+                    StatusValue += Slot.CalcBoostedValue(StatusValue);
                 }
             }
         }

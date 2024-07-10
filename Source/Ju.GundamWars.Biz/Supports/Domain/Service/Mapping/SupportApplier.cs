@@ -1,14 +1,15 @@
-﻿using Ju.GundamWars.Biz.Supports.Domain.Model;
+﻿using Ju.GundamWars.Biz.Supports.Domain.Dto;
+using Ju.GundamWars.Biz.Supports.Domain.Model;
 using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.Domain.Supports.Entities;
 using Ju.GundamWars.Supports.Domain.Entities;
 
-namespace Ju.GundamWars.Biz.Supports.Domain.Service.Appliers;
+namespace Ju.GundamWars.Biz.Supports.Domain.Service.Mapping;
 
-public class SupportMapper : IMapper<SupportSubject, Support>
+public class SupportMapper : IMapper<SupportSubject, SupportDto>
 {
 
-    public Support Map(SupportSubject subject, Support entity)
+    public SupportDto Map(SupportSubject subject, SupportDto entity)
     {
         entity.Id = subject.Id;
         entity.Name = subject.Name;
@@ -19,7 +20,7 @@ public class SupportMapper : IMapper<SupportSubject, Support>
         entity.IsPinned = subject.IsPinned;
 
         entity.LimitedSerialMaps.Clear();
-        entity.LimitedSerialMaps.AddRange(subject.LimitedSerials.Select(s => new SupportLimitedSerialMap()
+        entity.LimitedSerialMaps.AddRange(subject.LimitedSerials.Select(s => new SupportLimitedSerialMapDto()
         {
             SupportId = entity.Id,
             SerialId = s.Id,
@@ -27,7 +28,7 @@ public class SupportMapper : IMapper<SupportSubject, Support>
         }));
 
         entity.TagMaps.Clear();
-        entity.TagMaps.AddRange(subject.Tags.Select(s => new SupportTagMap()
+        entity.TagMaps.AddRange(subject.Tags.Select(s => new SupportTagMapDto()
         {
             SupportId = entity.Id,
             TagId = s.Id,
@@ -36,7 +37,7 @@ public class SupportMapper : IMapper<SupportSubject, Support>
 
         byte seq = 1;
         entity.SlotBadges.Clear();
-        entity.SlotBadges.AddRange(subject.SlotBadges.Select(s => new SupportSlotBadge()
+        entity.SlotBadges.AddRange(subject.SlotBadges.Select(s => new SupportSlotBadgeDto()
         {
             SupportId = entity.Id,
             Seq = seq++,

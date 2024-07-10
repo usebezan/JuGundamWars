@@ -17,6 +17,6 @@ public class PilotAbility : IIdentify, IBooster
 
     public string Name => $"{Boost.ToStatusText()} Lv.{Rank}（{this.GetUpText()}）";
     public string BoostText => Boost.ToText();
-    public BoostUnitType BoostTarget => Boost.ToBoostUnitType();
+    public BoostUnitType BoostCategory => Boost.ToBoostUnitType();
 
 }

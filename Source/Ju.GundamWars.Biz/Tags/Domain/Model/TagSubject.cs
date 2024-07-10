@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizMaster.TagGroups;
+using Ju.GundamWars.BizMaster.TagGroups.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Biz.Tags.Domain.Model;
@@ -14,10 +14,10 @@ public partial class TagSubject : ModelBase, ITag
 
     [ObservableProperty]
     private int _Id;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(GroupText))]
-    private TagGroupType _Group;
     [ObservableProperty]
     private string _Name = string.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(GroupText))]
+    private TagGroupType _Group;
     [ObservableProperty]
     private int _Order;
 
