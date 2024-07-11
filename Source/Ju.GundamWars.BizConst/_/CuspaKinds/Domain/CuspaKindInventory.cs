@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Ju.GundamWars.BizMaster._.CuspaKinds.Domain;
+namespace Ju.GundamWars.BizConst._.CuspaKinds.Domain;
 
 public class CuspaKindInventory : ObservableCollection<CuspaKind>
 {

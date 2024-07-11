@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.BizMaster._.CuspaKinds.Domain;
+﻿namespace Ju.GundamWars.BizConst._.CuspaKinds.Domain;
 
 public enum CuspaKindType : byte
 {
