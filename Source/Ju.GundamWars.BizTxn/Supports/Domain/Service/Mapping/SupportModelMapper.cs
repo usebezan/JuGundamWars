@@ -13,8 +13,7 @@ public class SupportModelMapper(
     GradeInventory gradeInventory,
     TagInventory tagInventory,
     SupportSlotInventory supportSlotInventory,
-    SupportBadgeInventory supportBadgeInventory)
-        : SupportMapperBase<SupportDto, Support>
+    SupportBadgeInventory supportBadgeInventory) : SupportMapperBase<SupportDto, Support>
 {
     public override Support Map(SupportDto dto, Support model) =>
         Map(dto, model, () =>
@@ -26,11 +25,13 @@ public class SupportModelMapper(
 
             model.LimitedSerials.ReAddRange(dto.LimitedSerialMaps
                 .Select(d => serialInventory.FirstOrDefault(i => i.Id == d.SerialId))
-                .Where(i => i != null));
+                .Where(i => i != null)
+                .Select(i => i!));
 
             model.Tags.ReAddRange(dto.TagMaps
                 .Select(d => tagInventory.FirstOrDefault(i => i.Id == d.TagId))
-                .Where(i => i != null));
+                .Where(i => i != null)
+                .Select(i => i!));
 
             model.SlotBadges.ReAddRange(dto.SlotBadges
                 .Select(d => new SupportSlotBadge()

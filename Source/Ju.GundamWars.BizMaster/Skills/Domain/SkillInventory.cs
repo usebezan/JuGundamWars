@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.BizMaster.Skills.Domain;
 
-public class SkillInventory : ObservableCollection<SkillDto>
+public class SkillInventory : ObservableCollection<Skill>
 {
 }

@@ -1,14 +1,16 @@
-﻿using Ju.GundamWars.Core.Ju.GundamWars.Masters.Categories;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Grades;
+﻿using Ju.GundamWars.BizConst.Grades.Domain;
+using Ju.GundamWars.BizConst.Units.Domain;
 
 namespace Ju.GundamWars.BizTxn.Pilots.Domain.Dto;
 
-public class Pilot : IIdentify
+public class PilotDto : IPilot
 {
+
+    #region Primitives
 
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    public CategoryType Category { get; set; } = CategoryType.MobileSuit;
+    public UnitType ForUnit { get; set; } = UnitType.MobileSuit;
     public int SerialId { get; set; } = 1;
     public GradeType Grade { get; set; } = GradeType.Grade6;
     public byte Level { get; set; } = 30;
@@ -36,6 +38,12 @@ public class Pilot : IIdentify
     public string? Memo { get; set; }
     public bool IsPinned { get; set; } = true;
 
-    public List<PilotTagMap> TagMaps { get; set; } = new();
+    #endregion
+
+    #region Navigations
+
+    public List<PilotTagMapDto> TagMaps { get; set; } = [];
+
+    #endregion
 
 }

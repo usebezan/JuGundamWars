@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.BizConst.Grades.Domain;
+using Ju.GundamWars.BizConst.Units.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.BizTxn._.Mobiles.Domain;
@@ -70,8 +72,6 @@ public partial class Support : BizBase, ISupport
     public string GradeText => Grade?.Name ?? "?";
     public string GradeColor => Grade?.Color ?? "White";
 
-    #endregion
-
     [ObservableProperty]
     private string _LimitedSerialsText = string.Empty;
     [ObservableProperty]
@@ -83,6 +83,8 @@ public partial class Support : BizBase, ISupport
     public SupportStatus UnlockStatus { get; }
     public SupportStatus BonusStatus { get; }
     public SupportStatus ActualStatus { get; }
+
+    #endregion
 
     [ObservableProperty]
     private MobileSubject? _Mobile;

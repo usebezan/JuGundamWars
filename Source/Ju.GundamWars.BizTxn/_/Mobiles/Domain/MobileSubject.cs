@@ -196,10 +196,10 @@ public partial class MobileSubject : SubjectBase
     #region Pilot
 
     [ObservableProperty]
-    private PilotSubject? _Pilot;
+    private Pilot? _Pilot;
     private IDisposable? pilotChangedHandler = null;
 
-    partial void OnPilotChanged(PilotSubject? value)
+    partial void OnPilotChanged(Pilot? value)
     {
         pilotChangedHandler?.Dispose();
         pilotChangedHandler = null;

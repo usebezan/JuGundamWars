@@ -1,28 +1,27 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars;
+using Ju.GundamWars.BizConst.Grades.Domain;
+using Ju.GundamWars.BizConst.Units.Domain;
+using Ju.GundamWars.BizMaster.Boosts.Domain;
+using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+using Ju.GundamWars.BizMaster.Serials.Domain;
+using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizTxn._.Mobiles.Domain;
-using Ju.GundamWars.BizMaster.PilotSkills.Domain.Dto;
-using Ju.GundamWars.Core;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Boosts;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Categories.Model;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Grades.Model;
-using Ju.GundamWars.Core.Ju.GundamWars.Masters.Serials.Dto;
-using Ju.GundamWars.Core.Ju.GundamWars.System;
+using Ju.GundamWars.BizTxn.Commons.Domain;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
-using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 
 namespace Ju.GundamWars.BizTxn.Pilots.Domain.Model;
 
-public partial class PilotSubject : SubjectBase
+public partial class Pilot : BizBase, IPilot
 {
 
-    public PilotSubject()
+    public Pilot()
     {
-        BasicStatus = new PilotStatusSubject().AddTo(Disposables);
-        PracticedStatus = new PilotStatusSubject().AddTo(Disposables);
-        AbilityStatus = new PilotStatusSubject().AddTo(Disposables);
-        ActualStatus = new PilotStatusSubject().AddTo(Disposables);
+        BasicStatus = new PilotStatus().AddTo(Disposables);
+        PracticedStatus = new PilotStatus().AddTo(Disposables);
+        AbilityStatus = new PilotStatus().AddTo(Disposables);
+        ActualStatus = new PilotStatus().AddTo(Disposables);
 
         BasicStatus.PropertyChanged.Subscribe(WhenBasicStatusChanged).AddTo(Disposables);
         PracticedStatus.PropertyChanged.Subscribe(WhenPracticedStatusChanged).AddTo(Disposables);
@@ -31,10 +30,12 @@ public partial class PilotSubject : SubjectBase
     }
 
 
-    #region Entity fields
+    #region Primitives
 
     [ObservableProperty, Required]
     private string _Name = null!;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(UnitIcon))]
+    private UnitType _ForUnit = UnitType.MobileSuit;
     [ObservableProperty]
     private byte _Level;
     [ObservableProperty]
@@ -52,49 +53,47 @@ public partial class PilotSubject : SubjectBase
     [ObservableProperty]
     private bool _IsPinned;
 
-    public PilotStatusSubject BasicStatus { get; }
-    public PilotStatusSubject PracticedStatus { get; }
-
     #endregion
 
-    #region Entity relationships
+    #region Primitive Models
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(CategoryIcon))]
-    private Category? _Category;
     [ObservableProperty, Required]
     private Serial? _Serial;
     [ObservableProperty, Required, NotifyPropertyChangedFor(nameof(GradeText)), NotifyPropertyChangedFor(nameof(GradeColor))]
     private Grade? _Grade;
     [ObservableProperty, Required]
-    private PilotSkillDto? _Skill;
+    private Skill? _Skill;
     [ObservableProperty]
-    private PilotAbilityDto? _Ability1;
+    private PilotAbility? _Ability1;
     [ObservableProperty]
-    private PilotAbilityDto? _Ability2;
+    private PilotAbility? _Ability2;
     [ObservableProperty]
-    private PilotAbilityDto? _Ability3;
+    private PilotAbility? _Ability3;
+
+    public PilotStatus BasicStatus { get; }
+    public PilotStatus PracticedStatus { get; }
 
     #endregion
 
     #region Extensions
 
-    public string CategoryIcon => Category?.Icon ?? GwIcon.Unknown;
-    public string GradeText => Grade?.Name ?? string.Empty;
-    public string GradeColor => Grade?.Color ?? "White";
+    public string UnitIcon => ForUnit.ToIcon();
     public bool HasMemo => !string.IsNullOrEmpty(Memo);
+    public string GradeText => Grade?.Name ?? "?";
+    public string GradeColor => Grade?.Color ?? "White";
 
     [ObservableProperty]
     private int _PracticedStatusTotal;
 
-    public PilotStatusSubject AbilityStatus { get; }
-    public PilotStatusSubject ActualStatus { get; }
+    public PilotStatus AbilityStatus { get; }
+    public PilotStatus ActualStatus { get; }
+
+    public List<PilotAbility> AbilitiesForMobile => new[] { Ability1, Ability2, Ability3 }.Where(a => a != null && a.BoostCategory == BoostCategoryType.Mobile).Select(a => a!).ToList();
 
     #endregion
 
     [ObservableProperty]
     private MobileSubject? _Mobile;
-
-    public List<PilotAbilityDto> AbilitiesForMobile => new[] { Ability1, Ability2, Ability3 }.Where(i => i != null && i.BoostCategory == BoostUnitType.Mobile).Select(i => i!).ToList();
 
 
     public void Initialize(Action initializer)
@@ -114,7 +113,7 @@ public partial class PilotSubject : SubjectBase
         CalculateActualStatus();
     }
 
-    partial void OnAbility1Changed(PilotAbilityDto? value)
+    partial void OnAbility1Changed(PilotAbility? value)
     {
         if (!IsIdle) return;
         CalculateAbilityStatus();
@@ -122,7 +121,7 @@ public partial class PilotSubject : SubjectBase
         RaiseMobileBoostChanged();
     }
 
-    partial void OnAbility2Changed(PilotAbilityDto? value)
+    partial void OnAbility2Changed(PilotAbility? value)
     {
         if (!IsIdle) return;
         CalculateAbilityStatus();
@@ -130,7 +129,7 @@ public partial class PilotSubject : SubjectBase
         RaiseMobileBoostChanged();
     }
 
-    partial void OnAbility3Changed(PilotAbilityDto? value)
+    partial void OnAbility3Changed(PilotAbility? value)
     {
         if (!IsIdle) return;
         CalculateAbilityStatus();
@@ -138,13 +137,13 @@ public partial class PilotSubject : SubjectBase
         RaiseMobileBoostChanged();
     }
 
-    private void WhenBasicStatusChanged(string? _)
+    private void WhenBasicStatusChanged(PropertyChangedEventArgs? _)
     {
         if (!IsIdle) return;
         CalculateActualStatus();
     }
 
-    private void WhenPracticedStatusChanged(string? _)
+    private void WhenPracticedStatusChanged(PropertyChangedEventArgs? _)
     {
         if (!IsIdle) return;
         SetPracticedStatusTotal();
@@ -163,11 +162,11 @@ public partial class PilotSubject : SubjectBase
     }
 
     // パイロットは加算のみ
-    private void CalculateAbilityStatus(PilotAbilityDto? ability)
+    private void CalculateAbilityStatus(PilotAbility? ability)
     {
-        if (ability != null && ability.BoostCategory == BoostUnitType.Pilot)
+        if (ability != null && ability.BoostCategory == BoostCategoryType.Pilot)
         {
-            AbilityStatus.Add(ability.Boost.ToPilotStatusType(), ability.Value);
+            AbilityStatus.Add(ability.BoostStatus.ToPilotStatusType(), ability.Value);
         }
     }
 

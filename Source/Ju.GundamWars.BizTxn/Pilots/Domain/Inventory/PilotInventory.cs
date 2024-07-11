@@ -1,6 +1,8 @@
 ﻿using Ju.GundamWars.BizTxn.Pilots.Domain.Model;
-using Ju.GundamWars.UseCase.Pilots;
+using System.Collections.ObjectModel;
 
 namespace Ju.GundamWars.BizTxn.Pilots.Domain.Inventory;
 
-public class PilotInventory : GwNotifiableCollection<PilotSubject>, IPilotInventory { }
+public class PilotInventory : ObservableCollection<Pilot>
+{
+}

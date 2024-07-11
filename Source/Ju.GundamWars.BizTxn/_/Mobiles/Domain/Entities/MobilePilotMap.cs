@@ -9,6 +9,6 @@ public class MobilePilotMap
     public int PilotId { get; set; }
 
     public Mobile? Mobile { get; set; }
-    public Pilot? Pilot { get; set; }
+    public PilotDto? Pilot { get; set; }
 
 }

@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizMaster.PilotStatuses;
-using Ju.GundamWars.Core;
+using Ju.GundamWars.BizMaster.Boosts.Domain;
+using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.BizTxn.Pilots.Domain.Model;
 
-public partial class PilotStatusSubject : GwObservableObject
+public partial class PilotStatus : ModelBase
 {
 
     [ObservableProperty]
@@ -21,7 +21,7 @@ public partial class PilotStatusSubject : GwObservableObject
     private int _Defense;
 
 
-    public PilotStatusSubject Reset()
+    public PilotStatus Reset()
     {
         Shooting = 0;
         Melee = 0;
@@ -32,7 +32,7 @@ public partial class PilotStatusSubject : GwObservableObject
         return this;
     }
 
-    public PilotStatusSubject Set(PilotStatusSubject status)
+    public PilotStatus Set(PilotStatus status)
     {
         Shooting = status.Shooting;
         Melee = status.Melee;
@@ -43,7 +43,7 @@ public partial class PilotStatusSubject : GwObservableObject
         return this;
     }
 
-    public PilotStatusSubject Add(PilotStatusSubject status)
+    public PilotStatus Add(PilotStatus status)
     {
         Shooting += status.Shooting;
         Melee += status.Melee;
@@ -54,7 +54,7 @@ public partial class PilotStatusSubject : GwObservableObject
         return this;
     }
 
-    public PilotStatusSubject Add(PilotStatusType type, int value)
+    public PilotStatus Add(PilotStatusType type, int value)
     {
         switch (type)
         {
@@ -80,7 +80,7 @@ public partial class PilotStatusSubject : GwObservableObject
         return this;
     }
 
-    public PilotStatusSubject Add(PilotStatusType type, decimal value) =>
+    public PilotStatus Add(PilotStatusType type, decimal value) =>
         Add(type, decimal.ToInt32(value));
 
     public int Total() =>

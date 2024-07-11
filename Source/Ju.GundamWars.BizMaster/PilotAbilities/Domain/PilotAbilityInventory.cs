@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 
-public class PilotAbilityInventory : ObservableCollection<PilotAbilityDto>
+public class PilotAbilityInventory : ObservableCollection<PilotAbility>
 {
 }
