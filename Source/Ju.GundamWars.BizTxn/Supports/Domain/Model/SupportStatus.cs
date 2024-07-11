@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizMaster.Boosts.Domain;
+using Ju.GundamWars.BizConst.Boosts.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.BizTxn.Supports.Domain.Model;
@@ -89,47 +89,47 @@ public partial class SupportStatus : ModelBase
         return this;
     }
 
-    public SupportStatus Add(SupportStatusType type, int value)
+    public SupportStatus Add(BoostStatusType type, int value)
     {
         switch (type)
         {
-            case SupportStatusType.Hp:
+            case BoostStatusType.Hp:
                 Hp += value;
                 break;
-            case SupportStatusType.BeamAttack:
+            case BoostStatusType.BeamAttack:
                 BeamAttack += value;
                 break;
-            case SupportStatusType.PhysicalAttack:
+            case BoostStatusType.PhysicalAttack:
                 PhysicalAttack += value;
                 break;
-            case SupportStatusType.BeamDefence:
+            case BoostStatusType.BeamDefence:
                 BeamDefence += value;
                 break;
-            case SupportStatusType.PhysicalDefence:
+            case BoostStatusType.PhysicalDefence:
                 PhysicalDefence += value;
                 break;
-            case SupportStatusType.CriticalDamage:
+            case BoostStatusType.CriticalDamage:
                 CriticalDamage += value;
                 break;
-            case SupportStatusType.Accuracy:
+            case BoostStatusType.Accuracy:
                 Accuracy += value;
                 break;
-            case SupportStatusType.Evasion:
+            case BoostStatusType.Evasion:
                 Evasion += value;
                 break;
-            case SupportStatusType.Mobility:
+            case BoostStatusType.Mobility:
                 Mobility += value;
                 break;
-            case SupportStatusType.SuperPower:
+            case BoostStatusType.SuperPower:
                 SuperPower += value;
                 break;
-            case SupportStatusType.AcePower:
+            case BoostStatusType.AcePower:
                 AcePower += value;
                 break;
-            case SupportStatusType.RecoveryPower:
+            case BoostStatusType.RecoveryPower:
                 RecoveryPower += value;
                 break;
-            case SupportStatusType.EnRecovery:
+            case BoostStatusType.EnRecovery:
                 EnRecovery += value;
                 break;
         }

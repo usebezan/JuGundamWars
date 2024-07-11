@@ -1,5 +1,4 @@
-﻿using Ju.GundamWars.Cuspas.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ju.GundamWars.Persistence2.Cuspas;

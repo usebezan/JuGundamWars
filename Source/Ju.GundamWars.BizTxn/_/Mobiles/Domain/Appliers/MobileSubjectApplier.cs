@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.BizTxn._.CoMobiles.Domain.Model;
-using Ju.GundamWars.BizTxn._.Cuspas;
 using Ju.GundamWars.BizTxn._.Mobiles.Domain;
 using Ju.GundamWars.BizTxn._.Mobiles.Domain.Entities;
+using Ju.GundamWars.BizTxn.Cuspas.Domain.Model;
 using Ju.GundamWars.BizTxn.Supports.Domain.Model;
 using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.UseCase.CoMobiles;
@@ -140,7 +140,7 @@ public class MobileSubjectMapper(
         return subject;
     }
 
-    private CuspaSubject? GetCuspa(Mobile entity, byte seq) =>
+    private Cuspa? GetCuspa(Mobile entity, byte seq) =>
         cuspaInventory.FirstOrDefault(i => i.Id == (entity.Cuspas.FirstOrDefault(r => r.Seq == seq)?.CuspaId ?? -1));
 
     private Support? GetSupport(Mobile entity, byte seq, MobileSubject subject)

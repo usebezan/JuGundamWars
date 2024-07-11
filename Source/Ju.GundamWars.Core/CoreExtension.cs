@@ -60,4 +60,7 @@ public static class CoreExtension
         return self;
     }
 
+    public static int Multiply(this int self, decimal value) =>
+        (int)Math.Floor(self * value);
+
 }

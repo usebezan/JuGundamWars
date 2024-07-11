@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.BizMaster.Boosts.Domain;
+﻿using Ju.GundamWars.BizConst.Boosts.Domain;
 using Ju.GundamWars.Commons.Domain;
 
 namespace Ju.GundamWars.BizMaster.SupportBadges.Domain;

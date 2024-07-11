@@ -1,10 +1,4 @@
 ﻿using Ju.GundamWars.Application.Pilots.Repositories;
-using Ju.GundamWars.Domain.Mobiles.Mappers;
-using Ju.GundamWars.Pilots.Domain;
-using Ju.GundamWars.Pilots.Domain.Entities;
-using Ju.GundamWars.UseCase.Mobiles;
-using Ju.GundamWars.UseCase.Pilots;
-using Ju.GundamWars.UseCase.Systems;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Application.Pilots;

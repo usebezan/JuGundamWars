@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="_\**" />
+    <EmbeddedResource Remove="_\**" />
+    <None Remove="_\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ju.GundamWars.BizConst\Ju.GundamWars.BizConst.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.BizMaster\Ju.GundamWars.BizMaster.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />

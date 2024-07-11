@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizTxn._.Cuspas;
 using Ju.GundamWars.BizTxn.Supports.Domain.Model;
 using Ju.GundamWars.BizMaster.MobileStatuses;
 using Ju.GundamWars.Core;
 using Ju.GundamWars.Domain.CoMobiles;
+using Ju.GundamWars.BizTxn.Cuspas.Domain.Model;
 
 namespace Ju.GundamWars.BizTxn._.Mobiles.Domain;
 
@@ -118,7 +118,7 @@ public partial class MobileStatusSubject : GwObservableObject
         return this;
     }
 
-    public MobileStatusSubject Add(CuspaStatusSubject boost)
+    public MobileStatusSubject Add(CuspaStatus boost)
     {
         Hp += boost.Hp;
         BeamAttack += boost.BeamAttack;

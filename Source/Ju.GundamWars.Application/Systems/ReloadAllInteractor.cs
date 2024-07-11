@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.UseCase.Systems;
-
-namespace Ju.GundamWars.Application.Systems;
+﻿namespace Ju.GundamWars.Application.Systems;
 
 public class ReloadAllInteractor(
     IDownloadDataUseCase downloadDataUseCase,

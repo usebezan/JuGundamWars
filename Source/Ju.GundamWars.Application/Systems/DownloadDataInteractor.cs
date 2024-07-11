@@ -1,7 +1,5 @@
 ﻿using Ju.GundamWars.Application.Services;
 using Ju.GundamWars.Application.Versionings.Repositories;
-using Ju.GundamWars.Domain.Systems;
-using Ju.GundamWars.UseCase.Systems;
 using Microsoft.Extensions.Options;
 
 namespace Ju.GundamWars.Application.Systems;

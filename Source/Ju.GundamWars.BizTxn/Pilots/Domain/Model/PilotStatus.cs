@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizMaster.Boosts.Domain;
+using Ju.GundamWars.BizConst.Boosts.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.BizTxn.Pilots.Domain.Model;
@@ -54,33 +54,33 @@ public partial class PilotStatus : ModelBase
         return this;
     }
 
-    public PilotStatus Add(PilotStatusType type, int value)
+    public PilotStatus Add(BoostStatusType type, int value)
     {
         switch (type)
         {
-            case PilotStatusType.Shooting:
+            case BoostStatusType.Shooting:
                 Shooting += value;
                 break;
-            case PilotStatusType.Melee:
+            case BoostStatusType.Melee:
                 Melee += value;
                 break;
-            case PilotStatusType.Accuracy:
+            case BoostStatusType.Accuracy:
                 Accuracy += value;
                 break;
-            case PilotStatusType.Evasion:
+            case BoostStatusType.Evasion:
                 Evasion += value;
                 break;
-            case PilotStatusType.Awakened:
+            case BoostStatusType.Awakened:
                 Awakened += value;
                 break;
-            case PilotStatusType.Defense:
+            case BoostStatusType.Defense:
                 Defense += value;
                 break;
         }
         return this;
     }
 
-    public PilotStatus Add(PilotStatusType type, decimal value) =>
+    public PilotStatus Add(BoostStatusType type, decimal value) =>
         Add(type, decimal.ToInt32(value));
 
     public int Total() =>

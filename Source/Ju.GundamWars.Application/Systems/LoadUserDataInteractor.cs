@@ -5,19 +5,6 @@ using Ju.GundamWars.Application.Pilots.Repositories;
 using Ju.GundamWars.Application.Supports.Repositories;
 using Ju.GundamWars.Application.Systems.Repositories;
 using Ju.GundamWars.Application.Tags.Repositories;
-using Ju.GundamWars.Cuspas.Domain.Factories;
-using Ju.GundamWars.Domain.CoMobiles.Factories;
-using Ju.GundamWars.Domain.Tags.Factories;
-using Ju.GundamWars.Mobiles.Domain.Factories;
-using Ju.GundamWars.Pilots.Domain.Factories;
-using Ju.GundamWars.Supports.Domain.Factories;
-using Ju.GundamWars.UseCase.CoMobiles;
-using Ju.GundamWars.UseCase.Cuspas;
-using Ju.GundamWars.UseCase.Mobiles;
-using Ju.GundamWars.UseCase.Pilots;
-using Ju.GundamWars.UseCase.Supports;
-using Ju.GundamWars.UseCase.Systems;
-using Ju.GundamWars.UseCase.Tags;
 
 namespace Ju.GundamWars.Application.Systems;
 

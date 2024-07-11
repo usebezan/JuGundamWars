@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.Domain.Tags.Entities;
-
-namespace Ju.GundamWars.Application.Tags.Repositories;
+﻿namespace Ju.GundamWars.Application.Tags.Repositories;
 
 public interface ITagRepository : IReadOnlyRepository<Tag>
 {

@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using Ju.GundamWars.BizTxn.Supports.Domain.Model;
+﻿using Ju.GundamWars.BizTxn.Supports.Domain.Model;
+using System.Collections.ObjectModel;
 
 namespace Ju.GundamWars.BizTxn.Supports.Domain.Inventory;
 

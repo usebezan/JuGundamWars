@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.BizTxn._.Cuspas.Domain.Entities;
+﻿using Ju.GundamWars.BizTxn.Cuspas.Domain.Dto;
 
 namespace Ju.GundamWars.BizTxn._.Mobiles.Domain.Entities;
 
@@ -10,6 +10,6 @@ public class MobileCuspa
     public int CuspaId { get; set; }
 
     public Mobile? Mobile { get; set; }
-    public Cuspa? Cuspa { get; set; }
+    public CuspaDto? Cuspa { get; set; }
 
 }

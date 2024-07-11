@@ -1,6 +1,4 @@
 ﻿using Ju.GundamWars.Application.CoMobiles.Repositories;
-using Ju.GundamWars.Domain.CoMobiles.Entities;
-using Ju.GundamWars.Mobiles.Domain.Entities;
 using Ju.GundamWars.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

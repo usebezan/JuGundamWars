@@ -3,7 +3,6 @@ using Ju.GundamWars.BizConst.Grades.Domain;
 using Ju.GundamWars.BizConst.Units.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.SupportSlots.Domain;
-using Ju.GundamWars.BizTxn._.Mobiles.Domain;
 using Ju.GundamWars.BizTxn.Commons.Domain;
 using Ju.GundamWars.Collections;
 using System.Collections.Specialized;
@@ -86,8 +85,9 @@ public partial class Support : BizBase, ISupport
 
     #endregion
 
-    [ObservableProperty]
-    private MobileSubject? _Mobile;
+    // TODO:
+    //[ObservableProperty]
+    //private MobileSubject? _Mobile;
 
 
     public void Initialize(Action initializer)
@@ -167,15 +167,15 @@ public partial class Support : BizBase, ISupport
                 var slotKind = slotBadge.Slot?.Kind ?? SupportSlotKindType.Unknown;
                 if (slotKind == SupportSlotKindType.Normal)
                 {
-                    NormalStatus.Add(slotBadge.SupportStatusType, slotBadge.StatusValue);
+                    NormalStatus.Add(slotBadge.BoostStatusType, slotBadge.StatusValue);
                 }
                 else if (slotKind == SupportSlotKindType.Unlock)
                 {
-                    UnlockStatus.Add(slotBadge.SupportStatusType, slotBadge.StatusValue);
+                    UnlockStatus.Add(slotBadge.BoostStatusType, slotBadge.StatusValue);
                 }
                 else if (slotKind == SupportSlotKindType.Bonus)
                 {
-                    BonusStatus.Add(slotBadge.SupportStatusType, slotBadge.StatusValue);
+                    BonusStatus.Add(slotBadge.BoostStatusType, slotBadge.StatusValue);
                 }
             }
             ActualStatus.Set(NormalStatus).Add(UnlockStatus).Add(BonusStatus);

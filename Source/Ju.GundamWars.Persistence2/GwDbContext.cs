@@ -1,9 +1,4 @@
-﻿using Ju.GundamWars.Cuspas.Domain.Entities;
-using Ju.GundamWars.Domain.CoMobiles.Entities;
-using Ju.GundamWars.Mobiles.Domain.Entities;
-using Ju.GundamWars.Pilots.Domain.Entities;
-using Ju.GundamWars.Supports.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Ju.GundamWars.Persistence2;

@@ -1,8 +1,4 @@
-﻿using Ju.GundamWars.Const;
-using Ju.GundamWars.Domain.Systems;
-using Ju.GundamWars.UseCase.Systems;
-
-namespace Ju.GundamWars.Application.Systems;
+﻿namespace Ju.GundamWars.Application.Systems;
 
 public class LoadConstDataUseCaseInteractor(
     IBoostInventory boostInventory,

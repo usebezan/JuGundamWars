@@ -1,11 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.BizConst.Boosts.Domain;
 using Ju.GundamWars.BizConst.Grades.Domain;
 using Ju.GundamWars.BizConst.Units.Domain;
-using Ju.GundamWars.BizMaster.Boosts.Domain;
 using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
-using Ju.GundamWars.BizTxn._.Mobiles.Domain;
 using Ju.GundamWars.BizTxn.Commons.Domain;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -92,8 +91,9 @@ public partial class Pilot : BizBase, IPilot
 
     #endregion
 
-    [ObservableProperty]
-    private MobileSubject? _Mobile;
+    // TODO:
+    //[ObservableProperty]
+    //private MobileSubject? _Mobile;
 
 
     public void Initialize(Action initializer)
@@ -137,13 +137,13 @@ public partial class Pilot : BizBase, IPilot
         RaiseMobileBoostChanged();
     }
 
-    private void WhenBasicStatusChanged(PropertyChangedEventArgs? _)
+    private void WhenBasicStatusChanged(PropertyChangedEventArgs _)
     {
         if (!IsIdle) return;
         CalculateActualStatus();
     }
 
-    private void WhenPracticedStatusChanged(PropertyChangedEventArgs? _)
+    private void WhenPracticedStatusChanged(PropertyChangedEventArgs _)
     {
         if (!IsIdle) return;
         SetPracticedStatusTotal();
@@ -166,7 +166,7 @@ public partial class Pilot : BizBase, IPilot
     {
         if (ability != null && ability.BoostCategory == BoostCategoryType.Pilot)
         {
-            AbilityStatus.Add(ability.BoostStatus.ToPilotStatusType(), ability.Value);
+            AbilityStatus.Add(ability.BoostStatus, ability.Value);
         }
     }
 

@@ -1,9 +1,4 @@
-﻿using Ju.GundamWars.Core.Common.Domain;
-using Ju.GundamWars.Domain.Mobiles.Mappers;
-using Ju.GundamWars.UseCase;
-using Ju.GundamWars.UseCase.Mobiles;
-using Ju.GundamWars.UseCase.Systems;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Application;
 

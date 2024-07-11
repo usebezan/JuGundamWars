@@ -1,5 +1,4 @@
 ﻿using Ju.GundamWars.Application.Mobiles.Repositories;
-using Ju.GundamWars.Mobiles.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 

@@ -1,10 +1,4 @@
 ﻿using Ju.GundamWars.Application.Cuspas.Repositories;
-using Ju.GundamWars.Core.Ju.GundamWars.Cuspas;
-using Ju.GundamWars.Cuspas.Domain.Entities;
-using Ju.GundamWars.Domain.Mobiles.Mappers;
-using Ju.GundamWars.UseCase.Cuspas;
-using Ju.GundamWars.UseCase.Mobiles;
-using Ju.GundamWars.UseCase.Systems;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Application.Cuspas;

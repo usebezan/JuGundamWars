@@ -6,28 +6,8 @@ using Ju.GundamWars.Application.Services;
 using Ju.GundamWars.Application.Supports;
 using Ju.GundamWars.Application.Systems;
 using Ju.GundamWars.Application.Tags;
-using Ju.GundamWars.Domain.CoMobiles.Mappers;
-using Ju.GundamWars.Domain.CoMobiles.Factories;
-using Ju.GundamWars.Domain.Cuspas.Mappers;
-using Ju.GundamWars.Domain.Mobiles.Mappers;
-using Ju.GundamWars.Domain.Pilots.Mappers;
-using Ju.GundamWars.Domain.Supports.Mappers;
-using Ju.GundamWars.Domain.Systems;
-using Ju.GundamWars.Domain.Tags.Mappers;
-using Ju.GundamWars.Domain.Tags.Factories;
-using Ju.GundamWars.UseCase.CoMobiles;
-using Ju.GundamWars.UseCase.Cuspas;
-using Ju.GundamWars.UseCase.Mobiles;
-using Ju.GundamWars.UseCase.Pilots;
-using Ju.GundamWars.UseCase.Supports;
-using Ju.GundamWars.UseCase.Systems;
-using Ju.GundamWars.UseCase.Tags;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Ju.GundamWars.Cuspas.Domain.Factories;
-using Ju.GundamWars.Mobiles.Domain.Factories;
-using Ju.GundamWars.Pilots.Domain.Factories;
-using Ju.GundamWars.Supports.Domain.Factories;
 
 namespace Ju.GundamWars.Application;
 

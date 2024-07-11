@@ -1,6 +1,4 @@
 ﻿using Ju.GundamWars.Application.Tags.Repositories;
-using Ju.GundamWars.Domain.Tags.Factories;
-using Ju.GundamWars.UseCase.Tags;
 
 namespace Ju.GundamWars.Application.Tags;
 

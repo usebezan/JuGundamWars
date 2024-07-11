@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars;
 using Ju.GundamWars.BizTxn._.CoMobiles.Domain.Model;
-using Ju.GundamWars.BizTxn._.Cuspas;
 using Ju.GundamWars.BizTxn._.Mobiles.Domain.Entities;
 using Ju.GundamWars.BizTxn.Pilots.Domain.Model;
 using Ju.GundamWars.BizTxn.Supports.Domain.Model;
@@ -23,6 +22,7 @@ using Ju.GundamWars.Domain.CoMobiles;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
+using Ju.GundamWars.BizTxn.Cuspas.Domain.Model;
 
 namespace Ju.GundamWars.BizTxn._.Mobiles.Domain;
 
@@ -35,7 +35,7 @@ public partial class MobileSubject : SubjectBase
         RemodeledStatus = new MobileRemodeledStatusSubject().AddTo(Disposables);
         SubSerials = [];
         PilotBoost = new MobileStatusSubject().AddTo(Disposables);
-        CuspaBoost = new CuspaStatusSubject().AddTo(Disposables);
+        CuspaBoost = new CuspaStatus().AddTo(Disposables);
         SupportBoost = new SupportStatus().AddTo(Disposables);
         SupportBoostOwn = new SupportStatus().AddTo(Disposables);
         CoMobileBoost = new CoMobileStatusSubject().AddTo(Disposables);
@@ -268,10 +268,10 @@ public partial class MobileSubject : SubjectBase
     #region Cuspa, S-Cuspa
 
     [ObservableProperty]
-    private CuspaSubject? _Cuspa1;
+    private Cuspa? _Cuspa1;
     private IDisposable? cuspa1ChangedHandler = null;
 
-    partial void OnCuspa1Changed(CuspaSubject? value)
+    partial void OnCuspa1Changed(Cuspa? value)
     {
         cuspa1ChangedHandler?.Dispose();
         cuspa1ChangedHandler = null;
@@ -280,10 +280,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _Cuspa2;
+    private Cuspa? _Cuspa2;
     private IDisposable? cuspa2ChangedHandler = null;
 
-    partial void OnCuspa2Changed(CuspaSubject? value)
+    partial void OnCuspa2Changed(Cuspa? value)
     {
         cuspa2ChangedHandler?.Dispose();
         cuspa2ChangedHandler = null;
@@ -292,10 +292,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _Cuspa3;
+    private Cuspa? _Cuspa3;
     private IDisposable? cuspa3ChangedHandler = null;
 
-    partial void OnCuspa3Changed(CuspaSubject? value)
+    partial void OnCuspa3Changed(Cuspa? value)
     {
         cuspa3ChangedHandler?.Dispose();
         cuspa3ChangedHandler = null;
@@ -304,10 +304,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _Cuspa4;
+    private Cuspa? _Cuspa4;
     private IDisposable? cuspa4ChangedHandler = null;
 
-    partial void OnCuspa4Changed(CuspaSubject? value)
+    partial void OnCuspa4Changed(Cuspa? value)
     {
         cuspa4ChangedHandler?.Dispose();
         cuspa4ChangedHandler = null;
@@ -316,10 +316,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _Cuspa5;
+    private Cuspa? _Cuspa5;
     private IDisposable? cuspa5ChangedHandler = null;
 
-    partial void OnCuspa5Changed(CuspaSubject? value)
+    partial void OnCuspa5Changed(Cuspa? value)
     {
         cuspa5ChangedHandler?.Dispose();
         cuspa5ChangedHandler = null;
@@ -328,10 +328,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _Cuspa6;
+    private Cuspa? _Cuspa6;
     private IDisposable? cuspa6ChangedHandler = null;
 
-    partial void OnCuspa6Changed(CuspaSubject? value)
+    partial void OnCuspa6Changed(Cuspa? value)
     {
         cuspa6ChangedHandler?.Dispose();
         cuspa6ChangedHandler = null;
@@ -340,10 +340,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _SCuspa1;
+    private Cuspa? _SCuspa1;
     private IDisposable? sCuspa1ChangedHandler = null;
 
-    partial void OnSCuspa1Changed(CuspaSubject? value)
+    partial void OnSCuspa1Changed(Cuspa? value)
     {
         sCuspa1ChangedHandler?.Dispose();
         sCuspa1ChangedHandler = null;
@@ -352,10 +352,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _SCuspa2;
+    private Cuspa? _SCuspa2;
     private IDisposable? sCuspa2ChangedHandler = null;
 
-    partial void OnSCuspa2Changed(CuspaSubject? value)
+    partial void OnSCuspa2Changed(Cuspa? value)
     {
         sCuspa2ChangedHandler?.Dispose();
         sCuspa2ChangedHandler = null;
@@ -364,10 +364,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _SCuspa3;
+    private Cuspa? _SCuspa3;
     private IDisposable? sCuspa3ChangedHandler = null;
 
-    partial void OnSCuspa3Changed(CuspaSubject? value)
+    partial void OnSCuspa3Changed(Cuspa? value)
     {
         sCuspa3ChangedHandler?.Dispose();
         sCuspa3ChangedHandler = null;
@@ -376,10 +376,10 @@ public partial class MobileSubject : SubjectBase
     }
 
     [ObservableProperty]
-    private CuspaSubject? _SCuspa4;
+    private Cuspa? _SCuspa4;
     private IDisposable? sCuspa4ChangedHandler = null;
 
-    partial void OnSCuspa4Changed(CuspaSubject? value)
+    partial void OnSCuspa4Changed(Cuspa? value)
     {
         sCuspa4ChangedHandler?.Dispose();
         sCuspa4ChangedHandler = null;
@@ -387,7 +387,7 @@ public partial class MobileSubject : SubjectBase
         WhenCuspaChanged();
     }
 
-    public CuspaStatusSubject CuspaBoost { get; }
+    public CuspaStatus CuspaBoost { get; }
 
     private void WhenCuspaChanged(string? _ = "")
     {
@@ -398,13 +398,13 @@ public partial class MobileSubject : SubjectBase
         CalculateActualStatus();
     }
 
-    private void CalculateCuspaBoost(CuspaSubject? cuspa)
+    private void CalculateCuspaBoost(Cuspa? cuspa)
     {
         if (cuspa == null) return;
         CuspaBoost.Add(cuspa.ActualStatus);
     }
 
-    private void CalculateSCuspaBoost(CuspaSubject? cuspa)
+    private void CalculateSCuspaBoost(Cuspa? cuspa)
     {
         if (cuspa == null) return;
         var multiplier = multipliers.FirstOrDefault(m => m.Item1 == Role?.Type && m.Item2 == cuspa.Kind?.Type)?.Item3 ?? 1;

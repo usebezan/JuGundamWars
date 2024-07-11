@@ -1,5 +1,4 @@
-﻿using Ju.GundamWars.Domain.Versionings.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ju.GundamWars.Persistence.Versionings;

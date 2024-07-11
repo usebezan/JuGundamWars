@@ -1,10 +1,10 @@
 ﻿//using CommunityToolkit.Mvvm.ComponentModel;
-//using Ju.GundamWars.BizMaster._.System;
+//using Ju.GundamWars.BizMaster.System;
 //using Ju.GundamWars.Const;
 //using Ju.GundamWars.Core;
 //using Ju.GundamWars.Domain.System;
 
-//namespace Ju.GundamWars.BizMaster._.System;
+//namespace Ju.GundamWars.BizMaster.System;
 
 //public partial class WindowStatus : GwObservableObject
 //{

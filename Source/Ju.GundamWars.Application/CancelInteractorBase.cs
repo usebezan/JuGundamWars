@@ -1,7 +1,4 @@
-﻿using Ju.GundamWars.Core.Common.Domain;
-using Ju.GundamWars.UseCase;
-using Ju.GundamWars.UseCase.Systems;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;

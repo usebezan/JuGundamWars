@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.Mobiles.Domain.Entities;
-
-namespace Ju.GundamWars.Application;
+﻿namespace Ju.GundamWars.Application;
 
 public interface IRepository<TEntity> : IReadOnlyRepository<TEntity>
 {

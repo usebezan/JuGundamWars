@@ -1,6 +1,4 @@
 ﻿using Ju.GundamWars.Application.Cuspas.Repositories;
-using Ju.GundamWars.Cuspas.Domain.Entities;
-using Ju.GundamWars.Mobiles.Domain.Entities;
 using Ju.GundamWars.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

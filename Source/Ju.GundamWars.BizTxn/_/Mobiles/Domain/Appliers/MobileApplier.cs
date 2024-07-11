@@ -1,7 +1,7 @@
 ﻿using Ju.GundamWars.BizTxn._.CoMobiles.Domain.Model;
-using Ju.GundamWars.BizTxn._.Cuspas;
 using Ju.GundamWars.BizTxn._.Mobiles.Domain;
 using Ju.GundamWars.BizTxn._.Mobiles.Domain.Entities;
+using Ju.GundamWars.BizTxn.Cuspas.Domain.Model;
 using Ju.GundamWars.BizTxn.Supports.Domain.Model;
 using Ju.GundamWars.Common.Domain.Service.Mapping;
 using Ju.GundamWars.Domain.Mobiles.Entities;
@@ -120,7 +120,7 @@ public class MobileMapper : IMapper<MobileSubject, Mobile>
         return entity;
     }
 
-    private void AddCuspa(Mobile mobile, byte seq, CuspaSubject? cuspa)
+    private void AddCuspa(Mobile mobile, byte seq, Cuspa? cuspa)
     {
         if (cuspa != null)
         {

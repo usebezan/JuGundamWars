@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizMaster.Boosts.Domain;
+using Ju.GundamWars.BizConst.Boosts.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
 using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
@@ -11,7 +11,7 @@ public partial class SupportSlotBadge : ModelBase
 
     public SupportSlotBadge()
     {
-        SupportStatusType = SupportStatusType.Unknown;
+        BoostStatusType = BoostStatusType.Unknown;
         StatusValue = 0;
 
         isIdle = true;
@@ -44,7 +44,7 @@ public partial class SupportSlotBadge : ModelBase
 
     #endregion
 
-    public SupportStatusType SupportStatusType { get; private set; }
+    public BoostStatusType BoostStatusType { get; private set; }
     public int StatusValue { get; private set; }
 
 
@@ -85,26 +85,26 @@ public partial class SupportSlotBadge : ModelBase
     // BoostCategoryType は SupportSlotKindType から固定で設定している
     private void CalculateStatus()
     {
-        SupportStatusType = SupportStatusType.Unknown;
+        BoostStatusType = BoostStatusType.Unknown;
         StatusValue = 0;
         if (Slot != null)
         {
             if (Slot.Kind == SupportSlotKindType.Normal && Badge != null)
             {
                 // 通常スロットはバッジの値を機体へ
-                SupportStatusType = Badge.BoostStatus.ToSupportStatusType();
+                BoostStatusType = Badge.BoostStatus;
                 StatusValue = Badge.CalcBoostedValue();
             }
             else if (Slot.Kind == SupportSlotKindType.Unlock)
             {
                 // 解放スロットはスロットの値を機体へ
-                SupportStatusType = Slot.BoostStatus.ToSupportStatusType();
+                BoostStatusType = Slot.BoostStatus;
                 StatusValue = Slot.CalcBoostedValue();
             }
             else if (Slot.Kind == SupportSlotKindType.Bonus && Badge != null)
             {
                 // ボーナス スロットはバッジの値を機体へ
-                SupportStatusType = Badge.BoostStatus.ToSupportStatusType();
+                BoostStatusType = Badge.BoostStatus;
                 StatusValue = Badge.CalcBoostedValue();
                 if (IsBonused)
                 {
