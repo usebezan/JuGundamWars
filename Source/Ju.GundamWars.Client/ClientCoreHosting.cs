@@ -1,4 +1,6 @@
-﻿using Ju.GundamWars.Client.Commons;
+﻿using Ju.GundamWars.Client.Commons.Application;
+using Ju.GundamWars.Client.Commons.UseCase.InputPort;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Ju.GundamWars.Client;
@@ -7,5 +9,14 @@ public static class ClientCoreHosting
 {
     public static IHostBuilder ConfigureClientCore(this IHostBuilder self) =>
         self
-            .ConfigureCommonsClientCore();
+            .ConfigureServices((context, services) =>
+            {
+                // Application
+                services
+                    .AddSingleton(typeof(IDeleteByIdClientUseCase<,,>), typeof(DeleteByIdClientInteractor<,,>))
+                    .AddSingleton(typeof(IInsertClientUseCase<,,,,>), typeof(InsertClientInteractor<,,,,>))
+                    .AddSingleton(typeof(ISelectByIdClientUseCase<,,>), typeof(SelectByIdClientInteractor<,,>))
+                    .AddSingleton(typeof(IUpdateClientUseCase<,,,,>), typeof(UpdateClientInteractor<,,,,>))
+                ;
+            });
 }

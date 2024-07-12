@@ -1,17 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Ju.GundamWars.BizTxn.Supports.Domain.Dto;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Ju.GundamWars.Persistence2.Supports;
+namespace Ju.GundamWars.Server.Supports.Infrastructure.Persistence;
 
-public class SupportConfig : IEntityTypeConfiguration<Support>
+public class SupportConfig : IEntityTypeConfiguration<SupportDto>
 {
-
-    public void Configure(EntityTypeBuilder<Support> builder)
+    public void Configure(EntityTypeBuilder<SupportDto> builder)
     {
-        builder.ToTable(nameof(Support));
+        builder.ToTable("Support");
         builder.HasMany(e => e.LimitedSerialMaps).WithOne(e => e.Support).HasForeignKey(e => e.SupportId).IsRequired(false);
         builder.HasMany(e => e.TagMaps).WithOne(e => e.Support).HasForeignKey(e => e.SupportId).IsRequired(false);
         builder.HasMany(e => e.SlotBadges).WithOne(e => e.Support).HasForeignKey(e => e.SupportId).IsRequired(false);
     }
-
 }
