@@ -1,33 +1,29 @@
-﻿using Ju.GundamWars.Core;
+﻿using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.Domain.Gateway;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 
 // NOTE: EF 自体は非同期にはしない https://learn.microsoft.com/ja-jp/ef/core/miscellaneous/async
-public abstract class RepositoryBase<TDbContext, T>(TDbContext dbContext, ILogger logger) : IGw
+public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext> factory, ILogger logger) : IGw, IByIdGateway<T>
     where TDbContext : DbContext
-    where T : class
+    where T : class, IIdentify
 {
 
-    protected TDbContext DbContext { get; } = dbContext;
+    protected IDbContextFactory<TDbContext> Factory { get; } = factory;
+    protected TDbContext DbContext { get; } = factory.CreateDbContext();
     protected ILogger Logger { get; } = logger;
     protected DbSet<T> DbSet => DbContext.Set<T>();
     protected virtual IQueryable<T> Queryable => DbContext.Set<T>();
 
 
-    protected (List<T>, int) SelectPaginatedListCore(Func<IQueryable<T>> selector, int page, int rowsCountPerPage)
-    {
-        if (rowsCountPerPage <= 0)
-        {
-            var all = selector().ToList();
-            return (all, all.Count);
-        }
-        var rowsCount = selector().Count();
-        var skip = (page - 1) * rowsCountPerPage;
-        var list = selector().Skip(skip).Take(rowsCountPerPage).ToList();
-        return (list, rowsCount);
-    }
+    #region Select
+
+    public Task<T?> SelectByIdAsync(long id) =>
+        this.ExecuteAsync(Logger, () => Find(id));
+
+    #endregion
 
     #region Insert
 
@@ -47,6 +43,9 @@ public abstract class RepositoryBase<TDbContext, T>(TDbContext dbContext, ILogge
     #endregion
 
     #region Update
+
+    public Task<T> UpdateAsync(T data) =>
+        UpdateAsync(() => Find(data.Id), data);
 
     protected Task<T> UpdateAsync(Func<T?> selector, T data) =>
         this.ExecuteAsync(Logger, () =>
@@ -68,6 +67,9 @@ public abstract class RepositoryBase<TDbContext, T>(TDbContext dbContext, ILogge
 
     #region Delete
 
+    public Task<T> DeleteByIdAsync(long id) =>
+        DeleteAsync(() => Find(id));
+
     protected Task<T> DeleteAsync(Func<T?> selector) =>
         this.ExecuteAsync(Logger, () =>
         {
@@ -84,5 +86,7 @@ public abstract class RepositoryBase<TDbContext, T>(TDbContext dbContext, ILogge
     }
 
     #endregion
+
+    protected T? Find(long id) => Queryable.FirstOrDefault(e => e.Id == id);
 
 }

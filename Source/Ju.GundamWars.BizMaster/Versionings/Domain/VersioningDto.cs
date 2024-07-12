@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.BizMaster.Versionings.Domain;
 
-public class Versioning : IIdentify
+public class VersioningDto : IIdentify
 {
 
     #region Primitives

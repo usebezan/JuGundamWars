@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
+    <Compile Remove="Commons\UseCase\OutputPort\**" />
+    <EmbeddedResource Remove="Commons\UseCase\OutputPort\**" />
+    <None Remove="Commons\UseCase\OutputPort\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commons\UseCase\OutputPort\" />
+    <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
   </ItemGroup>
 
 </Project>
