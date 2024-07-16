@@ -16,7 +16,7 @@ using System.Reflection;
 
 namespace Ju.GundamWars.Server;
 
-public static class ClientCoreHosting
+public static class ServerCoreHosting
 {
     public static IHostBuilder ConfigureClientCore(this IHostBuilder self) =>
         self

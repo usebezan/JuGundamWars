@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.BizConst", "J
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.BizTxn", "Ju.GundamWars.BizTxn\Ju.GundamWars.BizTxn.csproj", "{E3E9469F-D094-40DD-B44A-397862337E60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ju.GundamWars.Client.CoMobiles", "Ju.GundamWars.Client.CoMobiles\Ju.GundamWars.Client.CoMobiles.csproj", "{438C838C-FA61-433F-858E-EFACB718C6F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{E3E9469F-D094-40DD-B44A-397862337E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3E9469F-D094-40DD-B44A-397862337E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3E9469F-D094-40DD-B44A-397862337E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{438C838C-FA61-433F-858E-EFACB718C6F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{438C838C-FA61-433F-858E-EFACB718C6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{438C838C-FA61-433F-858E-EFACB718C6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{438C838C-FA61-433F-858E-EFACB718C6F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +110,7 @@ Global
 		{D68A9F60-7F83-482E-ABD7-56BFFA2DC710} = {83601926-ED5D-4A5E-AF60-BD213D246D4C}
 		{69B2C3B1-A60D-463C-82BE-00619BE83B39} = {83601926-ED5D-4A5E-AF60-BD213D246D4C}
 		{E3E9469F-D094-40DD-B44A-397862337E60} = {83601926-ED5D-4A5E-AF60-BD213D246D4C}
+		{438C838C-FA61-433F-858E-EFACB718C6F1} = {1A910B61-6AF5-4814-901F-36BB43131C3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED6AFF9-FFD5-48E6-8B9C-E668E6131973}

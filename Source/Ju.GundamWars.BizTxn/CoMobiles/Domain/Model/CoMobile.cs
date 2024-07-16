@@ -29,8 +29,8 @@ public partial class CoMobile : BizBase, ICoMobile
     #region Primitives
 
     [ObservableProperty, Required]
-    private string _Name = null!;
-    [ObservableProperty]
+    private string _Name = string.Empty;
+    [ObservableProperty, Required]
     private byte _Level;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(HasMemo))]
     private string? _Memo;
@@ -71,8 +71,9 @@ public partial class CoMobile : BizBase, ICoMobile
     public void Initialize(Action initializer)
     {
         Suspend(initializer);
-        SetUpgradedCountTotal();
         SetJoinedTags();
+        OnPropertyChanged(nameof(Memo));
+        SetUpgradedCountTotal();
         CalculateActualStatus();
         RaiseMobileBoostChanged();
     }

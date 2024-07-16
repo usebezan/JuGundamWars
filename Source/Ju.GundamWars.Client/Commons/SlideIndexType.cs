@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.BizConst._.System;
+﻿namespace Ju.GundamWars.Client.Commons;
 
 public enum SlideIndexType : byte
 {

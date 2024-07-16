@@ -32,7 +32,7 @@ public partial class Pilot : BizBase, IPilot
     #region Primitives
 
     [ObservableProperty, Required]
-    private string _Name = null!;
+    private string _Name = string.Empty;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(UnitIcon))]
     private UnitType _ForUnit = UnitType.MobileSuit;
     [ObservableProperty]
