@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
+using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -13,6 +14,7 @@ public class GwMasterDbContext(DbContextOptions<GwMasterDbContext> options) : Db
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<MobileSSkillEntity>().ToTable("MobileSSkill");
         modelBuilder.Entity<PilotAbilityEntity>().ToTable("PilotAbility");
         modelBuilder.Entity<SerialEntity>().ToTable("Serial");
         modelBuilder.Entity<SkillEntity>().ToTable("Skill");

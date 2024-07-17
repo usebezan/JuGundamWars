@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
+using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -12,6 +13,7 @@ public interface ILoadAllClientPresenter : IPresenter
     void ShowProgress();
     void CloseProgress();
 
+    void CompleteMobileSSkill(List<MobileSSkill> output);
     void CompletePilotAbility(List<PilotAbility> output);
     void CompleteSerial(List<Serial> output);
     void CompleteSkill(List<Skill> output);

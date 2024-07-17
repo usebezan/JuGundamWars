@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
+using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -10,6 +11,8 @@ using Microsoft.Extensions.Logging;
 namespace Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 
 public class SystemWebApiController(
+    ISelectAllServerUseCase<MobileSSkillEntity, IMasterRepository<MobileSSkillEntity>> selectAllMobileSSkillsServerUseCase,
+    MobileSSkillPrimitiveMapper<MobileSSkillEntity, MobileSSkillDto> mobileSSkillDtoMapper,
     ISelectAllServerUseCase<PilotAbilityEntity, IMasterRepository<PilotAbilityEntity>> selectAllPilotAbilitiesServerUseCase,
     PilotAbilityPrimitiveMapper<PilotAbilityEntity, PilotAbilityDto> pilotAbilityDtoMapper,
     ISelectAllServerUseCase<SerialEntity, IMasterRepository<SerialEntity>> selectAllSerialsServerUseCase,
@@ -23,6 +26,12 @@ public class SystemWebApiController(
     ILogger<SystemWebApiController> logger
     ) : IGw
 {
+    public Task<List<MobileSSkillDto>> SelectAllMobileSSkillsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await selectAllMobileSSkillsServerUseCase.HandleAsync();
+            return entities.Select(e => mobileSSkillDtoMapper.Map(e, new())).ToList();
+        });
     public Task<List<PilotAbilityDto>> SelectAllPilotAbilitiesAsync() =>
         this.Execute(logger, async () =>
         {

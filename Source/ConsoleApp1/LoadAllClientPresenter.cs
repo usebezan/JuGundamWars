@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
+using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -7,7 +8,14 @@ using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 
 namespace ConsoleApp1;
 
-internal class LoadAllClientPresenter : ILoadAllClientPresenter
+internal class LoadAllClientPresenter(
+    MobileSSkillInventory mobileSSkills,
+    PilotAbilityInventory pilotAbilities,
+    SerialInventory serials,
+    SkillInventory skills,
+    SupportBadgeInventory supportBadges,
+    SupportSlotInventory supportSlots
+    ) : ILoadAllClientPresenter
 {
     public void ShowProgress()
     {
@@ -19,11 +27,22 @@ internal class LoadAllClientPresenter : ILoadAllClientPresenter
     {
     }
 
+    public void CompleteMobileSSkill(List<MobileSSkill> output)
+    {
+        Console.WriteLine("CompleteMobileSSkill");
+        foreach (var item in output)
+        {
+            mobileSSkills.Add(item);
+            Console.WriteLine(item.ToString());
+        }
+    }
+
     public void CompletePilotAbility(List<PilotAbility> output)
     {
         Console.WriteLine("CompletePilotAbility");
         foreach (var item in output)
         {
+            pilotAbilities.Add(item);
             Console.WriteLine(item.ToString());
         }
     }
@@ -33,6 +52,7 @@ internal class LoadAllClientPresenter : ILoadAllClientPresenter
         Console.WriteLine("CompleteSerial");
         foreach (var item in output)
         {
+            serials.Add(item);
             Console.WriteLine(item.ToString());
         }
     }
@@ -42,6 +62,7 @@ internal class LoadAllClientPresenter : ILoadAllClientPresenter
         Console.WriteLine("CompleteSkill");
         foreach (var item in output)
         {
+            skills.Add(item);
             Console.WriteLine(item.ToString());
         }
     }
@@ -51,6 +72,7 @@ internal class LoadAllClientPresenter : ILoadAllClientPresenter
         Console.WriteLine("CompleteSupportBadge");
         foreach (var item in output)
         {
+            supportBadges.Add(item);
             Console.WriteLine(item.ToString());
         }
     }
@@ -60,6 +82,7 @@ internal class LoadAllClientPresenter : ILoadAllClientPresenter
         Console.WriteLine("CompleteSupportSlot");
         foreach (var item in output)
         {
+            supportSlots.Add(item);
             Console.WriteLine(item.ToString());
         }
     }

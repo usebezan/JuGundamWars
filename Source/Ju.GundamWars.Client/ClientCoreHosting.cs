@@ -1,4 +1,10 @@
-﻿using Ju.GundamWars.Client.Commons.Application;
+﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
+using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+using Ju.GundamWars.BizMaster.Serials.Domain;
+using Ju.GundamWars.BizMaster.Skills.Domain;
+using Ju.GundamWars.BizMaster.SupportBadges.Domain;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain;
+using Ju.GundamWars.Client.Commons.Application;
 using Ju.GundamWars.Client.Commons.UseCase.InputPort;
 using Ju.GundamWars.Client.Systems.Application;
 using Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
@@ -27,6 +33,15 @@ public static class ClientCoreHosting
                 services
                     // Application
                     .AddSingleton<ILoadAllClientUseCase, LoadAllClientInteractor>()
+                    // Domain
+                    .AddSingleton<MobileSSkillInventory>()
+                    .AddSingleton<PilotAbilityInventory>()
+                    .AddSingleton<SerialInventory>()
+                    .AddSingleton<SkillInventory>()
+                    .AddSingleton<SupportBadgeInventory>()
+                    .AddSingleton<SupportSlotInventory>()
+
+                    .AddSingleton<MobileSSkillModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<SystemWebClient>()
                 ;

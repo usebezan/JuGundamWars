@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
+using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -63,6 +64,7 @@ public static class ServerCoreHosting
                 // Systems
                 services
                     // Domain
+                    .AddSingleton(typeof(MobileSSkillPrimitiveMapper<,>))
                     .AddSingleton(typeof(PilotAbilityPrimitiveMapper<,>))
                     .AddSingleton(typeof(SerialPrimitiveMapper<,>))
                     .AddSingleton(typeof(SkillPrimitiveMapper<,>))

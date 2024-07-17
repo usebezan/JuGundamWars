@@ -17,20 +17,23 @@ internal class LoadAllClientInteractor(
             presenter.ShowProgress();
             try
             {
-                var pilotAbilities = await gateway.SelectAllPilotAbilitiesAsync();
-                presenter.CompletePilotAbility(pilotAbilities);
-
-                var serials = await gateway.SelectAllSerialsAsync();
-                presenter.CompleteSerial(serials);
+                //var serials = await gateway.SelectAllSerialsAsync();
+                //presenter.CompleteSerial(serials);
 
                 var skills = await gateway.SelectAllSkillsAsync();
                 presenter.CompleteSkill(skills);
 
-                var supportBadges = await gateway.SelectAllSupportBadgesAsync();
-                presenter.CompleteSupportBadge(supportBadges);
+                var mobileSSkills = await gateway.SelectAllMobileSSkillsAsync();
+                presenter.CompleteMobileSSkill(mobileSSkills);
 
-                var supportSlots = await gateway.SelectAllSupportSlotsAsync();
-                presenter.CompleteSupportSlot(supportSlots);
+                //var pilotAbilities = await gateway.SelectAllPilotAbilitiesAsync();
+                //presenter.CompletePilotAbility(pilotAbilities);
+
+                //var supportBadges = await gateway.SelectAllSupportBadgesAsync();
+                //presenter.CompleteSupportBadge(supportBadges);
+
+                //var supportSlots = await gateway.SelectAllSupportSlotsAsync();
+                //presenter.CompleteSupportSlot(supportSlots);
             }
             finally
             {

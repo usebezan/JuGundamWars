@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
+using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -10,6 +11,7 @@ namespace Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 
 public class SystemWebClient(
     SystemWebApiController httpClient,
+    MobileSSkillModelMapper mobileSSkillModelMapper,
     PilotAbilityPrimitiveMapper<PilotAbilityDto, PilotAbility> pilotAbilityModelMapper,
     SerialPrimitiveMapper<SerialDto, Serial> serialModelMapper,
     SkillPrimitiveMapper<SkillDto, Skill> skillModelMapper,
@@ -18,6 +20,12 @@ public class SystemWebClient(
     ILogger<SystemWebClient> logger
     ) : IGw
 {
+    public Task<List<MobileSSkill>> SelectAllMobileSSkillsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await httpClient.SelectAllMobileSSkillsAsync();
+            return entities.Select(e => mobileSSkillModelMapper.Map(e, new())).ToList();
+        });
     public Task<List<PilotAbility>> SelectAllPilotAbilitiesAsync() =>
         this.Execute(logger, async () =>
         {
