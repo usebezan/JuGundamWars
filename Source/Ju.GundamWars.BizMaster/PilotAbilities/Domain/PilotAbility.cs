@@ -1,32 +1,21 @@
-﻿using Ju.GundamWars.BizConst.Boosts.Domain;
-using Ju.GundamWars.BizMaster.SupportSlots.Domain;
+﻿using Ju.GundamWars.BizMaster.Boosts.Domain;
 
 namespace Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 
-public record PilotAbility : BoostBase
+public record PilotAbility : BoostBase, IPilotAbilityPrimitive
 {
-
-    public PilotAbility(int Id, byte Rank, BoostCategoryType BoostCategory, BoostStatusType BoostStatus, CalcMethodType CalcMethod, decimal Value, int Order)
-        : base(BoostCategory, BoostStatus, CalcMethod, Value)
-    {
-        this.Id = Id;
-        this.Rank = Rank;
-        this.Order = Order;
-        Name = $"{BoostStatus.ToText()} Lv.{Rank}（{BoostText}）";
-    }
-
 
     #region Primitives
 
-    public int Id { get; }
-    public byte Rank { get; }
-    public int Order { get; }
+    public int Id { get; set; }
+    public byte Rank { get; set; }
+    public int Order { get; set; }
 
     #endregion
 
     #region Extensions
 
-    public string Name { get; }
+    public string Name => $"{BoostStatus.ToText()} Lv.{Rank}（{BoostText}）";
 
     #endregion
 

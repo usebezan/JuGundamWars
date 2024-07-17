@@ -1,14 +1,13 @@
-﻿using Ju.GundamWars.BizTxn.CoMobiles.Domain.Dto;
-using Ju.GundamWars.BizTxn.Cuspas.Domain.Dto;
-using Ju.GundamWars.BizTxn.Pilots.Domain.Dto;
-using Ju.GundamWars.BizTxn.Supports.Domain.Dto;
-using Ju.GundamWars.BizTxn.Tags.Domain.Dto;
+﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+using Ju.GundamWars.BizMaster.Serials.Domain;
+using Ju.GundamWars.BizMaster.Skills.Domain;
+using Ju.GundamWars.BizMaster.SupportBadges.Domain;
+using Ju.GundamWars.Server.Commons.Application;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
-using Ju.GundamWars.Server.CoMobiles.Infrastructure.Persistence;
-using Ju.GundamWars.Server.Cuspas.Infrastructure.Persistence;
-using Ju.GundamWars.Server.Pilots.Infrastructure.Persistence;
-using Ju.GundamWars.Server.Supports.Infrastructure.Persistence;
-using Ju.GundamWars.Server.Tags.Infrastructure.Persistence;
+using Ju.GundamWars.Server.Commons.UseCase.InputPort;
+using Ju.GundamWars.Server.Systems.Application;
+using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Systems.UseCase.InputPort;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,7 +17,7 @@ namespace Ju.GundamWars.Server;
 
 public static class ServerCoreHosting
 {
-    public static IHostBuilder ConfigureClientCore(this IHostBuilder self) =>
+    public static IHostBuilder ConfigureServerCore(this IHostBuilder self) =>
         self
             .ConfigureServices((context, services) =>
             {
@@ -41,7 +40,7 @@ public static class ServerCoreHosting
                     // アップデートでファイルを上書きできるように Pooling を False にする
                     options.UseSqlite($@"Filename={masterDbFilePath};Pooling=False");
                 });
-                services.AddDbContextFactory<GwDbContext>(options =>
+                services.AddDbContextFactory<GwTxnDbContext>(options =>
                 {
 #if DEBUG
                     options.EnableSensitiveDataLogging();
@@ -49,14 +48,34 @@ public static class ServerCoreHosting
                     options.UseSqlite($@"Filename={dbFilePath}");
                 });
 
-                // Infrastructure.Persistence
+                // Commons
                 services
+                    // Application
+                    .AddSingleton(typeof(IDeleteByIdServerUseCase<,>), typeof(DeleteByIdServerInteractor<,>))
+                    .AddSingleton(typeof(IInsertServerUseCase<,,,>), typeof(InsertServerInteractor<,,,>))
+                    .AddSingleton(typeof(ISelectByIdServerUseCase<,>), typeof(SelectByIdServerInteractor<,>))
+                    .AddSingleton(typeof(IUpdateServerUseCase<,,,>), typeof(UpdateServerInteractor<,,,>))
+                    // Infrastructure.Persistence
                     .AddSingleton(typeof(IMasterRepository<>), typeof(MasterRepository<>))
-                    .AddSingleton<ITxnRepository<CoMobileDto>, CoMobileRepository>()
-                    .AddSingleton<ITxnRepository<CuspaDto>, CuspaRepository>()
-                    .AddSingleton<ITxnRepository<PilotDto>, PilotRepository>()
-                    .AddSingleton<ITxnRepository<SupportDto>, SupportRepository>()
-                    .AddSingleton<ITxnRepository<TagDto>, TagRepository>()
+                ;
+
+                // Systems
+                services
+                    // Application
+                    .AddSingleton<ILoadAllServerUseCase, LoadAllServerInteractor>()
+                    // Domain
+                    .AddSingleton(typeof(PilotAbilityPrimitiveMapper<,>))
+                    .AddSingleton(typeof(SerialPrimitiveMapper<,>))
+                    .AddSingleton(typeof(SkillPrimitiveMapper<,>))
+                    .AddSingleton(typeof(SupportBadgePrimitiveMapper<,>))
+                    // Infrastructure.WebApi
+                    .AddSingleton<SystemWebApiController>()
                 ;
             });
 }
+
+//.AddSingleton<ITxnRepository<CoMobileDto>, CoMobileRepository>()
+//.AddSingleton<ITxnRepository<CuspaDto>, CuspaRepository>()
+//.AddSingleton<ITxnRepository<PilotDto>, PilotRepository>()
+//.AddSingleton<ITxnRepository<SupportDto>, SupportRepository>()
+//.AddSingleton<ITxnRepository<TagDto>, TagRepository>()

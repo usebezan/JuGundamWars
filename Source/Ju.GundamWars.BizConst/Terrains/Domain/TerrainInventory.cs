@@ -1,8 +1,8 @@
-﻿using Ju.GundamWars.Collections;
+﻿using Ju.GundamWars.Commons.Domain;
 
 namespace Ju.GundamWars.BizConst.Terrains.Domain;
 
-public class TerrainInventory : MasterObservableCollection<Terrain>
+public class TerrainInventory : MasterInventory<Terrain>
 {
     public TerrainInventory()
     {

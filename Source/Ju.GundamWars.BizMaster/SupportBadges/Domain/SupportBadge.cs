@@ -1,32 +1,27 @@
-﻿using Ju.GundamWars.BizConst.Boosts.Domain;
-using Ju.GundamWars.BizMaster.SupportSlots.Domain;
+﻿using Ju.GundamWars.BizMaster.Boosts.Domain;
 
 namespace Ju.GundamWars.BizMaster.SupportBadges.Domain;
 
-public record SupportBadge : BoostBase
+public record SupportBadge : BoostBase, ISupportBadgePrimitive
 {
 
-    public SupportBadge(int Id, byte Rank, BoostStatusType BoostStatus, CalcMethodType CalcMethod, decimal Value, int Order)
-        : base(BoostCategoryType.Mobile, BoostStatus, CalcMethod, Value)
+    public SupportBadge()
     {
-        this.Id = Id;
-        this.Rank = Rank;
-        this.Order = Order;
-        Name = $"{BoostStatus.ToText()}{GetRankText()}（{BoostText}）";
+        BoostCategory = BoostCategoryType.Mobile;
     }
 
 
     #region Primitives
 
-    public int Id { get; }
-    public byte Rank { get; }
-    public int Order { get; }
+    public int Id { get; set; }
+    public byte Rank { get; set; }
+    public int Order { get; set; }
 
     #endregion
 
     #region Extensions
 
-    public string Name { get; }
+    public string Name => $"{BoostStatus.ToText()}{GetRankText()}（{BoostText}）";
 
     #endregion
 

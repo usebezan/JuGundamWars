@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS [PilotAbility];
+CREATE TABLE [PilotAbility] ( 
+  [Id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+  , [Rank] INTEGER NOT NULL
+  , [BoostCategory] INTEGER NOT NULL
+  , [BoostStatus] INTEGER NOT NULL
+  , [CalcMethod] INTEGER NOT NULL
+  , [Value] INTEGER NOT NULL
+  , [Order] INTEGER NOT NULL
+);

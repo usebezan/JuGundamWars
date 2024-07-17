@@ -1,8 +1,8 @@
-﻿using Ju.GundamWars.Collections;
+﻿using Ju.GundamWars.Commons.Domain;
 
 namespace Ju.GundamWars.BizConst.AceImpls.Domain;
 
-public class AceImplInventory : MasterObservableCollection<AceImpl>
+public class AceImplInventory : MasterInventory<AceImpl>
 {
     public AceImplInventory()
     {

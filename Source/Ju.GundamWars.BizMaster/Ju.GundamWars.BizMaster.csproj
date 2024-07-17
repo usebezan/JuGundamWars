@@ -12,8 +12,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SupportSlots\**" />
+    <Compile Remove="Versionings\**" />
     <Compile Remove="_\**" />
+    <EmbeddedResource Remove="SupportSlots\**" />
+    <EmbeddedResource Remove="Versionings\**" />
     <EmbeddedResource Remove="_\**" />
+    <None Remove="SupportSlots\**" />
+    <None Remove="Versionings\**" />
     <None Remove="_\**" />
   </ItemGroup>
 

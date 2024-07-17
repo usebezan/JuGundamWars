@@ -5,6 +5,7 @@ using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.BizTxn.Commons.Domain;
 using Ju.GundamWars.Collections;
+using Ju.GundamWars.Commons.Domain;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -59,7 +60,7 @@ public partial class Support : BizBase, ISupport
 
     #region Navigations
 
-    public MasterObservableCollection<Serial> LimitedSerials { get; }
+    public MasterInventory<Serial> LimitedSerials { get; }
     public ObservableItemPropertyChangedCollection<SupportSlotBadge> SlotBadges { get; }
 
     #endregion

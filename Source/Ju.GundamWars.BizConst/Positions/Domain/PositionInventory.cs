@@ -1,8 +1,8 @@
-﻿using Ju.GundamWars.Collections;
+﻿using Ju.GundamWars.Commons.Domain;
 
 namespace Ju.GundamWars.BizConst.Positions.Domain;
 
-public class PositionInventory : MasterObservableCollection<Position>
+public class PositionInventory : MasterInventory<Position>
 {
     public PositionInventory()
     {

@@ -13,12 +13,24 @@
 
   <ItemGroup>
     <Compile Remove="Commons\UseCase\OutputPort\**" />
+    <Compile Remove="Commons\ViewModel\**" />
     <EmbeddedResource Remove="Commons\UseCase\OutputPort\**" />
+    <EmbeddedResource Remove="Commons\ViewModel\**" />
     <None Remove="Commons\UseCase\OutputPort\**" />
+    <None Remove="Commons\ViewModel\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Commons\EntryMode.cs" />
+    <Compile Remove="Commons\SlideIndexType.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ju.GundamWars.BizConst\Ju.GundamWars.BizConst.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.BizMaster\Ju.GundamWars.BizMaster.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.BizTxn\Ju.GundamWars.BizTxn.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Server\Ju.GundamWars.Server.csproj" />
   </ItemGroup>
 
 </Project>

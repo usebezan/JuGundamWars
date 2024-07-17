@@ -1,8 +1,8 @@
-﻿using Ju.GundamWars.Collections;
+﻿using Ju.GundamWars.Commons.Domain;
 
 namespace Ju.GundamWars.BizConst.Grades.Domain;
 
-public class GradeInventory : MasterObservableCollection<Grade>
+public class GradeInventory : MasterInventory<Grade>
 {
     public GradeInventory()
     {

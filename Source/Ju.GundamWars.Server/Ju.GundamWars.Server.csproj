@@ -12,9 +12,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
+    <Compile Remove="CoMobiles\**" />
+    <Compile Remove="Cuspas\**" />
+    <Compile Remove="Pilots\**" />
+    <Compile Remove="Supports\**" />
+    <Compile Remove="Tags\**" />
+    <EmbeddedResource Remove="CoMobiles\**" />
+    <EmbeddedResource Remove="Cuspas\**" />
+    <EmbeddedResource Remove="Pilots\**" />
+    <EmbeddedResource Remove="Supports\**" />
+    <EmbeddedResource Remove="Tags\**" />
+    <None Remove="CoMobiles\**" />
+    <None Remove="Cuspas\**" />
+    <None Remove="Pilots\**" />
+    <None Remove="Supports\**" />
+    <None Remove="Tags\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +40,6 @@
     <ProjectReference Include="..\Ju.GundamWars.BizMaster\Ju.GundamWars.BizMaster.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.BizTxn\Ju.GundamWars.BizTxn.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
   </ItemGroup>
 
   <ItemGroup>

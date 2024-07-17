@@ -75,7 +75,7 @@ public static class CoreExtension
         return self;
     }
 
-    public static int Multiply(this int self, decimal value) =>
-        (int)Math.Floor(self * value);
+    public static int Multiply1k(this int self, int value) =>
+        (int)Math.Floor(self * (value / 1000m));
 
 }

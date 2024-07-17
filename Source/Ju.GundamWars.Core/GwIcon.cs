@@ -4,6 +4,7 @@ public static class GwIcon
 {
 
     public static readonly string Unknown = "AlphaJCircleOutline";
+    public static readonly string None = "None";
 
     // ユニット
     public static readonly string MobileSuit = "Robot";

@@ -1,8 +1,8 @@
-﻿using Ju.GundamWars.Collections;
+﻿using Ju.GundamWars.Commons.Domain;
 
 namespace Ju.GundamWars.BizConst.MobileKinds.Domain;
 
-public class MobileKindInventory : MasterObservableCollection<MobileKind>
+public class MobileKindInventory : MasterInventory<MobileKind>
 {
     public MobileKindInventory()
     {
