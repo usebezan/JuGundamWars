@@ -12,11 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Versionings\**" />
     <Compile Remove="_\**" />
-    <EmbeddedResource Remove="Versionings\**" />
     <EmbeddedResource Remove="_\**" />
-    <None Remove="Versionings\**" />
     <None Remove="_\**" />
   </ItemGroup>
 
