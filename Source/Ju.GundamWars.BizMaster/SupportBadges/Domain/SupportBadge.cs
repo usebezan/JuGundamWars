@@ -5,9 +5,13 @@ namespace Ju.GundamWars.BizMaster.SupportBadges.Domain;
 public record SupportBadge : BoostBase, ISupportBadgePrimitive
 {
 
-    #region Primitives
+    public SupportBadge()
+    {
+        BoostCategory = BoostCategoryType.Mobile;
+    }
 
-    public new BoostCategoryType BoostCategory => BoostCategoryType.Mobile;
+
+    #region Primitives
 
     public int Id { get; set; }
     public byte Rank { get; set; }

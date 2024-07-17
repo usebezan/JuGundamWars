@@ -1,5 +1,4 @@
-﻿using Ju.GundamWars.BizMaster.Commons.Domain;
-using Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
+﻿using Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Systems.UseCase.InputPort;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Microsoft.Extensions.Logging;
@@ -10,17 +9,28 @@ internal class LoadAllClientInteractor(
     SystemWebClient gateway,
     ILoadAllClientPresenter presenter,
     ILogger<LoadAllClientInteractor> logger)
-    : ILoadAllClientUseCase, IGw
+    : IGw, ILoadAllClientUseCase
 {
-    public Task<DataModels> HandleAsync() =>
+    public Task HandleAsync() =>
         this.Execute(logger, async () =>
         {
             presenter.ShowProgress();
             try
             {
-                var models = await gateway.LoadAllAsync();
-                presenter.Complete(models);
-                return models;
+                var pilotAbilities = await gateway.SelectAllPilotAbilitiesAsync();
+                presenter.CompletePilotAbility(pilotAbilities);
+
+                var serials = await gateway.SelectAllSerialsAsync();
+                presenter.CompleteSerial(serials);
+
+                var skills = await gateway.SelectAllSkillsAsync();
+                presenter.CompleteSkill(skills);
+
+                var supportBadges = await gateway.SelectAllSupportBadgesAsync();
+                presenter.CompleteSupportBadge(supportBadges);
+
+                var supportSlots = await gateway.SelectAllSupportSlotsAsync();
+                presenter.CompleteSupportSlot(supportSlots);
             }
             finally
             {

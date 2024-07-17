@@ -1,8 +1,7 @@
-﻿using Ju.GundamWars.BizMaster.Commons.Domain;
-using Ju.GundamWars.Commons.UseCase.InputPort;
+﻿using Ju.GundamWars.Commons.UseCase.InputPort;
 
 namespace Ju.GundamWars.Client.Systems.UseCase.InputPort;
 
-public interface ILoadAllClientUseCase : IUseCase<DataModels>
+public interface ILoadAllClientUseCase : IUseCase
 {
 }

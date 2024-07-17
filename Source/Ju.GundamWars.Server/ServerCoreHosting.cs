@@ -2,12 +2,12 @@
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.Server.Commons.Application;
+using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
-using Ju.GundamWars.Server.Systems.Application;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
-using Ju.GundamWars.Server.Systems.UseCase.InputPort;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -53,6 +53,7 @@ public static class ServerCoreHosting
                     // Application
                     .AddSingleton(typeof(IDeleteByIdServerUseCase<,>), typeof(DeleteByIdServerInteractor<,>))
                     .AddSingleton(typeof(IInsertServerUseCase<,,,>), typeof(InsertServerInteractor<,,,>))
+                    .AddSingleton(typeof(ISelectAllServerUseCase<,>), typeof(SelectAllServerInteractor<,>))
                     .AddSingleton(typeof(ISelectByIdServerUseCase<,>), typeof(SelectByIdServerInteractor<,>))
                     .AddSingleton(typeof(IUpdateServerUseCase<,,,>), typeof(UpdateServerInteractor<,,,>))
                     // Infrastructure.Persistence
@@ -61,13 +62,12 @@ public static class ServerCoreHosting
 
                 // Systems
                 services
-                    // Application
-                    .AddSingleton<ILoadAllServerUseCase, LoadAllServerInteractor>()
                     // Domain
                     .AddSingleton(typeof(PilotAbilityPrimitiveMapper<,>))
                     .AddSingleton(typeof(SerialPrimitiveMapper<,>))
                     .AddSingleton(typeof(SkillPrimitiveMapper<,>))
                     .AddSingleton(typeof(SupportBadgePrimitiveMapper<,>))
+                    .AddSingleton(typeof(SupportSlotPrimitiveMapper<,>))
                     // Infrastructure.WebApi
                     .AddSingleton<SystemWebApiController>()
                 ;

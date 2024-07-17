@@ -1,8 +1,8 @@
-﻿using Ju.GundamWars.BizMaster.Commons.Domain;
-using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 using Microsoft.Extensions.Logging;
 
@@ -14,20 +14,38 @@ public class SystemWebClient(
     SerialPrimitiveMapper<SerialDto, Serial> serialModelMapper,
     SkillPrimitiveMapper<SkillDto, Skill> skillModelMapper,
     SupportBadgePrimitiveMapper<SupportBadgeDto, SupportBadge> supportBadgeModelMapper,
+    SupportSlotPrimitiveMapper<SupportSlotDto, SupportSlot> supportSlotModelMapper,
     ILogger<SystemWebClient> logger
     ) : IGw
 {
-    public Task<DataModels> LoadAllAsync() =>
+    public Task<List<PilotAbility>> SelectAllPilotAbilitiesAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await httpClient.LoadAllAsync();
-            var models = new DataModels
-            {
-                PilotAbilities = dtos.PilotAbilities.Select(d => pilotAbilityModelMapper.Map(d, new())).ToList(),
-                Serials = dtos.Serials.Select(d => serialModelMapper.Map(d, new())).ToList(),
-                Skills = dtos.Skills.Select(d => skillModelMapper.Map(d, new())).ToList(),
-                SupportBadges = dtos.SupportBadges.Select(d => supportBadgeModelMapper.Map(d, new())).ToList(),
-            };
-            return models;
+            var entities = await httpClient.SelectAllPilotAbilitiesAsync();
+            return entities.Select(e => pilotAbilityModelMapper.Map(e, new())).ToList();
+        });
+    public Task<List<Serial>> SelectAllSerialsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await httpClient.SelectAllSerialsAsync();
+            return entities.Select(e => serialModelMapper.Map(e, new())).ToList();
+        });
+    public Task<List<Skill>> SelectAllSkillsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await httpClient.SelectAllSkillsAsync();
+            return entities.Select(e => skillModelMapper.Map(e, new())).ToList();
+        });
+    public Task<List<SupportBadge>> SelectAllSupportBadgesAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await httpClient.SelectAllSupportBadgesAsync();
+            return entities.Select(e => supportBadgeModelMapper.Map(e, new())).ToList();
+        });
+    public Task<List<SupportSlot>> SelectAllSupportSlotsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await httpClient.SelectAllSupportSlotsAsync();
+            return entities.Select(e => supportSlotModelMapper.Map(e, new())).ToList();
         });
 }

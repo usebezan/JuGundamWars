@@ -1,6 +1,6 @@
 ﻿using Ju.GundamWars.Commons.Domain;
 
-namespace Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+namespace Ju.GundamWars.Server.Commons.Domain.Gateway;
 
 public interface ITxnRepository<T>
     where T : class, IIdentify

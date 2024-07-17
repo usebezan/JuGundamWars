@@ -1,4 +1,5 @@
 ﻿using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 

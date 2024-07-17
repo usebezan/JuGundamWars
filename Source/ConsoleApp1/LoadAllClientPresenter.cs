@@ -1,4 +1,8 @@
-﻿using Ju.GundamWars.BizMaster.Commons.Domain;
+﻿using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+using Ju.GundamWars.BizMaster.Serials.Domain;
+using Ju.GundamWars.BizMaster.Skills.Domain;
+using Ju.GundamWars.BizMaster.SupportBadges.Domain;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 
 namespace ConsoleApp1;
@@ -11,28 +15,50 @@ internal class LoadAllClientPresenter : ILoadAllClientPresenter
     public void CloseProgress()
     {
     }
-    public void Complete(DataModels output)
+    public void Complete()
     {
-        //Console.WriteLine("PilotAbilities");
-        //foreach (var item in output.PilotAbilities)
-        //{
-        //    Console.WriteLine(item.ToString());
-        //}
+    }
 
-        //Console.WriteLine("Serials");
-        //foreach (var item in output.Serials)
-        //{
-        //    Console.WriteLine(item.ToString());
-        //}
+    public void CompletePilotAbility(List<PilotAbility> output)
+    {
+        Console.WriteLine("CompletePilotAbility");
+        foreach (var item in output)
+        {
+            Console.WriteLine(item.ToString());
+        }
+    }
 
-        //Console.WriteLine("Skills");
-        //foreach (var item in output.Skills)
-        //{
-        //    Console.WriteLine(item.ToString());
-        //}
+    public void CompleteSerial(List<Serial> output)
+    {
+        Console.WriteLine("CompleteSerial");
+        foreach (var item in output)
+        {
+            Console.WriteLine(item.ToString());
+        }
+    }
 
-        Console.WriteLine("SupportBadges");
-        foreach (var item in output.SupportBadges)
+    public void CompleteSkill(List<Skill> output)
+    {
+        Console.WriteLine("CompleteSkill");
+        foreach (var item in output)
+        {
+            Console.WriteLine(item.ToString());
+        }
+    }
+
+    public void CompleteSupportBadge(List<SupportBadge> output)
+    {
+        Console.WriteLine("CompleteSupportBadge");
+        foreach (var item in output)
+        {
+            Console.WriteLine(item.ToString());
+        }
+    }
+
+    public void CompleteSupportSlot(List<SupportSlot> output)
+    {
+        Console.WriteLine("CompleteSupportSlot");
+        foreach (var item in output)
         {
             Console.WriteLine(item.ToString());
         }

@@ -6,19 +6,25 @@ namespace Ju.GundamWars.BizMaster.SupportSlots.Domain;
 public record SupportSlot : BoostBase, ISupportSlotPrimitive
 {
 
-
     #region Primitives
 
-    public new BoostCategoryType BoostCategory => Kind switch
-    {
-        SupportSlotKindType.Normal => BoostCategoryType.None,
-        SupportSlotKindType.Unlock => BoostCategoryType.Mobile,
-        SupportSlotKindType.Bonus => BoostCategoryType.Badge,
-        _ => BoostCategoryType.Unknown,
-    };
-
     public int Id { get; set; }
-    public SupportSlotKindType Kind { get; set; }
+    public SupportSlotKindType Kind
+    {
+        get => __Kind;
+        set
+        {
+            __Kind = value;
+            BoostCategory = Kind switch
+            {
+                SupportSlotKindType.Normal => BoostCategoryType.None,
+                SupportSlotKindType.Unlock => BoostCategoryType.Mobile,
+                SupportSlotKindType.Bonus => BoostCategoryType.Badge,
+                _ => BoostCategoryType.Unknown,
+            };
+        }
+    }
+    private SupportSlotKindType __Kind;
     public int Order { get; set; }
 
     #endregion
