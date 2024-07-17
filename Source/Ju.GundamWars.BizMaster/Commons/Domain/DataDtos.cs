@@ -2,6 +2,7 @@
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 
 namespace Ju.GundamWars.BizMaster.Commons.Domain;
 
@@ -11,4 +12,5 @@ public class DataDtos
     public List<SerialDto> Serials { get; set; } = null!;
     public List<SkillDto> Skills { get; set; } = null!;
     public List<SupportBadgeDto> SupportBadges { get; set; } = null!;
+    public List<SupportSlotDto> SupportSlots { get; set; } = null!;
 }

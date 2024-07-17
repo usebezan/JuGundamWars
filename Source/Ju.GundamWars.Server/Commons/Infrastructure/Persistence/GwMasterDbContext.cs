@@ -2,6 +2,7 @@
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
+using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
@@ -16,7 +17,7 @@ public class GwMasterDbContext(DbContextOptions<GwMasterDbContext> options) : Db
         modelBuilder.Entity<SerialEntity>().ToTable("Serial");
         modelBuilder.Entity<SkillEntity>().ToTable("Skill");
         modelBuilder.Entity<SupportBadgeEntity>().ToTable("SupportBadge");
-        //modelBuilder.Entity<SupportSlotDto>().ToTable("SupportSlot");
+        modelBuilder.Entity<SupportSlotEntity>().ToTable("SupportSlot");
         //modelBuilder.Entity<VersioningDto>().ToTable("Versioning");
     }
 }

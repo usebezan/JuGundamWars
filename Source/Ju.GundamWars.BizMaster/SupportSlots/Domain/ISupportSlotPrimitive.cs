@@ -1,14 +1,14 @@
 ﻿using Ju.GundamWars.BizMaster.Boosts.Domain;
 using Ju.GundamWars.Commons.Domain;
 
-namespace Ju.GundamWars.BizMaster.SupportBadges.Domain;
+namespace Ju.GundamWars.BizMaster.SupportSlots.Domain;
 
-public interface ISupportBadgePrimitive : IIdentify, IOrderable
+public interface ISupportSlotPrimitive : IIdentify, IOrderable
 {
 
     #region Primitives
 
-    byte Rank { get; set; }
+    SupportSlotKindType Kind { get; set; }
     BoostStatusType BoostStatus { get; set; }
     CalcMethodType CalcMethod { get; set; }
     int Value { get; set; }
