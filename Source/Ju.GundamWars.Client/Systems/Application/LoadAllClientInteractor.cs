@@ -23,11 +23,14 @@ internal class LoadAllClientInteractor(
                 var skills = await gateway.SelectAllSkillsAsync();
                 presenter.CompleteSkill(skills);
 
-                var mobileSSkills = await gateway.SelectAllMobileSSkillsAsync();
-                presenter.CompleteMobileSSkill(mobileSSkills);
+                //var mobileSSkills = await gateway.SelectAllMobileSSkillsAsync();
+                //presenter.CompleteMobileSSkill(mobileSSkills);
 
                 //var pilotAbilities = await gateway.SelectAllPilotAbilitiesAsync();
                 //presenter.CompletePilotAbility(pilotAbilities);
+
+                var pilotSkills = await gateway.SelectAllPilotSkillsAsync();
+                presenter.CompletePilotSkill(pilotSkills);
 
                 //var supportBadges = await gateway.SelectAllSupportBadgesAsync();
                 //presenter.CompleteSupportBadge(supportBadges);

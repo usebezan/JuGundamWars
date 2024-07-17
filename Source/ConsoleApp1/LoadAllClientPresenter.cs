@@ -1,5 +1,6 @@
 ﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
 using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+using Ju.GundamWars.BizMaster.PilotSkills.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -11,6 +12,7 @@ namespace ConsoleApp1;
 internal class LoadAllClientPresenter(
     MobileSSkillInventory mobileSSkills,
     PilotAbilityInventory pilotAbilities,
+    PilotSkillInventory pilotSkills,
     SerialInventory serials,
     SkillInventory skills,
     SupportBadgeInventory supportBadges,
@@ -43,6 +45,16 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             pilotAbilities.Add(item);
+            Console.WriteLine(item.ToString());
+        }
+    }
+
+    public void CompletePilotSkill(List<PilotSkill> output)
+    {
+        Console.WriteLine("CompletePilotSkill");
+        foreach (var item in output)
+        {
+            pilotSkills.Add(item);
             Console.WriteLine(item.ToString());
         }
     }

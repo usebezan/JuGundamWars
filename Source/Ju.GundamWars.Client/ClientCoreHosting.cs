@@ -1,5 +1,6 @@
 ﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
 using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+using Ju.GundamWars.BizMaster.PilotSkills.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -36,12 +37,14 @@ public static class ClientCoreHosting
                     // Domain
                     .AddSingleton<MobileSSkillInventory>()
                     .AddSingleton<PilotAbilityInventory>()
+                    .AddSingleton<PilotSkillInventory>()
                     .AddSingleton<SerialInventory>()
                     .AddSingleton<SkillInventory>()
                     .AddSingleton<SupportBadgeInventory>()
                     .AddSingleton<SupportSlotInventory>()
 
                     .AddSingleton<MobileSSkillModelMapper>()
+                    .AddSingleton<PilotSkillModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<SystemWebClient>()
                 ;

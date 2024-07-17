@@ -1,5 +1,6 @@
 ﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
 using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
+using Ju.GundamWars.BizMaster.PilotSkills.Domain;
 using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
@@ -15,6 +16,8 @@ public class SystemWebApiController(
     MobileSSkillPrimitiveMapper<MobileSSkillEntity, MobileSSkillDto> mobileSSkillDtoMapper,
     ISelectAllServerUseCase<PilotAbilityEntity, IMasterRepository<PilotAbilityEntity>> selectAllPilotAbilitiesServerUseCase,
     PilotAbilityPrimitiveMapper<PilotAbilityEntity, PilotAbilityDto> pilotAbilityDtoMapper,
+    ISelectAllServerUseCase<PilotSkillEntity, IMasterRepository<PilotSkillEntity>> selectAllPilotSkillsServerUseCase,
+    PilotSkillPrimitiveMapper<PilotSkillEntity, PilotSkillDto> pilotSkillDtoMapper,
     ISelectAllServerUseCase<SerialEntity, IMasterRepository<SerialEntity>> selectAllSerialsServerUseCase,
     SerialPrimitiveMapper<SerialEntity, SerialDto> serialDtoMapper,
     ISelectAllServerUseCase<SkillEntity, IMasterRepository<SkillEntity>> selectAllSkillsServerUseCase,
@@ -37,6 +40,12 @@ public class SystemWebApiController(
         {
             var entities = await selectAllPilotAbilitiesServerUseCase.HandleAsync();
             return entities.Select(e => pilotAbilityDtoMapper.Map(e, new())).ToList();
+        });
+    public Task<List<PilotSkillDto>> SelectAllPilotSkillsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await selectAllPilotSkillsServerUseCase.HandleAsync();
+            return entities.Select(e => pilotSkillDtoMapper.Map(e, new())).ToList();
         });
     public Task<List<SerialDto>> SelectAllSerialsAsync() =>
         this.Execute(logger, async () =>
