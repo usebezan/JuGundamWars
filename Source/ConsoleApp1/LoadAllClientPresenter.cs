@@ -5,6 +5,8 @@ using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
 using Ju.GundamWars.BizMaster.SupportSlots.Domain;
+using Ju.GundamWars.BizTxn.Tags.Domain.Inventory;
+using Ju.GundamWars.BizTxn.Tags.Domain.Model;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 
 namespace ConsoleApp1;
@@ -16,7 +18,8 @@ internal class LoadAllClientPresenter(
     SerialInventory serials,
     SkillInventory skills,
     SupportBadgeInventory supportBadges,
-    SupportSlotInventory supportSlots
+    SupportSlotInventory supportSlots,
+    TagInventory tags
     ) : ILoadAllClientPresenter
 {
     public void ShowProgress()
@@ -101,4 +104,21 @@ internal class LoadAllClientPresenter(
             Console.WriteLine(item.ToString());
         }
     }
+
+
+    public void CompleteVersioning(string output)
+    {
+
+    }
+
+    public void CompleteTag(List<Tag> output)
+    {
+        Console.WriteLine("CompleteTag");
+        foreach (var item in output)
+        {
+            tags.Add(item);
+            Console.WriteLine($"{item.Id} {item.GroupText} {item.Name} {item.Order}");
+        }
+    }
+
 }

@@ -1,10 +1,13 @@
-﻿using Ju.GundamWars.Server.Commons.Application;
+﻿using Ju.GundamWars.BizMaster.Versionings.Domain;
+using Ju.GundamWars.BizTxn.Tags.Domain.Entity;
+using Ju.GundamWars.BizTxn.Tags.Domain.Gateway;
+using Ju.GundamWars.Server.Commons.Application;
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
-using Ju.GundamWars.Server.Systems.Domain.Gateway;
-using Ju.GundamWars.Server.Systems.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Tags.Infrastructure.Persistence;
+using Ju.GundamWars.Server.Versionings.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -54,15 +57,25 @@ public static class ServerCoreHosting
                     .AddSingleton(typeof(ISelectByIdServerUseCase<,>), typeof(SelectByIdServerInteractor<,>))
                     .AddSingleton(typeof(IUpdateServerUseCase<,,,>), typeof(UpdateServerInteractor<,,,>))
                     // Infrastructure.Persistence
-                    .AddSingleton(typeof(IMasterRepository<>), typeof(MasterRepository<>))
+                    .AddSingleton(typeof(IMasterGateway<>), typeof(MasterRepository<>))
                 ;
 
                 // Systems
                 services
-                    // Infrastructure.Persistence
-                    .AddSingleton<IVersioningRepository, VersioningRepository>()
                     // Infrastructure.WebApi
                     .AddSingleton<SystemWebApiController>()
+                ;
+
+                // Tags
+                services
+                    // Infrastructure.Persistence
+                    .AddSingleton<ITagGateway<TagEntity>, TagRepository>()
+                ;
+
+                // Versionings
+                services
+                    // Infrastructure.Persistence
+                    .AddSingleton<IVersioningGateway<VersioningEntity>, VersioningRepository>()
                 ;
             });
 }
@@ -71,4 +84,3 @@ public static class ServerCoreHosting
 //.AddSingleton<ITxnRepository<CuspaDto>, CuspaRepository>()
 //.AddSingleton<ITxnRepository<PilotDto>, PilotRepository>()
 //.AddSingleton<ITxnRepository<SupportDto>, SupportRepository>()
-//.AddSingleton<ITxnRepository<TagDto>, TagRepository>()

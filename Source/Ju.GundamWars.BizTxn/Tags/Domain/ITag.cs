@@ -2,9 +2,14 @@
 
 namespace Ju.GundamWars.BizTxn.Tags.Domain;
 
-public interface ITag : IIdentify
+public interface ITag : IIdentify, IOrderable
 {
+
+    #region Primitives
+
     TagGroupType Group { get; set; }
     string Name { get; set; }
-    int Order { get; set; }
+
+    #endregion
+
 }

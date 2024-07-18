@@ -12,8 +12,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CoMobiles\**" />
+    <Compile Remove="Cuspas\**" />
+    <Compile Remove="Pilots\**" />
+    <Compile Remove="Supports\**" />
     <Compile Remove="_\**" />
+    <EmbeddedResource Remove="CoMobiles\**" />
+    <EmbeddedResource Remove="Cuspas\**" />
+    <EmbeddedResource Remove="Pilots\**" />
+    <EmbeddedResource Remove="Supports\**" />
     <EmbeddedResource Remove="_\**" />
+    <None Remove="CoMobiles\**" />
+    <None Remove="Cuspas\**" />
+    <None Remove="Pilots\**" />
+    <None Remove="Supports\**" />
     <None Remove="_\**" />
   </ItemGroup>
 

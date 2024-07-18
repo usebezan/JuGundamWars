@@ -1,5 +1,6 @@
 ﻿using Ju.GundamWars.BizConst;
 using Ju.GundamWars.BizMaster;
+using Ju.GundamWars.BizTxn;
 using Ju.GundamWars.Client;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Server;
@@ -19,6 +20,8 @@ internal class Program
             .ConfigureClientBizConst()
             .ConfigureBizMaster()
             .ConfigureClientBizMaster()
+            .ConfigureBizTxn()
+            .ConfigureClientBizTxn()
             .ConfigureLogging((context, builder) =>
             {
                 builder.ClearProviders().AddConsole();

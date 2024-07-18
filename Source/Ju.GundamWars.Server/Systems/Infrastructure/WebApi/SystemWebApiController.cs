@@ -6,34 +6,41 @@ using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
 using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.BizMaster.Versionings.Domain;
+using Ju.GundamWars.BizTxn.Tags.Domain.Dto;
+using Ju.GundamWars.BizTxn.Tags.Domain.Entity;
+using Ju.GundamWars.BizTxn.Tags.Domain.Gateway;
+using Ju.GundamWars.BizTxn.Tags.Domain.Service.Mapping;
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
-using Ju.GundamWars.Server.Systems.Domain.Gateway;
 using Microsoft.Extensions.Logging;
 using MobileSSkillDtoMapper = Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillPrimitiveMapper<Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillEntity, Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillDto>;
-using SelectAllMobileSSkillsServerUseCase = Ju.GundamWars.Server.Commons.UseCase.InputPort.ISelectAllServerUseCase<Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillEntity, Ju.GundamWars.Server.Commons.Domain.Gateway.IMasterRepository<Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillEntity>>;
+using SelectAllMobileSSkillsServerUseCase = Ju.GundamWars.Server.Commons.UseCase.InputPort.ISelectAllServerUseCase<Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillEntity, Ju.GundamWars.Server.Commons.Domain.Gateway.IMasterGateway<Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillEntity>>;
 
 namespace Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 
 public class SystemWebApiController(
     SelectAllMobileSSkillsServerUseCase selectAllMobileSSkillsServerUseCase,
     MobileSSkillDtoMapper mobileSSkillDtoMapper,
-    ISelectAllServerUseCase<PilotAbilityEntity, IMasterRepository<PilotAbilityEntity>> selectAllPilotAbilitiesServerUseCase,
+    ISelectAllServerUseCase<PilotAbilityEntity, IMasterGateway<PilotAbilityEntity>> selectAllPilotAbilitiesServerUseCase,
     PilotAbilityPrimitiveMapper<PilotAbilityEntity, PilotAbilityDto> pilotAbilityDtoMapper,
-    ISelectAllServerUseCase<PilotSkillEntity, IMasterRepository<PilotSkillEntity>> selectAllPilotSkillsServerUseCase,
+    ISelectAllServerUseCase<PilotSkillEntity, IMasterGateway<PilotSkillEntity>> selectAllPilotSkillsServerUseCase,
     PilotSkillPrimitiveMapper<PilotSkillEntity, PilotSkillDto> pilotSkillDtoMapper,
-    ISelectAllServerUseCase<SerialEntity, IMasterRepository<SerialEntity>> selectAllSerialsServerUseCase,
+    ISelectAllServerUseCase<SerialEntity, IMasterGateway<SerialEntity>> selectAllSerialsServerUseCase,
     SerialPrimitiveMapper<SerialEntity, SerialDto> serialDtoMapper,
-    ISelectAllServerUseCase<SkillEntity, IMasterRepository<SkillEntity>> selectAllSkillsServerUseCase,
+    ISelectAllServerUseCase<SkillEntity, IMasterGateway<SkillEntity>> selectAllSkillsServerUseCase,
     SkillPrimitiveMapper<SkillEntity, SkillDto> skillDtoMapper,
-    ISelectAllServerUseCase<SupportBadgeEntity, IMasterRepository<SupportBadgeEntity>> selectAllSupportBadgesServerUseCase,
+    ISelectAllServerUseCase<SupportBadgeEntity, IMasterGateway<SupportBadgeEntity>> selectAllSupportBadgesServerUseCase,
     SupportBadgePrimitiveMapper<SupportBadgeEntity, SupportBadgeDto> supportBadgeDtoMapper,
-    ISelectAllServerUseCase<SupportSlotEntity, IMasterRepository<SupportSlotEntity>> selectAllSupportSlotsServerUseCase,
+    ISelectAllServerUseCase<SupportSlotEntity, IMasterGateway<SupportSlotEntity>> selectAllSupportSlotsServerUseCase,
     SupportSlotPrimitiveMapper<SupportSlotEntity, SupportSlotDto> supportSlotDtoMapper,
-    ISelectByIdServerUseCase<VersioningEntity, IVersioningRepository> selectVersioningByIdServerUseCase,
+    ISelectByIdServerUseCase<VersioningEntity, IVersioningGateway<VersioningEntity>> selectVersioningByIdServerUseCase,
+
     VersioningPrimitiveMapper<VersioningEntity, VersioningDto> versioningDtoMapper,
-    ILogger<SystemWebApiController> logger
-    ) : IGw
+
+    ISelectAllServerUseCase<TagEntity, ITagGateway<TagEntity>> selectAllTagsServerUseCase,
+    TagPrimitiveMapper<TagEntity, TagDto> TagDtoMapper,
+
+    ILogger<SystemWebApiController> logger) : IGw
 {
     public Task<List<MobileSSkillDto>> GetAllMobileSSkillsAsync() =>
         this.Execute(logger, async () =>
@@ -77,6 +84,7 @@ public class SystemWebApiController(
             var entities = await selectAllSupportSlotsServerUseCase.HandleAsync();
             return entities.Select(e => supportSlotDtoMapper.Map(e, new())).ToList();
         });
+
     public Task<VersioningDto> GetVersioningByIdAsync() =>
         this.Execute(logger, async () =>
         {
@@ -84,4 +92,14 @@ public class SystemWebApiController(
             var dto = new VersioningDto();
             return entity == null ? dto : versioningDtoMapper.Map(entity, dto);
         });
+
+
+    public Task<List<TagDto>> GetAllTagsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await selectAllTagsServerUseCase.HandleAsync();
+            return entities.Select(e => TagDtoMapper.Map(e, new())).ToList();
+        });
+
+
 }

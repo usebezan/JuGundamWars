@@ -13,10 +13,10 @@ public partial class Tag : ModelBase, ITag
 
     [ObservableProperty]
     private int _Id;
-    [ObservableProperty]
-    private string _Name = string.Empty;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(GroupText))]
     private TagGroupType _Group;
+    [ObservableProperty]
+    private string _Name = string.Empty;
     [ObservableProperty]
     private int _Order;
 

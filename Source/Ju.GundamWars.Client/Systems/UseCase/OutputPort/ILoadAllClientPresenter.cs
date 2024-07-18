@@ -5,6 +5,7 @@ using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
 using Ju.GundamWars.BizMaster.SupportSlots.Domain;
+using Ju.GundamWars.BizTxn.Tags.Domain.Model;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 
 namespace Ju.GundamWars.Client.Systems.UseCase.OutputPort;
@@ -21,4 +22,8 @@ public interface ILoadAllClientPresenter : IPresenter
     void CompleteSkill(List<Skill> output);
     void CompleteSupportBadge(List<SupportBadge> output);
     void CompleteSupportSlot(List<SupportSlot> output);
+
+    void CompleteVersioning(string output);
+
+    void CompleteTag(List<Tag> output);
 }

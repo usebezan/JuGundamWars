@@ -3,8 +3,8 @@
 namespace Ju.GundamWars.BizMaster.Versionings.Domain;
 
 public class VersioningPrimitiveMapper<TSrc, TDest> : IMapper<TSrc, TDest>
-    where TSrc : IVersioningPrimitive
-    where TDest : IVersioningPrimitive
+    where TSrc : IVersioning
+    where TDest : IVersioning
 {
     public TDest Map(TSrc src, TDest dest)
     {

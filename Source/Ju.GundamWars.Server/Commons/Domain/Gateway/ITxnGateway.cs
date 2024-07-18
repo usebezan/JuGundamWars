@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Server.Commons.Domain.Gateway;
 
-public interface ITxnRepository<T>
+public interface ITxnGateway<T>
     where T : class, IIdentify
 {
     Task<List<T>> SelectAllAsync();

@@ -1,6 +1,6 @@
 ﻿namespace Ju.GundamWars.BizMaster.Versionings.Domain;
 
-public record VersioningPrimitiveBase : IVersioningPrimitive
+public record VersioningPrimitiveBase : IVersioning
 {
 
     #region Primitives

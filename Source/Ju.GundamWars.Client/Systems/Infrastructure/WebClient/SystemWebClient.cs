@@ -5,6 +5,9 @@ using Ju.GundamWars.BizMaster.Serials.Domain;
 using Ju.GundamWars.BizMaster.Skills.Domain;
 using Ju.GundamWars.BizMaster.SupportBadges.Domain;
 using Ju.GundamWars.BizMaster.SupportSlots.Domain;
+using Ju.GundamWars.BizTxn.Tags.Domain.Dto;
+using Ju.GundamWars.BizTxn.Tags.Domain.Model;
+using Ju.GundamWars.BizTxn.Tags.Domain.Service.Mapping;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 using Microsoft.Extensions.Logging;
 
@@ -20,6 +23,7 @@ public class SystemWebClient(
     SkillPrimitiveMapper<SkillDto, Skill> skillModelMapper,
     SupportBadgePrimitiveMapper<SupportBadgeDto, SupportBadge> supportBadgeModelMapper,
     SupportSlotPrimitiveMapper<SupportSlotDto, SupportSlot> supportSlotModelMapper,
+    TagPrimitiveMapper<TagDto, Tag> tagModelMapper,
     ILogger<SystemWebClient> logger
     ) : IGw
 {
@@ -111,4 +115,10 @@ public class SystemWebClient(
             }
         });
 
+    public Task<List<Tag>> GetAllTagsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var dtos = await controller.GetAllTagsAsync();
+            return dtos.Select(d => tagModelMapper.Map(d, new())).ToList();
+        });
 }
