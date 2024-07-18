@@ -28,7 +28,7 @@ public static class ClientCoreHosting
                 // Systems
                 services
                     // Application
-                    .AddSingleton<ILoadAllClientUseCase, LoadAllClientInteractor>()
+                    .AddSingleton<IPutAllTagsClientUseCase, LoadAllClientInteractor>()
                     // Infrastructure.WebClient
                     .AddSingleton<SystemWebClient>()
                 ;

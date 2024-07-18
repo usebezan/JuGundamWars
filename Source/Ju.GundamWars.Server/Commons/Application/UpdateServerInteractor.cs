@@ -7,6 +7,18 @@ using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Commons.Application;
 
+internal class UpdateServerInteractor<TInOut, TGateway, TSanitizer>(
+    TGateway gateway,
+    TSanitizer sanitizer,
+    ILogger<UpdateServerInteractor<TInOut, TGateway, TSanitizer>> logger) :
+        UpdateInteractorBase<TInOut>(gateway, presenter: null, sanitizer, validator: null, logger),
+        IUpdateServerUseCase<TInOut, TGateway, TSanitizer>
+    where TInOut : class
+    where TGateway : IUpdateGateway<TInOut>
+    where TSanitizer : IUpdateSanitizer<TInOut>
+{
+}
+
 internal class UpdateServerInteractor<TInOut, TGateway, TSanitizer, TValidator>(
     TGateway gateway,
     TSanitizer sanitizer,

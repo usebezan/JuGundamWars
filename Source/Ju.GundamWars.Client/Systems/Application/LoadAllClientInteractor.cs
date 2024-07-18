@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.Systems.Application;
 
-internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPresenter presenter, ILogger<LoadAllClientInteractor> logger) : IGw, ILoadAllClientUseCase
+internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPresenter presenter, ILogger<LoadAllClientInteractor> logger) : IGw, IPutAllTagsClientUseCase
 {
     public Task HandleAsync() =>
         this.Execute(logger, async () =>

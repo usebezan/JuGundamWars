@@ -1,13 +1,10 @@
-﻿using Ju.GundamWars.BizMaster.Versionings.Domain;
-using Ju.GundamWars.BizTxn.Tags.Domain.Entity;
-using Ju.GundamWars.BizTxn.Tags.Domain.Gateway;
-using Ju.GundamWars.Server.Commons.Application;
+﻿using Ju.GundamWars.Server.Commons.Application;
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
-using Ju.GundamWars.Server.Tags.Infrastructure.Persistence;
-using Ju.GundamWars.Server.Versionings.Infrastructure.Persistence;
+using Ju.GundamWars.Server.Tags.Domain.Service.Sanitization;
+using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -58,6 +55,7 @@ public static class ServerCoreHosting
                     .AddSingleton(typeof(IUpdateServerUseCase<,,,>), typeof(UpdateServerInteractor<,,,>))
                     // Infrastructure.Persistence
                     .AddSingleton(typeof(IMasterGateway<>), typeof(MasterRepository<>))
+                    .AddSingleton(typeof(ITxnGateway<>), typeof(TxnRepository<>))
                 ;
 
                 // Systems
@@ -68,14 +66,10 @@ public static class ServerCoreHosting
 
                 // Tags
                 services
-                    // Infrastructure.Persistence
-                    .AddSingleton<ITagGateway<TagEntity>, TagRepository>()
-                ;
-
-                // Versionings
-                services
-                    // Infrastructure.Persistence
-                    .AddSingleton<IVersioningGateway<VersioningEntity>, VersioningRepository>()
+                    // Domain.Service
+                    .AddSingleton<UpdateTagSanitizer>()
+                    // Infrastructure.WebApi
+                    .AddSingleton<TagWebApiController>()
                 ;
             });
 }

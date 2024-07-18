@@ -68,13 +68,6 @@ public static class CoreExtension
         }
     }
 
-    public static T AddTo<T>(this T self, ICollection<IDisposable> container)
-        where T : IDisposable
-    {
-        container.Add(self);
-        return self;
-    }
-
     public static int Multiply1k(this int self, int value) =>
         (int)Math.Floor(self * (value / 1000m));
 

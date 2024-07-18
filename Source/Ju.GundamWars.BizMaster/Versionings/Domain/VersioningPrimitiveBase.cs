@@ -10,4 +10,7 @@ public record VersioningPrimitiveBase : IVersioning
 
     #endregion
 
+    // NOTE: 汎用リポジトリを利用するためのダミー、実際には使用しない
+    public int Order { get; set; }
+
 }

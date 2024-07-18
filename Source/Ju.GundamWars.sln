@@ -41,7 +41,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.BizTxn", "Ju.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.GundamWars.Client.CoMobiles", "Ju.GundamWars.Client.CoMobiles\Ju.GundamWars.Client.CoMobiles.csproj", "{438C838C-FA61-433F-858E-EFACB718C6F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{7C227C48-0EF3-4089-97B9-F808E47D8EF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{7C227C48-0EF3-4089-97B9-F808E47D8EF1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ju.Core", "..\..\Ju\Source\Ju.Core\Ju.Core.csproj", "{AF983A9C-8D63-4A26-9077-9922AF2EDF71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,10 @@ Global
 		{7C227C48-0EF3-4089-97B9-F808E47D8EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C227C48-0EF3-4089-97B9-F808E47D8EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C227C48-0EF3-4089-97B9-F808E47D8EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF983A9C-8D63-4A26-9077-9922AF2EDF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF983A9C-8D63-4A26-9077-9922AF2EDF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF983A9C-8D63-4A26-9077-9922AF2EDF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF983A9C-8D63-4A26-9077-9922AF2EDF71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +129,7 @@ Global
 		{69B2C3B1-A60D-463C-82BE-00619BE83B39} = {83601926-ED5D-4A5E-AF60-BD213D246D4C}
 		{E3E9469F-D094-40DD-B44A-397862337E60} = {83601926-ED5D-4A5E-AF60-BD213D246D4C}
 		{438C838C-FA61-433F-858E-EFACB718C6F1} = {1A910B61-6AF5-4814-901F-36BB43131C3F}
+		{AF983A9C-8D63-4A26-9077-9922AF2EDF71} = {83601926-ED5D-4A5E-AF60-BD213D246D4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED6AFF9-FFD5-48E6-8B9C-E668E6131973}

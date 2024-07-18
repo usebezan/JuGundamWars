@@ -23,6 +23,6 @@ public class GwMasterDbContext(DbContextOptions<GwMasterDbContext> options) : Db
         modelBuilder.Entity<SkillEntity>().ToTable("Skill");
         modelBuilder.Entity<SupportBadgeEntity>().ToTable("SupportBadge");
         modelBuilder.Entity<SupportSlotEntity>().ToTable("SupportSlot");
-        modelBuilder.Entity<VersioningEntity>().ToTable("Versioning");
+        modelBuilder.Entity<VersioningEntity>().ToTable("Versioning").Ignore("Order");
     }
 }

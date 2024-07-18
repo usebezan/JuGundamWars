@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Client.Systems.UseCase.InputPort;
 
-public interface ILoadAllClientUseCase : IUseCase
+public interface IPutAllTagsClientUseCase : IUseCase
 {
 }

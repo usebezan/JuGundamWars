@@ -33,7 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Tags\" />
+    <Folder Include="Tags\Infrastructure\WebClient\" />
+    <Folder Include="Tags\Application\" />
   </ItemGroup>
 
 </Project>

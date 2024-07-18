@@ -8,7 +8,6 @@ using Ju.GundamWars.BizMaster.SupportSlots.Domain;
 using Ju.GundamWars.BizMaster.Versionings.Domain;
 using Ju.GundamWars.BizTxn.Tags.Domain.Dto;
 using Ju.GundamWars.BizTxn.Tags.Domain.Entity;
-using Ju.GundamWars.BizTxn.Tags.Domain.Gateway;
 using Ju.GundamWars.BizTxn.Tags.Domain.Service.Mapping;
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
@@ -33,11 +32,11 @@ public class SystemWebApiController(
     SupportBadgePrimitiveMapper<SupportBadgeEntity, SupportBadgeDto> supportBadgeDtoMapper,
     ISelectAllServerUseCase<SupportSlotEntity, IMasterGateway<SupportSlotEntity>> selectAllSupportSlotsServerUseCase,
     SupportSlotPrimitiveMapper<SupportSlotEntity, SupportSlotDto> supportSlotDtoMapper,
-    ISelectByIdServerUseCase<VersioningEntity, IVersioningGateway<VersioningEntity>> selectVersioningByIdServerUseCase,
 
+    ISelectByIdServerUseCase<VersioningEntity, IMasterGateway<VersioningEntity>> selectVersioningByIdServerUseCase,
     VersioningPrimitiveMapper<VersioningEntity, VersioningDto> versioningDtoMapper,
 
-    ISelectAllServerUseCase<TagEntity, ITagGateway<TagEntity>> selectAllTagsServerUseCase,
+    ISelectAllServerUseCase<TagEntity, ITxnGateway<TagEntity>> selectAllTagsServerUseCase,
     TagPrimitiveMapper<TagEntity, TagDto> TagDtoMapper,
 
     ILogger<SystemWebApiController> logger) : IGw

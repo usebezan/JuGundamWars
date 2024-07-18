@@ -3,6 +3,7 @@ using Ju.GundamWars.Commons.Domain.Service.Sanitization;
 using Ju.GundamWars.Commons.Domain.Service.Validation;
 using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
+using Ju.GundamWars.Server.Tags.Domain.Service.Validation;
 
 namespace Ju.GundamWars.Client.Commons.UseCase.InputPort;
 
