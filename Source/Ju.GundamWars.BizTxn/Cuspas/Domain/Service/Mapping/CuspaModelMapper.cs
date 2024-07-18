@@ -1,5 +1,4 @@
-﻿using Ju.GundamWars.BizConst.Boosts.Domain;
-using Ju.GundamWars.BizConst.CuspaKinds.Domain;
+﻿using Ju.GundamWars.BizConst.CuspaKinds.Domain;
 using Ju.GundamWars.BizTxn.Cuspas.Domain.Dto;
 using Ju.GundamWars.BizTxn.Cuspas.Domain.Model;
 using Ju.GundamWars.BizTxn.Tags.Domain.Inventory;

@@ -1,5 +1,5 @@
 ﻿namespace Ju.GundamWars.BizMaster.Versionings.Domain;
 
-public record VersioningDto : VersioningPrimitiveBase
+public record VersioningEntity : VersioningPrimitiveBase
 {
 }

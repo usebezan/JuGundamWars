@@ -38,7 +38,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Ju.GundamWars.BizConst\Ju.GundamWars.BizConst.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.BizMaster\Ju.GundamWars.BizMaster.csproj" />
-    <ProjectReference Include="..\Ju.GundamWars.BizTxn\Ju.GundamWars.BizTxn.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
   </ItemGroup>
 

@@ -1,14 +1,9 @@
-﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
-using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
-using Ju.GundamWars.BizMaster.PilotSkills.Domain;
-using Ju.GundamWars.BizMaster.Serials.Domain;
-using Ju.GundamWars.BizMaster.Skills.Domain;
-using Ju.GundamWars.BizMaster.SupportBadges.Domain;
-using Ju.GundamWars.BizMaster.SupportSlots.Domain;
-using Ju.GundamWars.Server.Commons.Application;
+﻿using Ju.GundamWars.Server.Commons.Application;
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
+using Ju.GundamWars.Server.Systems.Domain.Gateway;
+using Ju.GundamWars.Server.Systems.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,14 +59,8 @@ public static class ServerCoreHosting
 
                 // Systems
                 services
-                    // Domain
-                    .AddSingleton(typeof(MobileSSkillPrimitiveMapper<,>))
-                    .AddSingleton(typeof(PilotAbilityPrimitiveMapper<,>))
-                    .AddSingleton(typeof(PilotSkillPrimitiveMapper<,>))
-                    .AddSingleton(typeof(SerialPrimitiveMapper<,>))
-                    .AddSingleton(typeof(SkillPrimitiveMapper<,>))
-                    .AddSingleton(typeof(SupportBadgePrimitiveMapper<,>))
-                    .AddSingleton(typeof(SupportSlotPrimitiveMapper<,>))
+                    // Infrastructure.Persistence
+                    .AddSingleton<IVersioningRepository, VersioningRepository>()
                     // Infrastructure.WebApi
                     .AddSingleton<SystemWebApiController>()
                 ;

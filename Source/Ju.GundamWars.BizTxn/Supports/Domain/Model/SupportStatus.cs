@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizConst.Boosts.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.BizTxn.Supports.Domain.Model;
