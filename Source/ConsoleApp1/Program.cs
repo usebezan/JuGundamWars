@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.BizMaster;
+﻿using Ju.GundamWars.BizConst;
+using Ju.GundamWars.BizMaster;
 using Ju.GundamWars.Client;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Server;
@@ -12,10 +13,10 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        // 汎用ホストの生成（ビルドパターンを使用）
         var host = Host.CreateDefaultBuilder(args)
             .ConfigureServerCore()
             .ConfigureClientCore()
+            .ConfigureClientBizConst()
             .ConfigureBizMaster()
             .ConfigureClientBizMaster()
             .ConfigureLogging((context, builder) =>

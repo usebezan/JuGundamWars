@@ -21,12 +21,15 @@ internal class LoadAllClientPresenter(
 {
     public void ShowProgress()
     {
+        Console.WriteLine("*** ShowProgress ***");
     }
     public void CloseProgress()
     {
+        Console.WriteLine("*** CloseProgress ***");
     }
     public void Complete()
     {
+        Console.WriteLine("*** Complete ***");
     }
 
     public void CompleteMobileSSkill(List<MobileSSkill> output)

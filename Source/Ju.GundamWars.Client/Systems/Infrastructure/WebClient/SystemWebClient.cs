@@ -23,52 +23,92 @@ public class SystemWebClient(
     ILogger<SystemWebClient> logger
     ) : IGw
 {
-    public Task<List<MobileSSkill>> SelectAllMobileSSkillsAsync() =>
+    public Task<List<MobileSSkill>> GetAllMobileSSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllMobileSSkillsAsync();
+            var dtos = await controller.GetAllMobileSSkillsAsync();
             return dtos.Select(d => mobileSSkillModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<PilotAbility>> SelectAllPilotAbilitiesAsync() =>
+    public Task<List<PilotAbility>> GetAllPilotAbilitiesAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllPilotAbilitiesAsync();
+            var dtos = await controller.GetAllPilotAbilitiesAsync();
             return dtos.Select(d => pilotAbilityModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<PilotSkill>> SelectAllPilotSkillsAsync() =>
+    public Task<List<PilotSkill>> GetAllPilotSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllPilotSkillsAsync();
+            var dtos = await controller.GetAllPilotSkillsAsync();
             return dtos.Select(d => pilotSkillModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<Serial>> SelectAllSerialsAsync() =>
+    public Task<List<Serial>> GetAllSerialsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllSerialsAsync();
+            var dtos = await controller.GetAllSerialsAsync();
             return dtos.Select(d => serialModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<Skill>> SelectAllSkillsAsync() =>
+    public Task<List<Skill>> GetAllSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllSkillsAsync();
+            var dtos = await controller.GetAllSkillsAsync();
             return dtos.Select(d => skillModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<SupportBadge>> SelectAllSupportBadgesAsync() =>
+    public Task<List<SupportBadge>> GetAllSupportBadgesAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllSupportBadgesAsync();
+            var dtos = await controller.GetAllSupportBadgesAsync();
             return dtos.Select(d => supportBadgeModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<SupportSlot>> SelectAllSupportSlotsAsync() =>
+    public Task<List<SupportSlot>> GetAllSupportSlotsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllSupportSlotsAsync();
+            var dtos = await controller.GetAllSupportSlotsAsync();
             return dtos.Select(d => supportSlotModelMapper.Map(d, new())).ToList();
         });
-    public Task<string> SelectVersioningByIdAsync() =>
+
+    public Task<string> GetLocalVersionAsync() =>
         this.Execute(logger, async () =>
         {
-            var dto = await controller.SelectVersioningByIdAsync();
+            var dto = await controller.GetVersioningByIdAsync();
             return dto.Version;
         });
+    public Task<string> GetRemoteVersionAsync(string uriString) =>
+        this.Execute(logger, async () =>
+        {
+            try
+            {
+                return await httpClient.GetStringAsync(uriString);
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "GetRemoteVersionAsync abend. {message}", ex.Message);
+                return string.Empty;
+            }
+        });
+    public Task<bool> TryDownloadFileAsync(string uriString, string filePath) =>
+        this.Execute(logger, async () =>
+        {
+            try
+            {
+                using var request = new HttpRequestMessage(HttpMethod.Get, new Uri(uriString));
+                using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+                if (response.IsSuccessStatusCode)
+                {
+                    using var content = response.Content;
+                    using var stream = await content.ReadAsStreamAsync();
+                    using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
+                    stream.CopyTo(fileStream);
+                    fileStream.Flush();
+                    return true;
+                }
+                logger.LogWarning("StatusCode: {message}", response.StatusCode);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "TryDownloadFileAsync abend. {message}", ex.Message);
+                return false;
+            }
+        });
+
 }
