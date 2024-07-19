@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.BizTxn.Tags.Domain.Entity;
+﻿using Ju.GundamWars.Server.Tags.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

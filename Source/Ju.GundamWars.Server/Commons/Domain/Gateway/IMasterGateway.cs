@@ -3,7 +3,7 @@ using Ju.GundamWars.Commons.Domain.Gateway;
 
 namespace Ju.GundamWars.Server.Commons.Domain.Gateway;
 
-public interface IMasterGateway<T> : IByIdGateway<T>, ISelectAllGateway<T>
+public interface IMasterGateway<T> : IByIdGateway<T>
     where T : class, IIdentify, IOrderable
 {
 }

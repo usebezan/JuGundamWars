@@ -1,25 +1,30 @@
-﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
-using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
-using Ju.GundamWars.BizMaster.PilotSkills.Domain;
-using Ju.GundamWars.BizMaster.Serials.Domain;
-using Ju.GundamWars.BizMaster.Skills.Domain;
-using Ju.GundamWars.BizMaster.SupportBadges.Domain;
-using Ju.GundamWars.BizMaster.SupportSlots.Domain;
-using Ju.GundamWars.BizMaster.Versionings.Domain;
-using Ju.GundamWars.BizTxn.Tags.Domain.Dto;
-using Ju.GundamWars.BizTxn.Tags.Domain.Entity;
-using Ju.GundamWars.BizTxn.Tags.Domain.Service.Mapping;
-using Ju.GundamWars.Server.Commons.Domain.Gateway;
+﻿using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
+using Ju.GundamWars.Server.MobileSSkills.Domain;
+using Ju.GundamWars.Server.PilotAbilities.Domain;
+using Ju.GundamWars.Server.PilotSkills.Domain;
+using Ju.GundamWars.Server.Serials.Domain;
+using Ju.GundamWars.Server.Skills.Domain;
+using Ju.GundamWars.Server.SupportBadges.Domain;
+using Ju.GundamWars.Server.SupportSlots.Domain;
+using Ju.GundamWars.Server.Tags.Domain;
+using Ju.GundamWars.Server.Versionings.Domain;
+using Ju.GundamWars.Share.MobileSSkills.Domain;
+using Ju.GundamWars.Share.PilotAbilities.Domain;
+using Ju.GundamWars.Share.PilotSkills.Domain;
+using Ju.GundamWars.Share.Serials.Domain;
+using Ju.GundamWars.Share.Skills.Domain;
+using Ju.GundamWars.Share.SupportBadges.Domain;
+using Ju.GundamWars.Share.SupportSlots.Domain;
+using Ju.GundamWars.Share.Tags.Domain;
+using Ju.GundamWars.Share.Versionings.Domain;
 using Microsoft.Extensions.Logging;
-using MobileSSkillDtoMapper = Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillPrimitiveMapper<Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillEntity, Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillDto>;
-using SelectAllMobileSSkillsServerUseCase = Ju.GundamWars.Server.Commons.UseCase.InputPort.ISelectAllServerUseCase<Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillEntity, Ju.GundamWars.Server.Commons.Domain.Gateway.IMasterGateway<Ju.GundamWars.BizMaster.MobileSSkills.Domain.MobileSSkillEntity>>;
 
 namespace Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 
 public class SystemWebApiController(
-    SelectAllMobileSSkillsServerUseCase selectAllMobileSSkillsServerUseCase,
-    MobileSSkillDtoMapper mobileSSkillDtoMapper,
+    ISelectAllServerUseCase<MobileSSkillEntity, IMasterGateway<MobileSSkillEntity>> selectAllMobileSSkillsServerUseCase,
+    MobileSSkillPrimitiveMapper<MobileSSkillEntity, MobileSSkillDto> mobileSSkillDtoMapper,
     ISelectAllServerUseCase<PilotAbilityEntity, IMasterGateway<PilotAbilityEntity>> selectAllPilotAbilitiesServerUseCase,
     PilotAbilityPrimitiveMapper<PilotAbilityEntity, PilotAbilityDto> pilotAbilityDtoMapper,
     ISelectAllServerUseCase<PilotSkillEntity, IMasterGateway<PilotSkillEntity>> selectAllPilotSkillsServerUseCase,
@@ -91,7 +96,6 @@ public class SystemWebApiController(
             var dto = new VersioningDto();
             return entity == null ? dto : versioningDtoMapper.Map(entity, dto);
         });
-
 
     public Task<List<TagDto>> GetAllTagsAsync() =>
         this.Execute(logger, async () =>

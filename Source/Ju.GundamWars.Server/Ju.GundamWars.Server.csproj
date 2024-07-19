@@ -33,19 +33,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ju.GundamWars.BizConst\Ju.GundamWars.BizConst.csproj" />
-    <ProjectReference Include="..\Ju.GundamWars.BizMaster\Ju.GundamWars.BizMaster.csproj" />
-    <ProjectReference Include="..\Ju.GundamWars.BizTxn\Ju.GundamWars.BizTxn.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Server.Master\Ju.GundamWars.Server.Master.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Server.Transaction\Ju.GundamWars.Server.Transaction.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\Data\JuGundamWars.base.db" Link="Data\JuGundamWars.base.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\Data\JuGundamWarsMaster.db" Link="Data\JuGundamWarsMaster.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Data\JuGundamWars.base.db" Link="Data\JuGundamWars.base.db" />
+    <None Include="..\..\Data\JuGundamWarsMaster.db" Link="Data\JuGundamWarsMaster.db" />
   </ItemGroup>
 
 </Project>

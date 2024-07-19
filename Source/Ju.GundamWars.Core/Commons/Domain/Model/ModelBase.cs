@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.ComponentModel;
+using Ju.ComponentModel;
 using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;

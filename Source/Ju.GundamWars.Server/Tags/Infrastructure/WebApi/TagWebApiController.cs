@@ -1,9 +1,7 @@
-﻿using Ju.GundamWars.BizTxn.Tags.Domain.Dto;
-using Ju.GundamWars.BizTxn.Tags.Domain.Entity;
-using Ju.GundamWars.BizTxn.Tags.Domain.Service.Mapping;
-using Ju.GundamWars.Server.Commons.Domain.Gateway;
+﻿using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
-using Ju.GundamWars.Server.Tags.Domain.Service.Sanitization;
+using Ju.GundamWars.Server.Tags.Domain;
+using Ju.GundamWars.Share.Tags.Domain;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Tags.Infrastructure.WebApi;

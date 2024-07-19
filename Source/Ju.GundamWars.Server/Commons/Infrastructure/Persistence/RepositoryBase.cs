@@ -23,6 +23,8 @@ public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext
     public Task<T?> SelectByIdAsync(long id) =>
         this.ExecuteAsync(Logger, () => Find(id));
 
+    public abstract Task<List<T>> SelectAllAsync();
+
     #endregion
 
     #region Insert

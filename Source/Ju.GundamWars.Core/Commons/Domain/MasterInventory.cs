@@ -4,6 +4,7 @@ using System.Reactive.Linq;
 
 namespace Ju.GundamWars.Commons.Domain;
 
+// TODO: not only Master? -> Inventory
 public class MasterInventory<T> : ObservableCollection<T>
 {
 

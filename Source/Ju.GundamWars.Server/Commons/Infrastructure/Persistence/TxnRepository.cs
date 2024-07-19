@@ -9,6 +9,6 @@ public class TxnRepository<T>(IDbContextFactory<GwTxnDbContext> factory, ILogger
     : RepositoryBase<GwTxnDbContext, T>(factory, logger), ITxnGateway<T>
     where T : class, IIdentify
 {
-    public Task<List<T>> SelectAllAsync() =>
+    public override Task<List<T>> SelectAllAsync() =>
         this.ExecuteAsync(Logger, () => Queryable.ToList());
 }

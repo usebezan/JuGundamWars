@@ -1,11 +1,11 @@
-﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
-using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
-using Ju.GundamWars.BizMaster.PilotSkills.Domain;
-using Ju.GundamWars.BizMaster.Serials.Domain;
-using Ju.GundamWars.BizMaster.Skills.Domain;
-using Ju.GundamWars.BizMaster.SupportBadges.Domain;
-using Ju.GundamWars.BizMaster.SupportSlots.Domain;
-using Ju.GundamWars.BizMaster.Versionings.Domain;
+﻿using Ju.GundamWars.Server.MobileSSkills.Domain;
+using Ju.GundamWars.Server.PilotAbilities.Domain;
+using Ju.GundamWars.Server.PilotSkills.Domain;
+using Ju.GundamWars.Server.Serials.Domain;
+using Ju.GundamWars.Server.Skills.Domain;
+using Ju.GundamWars.Server.SupportBadges.Domain;
+using Ju.GundamWars.Server.SupportSlots.Domain;
+using Ju.GundamWars.Server.Versionings.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ju.GundamWars.Server.Commons.Infrastructure.Persistence;

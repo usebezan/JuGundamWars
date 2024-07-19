@@ -9,6 +9,6 @@ public class MasterRepository<T>(IDbContextFactory<GwMasterDbContext> factory, I
     : RepositoryBase<GwMasterDbContext, T>(factory, logger), IMasterGateway<T>
     where T : class, IIdentify, IOrderable
 {
-    public Task<List<T>> SelectAllAsync() =>
+    public override Task<List<T>> SelectAllAsync() =>
         this.ExecuteAsync(Logger, () => Queryable.OrderBy(e => e.Order).ToList());
 }

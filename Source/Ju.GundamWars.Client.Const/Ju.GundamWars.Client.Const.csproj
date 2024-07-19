@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Ju.GundamWars.Client</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Share.Const\Ju.GundamWars.Share.Const.csproj" />
+  </ItemGroup>
+
+</Project>
