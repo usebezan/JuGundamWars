@@ -26,8 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ju.GundamWars.BizConst\Ju.GundamWars.BizConst.csproj" />
-    <ProjectReference Include="..\Ju.GundamWars.BizMaster\Ju.GundamWars.BizMaster.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Client.Const\Ju.GundamWars.Client.Const.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Client.Master\Ju.GundamWars.Client.Master.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Client.Transaction\Ju.GundamWars.Client.Transaction.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Server\Ju.GundamWars.Server.csproj" />
   </ItemGroup>
