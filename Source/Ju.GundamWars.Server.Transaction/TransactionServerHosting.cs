@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.Server.Tags.Domain;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 
 namespace Ju.GundamWars.Server;
 
@@ -10,11 +8,6 @@ public static class TransactionServerHosting
         self
             .ConfigureServices((context, services) =>
             {
-                // Tags
-                services
-                    // Domain
-                    .AddSingleton<UpdateTagSanitizer>()
-                ;
             });
 }
 

@@ -55,6 +55,7 @@ public static class ServerHosting
                     .AddSingleton(typeof(IInsertServerUseCase<,,,>), typeof(InsertServerInteractor<,,,>))
                     .AddSingleton(typeof(ISelectAllServerUseCase<,>), typeof(SelectAllServerInteractor<,>))
                     .AddSingleton(typeof(ISelectByIdServerUseCase<,>), typeof(SelectByIdServerInteractor<,>))
+                    .AddSingleton(typeof(IUpdateServerUseCase<,,>), typeof(UpdateServerInteractor<,,>))
                     .AddSingleton(typeof(IUpdateServerUseCase<,,,>), typeof(UpdateServerInteractor<,,,>))
                     // Infrastructure.Persistence
                     .AddSingleton(typeof(IMasterGateway<>), typeof(MasterRepository<>))

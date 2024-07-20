@@ -6,6 +6,14 @@ using Ju.GundamWars.Commons.UseCase.OutputPort;
 
 namespace Ju.GundamWars.Client.Commons.UseCase.InputPort;
 
+public interface IUpdateClientUseCase<TInOut, TGateway, TPresenter, TSanitizer> : IUpdateUseCase<TInOut>
+    where TInOut : class
+    where TGateway : IUpdateGateway<TInOut>
+    where TPresenter : IUpdatePresenter<TInOut>
+    where TSanitizer : IUpdateSanitizer<TInOut>
+{
+}
+
 public interface IUpdateClientUseCase<TInOut, TGateway, TPresenter, TSanitizer, TValidator> : IUpdateUseCase<TInOut>
     where TInOut : class
     where TGateway : IUpdateGateway<TInOut>

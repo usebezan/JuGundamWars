@@ -24,6 +24,7 @@ public static class ClientHosting
                     .AddSingleton(typeof(IDeleteByIdClientUseCase<,,>), typeof(DeleteByIdClientInteractor<,,>))
                     .AddSingleton(typeof(IInsertClientUseCase<,,,,>), typeof(InsertClientInteractor<,,,,>))
                     .AddSingleton(typeof(ISelectByIdClientUseCase<,,>), typeof(SelectByIdClientInteractor<,,>))
+                    .AddSingleton(typeof(IUpdateClientUseCase<,,,>), typeof(UpdateClientInteractor<,,,>))
                     .AddSingleton(typeof(IUpdateClientUseCase<,,,,>), typeof(UpdateClientInteractor<,,,,>))
                     // Infrastructure.WebClient
                     .AddSingleton<HttpClient>()

@@ -1,5 +1,7 @@
 ﻿using Ju.GundamWars.Client;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
+using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Server;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,6 +24,7 @@ internal class Program
             {
                 services.AddSingleton<Runner>();
                 services.AddSingleton<ILoadAllClientPresenter, LoadAllClientPresenter>();
+                services.AddSingleton<IUpdatePresenter<Tag>, UpdateTagPresenter>();
             })
             .Build();
         try

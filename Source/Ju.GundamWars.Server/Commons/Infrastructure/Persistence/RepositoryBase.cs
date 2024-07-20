@@ -89,6 +89,7 @@ public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext
 
     #endregion
 
-    protected T? Find(long id) => Queryable.FirstOrDefault(e => e.Id == id);
+    protected T? Find(long id) =>
+        Queryable.FirstOrDefault(e => e.Id == id);
 
 }

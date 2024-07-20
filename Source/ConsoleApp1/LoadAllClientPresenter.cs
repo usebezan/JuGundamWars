@@ -40,7 +40,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             mobileSSkills.Add(item);
-            Console.WriteLine(item.ToString());
+            //Console.WriteLine(item.ToString());
         }
     }
 
@@ -50,7 +50,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             pilotAbilities.Add(item);
-            Console.WriteLine(item.ToString());
+            //Console.WriteLine(item.ToString());
         }
     }
 
@@ -60,7 +60,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             pilotSkills.Add(item);
-            Console.WriteLine(item.ToString());
+            //Console.WriteLine(item.ToString());
         }
     }
 
@@ -70,7 +70,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             serials.Add(item);
-            Console.WriteLine(item.ToString());
+            //Console.WriteLine(item.ToString());
         }
     }
 
@@ -80,7 +80,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             skills.Add(item);
-            Console.WriteLine(item.ToString());
+            //Console.WriteLine(item.ToString());
         }
     }
 
@@ -90,7 +90,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             supportBadges.Add(item);
-            Console.WriteLine(item.ToString());
+            //Console.WriteLine(item.ToString());
         }
     }
 
@@ -100,7 +100,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             supportSlots.Add(item);
-            Console.WriteLine(item.ToString());
+            //Console.WriteLine(item.ToString());
         }
     }
 
@@ -116,7 +116,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             tags.Add(item);
-            Console.WriteLine($"{item.Id} {item.GroupText} {item.Name} {item.Order}");
+            //Console.WriteLine($"{item.Id} {item.GroupText} {item.Name} {item.Order}");
         }
     }
 

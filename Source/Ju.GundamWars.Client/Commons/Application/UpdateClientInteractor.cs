@@ -8,6 +8,20 @@ using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.Commons.Application;
 
+internal class UpdateClientInteractor<TInOut, TGateway, TPresenter, TSanitizer>(
+    TGateway gateway,
+    TPresenter presenter,
+    TSanitizer sanitizer,
+    ILogger<UpdateClientInteractor<TInOut, TGateway, TPresenter, TSanitizer>> logger) :
+        UpdateInteractorBase<TInOut>(gateway, presenter, sanitizer, validator: null, logger),
+        IUpdateClientUseCase<TInOut, TGateway, TPresenter, TSanitizer>
+    where TInOut : class
+    where TGateway : IUpdateGateway<TInOut>
+    where TPresenter : IUpdatePresenter<TInOut>
+    where TSanitizer : IUpdateSanitizer<TInOut>
+{
+}
+
 internal class UpdateClientInteractor<TInOut, TGateway, TPresenter, TSanitizer, TValidator>(
     TGateway gateway,
     TPresenter presenter,

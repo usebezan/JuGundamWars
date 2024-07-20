@@ -14,6 +14,7 @@ public static class TransactionShareHosting
                 services
                     // Domain
                     .AddSingleton(typeof(TagPrimitiveMapper<,>))
+                    .AddSingleton(typeof(UpdateTagSanitizer<>))
                 ;
             });
 }
