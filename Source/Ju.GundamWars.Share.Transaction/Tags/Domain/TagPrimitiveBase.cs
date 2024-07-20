@@ -7,7 +7,7 @@ public record TagPrimitiveBase : ITag
 
     public int Id { get; set; }
     public TagGroupType Group { get; set; }
-    public string Name { get; set; } = string.Empty;
+    public string? Name { get; set; } = string.Empty;
     public int Order { get; set; }
 
     #endregion

@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.BizTxn.Tags.Domain.Model;
+﻿using Ju.GundamWars.Client.Tags.Domain;
 using System.Collections.ObjectModel;
 
 namespace Ju.GundamWars.Client;

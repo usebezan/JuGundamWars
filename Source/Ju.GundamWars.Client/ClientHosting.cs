@@ -3,15 +3,19 @@ using Ju.GundamWars.Client.Commons.UseCase.InputPort;
 using Ju.GundamWars.Client.Systems.Application;
 using Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Systems.UseCase.InputPort;
+using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Ju.GundamWars.Client;
 
-public static class ClientCoreHosting
+public static class ClientHosting
 {
-    public static IHostBuilder ConfigureClientCore(this IHostBuilder self) =>
+    public static IHostBuilder ConfigureClient(this IHostBuilder self) =>
         self
+            .ConfigureConstClient()
+            .ConfigureMasterClient()
+            .ConfigureTransactionClient()
             .ConfigureServices((context, services) =>
             {
                 // Commons
@@ -28,9 +32,15 @@ public static class ClientCoreHosting
                 // Systems
                 services
                     // Application
-                    .AddSingleton<IPutAllTagsClientUseCase, LoadAllClientInteractor>()
+                    .AddSingleton<ILoadAllClientUseCase, LoadAllClientInteractor>()
                     // Infrastructure.WebClient
                     .AddSingleton<SystemWebClient>()
+                ;
+
+                // Tags
+                services
+                    // Infrastructure.WebClient
+                    .AddSingleton<TagWebClient>()
                 ;
             });
 }

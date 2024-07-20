@@ -46,6 +46,7 @@ public class SystemWebApiController(
 
     ILogger<SystemWebApiController> logger) : IGw
 {
+
     public Task<List<MobileSSkillDto>> GetAllMobileSSkillsAsync() =>
         this.Execute(logger, async () =>
         {
@@ -103,6 +104,5 @@ public class SystemWebApiController(
             var entities = await selectAllTagsServerUseCase.HandleAsync();
             return entities.Select(e => TagDtoMapper.Map(e, new())).ToList();
         });
-
 
 }

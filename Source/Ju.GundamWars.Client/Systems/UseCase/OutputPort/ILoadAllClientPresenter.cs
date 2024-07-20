@@ -1,11 +1,11 @@
-﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
-using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
-using Ju.GundamWars.BizMaster.PilotSkills.Domain;
-using Ju.GundamWars.BizMaster.Serials.Domain;
-using Ju.GundamWars.BizMaster.Skills.Domain;
-using Ju.GundamWars.BizMaster.SupportBadges.Domain;
-using Ju.GundamWars.BizMaster.SupportSlots.Domain;
-using Ju.GundamWars.BizTxn.Tags.Domain.Model;
+﻿using Ju.GundamWars.Client.MobileSSkills.Domain;
+using Ju.GundamWars.Client.PilotAbilities.Domain;
+using Ju.GundamWars.Client.PilotSkills.Domain;
+using Ju.GundamWars.Client.Serials.Domain;
+using Ju.GundamWars.Client.Skills.Domain;
+using Ju.GundamWars.Client.SupportBadges.Domain;
+using Ju.GundamWars.Client.SupportSlots.Domain;
+using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 
 namespace Ju.GundamWars.Client.Systems.UseCase.OutputPort;

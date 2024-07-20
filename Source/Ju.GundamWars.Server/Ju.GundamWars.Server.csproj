@@ -43,8 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\Data\JuGundamWars.base.db" Link="Data\JuGundamWars.base.db" />
-    <None Include="..\..\Data\JuGundamWarsMaster.db" Link="Data\JuGundamWarsMaster.db" />
+    <None Include="..\..\Data\JuGundamWars.base.db" Link="Data\JuGundamWars.base.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Data\JuGundamWarsMaster.db" Link="Data\JuGundamWarsMaster.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

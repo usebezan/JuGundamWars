@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.Systems.Application;
 
-internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPresenter presenter, ILogger<LoadAllClientInteractor> logger) : IGw, IPutAllTagsClientUseCase
+internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPresenter presenter, ILogger<LoadAllClientInteractor> logger) : IGw, ILoadAllClientUseCase
 {
     public Task HandleAsync() =>
         this.Execute(logger, async () =>
@@ -23,26 +23,26 @@ internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPr
                 //}
                 //presenter.CompleteVersioning(remoteVersion);
 
-                //var serials = await gateway.GetAllSerialsAsync();
-                //presenter.CompleteSerial(serials);
+                var serials = await gateway.GetAllSerialsAsync();
+                presenter.CompleteSerial(serials);
 
-                //var skills = await gateway.GetAllSkillsAsync();
-                //presenter.CompleteSkill(skills);
+                var skills = await gateway.GetAllSkillsAsync();
+                presenter.CompleteSkill(skills);
 
-                //var mobileSSkills = await gateway.GetAllMobileSSkillsAsync();
-                //presenter.CompleteMobileSSkill(mobileSSkills);
+                var mobileSSkills = await gateway.GetAllMobileSSkillsAsync();
+                presenter.CompleteMobileSSkill(mobileSSkills);
 
-                //var pilotAbilities = await gateway.GetAllPilotAbilitiesAsync();
-                //presenter.CompletePilotAbility(pilotAbilities);
+                var pilotAbilities = await gateway.GetAllPilotAbilitiesAsync();
+                presenter.CompletePilotAbility(pilotAbilities);
 
-                //var pilotSkills = await gateway.GetAllPilotSkillsAsync();
-                //presenter.CompletePilotSkill(pilotSkills);
+                var pilotSkills = await gateway.GetAllPilotSkillsAsync();
+                presenter.CompletePilotSkill(pilotSkills);
 
-                //var supportBadges = await gateway.GetAllSupportBadgesAsync();
-                //presenter.CompleteSupportBadge(supportBadges);
+                var supportBadges = await gateway.GetAllSupportBadgesAsync();
+                presenter.CompleteSupportBadge(supportBadges);
 
-                //var supportSlots = await gateway.GetAllSupportSlotsAsync();
-                //presenter.CompleteSupportSlot(supportSlots);
+                var supportSlots = await gateway.GetAllSupportSlotsAsync();
+                presenter.CompleteSupportSlot(supportSlots);
 
                 var tags = await gateway.GetAllTagsAsync();
                 presenter.CompleteTag(tags);

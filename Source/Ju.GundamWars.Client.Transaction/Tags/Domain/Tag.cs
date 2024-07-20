@@ -2,7 +2,7 @@
 using Ju.GundamWars.Commons.Domain.Model;
 using Ju.GundamWars.Share.Tags.Domain;
 
-namespace Ju.GundamWars.BizTxn.Tags.Domain.Model;
+namespace Ju.GundamWars.Client.Tags.Domain;
 
 public partial class Tag : ModelBase, ITag
 {
@@ -17,7 +17,7 @@ public partial class Tag : ModelBase, ITag
     [ObservableProperty, NotifyPropertyChangedFor(nameof(GroupText))]
     private TagGroupType _Group;
     [ObservableProperty]
-    private string _Name = string.Empty;
+    private string? _Name = string.Empty;
     [ObservableProperty]
     private int _Order;
 

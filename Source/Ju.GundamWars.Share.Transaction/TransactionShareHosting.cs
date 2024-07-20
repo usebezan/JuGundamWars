@@ -6,7 +6,7 @@ namespace Ju.GundamWars.Share;
 
 public static class TransactionShareHosting
 {
-    public static IHostBuilder ConfigureBizTxn(this IHostBuilder self) =>
+    public static IHostBuilder ConfigureTransactionShare(this IHostBuilder self) =>
         self
             .ConfigureServices((context, services) =>
             {

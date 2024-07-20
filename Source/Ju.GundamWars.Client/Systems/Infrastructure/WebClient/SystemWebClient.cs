@@ -1,21 +1,25 @@
-﻿using Ju.GundamWars.BizMaster.MobileSSkills.Domain;
-using Ju.GundamWars.BizMaster.PilotAbilities.Domain;
-using Ju.GundamWars.BizMaster.PilotSkills.Domain;
-using Ju.GundamWars.BizMaster.Serials.Domain;
-using Ju.GundamWars.BizMaster.Skills.Domain;
-using Ju.GundamWars.BizMaster.SupportBadges.Domain;
-using Ju.GundamWars.BizMaster.SupportSlots.Domain;
-using Ju.GundamWars.BizTxn.Tags.Domain.Dto;
-using Ju.GundamWars.BizTxn.Tags.Domain.Model;
-using Ju.GundamWars.BizTxn.Tags.Domain.Service.Mapping;
+﻿using Ju.GundamWars.Client.MobileSSkills.Domain;
+using Ju.GundamWars.Client.PilotAbilities.Domain;
+using Ju.GundamWars.Client.PilotSkills.Domain;
+using Ju.GundamWars.Client.Serials.Domain;
+using Ju.GundamWars.Client.Skills.Domain;
+using Ju.GundamWars.Client.SupportBadges.Domain;
+using Ju.GundamWars.Client.SupportSlots.Domain;
+using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
+using Ju.GundamWars.Share.PilotAbilities.Domain;
+using Ju.GundamWars.Share.Serials.Domain;
+using Ju.GundamWars.Share.Skills.Domain;
+using Ju.GundamWars.Share.SupportBadges.Domain;
+using Ju.GundamWars.Share.SupportSlots.Domain;
+using Ju.GundamWars.Share.Tags.Domain;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 
 public class SystemWebClient(
-    HttpClient httpClient,
     SystemWebApiController controller,
+    HttpClient httpClient,
     MobileSSkillModelMapper mobileSSkillModelMapper,
     PilotAbilityPrimitiveMapper<PilotAbilityDto, PilotAbility> pilotAbilityModelMapper,
     PilotSkillModelMapper pilotSkillModelMapper,
@@ -23,10 +27,13 @@ public class SystemWebClient(
     SkillPrimitiveMapper<SkillDto, Skill> skillModelMapper,
     SupportBadgePrimitiveMapper<SupportBadgeDto, SupportBadge> supportBadgeModelMapper,
     SupportSlotPrimitiveMapper<SupportSlotDto, SupportSlot> supportSlotModelMapper,
+
     TagPrimitiveMapper<TagDto, Tag> tagModelMapper,
+
     ILogger<SystemWebClient> logger
     ) : IGw
 {
+
     public Task<List<MobileSSkill>> GetAllMobileSSkillsAsync() =>
         this.Execute(logger, async () =>
         {
@@ -121,4 +128,5 @@ public class SystemWebClient(
             var dtos = await controller.GetAllTagsAsync();
             return dtos.Select(d => tagModelMapper.Map(d, new())).ToList();
         });
+
 }

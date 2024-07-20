@@ -4,6 +4,7 @@ using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
+using Ju.GundamWars.Share;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,6 +16,9 @@ public static class ServerHosting
 {
     public static IHostBuilder ConfigureServer(this IHostBuilder self) =>
         self
+            .ConfigureMasterShare()
+            .ConfigureTransactionShare()
+            .ConfigureTransactionServer()
             .ConfigureServices((context, services) =>
             {
                 var exeDirectoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".";

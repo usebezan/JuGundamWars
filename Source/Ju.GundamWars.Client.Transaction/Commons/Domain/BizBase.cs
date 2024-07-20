@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.Collections.ObjectModel;
-using Ju.GundamWars.BizTxn.Tags.Domain.Model;
+using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 using System.Collections.Specialized;
 using System.Reactive.Linq;

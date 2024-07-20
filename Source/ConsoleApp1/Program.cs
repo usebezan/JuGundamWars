@@ -1,7 +1,4 @@
-﻿using Ju.GundamWars.BizConst;
-using Ju.GundamWars.BizMaster;
-using Ju.GundamWars.BizTxn;
-using Ju.GundamWars.Client;
+﻿using Ju.GundamWars.Client;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Server;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,13 +12,8 @@ internal class Program
     private static void Main(string[] args)
     {
         var host = Host.CreateDefaultBuilder(args)
-            .ConfigureServerCore()
-            .ConfigureClientCore()
-            .ConfigureClientBizConst()
-            .ConfigureBizMaster()
-            .ConfigureClientBizMaster()
-            .ConfigureBizTxn()
-            .ConfigureClientBizTxn()
+            .ConfigureClient()
+            .ConfigureServer()
             .ConfigureLogging((context, builder) =>
             {
                 builder.ClearProviders().AddConsole();

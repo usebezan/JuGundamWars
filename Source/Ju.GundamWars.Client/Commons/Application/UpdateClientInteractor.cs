@@ -4,7 +4,6 @@ using Ju.GundamWars.Commons.Domain.Gateway;
 using Ju.GundamWars.Commons.Domain.Service.Sanitization;
 using Ju.GundamWars.Commons.Domain.Service.Validation;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
-using Ju.GundamWars.Server.Tags.Domain.Service.Validation;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.Commons.Application;

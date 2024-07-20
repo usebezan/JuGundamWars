@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Ju.GundamWars.Client\Ju.GundamWars.Client.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
-    <ProjectReference Include="..\Ju.GundamWars.Server\Ju.GundamWars.Server.csproj" />
   </ItemGroup>
 
 </Project>

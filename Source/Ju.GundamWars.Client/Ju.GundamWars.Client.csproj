@@ -33,9 +33,4 @@
     <ProjectReference Include="..\Ju.GundamWars.Server\Ju.GundamWars.Server.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Tags\Infrastructure\WebClient\" />
-    <Folder Include="Tags\Application\" />
-  </ItemGroup>
-
 </Project>

@@ -6,7 +6,7 @@ namespace Ju.GundamWars.Client;
 
 public static class TransactionClientHosting
 {
-    public static IHostBuilder ConfigureClientBizTxn(this IHostBuilder self) =>
+    public static IHostBuilder ConfigureTransactionClient(this IHostBuilder self) =>
         self
             .ConfigureServices((context, services) =>
             {
