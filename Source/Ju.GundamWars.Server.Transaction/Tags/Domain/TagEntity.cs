@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.Tags.Domain;
 
-public record TagEntity : TagPrimitiveBase
+public record TagEntity : TagBase
 {
 }

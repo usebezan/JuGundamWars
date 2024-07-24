@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.MobileSSkills.Domain;
 
-public record MobileSSkillEntity : MobileSSkillPrimitiveBase
+public record MobileSSkillEntity : MobileSSkillBase
 {
 }

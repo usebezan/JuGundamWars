@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.PilotAbilities.Domain;
 
 namespace Ju.GundamWars.Client.PilotAbilities.Domain;
 
-public record PilotAbility : BoostBase, IPilotAbilityPrimitive
+public record PilotAbility : BoostBase, IPilotAbility
 {
 
     #region Primitives

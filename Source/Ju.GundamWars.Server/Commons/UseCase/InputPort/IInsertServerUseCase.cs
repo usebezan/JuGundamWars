@@ -5,6 +5,13 @@ using Ju.GundamWars.Commons.UseCase.InputPort;
 
 namespace Ju.GundamWars.Server.Commons.UseCase.InputPort;
 
+public interface IInsertServerUseCase<TInOut, TGateway, TSanitizer> : IInsertUseCase<TInOut>
+    where TInOut : class
+    where TGateway : IInsertGateway<TInOut>
+    where TSanitizer : IInsertSanitizer<TInOut>
+{
+}
+
 public interface IInsertServerUseCase<TInOut, TGateway, TSanitizer, TValidator> : IInsertUseCase<TInOut>
     where TInOut : class
     where TGateway : IInsertGateway<TInOut>

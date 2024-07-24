@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.PilotSkills.Domain;
 
-public record PilotSkillEntity : PilotSkillPrimitiveBase
+public record PilotSkillEntity : PilotSkillBase
 {
 }

@@ -3,7 +3,7 @@ using Ju.GundamWars.Client.Systems.UseCase.InputPort;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
-using Ju.GundamWars.Share.Tags.Domain;
+using Ju.GundamWars.Share.Tags.Domain.Service;
 using Microsoft.Extensions.Logging;
 
 namespace ConsoleApp1;

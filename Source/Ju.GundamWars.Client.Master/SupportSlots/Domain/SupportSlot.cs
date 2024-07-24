@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.SupportSlots.Domain;
 
 namespace Ju.GundamWars.Client.SupportSlots.Domain;
 
-public record SupportSlot : BoostBase, ISupportSlotPrimitive
+public record SupportSlot : BoostBase, ISupportSlot
 {
 
     #region Primitives

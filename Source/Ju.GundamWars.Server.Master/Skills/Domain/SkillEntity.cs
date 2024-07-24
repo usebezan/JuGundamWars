@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.Skills.Domain;
 
-public record SkillEntity : SkillPrimitiveBase
+public record SkillEntity : SkillBase
 {
 }

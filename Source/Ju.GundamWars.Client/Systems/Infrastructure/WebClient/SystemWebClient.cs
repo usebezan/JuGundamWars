@@ -1,6 +1,8 @@
 ﻿using Ju.GundamWars.Client.MobileSSkills.Domain;
+using Ju.GundamWars.Client.MobileSSkills.Domain.Service;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain;
+using Ju.GundamWars.Client.PilotSkills.Domain.Service;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Skills.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;
@@ -8,11 +10,17 @@ using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 using Ju.GundamWars.Share.PilotAbilities.Domain;
+using Ju.GundamWars.Share.PilotAbilities.Domain.Service;
 using Ju.GundamWars.Share.Serials.Domain;
+using Ju.GundamWars.Share.Serials.Domain.Service;
 using Ju.GundamWars.Share.Skills.Domain;
+using Ju.GundamWars.Share.Skills.Domain.Service;
 using Ju.GundamWars.Share.SupportBadges.Domain;
+using Ju.GundamWars.Share.SupportBadges.Domain.Service;
 using Ju.GundamWars.Share.SupportSlots.Domain;
+using Ju.GundamWars.Share.SupportSlots.Domain.Service;
 using Ju.GundamWars.Share.Tags.Domain;
+using Ju.GundamWars.Share.Tags.Domain.Service;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
@@ -21,14 +29,14 @@ public class SystemWebClient(
     SystemWebApiController controller,
     HttpClient httpClient,
     MobileSSkillModelMapper mobileSSkillModelMapper,
-    PilotAbilityPrimitiveMapper<PilotAbilityDto, PilotAbility> pilotAbilityModelMapper,
+    PilotAbilityMapper<PilotAbilityDto, PilotAbility> pilotAbilityModelMapper,
     PilotSkillModelMapper pilotSkillModelMapper,
-    SerialPrimitiveMapper<SerialDto, Serial> serialModelMapper,
-    SkillPrimitiveMapper<SkillDto, Skill> skillModelMapper,
-    SupportBadgePrimitiveMapper<SupportBadgeDto, SupportBadge> supportBadgeModelMapper,
-    SupportSlotPrimitiveMapper<SupportSlotDto, SupportSlot> supportSlotModelMapper,
+    SerialMapper<SerialDto, Serial> serialModelMapper,
+    SkillMapper<SkillDto, Skill> skillModelMapper,
+    SupportBadgeMapper<SupportBadgeDto, SupportBadge> supportBadgeModelMapper,
+    SupportSlotMapper<SupportSlotDto, SupportSlot> supportSlotModelMapper,
 
-    TagPrimitiveMapper<TagDto, Tag> tagModelMapper,
+    TagMapper<TagDto, Tag> tagModelMapper,
 
     ILogger<SystemWebClient> logger
     ) : IGw
@@ -37,50 +45,50 @@ public class SystemWebClient(
     public Task<List<MobileSSkill>> GetAllMobileSSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.GetAllMobileSSkillsAsync();
+            var dtos = await controller.SelectAllMobileSSkillsAsync();
             return dtos.Select(d => mobileSSkillModelMapper.Map(d, new())).ToList();
         });
     public Task<List<PilotAbility>> GetAllPilotAbilitiesAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.GetAllPilotAbilitiesAsync();
+            var dtos = await controller.SelectAllPilotAbilitiesAsync();
             return dtos.Select(d => pilotAbilityModelMapper.Map(d, new())).ToList();
         });
     public Task<List<PilotSkill>> GetAllPilotSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.GetAllPilotSkillsAsync();
+            var dtos = await controller.SelectAllPilotSkillsAsync();
             return dtos.Select(d => pilotSkillModelMapper.Map(d, new())).ToList();
         });
     public Task<List<Serial>> GetAllSerialsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.GetAllSerialsAsync();
+            var dtos = await controller.SelectAllSerialsAsync();
             return dtos.Select(d => serialModelMapper.Map(d, new())).ToList();
         });
     public Task<List<Skill>> GetAllSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.GetAllSkillsAsync();
+            var dtos = await controller.SelectAllSkillsAsync();
             return dtos.Select(d => skillModelMapper.Map(d, new())).ToList();
         });
     public Task<List<SupportBadge>> GetAllSupportBadgesAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.GetAllSupportBadgesAsync();
+            var dtos = await controller.SelectAllSupportBadgesAsync();
             return dtos.Select(d => supportBadgeModelMapper.Map(d, new())).ToList();
         });
     public Task<List<SupportSlot>> GetAllSupportSlotsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.GetAllSupportSlotsAsync();
+            var dtos = await controller.SelectAllSupportSlotsAsync();
             return dtos.Select(d => supportSlotModelMapper.Map(d, new())).ToList();
         });
 
     public Task<string> GetLocalVersionAsync() =>
         this.Execute(logger, async () =>
         {
-            var dto = await controller.GetVersioningByIdAsync();
+            var dto = await controller.SelectVersioningByIdAsync();
             return dto.Version;
         });
     public Task<string> GetRemoteVersionAsync(string uriString) =>
@@ -125,7 +133,7 @@ public class SystemWebClient(
     public Task<List<Tag>> GetAllTagsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.GetAllTagsAsync();
+            var dtos = await controller.SelectAllTagsAsync();
             return dtos.Select(d => tagModelMapper.Map(d, new())).ToList();
         });
 

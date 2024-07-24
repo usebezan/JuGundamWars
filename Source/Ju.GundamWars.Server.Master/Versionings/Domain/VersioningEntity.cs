@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.Versionings.Domain;
 
-public record VersioningEntity : VersioningPrimitiveBase
+public record VersioningEntity : VersioningBase
 {
 }

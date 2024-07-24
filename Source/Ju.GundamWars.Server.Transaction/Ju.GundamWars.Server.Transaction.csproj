@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Server.Master\Ju.GundamWars.Server.Master.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Share.Transaction\Ju.GundamWars.Share.Transaction.csproj" />
   </ItemGroup>
 

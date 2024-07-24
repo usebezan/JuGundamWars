@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.SupportSlots.Domain;
 
-public record SupportSlotEntity : SupportSlotPrimitiveBase
+public record SupportSlotEntity : SupportSlotBase
 {
 }

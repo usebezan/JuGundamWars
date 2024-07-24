@@ -5,8 +5,14 @@ using Ju.GundamWars.Share.Skills.Domain;
 
 namespace Ju.GundamWars.Client.MobileSSkills.Domain;
 
-public record MobileSSkill : MobileSSkillPrimitiveBase
+public record MobileSSkill : MobileSSkillBase
 {
+
+    #region Navigations
+
+    public Skill? Skill { get; set; } = null;
+
+    #endregion
 
     #region Extensions
 
@@ -16,7 +22,5 @@ public record MobileSSkill : MobileSSkillPrimitiveBase
     public string GradeColor => Grade.ToColor();
 
     #endregion
-
-    public Skill? Skill { get; set; } = null;
 
 }

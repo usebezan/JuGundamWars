@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.SupportBadges.Domain;
 
 namespace Ju.GundamWars.Client.SupportBadges.Domain;
 
-public record SupportBadge : BoostBase, ISupportBadgePrimitive
+public record SupportBadge : BoostBase, ISupportBadge
 {
 
     public SupportBadge()

@@ -5,8 +5,14 @@ using Ju.GundamWars.Share.Skills.Domain;
 
 namespace Ju.GundamWars.Client.PilotSkills.Domain;
 
-public record PilotSkill : PilotSkillPrimitiveBase
+public record PilotSkill : PilotSkillBase
 {
+
+    #region Navigations
+
+    public Skill? Skill { get; set; } = null;
+
+    #endregion
 
     #region Extensions
 
@@ -14,7 +20,5 @@ public record PilotSkill : PilotSkillPrimitiveBase
     public string Name => Skill?.Name ?? GwText.Unknown;
 
     #endregion
-
-    public Skill? Skill { get; set; } = null;
 
 }

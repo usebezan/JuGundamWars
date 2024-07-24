@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ju.GundamWars.Client.Const\Ju.GundamWars.Client.Const.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Share.Master\Ju.GundamWars.Share.Master.csproj" />
   </ItemGroup>

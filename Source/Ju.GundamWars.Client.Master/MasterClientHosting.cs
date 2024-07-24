@@ -1,6 +1,8 @@
 ﻿using Ju.GundamWars.Client.MobileSSkills.Domain;
+using Ju.GundamWars.Client.MobileSSkills.Domain.Service;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain;
+using Ju.GundamWars.Client.PilotSkills.Domain.Service;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Skills.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;

@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Client.Serials.Domain;
 
-public record Serial : SerialPrimitiveBase
+public record Serial : SerialBase
 {
 }

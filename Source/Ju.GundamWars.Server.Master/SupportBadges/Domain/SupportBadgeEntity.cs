@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.SupportBadges.Domain;
 
-public record SupportBadgeEntity : SupportBadgePrimitiveBase
+public record SupportBadgeEntity : SupportBadgeBase
 {
 }

@@ -1,11 +1,11 @@
-﻿using Ju.GundamWars.Share.MobileSSkills.Domain;
-using Ju.GundamWars.Share.PilotAbilities.Domain;
-using Ju.GundamWars.Share.PilotSkills.Domain;
-using Ju.GundamWars.Share.Serials.Domain;
-using Ju.GundamWars.Share.Skills.Domain;
-using Ju.GundamWars.Share.SupportBadges.Domain;
-using Ju.GundamWars.Share.SupportSlots.Domain;
-using Ju.GundamWars.Share.Versionings.Domain;
+﻿using Ju.GundamWars.Share.MobileSSkills.Domain.Service;
+using Ju.GundamWars.Share.PilotAbilities.Domain.Service;
+using Ju.GundamWars.Share.PilotSkills.Domain.Service;
+using Ju.GundamWars.Share.Serials.Domain.Service;
+using Ju.GundamWars.Share.Skills.Domain.Service;
+using Ju.GundamWars.Share.SupportBadges.Domain.Service;
+using Ju.GundamWars.Share.SupportSlots.Domain.Service;
+using Ju.GundamWars.Share.Versionings.Domain.Service;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -20,42 +20,42 @@ public static class MasterShareHosting
                 // MobileSSkills
                 services
                     // Domain
-                    .AddSingleton(typeof(MobileSSkillPrimitiveMapper<,>))
+                    .AddSingleton(typeof(MobileSSkillMapper<,>))
                 ;
                 // PilotAbilities
                 services
                     // Domain
-                    .AddSingleton(typeof(PilotAbilityPrimitiveMapper<,>))
+                    .AddSingleton(typeof(PilotAbilityMapper<,>))
                 ;
                 // PilotSkills
                 services
                     // Domain
-                    .AddSingleton(typeof(PilotSkillPrimitiveMapper<,>))
+                    .AddSingleton(typeof(PilotSkillMapper<,>))
                 ;
                 // Serials
                 services
                     // Domain
-                    .AddSingleton(typeof(SerialPrimitiveMapper<,>))
+                    .AddSingleton(typeof(SerialMapper<,>))
                 ;
                 // Skills
                 services
                     // Domain
-                    .AddSingleton(typeof(SkillPrimitiveMapper<,>))
+                    .AddSingleton(typeof(SkillMapper<,>))
                 ;
                 // SupportBadges
                 services
                     // Domain
-                    .AddSingleton(typeof(SupportBadgePrimitiveMapper<,>))
+                    .AddSingleton(typeof(SupportBadgeMapper<,>))
                 ;
                 // SupportSlots
                 services
                     // Domain
-                    .AddSingleton(typeof(SupportSlotPrimitiveMapper<,>))
+                    .AddSingleton(typeof(SupportSlotMapper<,>))
                 ;
                 // Versionings
                 services
                     // Domain
-                    .AddSingleton(typeof(VersioningPrimitiveMapper<,>))
+                    .AddSingleton(typeof(VersioningMapper<,>))
                 ;
             });
 }

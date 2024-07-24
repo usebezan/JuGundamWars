@@ -2,6 +2,8 @@
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Commons.UseCase.InputPort;
+using Ju.GundamWars.Server.CoMobiles.Infrastructure.Persistence;
+using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
 using Ju.GundamWars.Share;
@@ -52,6 +54,7 @@ public static class ServerHosting
                 services
                     // Application
                     .AddSingleton(typeof(IDeleteByIdServerUseCase<,>), typeof(DeleteByIdServerInteractor<,>))
+                    .AddSingleton(typeof(IInsertServerUseCase<,,>), typeof(InsertServerInteractor<,,>))
                     .AddSingleton(typeof(IInsertServerUseCase<,,,>), typeof(InsertServerInteractor<,,,>))
                     .AddSingleton(typeof(ISelectAllServerUseCase<,>), typeof(SelectAllServerInteractor<,>))
                     .AddSingleton(typeof(ISelectByIdServerUseCase<,>), typeof(SelectByIdServerInteractor<,>))
@@ -60,6 +63,13 @@ public static class ServerHosting
                     // Infrastructure.Persistence
                     .AddSingleton(typeof(IMasterGateway<>), typeof(MasterRepository<>))
                     .AddSingleton(typeof(ITxnGateway<>), typeof(TxnRepository<>))
+                    .AddSingleton<ICoMobileRepository, CoMobileRepository>()
+                ;
+
+                // CoMobiles
+                services
+                    // Infrastructure.WebApi
+                    .AddSingleton<CoMobileWebApiController>()
                 ;
 
                 // Systems

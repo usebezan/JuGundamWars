@@ -1,15 +1,16 @@
-﻿using Ju.GundamWars.BizTxn.CoMobiles.Domain.Dto;
+﻿using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+using Ju.GundamWars.Server.CoMobiles.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.CoMobiles.Infrastructure.Persistence;
 
-public class CoMobileRepository(IDbContextFactory<GwDbContext> factory, ILogger<CoMobileRepository> logger)
-    : TxnRepositoryBase<CoMobileDto>(factory, logger)
+public class CoMobileRepository(IDbContextFactory<GwTxnDbContext> factory, ILogger<CoMobileRepository> logger)
+    : TxnRepository<CoMobileEntity>(factory, logger), ICoMobileRepository
 {
 
-    protected override IQueryable<CoMobileDto> Queryable => DbSet.Include(e => e.TagMaps).OrderBy(e => e.Name).ThenBy(e => e.Id);
+    protected override IQueryable<CoMobileEntity> Queryable => DbSet.Include(e => e.TagMaps).OrderBy(e => e.Name).ThenBy(e => e.Id);
 
     //// 元々付いていた機体の関係を削除する
     //protected override List<int> DeleteExMobileRelations(GwDbContext dbContext, int id)

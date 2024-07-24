@@ -1,4 +1,4 @@
-﻿using Ju.GundamWars.Share.Tags.Domain;
+﻿using Ju.GundamWars.Share.Tags.Domain.Service;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -13,7 +13,7 @@ public static class TransactionShareHosting
                 // Tags
                 services
                     // Domain
-                    .AddSingleton(typeof(TagPrimitiveMapper<,>))
+                    .AddSingleton(typeof(TagMapper<,>))
                     .AddSingleton(typeof(UpdateTagSanitizer<>))
                 ;
             });
