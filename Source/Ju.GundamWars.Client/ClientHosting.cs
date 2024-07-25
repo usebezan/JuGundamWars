@@ -32,12 +32,6 @@ public static class ClientHosting
                     .AddSingleton<HttpClient>()
                 ;
 
-                // CoMobiles
-                services
-                    // Infrastructure.WebClient
-                    .AddSingleton<CoMobileWebClient>()
-                ;
-
                 // Systems
                 services
                     // Application
