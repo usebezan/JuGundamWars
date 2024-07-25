@@ -1,14 +1,14 @@
-﻿using Ju.GundamWars.Client.CoMobiles.Domain;
+﻿using Ju.GundamWars.Client.Commons.Domain.Gateway;
+using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.CoMobiles.Domain.Service;
 using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
-using Ju.GundamWars.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.CoMobiles.Infrastructure.WebClient;
 
 public class CoMobileWebClient(CoMobileWebApiController controller, CoMobileDtoMapper dtoMapper, CoMobileModelMapper modelMapper, ILogger<TagWebClient> logger)
-    : IGw, IInsertGateway<CoMobile>, IUpdateGateway<CoMobile>, IDeleteGateway<CoMobile, CoMobile>
+    : ITxnClientGateway<CoMobile>
 {
     public Task<CoMobile> InsertAsync(CoMobile model) =>
         this.Execute(logger, async () =>

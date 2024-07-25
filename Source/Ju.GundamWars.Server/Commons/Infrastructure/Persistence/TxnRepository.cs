@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 
 public class TxnRepository<T>(IDbContextFactory<GwTxnDbContext> factory, ILogger<TxnRepository<T>> logger)
-    : RepositoryBase<GwTxnDbContext, T>(factory, logger), ITxnGateway<T>
+    : RepositoryBase<GwTxnDbContext, T>(factory, logger), ITxnRepository<T>
     where T : class, IIdentifiable
 {
 }

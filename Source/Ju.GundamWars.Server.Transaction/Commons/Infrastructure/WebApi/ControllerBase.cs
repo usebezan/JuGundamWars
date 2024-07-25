@@ -16,7 +16,7 @@ public abstract class ControllerBase<TEntity, TDto, TGateway, TInsertSanitizer, 
     ILogger logger) : IGw
     where TEntity : IIdentifiable, new()
     where TDto : IIdentifiable, new()
-    where TGateway : ITxnGateway<TEntity>
+    where TGateway : ITxnRepository<TEntity>
     where TInsertSanitizer : IInsertSanitizer<TEntity>
     where TUpdateSanitizer : IUpdateSanitizer<TEntity>
 {

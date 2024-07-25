@@ -14,8 +14,8 @@ public class CoMobileWebApiController(
     IDeleteUseCase<long, CoMobileEntity, ICoMobileRepository> deleteCoMobileServerUseCase,
     CoMobileMapper<CoMobileEntity, CoMobileDto, CoMobileTagMapEntity, CoMobileTagMapDto> coMobileDtoMapper,
     CoMobileMapper<CoMobileDto, CoMobileEntity, CoMobileTagMapDto, CoMobileTagMapEntity> coMobileEntityMapper,
-    ILogger<CoMobileWebApiController> logger) :
-        ControllerBase<CoMobileEntity, CoMobileDto, ICoMobileRepository, InsertCoMobileSanitizer<CoMobileEntity>, UpdateCoMobileSanitizer<CoMobileEntity>>(
+    ILogger<CoMobileWebApiController> logger)
+        : ControllerBase<CoMobileEntity, CoMobileDto, ICoMobileRepository, InsertCoMobileSanitizer<CoMobileEntity>, UpdateCoMobileSanitizer<CoMobileEntity>>(
             insertCoMobileServerUseCase,
             updateCoMobileServerUseCase,
             deleteCoMobileServerUseCase,

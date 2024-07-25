@@ -1,13 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.Collections.ObjectModel;
 using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 using System.Collections.Specialized;
 using System.Reactive.Linq;
 
 namespace Ju.GundamWars.Client.Commons.Domain;
 
-public partial class BizBase : ModelBase
+public partial class BizBase : ModelBase, IIdentifiable
 {
 
     public BizBase()

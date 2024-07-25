@@ -14,8 +14,8 @@ public class CuspaWebApiController(
     IDeleteUseCase<long, CuspaEntity, ICuspaRepository> deleteCuspaServerUseCase,
     CuspaMapper<CuspaEntity, CuspaDto, CuspaTagMapEntity, CuspaTagMapDto> coMobileDtoMapper,
     CuspaMapper<CuspaDto, CuspaEntity, CuspaTagMapDto, CuspaTagMapEntity> coMobileEntityMapper,
-    ILogger<CuspaWebApiController> logger) :
-        ControllerBase<CuspaEntity, CuspaDto, ICuspaRepository, InsertCuspaServerSanitizer, UpdateCuspaServerSanitizer>(
+    ILogger<CuspaWebApiController> logger)
+        : ControllerBase<CuspaEntity, CuspaDto, ICuspaRepository, InsertCuspaServerSanitizer, UpdateCuspaServerSanitizer>(
             insertCuspaServerUseCase,
             updateCuspaServerUseCase,
             deleteCuspaServerUseCase,

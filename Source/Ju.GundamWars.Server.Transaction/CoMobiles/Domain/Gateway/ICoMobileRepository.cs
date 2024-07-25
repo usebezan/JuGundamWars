@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.CoMobiles.Domain.Gateway;
 
-public interface ICoMobileRepository : ITxnGateway<CoMobileEntity>
+public interface ICoMobileRepository : ITxnRepository<CoMobileEntity>
 {
 }

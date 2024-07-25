@@ -1,5 +1,4 @@
-﻿using Ju.GundamWars.Client.CoMobiles.Infrastructure.WebClient;
-using Ju.GundamWars.Client.Systems.Application;
+﻿using Ju.GundamWars.Client.Systems.Application;
 using Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Systems.UseCase.InputPort;
 using Ju.GundamWars.Commons.Application;

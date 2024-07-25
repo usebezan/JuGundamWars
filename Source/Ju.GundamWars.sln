@@ -37,8 +37,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{C11969
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Share", "Share", "{632ADB4F-4BDA-4156-B732-EA5428F4D13B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ju.GundamWars.Server.Core", "Ju.GundamWars.Server.Core\Ju.GundamWars.Server.Core.csproj", "{3F7AD73D-0320-4209-AB14-454D2AD2CA90}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,10 +95,6 @@ Global
 		{163D07C1-104B-4A91-923B-A68F3C12E313}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{163D07C1-104B-4A91-923B-A68F3C12E313}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{163D07C1-104B-4A91-923B-A68F3C12E313}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F7AD73D-0320-4209-AB14-454D2AD2CA90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F7AD73D-0320-4209-AB14-454D2AD2CA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F7AD73D-0320-4209-AB14-454D2AD2CA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F7AD73D-0320-4209-AB14-454D2AD2CA90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,7 +112,6 @@ Global
 		{C90FD614-28AC-4907-9857-3E74FCB30EA3} = {632ADB4F-4BDA-4156-B732-EA5428F4D13B}
 		{0B46DEEC-22DB-4857-9A43-468B84E91FDE} = {632ADB4F-4BDA-4156-B732-EA5428F4D13B}
 		{163D07C1-104B-4A91-923B-A68F3C12E313} = {632ADB4F-4BDA-4156-B732-EA5428F4D13B}
-		{3F7AD73D-0320-4209-AB14-454D2AD2CA90} = {C1196934-B708-4828-91B6-F35A73C8A6AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED6AFF9-FFD5-48E6-8B9C-E668E6131973}

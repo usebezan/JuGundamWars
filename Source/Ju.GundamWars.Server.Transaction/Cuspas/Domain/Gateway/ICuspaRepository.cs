@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.Cuspas.Domain.Gateway;
 
-public interface ICuspaRepository : ITxnGateway<CuspaEntity>
+public interface ICuspaRepository : ITxnRepository<CuspaEntity>
 {
 }

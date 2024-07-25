@@ -64,8 +64,8 @@ public static class ServerHosting
                     .AddSingleton(typeof(IUpdateUseCase<,,>), typeof(UpdateInteractor<,,>))
                     .AddSingleton(typeof(IUpdateUseCase<,,,>), typeof(UpdateInteractor<,,,>))
                     // Infrastructure.Persistence
-                    .AddSingleton(typeof(IMasterGateway<>), typeof(MasterRepository<>))
-                    .AddSingleton(typeof(ITxnGateway<>), typeof(TxnRepository<>))
+                    .AddSingleton(typeof(IMasterRepository<>), typeof(MasterRepository<>))
+                    .AddSingleton(typeof(ITxnRepository<>), typeof(TxnRepository<>))
                 ;
 
                 // CoMobiles

@@ -1,5 +1,5 @@
-﻿using Ju.GundamWars.Client.Tags.Domain;
-using Ju.GundamWars.Commons.Domain.Gateway;
+﻿using Ju.GundamWars.Client.Commons.Domain.Gateway;
+using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
 using Ju.GundamWars.Share.Tags.Domain;
 using Ju.GundamWars.Share.Tags.Domain.Service;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 
 public class TagWebClient(TagWebApiController controller, TagMapper<Tag, TagDto> dtoMapper, TagMapper<TagDto, Tag> modelMapper, ILogger<TagWebClient> logger)
-    : IGw, IUpdateGateway<Tag>
+    : ITxnClientGateway<Tag>
 {
     public Task<Tag> UpdateAsync(Tag model) =>
         this.Execute(logger, async () =>
@@ -16,4 +16,8 @@ public class TagWebClient(TagWebApiController controller, TagMapper<Tag, TagDto>
             var dto = await controller.UpdateAsync(dtoMapper.Map(model, new()));
             return modelMapper.Map(dto, model);
         });
+    public Task<Tag> InsertAsync(Tag data) =>
+        throw new NotImplementedException();
+    public Task<Tag> DeleteAsync(Tag data) =>
+        throw new NotImplementedException();
 }
