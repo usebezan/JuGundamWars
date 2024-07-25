@@ -1,7 +1,7 @@
-﻿using Ju.GundamWars.Server.Commons.Application;
+﻿using Ju.GundamWars.Commons.Application;
+using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
-using Ju.GundamWars.Server.Commons.UseCase.InputPort;
 using Ju.GundamWars.Server.CoMobiles.Infrastructure.Persistence;
 using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
@@ -53,21 +53,24 @@ public static class ServerHosting
                 // Commons
                 services
                     // Application
-                    .AddSingleton(typeof(IDeleteByIdServerUseCase<,>), typeof(DeleteByIdServerInteractor<,>))
-                    .AddSingleton(typeof(IInsertServerUseCase<,,>), typeof(InsertServerInteractor<,,>))
-                    .AddSingleton(typeof(IInsertServerUseCase<,,,>), typeof(InsertServerInteractor<,,,>))
-                    .AddSingleton(typeof(ISelectAllServerUseCase<,>), typeof(SelectAllServerInteractor<,>))
-                    .AddSingleton(typeof(ISelectByIdServerUseCase<,>), typeof(SelectByIdServerInteractor<,>))
-                    .AddSingleton(typeof(IUpdateServerUseCase<,,>), typeof(UpdateServerInteractor<,,>))
-                    .AddSingleton(typeof(IUpdateServerUseCase<,,,>), typeof(UpdateServerInteractor<,,,>))
+                    .AddSingleton(typeof(IDeleteUseCase<,,>), typeof(DeleteInteractor<,,>))
+                    .AddSingleton(typeof(IInsertUseCase<,>), typeof(InsertInteractor<,>))
+                    .AddSingleton(typeof(IInsertUseCase<,,>), typeof(InsertInteractor<,,>))
+                    .AddSingleton(typeof(IInsertUseCase<,,,>), typeof(InsertInteractor<,,,>))
+                    .AddSingleton(typeof(ISelectAllUseCase<,>), typeof(SelectAllInteractor<,>))
+                    .AddSingleton(typeof(ISelectByIdUseCase<,>), typeof(SelectByIdInteractor<,>))
+                    .AddSingleton(typeof(IUpdateUseCase<,>), typeof(UpdateInteractor<,>))
+                    .AddSingleton(typeof(IUpdateUseCase<,,>), typeof(UpdateInteractor<,,>))
+                    .AddSingleton(typeof(IUpdateUseCase<,,,>), typeof(UpdateInteractor<,,,>))
                     // Infrastructure.Persistence
                     .AddSingleton(typeof(IMasterGateway<>), typeof(MasterRepository<>))
                     .AddSingleton(typeof(ITxnGateway<>), typeof(TxnRepository<>))
-                    .AddSingleton<ICoMobileRepository, CoMobileRepository>()
                 ;
 
                 // CoMobiles
                 services
+                    // Infrastructure.Persistence
+                    .AddSingleton<ICoMobileRepository, CoMobileRepository>()
                     // Infrastructure.WebApi
                     .AddSingleton<CoMobileWebApiController>()
                 ;

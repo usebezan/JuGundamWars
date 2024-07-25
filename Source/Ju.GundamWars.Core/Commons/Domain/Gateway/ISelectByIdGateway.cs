@@ -1,7 +1,6 @@
 ﻿namespace Ju.GundamWars.Commons.Domain.Gateway;
 
-public interface ISelectByIdGateway<T>
-    where T : class
+public interface ISelectByIdGateway<TOut>
 {
-    Task<T?> SelectByIdAsync(long id);
+    Task<TOut?> SelectByIdAsync(long id);
 }

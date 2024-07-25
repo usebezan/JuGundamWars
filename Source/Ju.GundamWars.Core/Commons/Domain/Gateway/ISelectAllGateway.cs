@@ -1,7 +1,6 @@
 ﻿namespace Ju.GundamWars.Commons.Domain.Gateway;
 
-public interface ISelectAllGateway<T>
-    where T : class
+public interface ISelectAllGateway<TOut>
 {
-    Task<List<T>> SelectAllAsync();
+    Task<List<TOut>> SelectAllAsync();
 }

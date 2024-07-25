@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.Client.MobileSSkills.Domain;
+﻿using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.MobileSSkills.Domain;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
@@ -10,11 +11,8 @@ using Ju.GundamWars.Commons.UseCase.OutputPort;
 
 namespace Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 
-public interface ILoadAllClientPresenter : IPresenter
+public interface ILoadAllClientPresenter : IPresenter, IProgressivePresenter
 {
-    void ShowProgress();
-    void CloseProgress();
-
     void CompleteMobileSSkill(List<MobileSSkill> output);
     void CompletePilotAbility(List<PilotAbility> output);
     void CompletePilotSkill(List<PilotSkill> output);
@@ -26,4 +24,6 @@ public interface ILoadAllClientPresenter : IPresenter
     void CompleteVersioning(string output);
 
     void CompleteTag(List<Tag> output);
+
+    void CompleteCoMobile(List<CoMobile> output);
 }

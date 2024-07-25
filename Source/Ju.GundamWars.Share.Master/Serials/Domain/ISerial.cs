@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Share.Serials.Domain;
 
-public interface ISerial : IIdentify, IOrderable
+public interface ISerial : IIdentifiable, IOrderable
 {
 
     #region Primitives

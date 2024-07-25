@@ -1,5 +1,5 @@
-﻿using Ju.GundamWars.Server.Commons.Domain.Gateway;
-using Ju.GundamWars.Server.Commons.UseCase.InputPort;
+﻿using Ju.GundamWars.Commons.UseCase.InputPort;
+using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Tags.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
 using Ju.GundamWars.Share.Tags.Domain.Service;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
 
 public class TagWebApiController(
-    IUpdateServerUseCase<TagEntity, ITxnGateway<TagEntity>, UpdateTagSanitizer<TagEntity>> updateTagServerUseCase,
+    IUpdateUseCase<TagEntity, ITxnGateway<TagEntity>, UpdateTagSanitizer<TagEntity>> updateTagServerUseCase,
     TagMapper<TagEntity, TagDto> tagDtoMapper,
     TagMapper<TagDto, TagEntity> tagEntityMapper,
     ILogger<TagWebApiController> logger) : IGw

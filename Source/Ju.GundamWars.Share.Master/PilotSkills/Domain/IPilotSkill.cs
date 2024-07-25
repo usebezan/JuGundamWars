@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Share.PilotSkills.Domain;
 
-public interface IPilotSkill : IIdentify, IOrderable
+public interface IPilotSkill : IIdentifiable, IOrderable
 {
 
     #region Primitives

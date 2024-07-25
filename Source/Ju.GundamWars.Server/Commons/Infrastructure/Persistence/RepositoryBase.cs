@@ -1,14 +1,13 @@
 ﻿using Ju.GundamWars.Commons.Domain;
-using Ju.GundamWars.Commons.Domain.Gateway;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 
 // NOTE: EF 自体は非同期にはしない https://learn.microsoft.com/ja-jp/ef/core/miscellaneous/async
-public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext> factory, ILogger logger) : IGw, IByIdGateway<T>
+public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext> factory, ILogger logger) : IGw
     where TDbContext : DbContext
-    where T : class, IIdentify
+    where T : class, IIdentifiable
 {
 
     protected IDbContextFactory<TDbContext> Factory { get; } = factory;
@@ -23,7 +22,8 @@ public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext
     public Task<T?> SelectByIdAsync(long id) =>
         this.ExecuteAsync(Logger, () => Find(id));
 
-    public abstract Task<List<T>> SelectAllAsync();
+    public virtual Task<List<T>> SelectAllAsync() =>
+        this.ExecuteAsync(Logger, () => Queryable.ToList());
 
     #endregion
 
@@ -32,15 +32,10 @@ public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext
     public Task<T> InsertAsync(T data) =>
         this.ExecuteAsync(Logger, () =>
         {
-            var result = InsertCore(data);
+            var result = DbSet.Add(data).Entity;
             DbContext.SaveChanges();
             return result;
         });
-
-    protected T InsertCore(T data)
-    {
-        return DbSet.Add(data).Entity;
-    }
 
     #endregion
 
@@ -52,40 +47,28 @@ public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext
     protected Task<T> UpdateAsync(Func<T?> selector, T data) =>
         this.ExecuteAsync(Logger, () =>
         {
-            var result = UpdateCore(selector, data);
+            var dbData = selector() ?? throw new InvalidOperationException();
+            DbContext.Entry(dbData).CurrentValues.SetValues(data);
+            var result = DbSet.Update(dbData).Entity;
             DbContext.SaveChanges();
             return result;
         });
-
-    protected T UpdateCore(Func<T?> selector, T data)
-    {
-        // TODO: Exception
-        var dbData = selector() ?? throw new InvalidOperationException();
-        DbContext.Entry(dbData).CurrentValues.SetValues(data);
-        return DbSet.Update(dbData).Entity;
-    }
 
     #endregion
 
     #region Delete
 
-    public Task<T> DeleteByIdAsync(long id) =>
+    public Task<T> DeleteAsync(long id) =>
         DeleteAsync(() => Find(id));
 
     protected Task<T> DeleteAsync(Func<T?> selector) =>
         this.ExecuteAsync(Logger, () =>
         {
-            var result = DeleteCore(selector);
+            var dbData = selector() ?? throw new InvalidOperationException();
+            var result = DbSet.Remove(dbData).Entity;
             DbContext.SaveChanges();
             return result;
         });
-
-    protected T DeleteCore(Func<T?> selector)
-    {
-        // TODO: Exception
-        var dbData = selector() ?? throw new InvalidOperationException();
-        return DbSet.Remove(dbData).Entity;
-    }
 
     #endregion
 

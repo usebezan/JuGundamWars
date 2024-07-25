@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.Boosts.Domain;
 
 namespace Ju.GundamWars.Share.PilotAbilities.Domain;
 
-public interface IPilotAbility : IIdentify, IOrderable
+public interface IPilotAbility : IIdentifiable, IOrderable
 {
 
     #region Primitives

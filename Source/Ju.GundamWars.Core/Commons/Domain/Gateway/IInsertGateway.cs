@@ -1,7 +1,6 @@
 ﻿namespace Ju.GundamWars.Commons.Domain.Gateway;
 
-public interface IInsertGateway<T>
-    where T : class
+public interface IInsertGateway<TInOut>
 {
-    Task<T> InsertAsync(T data);
+    Task<TInOut> InsertAsync(TInOut data);
 }

@@ -1,7 +1,5 @@
 ﻿namespace Ju.GundamWars.Commons.UseCase.OutputPort;
 
-public interface ISelectAllPresenter<TOut> : IPresenter<List<TOut>>
+public interface ISelectAllPresenter<TOut> : IPresenter<List<TOut>>, IProgressivePresenter
 {
-    void ShowProgress();
-    void CloseProgress();
 }

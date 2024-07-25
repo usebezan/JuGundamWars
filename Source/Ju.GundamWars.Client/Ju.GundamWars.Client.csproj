@@ -12,11 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Commons\UseCase\OutputPort\**" />
     <Compile Remove="Commons\ViewModel\**" />
-    <EmbeddedResource Remove="Commons\UseCase\OutputPort\**" />
     <EmbeddedResource Remove="Commons\ViewModel\**" />
-    <None Remove="Commons\UseCase\OutputPort\**" />
     <None Remove="Commons\ViewModel\**" />
   </ItemGroup>
 

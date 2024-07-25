@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.Client.MobileSSkills.Domain;
+﻿using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.MobileSSkills.Domain;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
@@ -18,6 +19,7 @@ internal class LoadAllClientPresenter(
     SkillInventory skills,
     SupportBadgeInventory supportBadges,
     SupportSlotInventory supportSlots,
+    CoMobileInventory coMobiles,
     TagInventory tags
     ) : ILoadAllClientPresenter
 {
@@ -28,6 +30,19 @@ internal class LoadAllClientPresenter(
     public void CloseProgress()
     {
         Console.WriteLine("*** CloseProgress ***");
+    }
+    public void Initialize()
+    {
+        Console.WriteLine("*** Initialize ***");
+    }
+    public void ValidationError(string message)
+    {
+        Console.WriteLine("*** ValidationError ***");
+        Console.WriteLine(message);
+    }
+    public void Cancel()
+    {
+        Console.WriteLine("*** Cancel ***");
     }
     public void Complete()
     {
@@ -40,7 +55,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             mobileSSkills.Add(item);
-            //Console.WriteLine(item.ToString());
+            Console.WriteLine(item.ToString());
         }
     }
 
@@ -50,7 +65,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             pilotAbilities.Add(item);
-            //Console.WriteLine(item.ToString());
+            Console.WriteLine(item.ToString());
         }
     }
 
@@ -60,7 +75,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             pilotSkills.Add(item);
-            //Console.WriteLine(item.ToString());
+            Console.WriteLine(item.ToString());
         }
     }
 
@@ -70,7 +85,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             serials.Add(item);
-            //Console.WriteLine(item.ToString());
+            Console.WriteLine(item.ToString());
         }
     }
 
@@ -80,7 +95,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             skills.Add(item);
-            //Console.WriteLine(item.ToString());
+            Console.WriteLine(item.ToString());
         }
     }
 
@@ -90,7 +105,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             supportBadges.Add(item);
-            //Console.WriteLine(item.ToString());
+            Console.WriteLine(item.ToString());
         }
     }
 
@@ -100,7 +115,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             supportSlots.Add(item);
-            //Console.WriteLine(item.ToString());
+            Console.WriteLine(item.ToString());
         }
     }
 
@@ -116,8 +131,21 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             tags.Add(item);
-            //Console.WriteLine($"{item.Id} {item.GroupText} {item.Name} {item.Order}");
+            Console.WriteLine($"{item.Id} {item.GroupText} {item.Name} {item.Order}");
         }
     }
 
+    public void CompleteCoMobile(List<CoMobile> output)
+    {
+        Console.WriteLine("CompleteTag");
+        foreach (var item in output)
+        {
+            coMobiles.Add(item);
+            Console.WriteLine($"{item.Id} {item.Name}");
+            foreach (var tag in item.Tags)
+            {
+                Console.WriteLine($"{tag.Id} {tag.Name}");
+            }
+        }
+    }
 }

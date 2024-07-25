@@ -7,7 +7,7 @@ namespace Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 
 public class MasterRepository<T>(IDbContextFactory<GwMasterDbContext> factory, ILogger<MasterRepository<T>> logger)
     : RepositoryBase<GwMasterDbContext, T>(factory, logger), IMasterGateway<T>
-    where T : class, IIdentify, IOrderable
+    where T : class, IIdentifiable, IOrderable
 {
     public override Task<List<T>> SelectAllAsync() =>
         this.ExecuteAsync(Logger, () => Queryable.OrderBy(e => e.Order).ToList());

@@ -7,8 +7,6 @@ namespace Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 
 public class TxnRepository<T>(IDbContextFactory<GwTxnDbContext> factory, ILogger<TxnRepository<T>> logger)
     : RepositoryBase<GwTxnDbContext, T>(factory, logger), ITxnGateway<T>
-    where T : class, IIdentify
+    where T : class, IIdentifiable
 {
-    public override Task<List<T>> SelectAllAsync() =>
-        this.ExecuteAsync(Logger, () => Queryable.ToList());
 }

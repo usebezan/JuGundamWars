@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.Client.Tags.Domain;
+﻿using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.Tags.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -10,6 +11,11 @@ public static class TransactionClientHosting
         self
             .ConfigureServices((context, services) =>
             {
+                // CoMobiles
+                services
+                    // Domain
+                    .AddSingleton<CoMobileInventory>()
+                ;
                 // Tags
                 services
                     // Domain

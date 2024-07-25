@@ -1,7 +1,6 @@
 ﻿namespace Ju.GundamWars.Commons.Domain.Gateway;
 
-public interface IUpdateGateway<T>
-    where T : class
+public interface IUpdateGateway<TInOut>
 {
-    Task<T> UpdateAsync(T data);
+    Task<TInOut> UpdateAsync(TInOut data);
 }

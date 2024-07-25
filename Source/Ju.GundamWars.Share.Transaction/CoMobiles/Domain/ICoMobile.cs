@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.Roles.Domain;
 
 namespace Ju.GundamWars.Share.CoMobiles.Domain;
 
-public interface ICoMobile : IIdentify
+public interface ICoMobile : IIdentifiable
 {
 
     #region Primitives

@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Share.Skills.Domain;
 
-public interface ISkill : IIdentify, IOrderable
+public interface ISkill : IIdentifiable, IOrderable
 {
 
     #region Primitives

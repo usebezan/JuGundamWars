@@ -1,5 +1,5 @@
-﻿using Ju.GundamWars.Server.Commons.Domain.Gateway;
-using Ju.GundamWars.Server.Commons.UseCase.InputPort;
+﻿using Ju.GundamWars.Commons.UseCase.InputPort;
+using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.CoMobiles.Domain;
 using Ju.GundamWars.Server.MobileSSkills.Domain;
 using Ju.GundamWars.Server.PilotAbilities.Domain;
@@ -35,28 +35,28 @@ using Microsoft.Extensions.Logging;
 namespace Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 
 public class SystemWebApiController(
-    ISelectAllServerUseCase<MobileSSkillEntity, IMasterGateway<MobileSSkillEntity>> selectAllMobileSSkillsServerUseCase,
+    ISelectAllUseCase<MobileSSkillEntity, IMasterGateway<MobileSSkillEntity>> selectAllMobileSSkillsServerUseCase,
     MobileSSkillMapper<MobileSSkillEntity, MobileSSkillDto> mobileSSkillDtoMapper,
-    ISelectAllServerUseCase<PilotAbilityEntity, IMasterGateway<PilotAbilityEntity>> selectAllPilotAbilitiesServerUseCase,
+    ISelectAllUseCase<PilotAbilityEntity, IMasterGateway<PilotAbilityEntity>> selectAllPilotAbilitiesServerUseCase,
     PilotAbilityMapper<PilotAbilityEntity, PilotAbilityDto> pilotAbilityDtoMapper,
-    ISelectAllServerUseCase<PilotSkillEntity, IMasterGateway<PilotSkillEntity>> selectAllPilotSkillsServerUseCase,
+    ISelectAllUseCase<PilotSkillEntity, IMasterGateway<PilotSkillEntity>> selectAllPilotSkillsServerUseCase,
     PilotSkillMapper<PilotSkillEntity, PilotSkillDto> pilotSkillDtoMapper,
-    ISelectAllServerUseCase<SerialEntity, IMasterGateway<SerialEntity>> selectAllSerialsServerUseCase,
+    ISelectAllUseCase<SerialEntity, IMasterGateway<SerialEntity>> selectAllSerialsServerUseCase,
     SerialMapper<SerialEntity, SerialDto> serialDtoMapper,
-    ISelectAllServerUseCase<SkillEntity, IMasterGateway<SkillEntity>> selectAllSkillsServerUseCase,
+    ISelectAllUseCase<SkillEntity, IMasterGateway<SkillEntity>> selectAllSkillsServerUseCase,
     SkillMapper<SkillEntity, SkillDto> skillDtoMapper,
-    ISelectAllServerUseCase<SupportBadgeEntity, IMasterGateway<SupportBadgeEntity>> selectAllSupportBadgesServerUseCase,
+    ISelectAllUseCase<SupportBadgeEntity, IMasterGateway<SupportBadgeEntity>> selectAllSupportBadgesServerUseCase,
     SupportBadgeMapper<SupportBadgeEntity, SupportBadgeDto> supportBadgeDtoMapper,
-    ISelectAllServerUseCase<SupportSlotEntity, IMasterGateway<SupportSlotEntity>> selectAllSupportSlotsServerUseCase,
+    ISelectAllUseCase<SupportSlotEntity, IMasterGateway<SupportSlotEntity>> selectAllSupportSlotsServerUseCase,
     SupportSlotMapper<SupportSlotEntity, SupportSlotDto> supportSlotDtoMapper,
 
-    ISelectByIdServerUseCase<VersioningEntity, IMasterGateway<VersioningEntity>> selectVersioningByIdServerUseCase,
+    ISelectByIdUseCase<VersioningEntity, IMasterGateway<VersioningEntity>> selectVersioningByIdServerUseCase,
     VersioningMapper<VersioningEntity, VersioningDto> versioningDtoMapper,
 
-    ISelectAllServerUseCase<TagEntity, ITxnGateway<TagEntity>> selectAllTagsServerUseCase,
+    ISelectAllUseCase<TagEntity, ITxnGateway<TagEntity>> selectAllTagsServerUseCase,
     TagMapper<TagEntity, TagDto> TagDtoMapper,
 
-    ISelectAllServerUseCase<CoMobileEntity, ICoMobileRepository> selectAllCoMobileServerUseCase,
+    ISelectAllUseCase<CoMobileEntity, ICoMobileRepository> selectAllCoMobileServerUseCase,
     CoMobileMapper<CoMobileEntity, CoMobileDto, CoMobileTagMapEntity, CoMobileTagMapDto> coMobileDtoMapper,
 
     ILogger<SystemWebApiController> logger) : IGw

@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.Boosts.Domain;
 
 namespace Ju.GundamWars.Share.SupportSlots.Domain;
 
-public interface ISupportSlot : IIdentify, IOrderable
+public interface ISupportSlot : IIdentifiable, IOrderable
 {
 
     #region Primitives

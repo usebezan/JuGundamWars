@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.Boosts.Domain;
 
 namespace Ju.GundamWars.Share.SupportBadges.Domain;
 
-public interface ISupportBadge : IIdentify, IOrderable
+public interface ISupportBadge : IIdentifiable, IOrderable
 {
 
     #region Primitives

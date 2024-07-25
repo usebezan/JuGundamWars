@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Share.Tags.Domain;
 
-public interface ITagMaps<TTag> : IIdentify
+public interface ITagMaps<TTag> : IIdentifiable
 {
 
     #region Navigations

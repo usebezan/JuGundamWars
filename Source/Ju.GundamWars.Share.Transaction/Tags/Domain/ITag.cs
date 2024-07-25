@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Share.Tags.Domain;
 
-public interface ITag : IIdentify, IOrderable
+public interface ITag : IIdentifiable, IOrderable
 {
 
     #region Primitives
