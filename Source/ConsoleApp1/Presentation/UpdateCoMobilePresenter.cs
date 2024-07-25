@@ -30,7 +30,7 @@ internal class UpdateCoMobilePresenter() : IUpdatePresenter<CoMobile>
     public Task<MessageAnswer> ShowMessageAsync(MessageAnswer choices)
     {
         Console.WriteLine("*** ShowMessageAsync ***");
-        return Task.FromResult(MessageAnswer.No);
+        return Task.FromResult(MessageAnswer.Ok);
     }
     public void Complete(CoMobile output)
     {

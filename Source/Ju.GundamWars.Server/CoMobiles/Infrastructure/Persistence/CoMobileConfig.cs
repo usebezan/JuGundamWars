@@ -9,6 +9,6 @@ public class CoMobileConfig : IEntityTypeConfiguration<CoMobileEntity>
     public void Configure(EntityTypeBuilder<CoMobileEntity> builder)
     {
         builder.ToTable("CoMobile");
-        builder.HasMany(e => e.TagMaps).WithOne(e => e.CoMobile).HasForeignKey(e => e.CoMobileId).IsRequired(false);
+        builder.HasMany(e => e.TagMaps).WithOne(e => e.CoMobile).HasForeignKey(e => e.CoMobileId).IsRequired(false).OnDelete(DeleteBehavior.Cascade);
     }
 }

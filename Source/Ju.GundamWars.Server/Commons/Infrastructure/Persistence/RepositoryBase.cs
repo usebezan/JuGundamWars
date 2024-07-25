@@ -41,7 +41,7 @@ public abstract class RepositoryBase<TDbContext, T>(IDbContextFactory<TDbContext
 
     #region Update
 
-    public Task<T> UpdateAsync(T data) =>
+    public virtual Task<T> UpdateAsync(T data) =>
         UpdateAsync(() => Find(data.Id), data);
 
     protected Task<T> UpdateAsync(Func<T?> selector, T data) =>

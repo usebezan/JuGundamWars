@@ -30,7 +30,7 @@ internal class DeleteCoMobilePresenter(CoMobileInventory coMobiles) : IDeletePre
     public Task<MessageAnswer> ShowMessageAsync(MessageAnswer choices)
     {
         Console.WriteLine("*** ShowMessageAsync ***");
-        return Task.FromResult(MessageAnswer.No);
+        return Task.FromResult(MessageAnswer.Ok);
     }
     public void Complete(CoMobile output)
     {

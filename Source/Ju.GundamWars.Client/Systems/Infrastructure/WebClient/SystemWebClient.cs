@@ -1,4 +1,6 @@
-﻿using Ju.GundamWars.Client.MobileSSkills.Domain;
+﻿using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.CoMobiles.Domain.Service;
+using Ju.GundamWars.Client.MobileSSkills.Domain;
 using Ju.GundamWars.Client.MobileSSkills.Domain.Service;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain;
@@ -37,6 +39,7 @@ public class SystemWebClient(
     SupportSlotMapper<SupportSlotDto, SupportSlot> supportSlotModelMapper,
 
     TagMapper<TagDto, Tag> tagModelMapper,
+    CoMobileModelMapper coMobileModelMapper,
 
     ILogger<SystemWebClient> logger
     ) : IGw
@@ -135,6 +138,13 @@ public class SystemWebClient(
         {
             var dtos = await controller.SelectAllTagsAsync();
             return dtos.Select(d => tagModelMapper.Map(d, new())).ToList();
+        });
+
+    public Task<List<CoMobile>> SelectAllCoMobilesAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var dtos = await controller.SelectAllCoMobilesAsync();
+            return dtos.Select(d => coMobileModelMapper.Map(d, new())).ToList();
         });
 
 }

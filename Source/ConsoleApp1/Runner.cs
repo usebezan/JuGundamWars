@@ -8,6 +8,7 @@ using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace ConsoleApp1;
 
@@ -31,31 +32,68 @@ internal class Runner(
         logger.LogInformation("Load all.");
         await loadAllClientUseCase.HandleAsync();
 
-        logger.LogInformation("Update Tag. Id: 3");
-        var tag = tags.FirstOrDefault(m => m.Id == 3);
-        if (tag != null)
-        {
-            tag.Name = "hoge";
-            await updateTagClientUseCase.HandleAsync(tag);
-        }
+        //logger.LogInformation("Update Tag. Id: 3");
+        //var tag = tags.FirstOrDefault(m => m.Id == 3);
+        //if (tag != null)
+        //{
+        //    tag.Name = "hoge";
+        //    await updateTagClientUseCase.HandleAsync(tag);
+        //}
 
-        logger.LogInformation("Insert CoMobile.");
-        var coMobile1 = new CoMobile()
-        {
-            Name = "test CoMobile",
-            Serial = serials.FirstOrDefault(),
-            Role = roles.FirstOrDefault(),
-        };
-        await insertCoMobileClientUseCase.HandleAsync(coMobile1);
+        //logger.LogInformation("Insert CoMobile.");
+        //var coMobile1 = new CoMobile()
+        //{
+        //    Name = "test CoMobile",
+        //    Serial = serials.FirstOrDefault(),
+        //    Role = roles.FirstOrDefault(),
+        //};
+        //var coMobile1Tag = tags.FirstOrDefault(m => m.Id == 511);
+        //if (coMobile1Tag != null)
+        //{
+        //    coMobile1.Tags.Add(coMobile1Tag);
+        //}
+        //await insertCoMobileClientUseCase.HandleAsync(coMobile1);
 
         logger.LogInformation("Update CoMobile. Id: 1");
         var coMobile2 = coMobiles.FirstOrDefault(m => m.Id == 1);
         if (coMobile2 != null)
         {
+            Debug.WriteLine($"{coMobile2.Id} {coMobile2.Name}");
+            foreach (var tag in coMobile2.Tags)
+            {
+                Debug.WriteLine($"{tag.Id} {tag.Name}");
+            }
             coMobile2.Name = "update CoMobile";
+            coMobile2.Tags.Clear();
+            {
+                var coMobile2Tag = tags.FirstOrDefault(m => m.Id == 511);
+                if (coMobile2Tag != null)
+                {
+                    coMobile2.Tags.Add(coMobile2Tag);
+                }
+            }
+            {
+                var coMobile2Tag = tags.FirstOrDefault(m => m.Id == 512);
+                if (coMobile2Tag != null)
+                {
+                    coMobile2.Tags.Add(coMobile2Tag);
+                }
+            }
             await updateCoMobileClientUseCase.HandleAsync(coMobile2);
         }
 
+        //logger.LogInformation("Delete CoMobile. Id: 1");
+        //var coMobile3 = coMobiles.FirstOrDefault(m => m.Id == 87);
+        //if (coMobile3 != null)
+        //{
+        //    Debug.WriteLine($"{coMobile3.Id} {coMobile3.Name}");
+        //    foreach (var tag in coMobile3.Tags)
+        //    {
+        //        Debug.WriteLine($"{tag.Id} {tag.Name}");
+        //    }
+        //    coMobile3.Name = "Delete CoMobile";
+        //    await deleteCoMobileClientUseCase.HandleAsync(coMobile3);
+        //}
 
     }
 }

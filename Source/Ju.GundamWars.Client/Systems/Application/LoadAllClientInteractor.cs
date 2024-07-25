@@ -47,6 +47,9 @@ internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPr
                 var tags = await gateway.SelectAllTagsAsync();
                 presenter.CompleteTag(tags);
 
+                var coMobiles = await gateway.SelectAllCoMobilesAsync();
+                presenter.CompleteCoMobile(coMobiles);
+
                 presenter.Complete();
             }
             finally

@@ -120,7 +120,7 @@ public class SystemWebApiController(
             return entities.Select(e => TagDtoMapper.Map(e, new())).ToList();
         });
 
-    public Task<List<CoMobileDto>> SelectAllAsync(CoMobileDto dto) =>
+    public Task<List<CoMobileDto>> SelectAllCoMobilesAsync() =>
         this.Execute(logger, async () =>
         {
             var entities = await selectAllCoMobileServerUseCase.HandleAsync();
