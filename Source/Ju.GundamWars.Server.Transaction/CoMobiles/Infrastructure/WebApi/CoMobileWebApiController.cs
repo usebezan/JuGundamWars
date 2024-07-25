@@ -10,19 +10,19 @@ namespace Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
 
 public class CoMobileWebApiController(
     ISelectAllUseCase<CoMobileEntity, ICoMobileRepository> selectAllServerUseCase,
-    IInsertUseCase<CoMobileEntity, ICoMobileRepository, InsertCoMobileSanitizer> insertCoMobileServerUseCase,
-    IUpdateUseCase<CoMobileEntity, ICoMobileRepository, UpdateCoMobileSanitizer> updateCoMobileServerUseCase,
-    IDeleteUseCase<long, CoMobileEntity, ICoMobileRepository> deleteCoMobileServerUseCase,
-    CoMobileMapper<CoMobileEntity, CoMobileDto, CoMobileTagMapEntity, CoMobileTagMapDto> coMobileDtoMapper,
-    CoMobileMapper<CoMobileDto, CoMobileEntity, CoMobileTagMapDto, CoMobileTagMapEntity> coMobileEntityMapper,
+    IInsertUseCase<CoMobileEntity, ICoMobileRepository, InsertCoMobileSanitizer> insertServerUseCase,
+    IUpdateUseCase<CoMobileEntity, ICoMobileRepository, UpdateCoMobileSanitizer> updateServerUseCase,
+    IDeleteUseCase<long, CoMobileEntity, ICoMobileRepository> deleteServerUseCase,
+    CoMobileMapper<CoMobileEntity, CoMobileDto, CoMobileTagMapEntity, CoMobileTagMapDto> dtoMapper,
+    CoMobileMapper<CoMobileDto, CoMobileEntity, CoMobileTagMapDto, CoMobileTagMapEntity> entityMapper,
     ILogger<CoMobileWebApiController> logger)
         : TxnControllerBase<CoMobileEntity, CoMobileDto, ICoMobileRepository, InsertCoMobileSanitizer, UpdateCoMobileSanitizer>(
             selectAllServerUseCase,
-            insertCoMobileServerUseCase,
-            updateCoMobileServerUseCase,
-            deleteCoMobileServerUseCase,
-            coMobileDtoMapper,
-            coMobileEntityMapper,
+            insertServerUseCase,
+            updateServerUseCase,
+            deleteServerUseCase,
+            dtoMapper,
+            entityMapper,
             logger)
 {
 }

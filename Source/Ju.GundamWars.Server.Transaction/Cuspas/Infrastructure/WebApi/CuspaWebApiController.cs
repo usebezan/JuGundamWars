@@ -10,19 +10,19 @@ namespace Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
 
 public class CuspaWebApiController(
     ISelectAllUseCase<CuspaEntity, ICuspaRepository> selectAllServerUseCase,
-    IInsertUseCase<CuspaEntity, ICuspaRepository, InsertCuspaServerSanitizer> insertCuspaServerUseCase,
-    IUpdateUseCase<CuspaEntity, ICuspaRepository, UpdateCuspaServerSanitizer> updateCuspaServerUseCase,
-    IDeleteUseCase<long, CuspaEntity, ICuspaRepository> deleteCuspaServerUseCase,
-    CuspaMapper<CuspaEntity, CuspaDto, CuspaTagMapEntity, CuspaTagMapDto> coMobileDtoMapper,
-    CuspaMapper<CuspaDto, CuspaEntity, CuspaTagMapDto, CuspaTagMapEntity> coMobileEntityMapper,
+    IInsertUseCase<CuspaEntity, ICuspaRepository, InsertCuspaServerSanitizer> insertServerUseCase,
+    IUpdateUseCase<CuspaEntity, ICuspaRepository, UpdateCuspaServerSanitizer> updateServerUseCase,
+    IDeleteUseCase<long, CuspaEntity, ICuspaRepository> deleteServerUseCase,
+    CuspaMapper<CuspaEntity, CuspaDto, CuspaTagMapEntity, CuspaTagMapDto> dtoMapper,
+    CuspaMapper<CuspaDto, CuspaEntity, CuspaTagMapDto, CuspaTagMapEntity> entityMapper,
     ILogger<CuspaWebApiController> logger)
         : TxnControllerBase<CuspaEntity, CuspaDto, ICuspaRepository, InsertCuspaServerSanitizer, UpdateCuspaServerSanitizer>(
             selectAllServerUseCase,
-            insertCuspaServerUseCase,
-            updateCuspaServerUseCase,
-            deleteCuspaServerUseCase,
-            coMobileDtoMapper,
-            coMobileEntityMapper,
+            insertServerUseCase,
+            updateServerUseCase,
+            deleteServerUseCase,
+            dtoMapper,
+            entityMapper,
             logger)
 {
 }

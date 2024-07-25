@@ -14,12 +14,11 @@ public abstract class MasterControllerBase<TEntity, TDto>(
     where TEntity : IIdentifiable, IOrderable, new()
     where TDto : IIdentifiable, IOrderable, new()
 {
-    public Task<TDto> SelectByIdAsync(long id) =>
+    public Task<TDto?> SelectByIdAsync(long id) =>
         this.Execute(logger, async () =>
         {
             var entity = await selectByIdServerUseCase.HandleAsync(id);
-            var dto = new TDto();
-            return entity == null ? dto : dtoMapper.Map(entity, dto);
+            return entity == null ? default : dtoMapper.Map(entity, new());
         });
     public Task<List<TDto>> SelectAllAsync() =>
         this.Execute(logger, async () =>
