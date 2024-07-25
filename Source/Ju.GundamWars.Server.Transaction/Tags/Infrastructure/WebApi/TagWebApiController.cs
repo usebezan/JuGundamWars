@@ -8,15 +8,22 @@ using Microsoft.Extensions.Logging;
 namespace Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
 
 public class TagWebApiController(
-    IUpdateUseCase<TagEntity, ITxnRepository<TagEntity>, UpdateTagSanitizer<TagEntity>> updateTagServerUseCase,
-    TagMapper<TagEntity, TagDto> tagDtoMapper,
-    TagMapper<TagDto, TagEntity> tagEntityMapper,
+    ISelectAllUseCase<TagEntity, ITxnRepository<TagEntity>> selectAllServerUseCase,
+    IUpdateUseCase<TagEntity, ITxnRepository<TagEntity>, UpdateTagSanitizer<TagEntity>> updateServerUseCase,
+    TagMapper<TagEntity, TagDto> dtoMapper,
+    TagMapper<TagDto, TagEntity> entityMapper,
     ILogger<TagWebApiController> logger) : IGw
 {
+    public Task<List<TagDto>> SelectAllAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await selectAllServerUseCase.HandleAsync();
+            return entities.Select(e => dtoMapper.Map(e, new())).ToList();
+        });
     public Task<TagDto> UpdateAsync(TagDto dto) =>
         this.Execute(logger, async () =>
         {
-            var entity = await updateTagServerUseCase.HandleAsync(tagEntityMapper.Map(dto, new()));
-            return tagDtoMapper.Map(entity, new());
+            var entity = await updateServerUseCase.HandleAsync(entityMapper.Map(dto, new()));
+            return dtoMapper.Map(entity, new());
         });
 }

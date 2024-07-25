@@ -1,5 +1,7 @@
 ﻿using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.CoMobiles.Domain.Service;
+using Ju.GundamWars.Client.Cuspas.Domain;
+using Ju.GundamWars.Client.Cuspas.Domain.Service;
 using Ju.GundamWars.Client.MobileSSkills.Domain;
 using Ju.GundamWars.Client.MobileSSkills.Domain.Service;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
@@ -10,7 +12,17 @@ using Ju.GundamWars.Client.Skills.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;
 using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
-using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
+using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
+using Ju.GundamWars.Server.MobileSSkills.Infrastructure.WebApi;
+using Ju.GundamWars.Server.PilotAbilities.Infrastructure.WebApi;
+using Ju.GundamWars.Server.PilotSkills.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Serials.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Skills.Infrastructure.WebApi;
+using Ju.GundamWars.Server.SupportBadges.Infrastructure.WebApi;
+using Ju.GundamWars.Server.SupportSlots.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Versionings.Infrastructure.WebApi;
 using Ju.GundamWars.Share.PilotAbilities.Domain;
 using Ju.GundamWars.Share.PilotAbilities.Domain.Service;
 using Ju.GundamWars.Share.Serials.Domain;
@@ -28,70 +40,88 @@ using Microsoft.Extensions.Logging;
 namespace Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 
 public class SystemWebClient(
-    SystemWebApiController controller,
-    HttpClient httpClient,
+    MobileSSkillWebApiController mobileSSkillWebApiController,
     MobileSSkillModelMapper mobileSSkillModelMapper,
+
+    PilotAbilityWebApiController pilotAbilityWebApiController,
     PilotAbilityMapper<PilotAbilityDto, PilotAbility> pilotAbilityModelMapper,
+
+    PilotSkillWebApiController pilotSkillWebApiController,
     PilotSkillModelMapper pilotSkillModelMapper,
+
+    SerialWebApiController serialWebApiController,
     SerialMapper<SerialDto, Serial> serialModelMapper,
+
+    SkillWebApiController skillWebApiController,
     SkillMapper<SkillDto, Skill> skillModelMapper,
+
+    SupportBadgeWebApiController supportBadgeWebApiController,
     SupportBadgeMapper<SupportBadgeDto, SupportBadge> supportBadgeModelMapper,
+
+    SupportSlotWebApiController supportSlotWebApiController,
     SupportSlotMapper<SupportSlotDto, SupportSlot> supportSlotModelMapper,
 
-    TagMapper<TagDto, Tag> tagModelMapper,
+    VersioningWebApiController versioningWebApiController,
+    HttpClient httpClient,
+
+    CoMobileWebApiController coMobileWebApiController,
     CoMobileModelMapper coMobileModelMapper,
 
-    ILogger<SystemWebClient> logger
-    ) : IGw
-{
+    CuspaWebApiController cuspaWebApiController,
+    CuspaModelMapper cuspaModelMapper,
 
+    TagWebApiController tagWebApiController,
+    TagMapper<TagDto, Tag> tagModelMapper,
+
+    ILogger<SystemWebClient> logger) : IGw
+{
     public Task<List<MobileSSkill>> SelectAllMobileSSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllMobileSSkillsAsync();
+            var dtos = await mobileSSkillWebApiController.SelectAllAsync();
             return dtos.Select(d => mobileSSkillModelMapper.Map(d, new())).ToList();
         });
     public Task<List<PilotAbility>> SelectAllPilotAbilitiesAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllPilotAbilitiesAsync();
+            var dtos = await pilotAbilityWebApiController.SelectAllAsync();
             return dtos.Select(d => pilotAbilityModelMapper.Map(d, new())).ToList();
         });
     public Task<List<PilotSkill>> SelectAllPilotSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllPilotSkillsAsync();
+            var dtos = await pilotSkillWebApiController.SelectAllAsync();
             return dtos.Select(d => pilotSkillModelMapper.Map(d, new())).ToList();
         });
     public Task<List<Serial>> SelectAllSerialsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllSerialsAsync();
+            var dtos = await serialWebApiController.SelectAllAsync();
             return dtos.Select(d => serialModelMapper.Map(d, new())).ToList();
         });
     public Task<List<Skill>> SelectAllSkillsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllSkillsAsync();
+            var dtos = await skillWebApiController.SelectAllAsync();
             return dtos.Select(d => skillModelMapper.Map(d, new())).ToList();
         });
     public Task<List<SupportBadge>> SelectAllSupportBadgesAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllSupportBadgesAsync();
+            var dtos = await supportBadgeWebApiController.SelectAllAsync();
             return dtos.Select(d => supportBadgeModelMapper.Map(d, new())).ToList();
         });
     public Task<List<SupportSlot>> SelectAllSupportSlotsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllSupportSlotsAsync();
+            var dtos = await supportSlotWebApiController.SelectAllAsync();
             return dtos.Select(d => supportSlotModelMapper.Map(d, new())).ToList();
         });
 
     public Task<string> GetLocalVersionAsync() =>
         this.Execute(logger, async () =>
         {
-            var dto = await controller.SelectVersioningByIdAsync();
+            var dto = await versioningWebApiController.SelectByIdAsync(1);
             return dto.Version;
         });
     public Task<string> GetRemoteVersionAsync(string uriString) =>
@@ -136,15 +166,22 @@ public class SystemWebClient(
     public Task<List<Tag>> SelectAllTagsAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllTagsAsync();
+            var dtos = await tagWebApiController.SelectAllAsync();
             return dtos.Select(d => tagModelMapper.Map(d, new())).ToList();
         });
 
     public Task<List<CoMobile>> SelectAllCoMobilesAsync() =>
         this.Execute(logger, async () =>
         {
-            var dtos = await controller.SelectAllCoMobilesAsync();
+            var dtos = await coMobileWebApiController.SelectAllAsync();
             return dtos.Select(d => coMobileModelMapper.Map(d, new())).ToList();
+        });
+
+    public Task<List<Cuspa>> SelectAllCuspasAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var dtos = await cuspaWebApiController.SelectAllAsync();
+            return dtos.Select(d => cuspaModelMapper.Map(d, new())).ToList();
         });
 
 }

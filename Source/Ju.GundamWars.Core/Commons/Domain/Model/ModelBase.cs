@@ -9,12 +9,6 @@ namespace Ju.GundamWars.Commons.Domain.Model;
 public partial class ModelBase : ObservableValidator, IDisposable, IObservableNotifyPropertyChanging, IObservableNotifyPropertyChanged
 {
 
-    public ModelBase()
-    {
-        System.Diagnostics.Debug.WriteLine($"Create {this}.");
-    }
-
-
     #region ==== Implementation of IObservableNotifyPropertyChanging ====
 
     event PropertyChangingEventHandler? INotifyPropertyChanging.PropertyChanging

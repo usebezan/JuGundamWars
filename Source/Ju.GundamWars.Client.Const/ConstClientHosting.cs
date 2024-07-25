@@ -1,4 +1,5 @@
 ﻿using Ju.GundamWars.Client.AceImpls.Domain;
+using Ju.GundamWars.Client.Boosts.Domain;
 using Ju.GundamWars.Client.CuspaKinds.Domain;
 using Ju.GundamWars.Client.Grades.Domain;
 using Ju.GundamWars.Client.MobileKinds.Domain;
@@ -20,6 +21,11 @@ public static class ConstClientHosting
                 services
                     // Domain
                     .AddSingleton<AceImplInventory>()
+                ;
+                // Boosts
+                services
+                    // Domain
+                    .AddSingleton<BoostStatusInventory>()
                 ;
                 // CuspaKinds
                 services

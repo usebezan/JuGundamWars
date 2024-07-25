@@ -1,6 +1,8 @@
 ﻿using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.CoMobiles.Domain.Service;
 using Ju.GundamWars.Client.CoMobiles.Infrastructure.WebClient;
+using Ju.GundamWars.Client.Cuspas.Domain;
+using Ju.GundamWars.Client.Cuspas.Domain.Service;
 using Ju.GundamWars.Client.Cuspas.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
@@ -28,6 +30,11 @@ public static class TransactionClientHosting
 
                 // Cuspas
                 services
+                    // Domain
+                    .AddSingleton<CuspaInventory>()
+                    // Domain.Service
+                    .AddSingleton<CuspaDtoMapper>()
+                    .AddSingleton<CuspaModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<CuspaWebClient>()
                 ;

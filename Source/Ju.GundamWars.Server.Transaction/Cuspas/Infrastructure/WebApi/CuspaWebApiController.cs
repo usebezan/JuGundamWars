@@ -9,13 +9,15 @@ using Microsoft.Extensions.Logging;
 namespace Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
 
 public class CuspaWebApiController(
+    ISelectAllUseCase<CuspaEntity, ICuspaRepository> selectAllServerUseCase,
     IInsertUseCase<CuspaEntity, ICuspaRepository, InsertCuspaServerSanitizer> insertCuspaServerUseCase,
     IUpdateUseCase<CuspaEntity, ICuspaRepository, UpdateCuspaServerSanitizer> updateCuspaServerUseCase,
     IDeleteUseCase<long, CuspaEntity, ICuspaRepository> deleteCuspaServerUseCase,
     CuspaMapper<CuspaEntity, CuspaDto, CuspaTagMapEntity, CuspaTagMapDto> coMobileDtoMapper,
     CuspaMapper<CuspaDto, CuspaEntity, CuspaTagMapDto, CuspaTagMapEntity> coMobileEntityMapper,
     ILogger<CuspaWebApiController> logger)
-        : ControllerBase<CuspaEntity, CuspaDto, ICuspaRepository, InsertCuspaServerSanitizer, UpdateCuspaServerSanitizer>(
+        : TxnControllerBase<CuspaEntity, CuspaDto, ICuspaRepository, InsertCuspaServerSanitizer, UpdateCuspaServerSanitizer>(
+            selectAllServerUseCase,
             insertCuspaServerUseCase,
             updateCuspaServerUseCase,
             deleteCuspaServerUseCase,

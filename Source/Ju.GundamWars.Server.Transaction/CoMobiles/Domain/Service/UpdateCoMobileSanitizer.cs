@@ -1,12 +1,10 @@
 ﻿using Ju.GundamWars.Commons.Domain.Service.Sanitization;
-using Ju.GundamWars.Share.CoMobiles.Domain;
 
 namespace Ju.GundamWars.Server.CoMobiles.Domain.Service;
 
-public class UpdateCoMobileSanitizer<T> : IUpdateSanitizer<T>
-    where T : ICoMobile
+public class UpdateCoMobileSanitizer : IUpdateSanitizer<CoMobileEntity>
 {
-    public T Sanitize(T data)
+    public CoMobileEntity Sanitize(CoMobileEntity data)
     {
         data.Name = data.Name.Trim();
         data.Memo = data.Memo?.Trim();

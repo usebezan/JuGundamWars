@@ -6,7 +6,6 @@ using Ju.GundamWars.Server.CoMobiles.Domain.Gateway;
 using Ju.GundamWars.Server.CoMobiles.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Cuspas.Domain.Gateway;
 using Ju.GundamWars.Server.Cuspas.Infrastructure.Persistence;
-using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
 using Ju.GundamWars.Share;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +19,7 @@ public static class ServerHosting
     public static IHostBuilder ConfigureServer(this IHostBuilder self) =>
         self
             .ConfigureMasterShare()
+            .ConfigureMasterServer()
             .ConfigureTransactionShare()
             .ConfigureTransactionServer()
             .ConfigureServices((context, services) =>
@@ -78,12 +78,6 @@ public static class ServerHosting
                 services
                     // Infrastructure.Persistence
                     .AddSingleton<ICuspaRepository, CuspaRepository>()
-                ;
-
-                // Systems
-                services
-                    // Infrastructure.WebApi
-                    .AddSingleton<SystemWebApiController>()
                 ;
             });
 }

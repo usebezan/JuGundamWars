@@ -1,7 +1,7 @@
-﻿using Ju.GundamWars.Client.CuspaKinds.Domain;
+﻿using Ju.GundamWars.Client.Boosts.Domain;
+using Ju.GundamWars.Client.CuspaKinds.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.Domain.Service.Mapping;
-using Ju.GundamWars.Share.Boosts.Domain;
 using Ju.GundamWars.Share.Cuspas.Domain;
 
 namespace Ju.GundamWars.Client.Cuspas.Domain.Service;

@@ -7,12 +7,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Commons.Infrastructure.WebApi;
 
-public abstract class ControllerBase<TEntity, TDto, TGateway, TInsertSanitizer, TUpdateSanitizer>(
+public abstract class TxnControllerBase<TEntity, TDto, TGateway, TInsertSanitizer, TUpdateSanitizer>(
+    ISelectAllUseCase<TEntity, TGateway> selectAllServerUseCase,
     IInsertUseCase<TEntity, TGateway, TInsertSanitizer> insertServerUseCase,
     IUpdateUseCase<TEntity, TGateway, TUpdateSanitizer> updateServerUseCase,
     IDeleteUseCase<long, TEntity, TGateway> deleteServerUseCase,
-    IMapper<TEntity, TDto> TDtoMapper,
-    IMapper<TDto, TEntity> TEntityMapper,
+    IMapper<TEntity, TDto> dtoMapper,
+    IMapper<TDto, TEntity> entityMapper,
     ILogger logger) : IGw
     where TEntity : IIdentifiable, new()
     where TDto : IIdentifiable, new()
@@ -20,22 +21,28 @@ public abstract class ControllerBase<TEntity, TDto, TGateway, TInsertSanitizer, 
     where TInsertSanitizer : IInsertSanitizer<TEntity>
     where TUpdateSanitizer : IUpdateSanitizer<TEntity>
 {
+    public Task<List<TDto>> SelectAllAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var entities = await selectAllServerUseCase.HandleAsync();
+            return entities.Select(e => dtoMapper.Map(e, new())).ToList();
+        });
     public Task<TDto> InsertAsync(TDto dto) =>
         this.Execute(logger, async () =>
         {
-            var entity = await insertServerUseCase.HandleAsync(TEntityMapper.Map(dto, new()));
-            return TDtoMapper.Map(entity, new());
+            var entity = await insertServerUseCase.HandleAsync(entityMapper.Map(dto, new()));
+            return dtoMapper.Map(entity, new());
         });
     public Task<TDto> UpdateAsync(TDto dto) =>
         this.Execute(logger, async () =>
         {
-            var entity = await updateServerUseCase.HandleAsync(TEntityMapper.Map(dto, new()));
-            return TDtoMapper.Map(entity, new());
+            var entity = await updateServerUseCase.HandleAsync(entityMapper.Map(dto, new()));
+            return dtoMapper.Map(entity, new());
         });
     public Task<TDto> DeleteAsync(long id) =>
         this.Execute(logger, async () =>
         {
             var entity = await deleteServerUseCase.HandleAsync(id);
-            return TDtoMapper.Map(entity, new());
+            return dtoMapper.Map(entity, new());
         });
 }
