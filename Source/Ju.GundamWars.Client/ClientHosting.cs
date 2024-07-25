@@ -2,7 +2,6 @@
 using Ju.GundamWars.Client.Systems.Application;
 using Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Systems.UseCase.InputPort;
-using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 using Ju.GundamWars.Commons.Application;
 using Ju.GundamWars.Commons.UseCase.InputPort;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,10 +46,5 @@ public static class ClientHosting
                     .AddSingleton<SystemWebClient>()
                 ;
 
-                // Tags
-                services
-                    // Infrastructure.WebClient
-                    .AddSingleton<TagWebClient>()
-                ;
             });
 }

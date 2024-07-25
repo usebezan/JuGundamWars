@@ -15,6 +15,7 @@
     <ProjectReference Include="..\Ju.GundamWars.Client.Const\Ju.GundamWars.Client.Const.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Client.Master\Ju.GundamWars.Client.Master.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Server.Transaction\Ju.GundamWars.Server.Transaction.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Share.Transaction\Ju.GundamWars.Share.Transaction.csproj" />
   </ItemGroup>
 

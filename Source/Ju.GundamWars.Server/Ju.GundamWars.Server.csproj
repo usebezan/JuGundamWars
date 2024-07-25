@@ -11,13 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Cuspas\**" />
     <Compile Remove="Pilots\**" />
     <Compile Remove="Supports\**" />
-    <EmbeddedResource Remove="Cuspas\**" />
     <EmbeddedResource Remove="Pilots\**" />
     <EmbeddedResource Remove="Supports\**" />
-    <None Remove="Cuspas\**" />
     <None Remove="Pilots\**" />
     <None Remove="Supports\**" />
   </ItemGroup>
@@ -30,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
+    <ProjectReference Include="..\Ju.GundamWars.Server.Core\Ju.GundamWars.Server.Core.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Server.Master\Ju.GundamWars.Server.Master.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Server.Transaction\Ju.GundamWars.Server.Transaction.csproj" />
   </ItemGroup>

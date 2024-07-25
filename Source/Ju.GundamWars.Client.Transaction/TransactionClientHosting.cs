@@ -1,6 +1,7 @@
 ﻿using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.CoMobiles.Domain.Service;
 using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -24,6 +25,8 @@ public static class TransactionClientHosting
                 services
                     // Domain
                     .AddSingleton<TagInventory>()
+                    // Infrastructure.WebClient
+                    .AddSingleton<TagWebClient>()
                 ;
             });
 }

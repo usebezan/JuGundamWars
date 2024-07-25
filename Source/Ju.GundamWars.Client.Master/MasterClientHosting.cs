@@ -22,6 +22,7 @@ public static class MasterClientHosting
                 services
                     // Domain
                     .AddSingleton<MobileSSkillInventory>()
+                    // Domain.Service
                     .AddSingleton<MobileSSkillModelMapper>()
                 ;
                 // PilotAbilities
@@ -33,6 +34,7 @@ public static class MasterClientHosting
                 services
                     // Domain
                     .AddSingleton<PilotSkillInventory>()
+                    // Domain.Service
                     .AddSingleton<PilotSkillModelMapper>()
                 ;
                 // Serials

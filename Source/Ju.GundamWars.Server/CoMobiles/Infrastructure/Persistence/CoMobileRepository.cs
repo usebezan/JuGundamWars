@@ -1,6 +1,6 @@
-﻿using Ju.GundamWars.Server.Commons.Domain.Gateway;
-using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+﻿using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 using Ju.GundamWars.Server.CoMobiles.Domain;
+using Ju.GundamWars.Server.CoMobiles.Domain.Gateway;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 

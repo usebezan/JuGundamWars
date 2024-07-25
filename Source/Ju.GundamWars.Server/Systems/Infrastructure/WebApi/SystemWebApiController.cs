@@ -1,6 +1,8 @@
 ﻿using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.CoMobiles.Domain;
+using Ju.GundamWars.Server.CoMobiles.Domain.Gateway;
+using Ju.GundamWars.Server.CoMobiles.Domain.Service;
 using Ju.GundamWars.Server.MobileSSkills.Domain;
 using Ju.GundamWars.Server.PilotAbilities.Domain;
 using Ju.GundamWars.Server.PilotSkills.Domain;
@@ -11,7 +13,6 @@ using Ju.GundamWars.Server.SupportSlots.Domain;
 using Ju.GundamWars.Server.Tags.Domain;
 using Ju.GundamWars.Server.Versionings.Domain;
 using Ju.GundamWars.Share.CoMobiles.Domain;
-using Ju.GundamWars.Share.CoMobiles.Domain.Service;
 using Ju.GundamWars.Share.MobileSSkills.Domain;
 using Ju.GundamWars.Share.MobileSSkills.Domain.Service;
 using Ju.GundamWars.Share.PilotAbilities.Domain;

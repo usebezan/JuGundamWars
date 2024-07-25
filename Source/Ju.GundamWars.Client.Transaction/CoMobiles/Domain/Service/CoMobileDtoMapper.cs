@@ -12,7 +12,6 @@ public class CoMobileDtoMapper : IMapper<CoMobile, CoMobileDto>
         dto.SerialId = model.Serial?.Id ?? 0;
         dto.Role = model.Role?.Type ?? 0;
         dto.Level = model.Level;
-
         dto.Hp = model.BasicStatus.Hp;
         dto.BeamAttack = model.BasicStatus.BeamAttack;
         dto.PhysicalAttack = model.BasicStatus.PhysicalAttack;
@@ -22,7 +21,6 @@ public class CoMobileDtoMapper : IMapper<CoMobile, CoMobileDto>
         dto.Accuracy = model.BasicStatus.Accuracy;
         dto.Evasion = model.BasicStatus.Evasion;
         dto.Mobility = model.BasicStatus.Mobility;
-
         dto.UpgradedHp = model.UpgradedStatus.Hp;
         dto.UpgradedBeamAttack = model.UpgradedStatus.BeamAttack;
         dto.UpgradedPhysicalAttack = model.UpgradedStatus.PhysicalAttack;
@@ -32,7 +30,6 @@ public class CoMobileDtoMapper : IMapper<CoMobile, CoMobileDto>
         dto.UpgradedAccuracy = model.UpgradedStatus.Accuracy;
         dto.UpgradedEvasion = model.UpgradedStatus.Evasion;
         dto.UpgradedMobility = model.UpgradedStatus.Mobility;
-
         dto.HpUpgradedCount = model.UpgradedCount.Hp;
         dto.BeamAttackUpgradedCount = model.UpgradedCount.BeamAttack;
         dto.PhysicalAttackUpgradedCount = model.UpgradedCount.PhysicalAttack;
@@ -44,7 +41,6 @@ public class CoMobileDtoMapper : IMapper<CoMobile, CoMobileDto>
         dto.MobilityUpgradedCount = model.UpgradedCount.Mobility;
         dto.StartupUpgradedCount = model.UpgradedCount.Startup;
         dto.SuperMoveUpgradedCount = model.UpgradedCount.SuperMove;
-
         dto.Memo = model.Memo;
         dto.IsPinned = model.IsPinned;
 

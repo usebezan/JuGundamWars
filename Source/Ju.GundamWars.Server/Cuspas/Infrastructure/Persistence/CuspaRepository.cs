@@ -1,30 +1,40 @@
-﻿using Ju.GundamWars.BizTxn.Cuspas.Domain.Dto;
-using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+﻿using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+using Ju.GundamWars.Server.Cuspas.Domain;
+using Ju.GundamWars.Server.Cuspas.Domain.Gateway;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Cuspas.Infrastructure.Persistence;
 
-public class CuspaRepository(IDbContextFactory<GwDbContext> factory, ILogger<CuspaRepository> logger)
-    : TxnRepositoryBase<CuspaDto>(factory, logger)
+public class CuspaRepository(IDbContextFactory<GwTxnDbContext> factory, ILogger<CuspaRepository> logger)
+    : TxnRepository<CuspaEntity>(factory, logger), ICuspaRepository
 {
 
-    protected override IQueryable<CuspaDto> Queryable => DbSet.Include(e => e.TagMaps).OrderBy(e => e.BoostStatus).ThenBy(e => e.Kind).ThenBy(e => e.Id);
+    protected override IQueryable<CuspaEntity> Queryable => DbSet.Include(e => e.TagMaps).OrderBy(e => e.Id).ThenBy(e => e.Id);
 
-    //// 元々付いていた機体の関係を削除する
-    //protected override List<int> DeleteExMobileRelations(GwDbContext dbContext, int id)
-    //{
-    //    var exMobileIds = dbContext.Set<Mobile>().Include(e => e.Cuspas).Where(e => e.Cuspas.Any(r => r.CuspaId == id)).Select(e => e.Id).Distinct().ToList();
-    //    dbContext.Set<MobileCuspa>().RemoveRange(e => e.CuspaId == id);
-    //    return exMobileIds;
-    //}
+    public override Task<CuspaEntity> UpdateAsync(CuspaEntity data) =>
+        this.ExecuteAsync(Logger, () =>
+        {
+            using var txn = DbContext.Database.BeginTransaction();
+            try
+            {
+                // 子を明示的に削除
+                DbContext.Set<CuspaTagMapEntity>().RemoveRange(e => e.CuspaId == data.Id);
+                DbContext.SaveChanges();
 
-    //// 子を明示的に削除
-    //protected override void DeleteRelations(GwDbContext dbContext, int id) =>
-    //    dbContext.Set<CuspaTagMap>().RemoveRange(e => e.CuspaId == id);
-
-    //// DbUpdateConcurrencyException
-    //protected override void SetZeroToId(Cuspa entity) =>
-    //    entity.TagMaps.ForEach(e => e.CuspaId = 0);
+                var dbData = Find(data.Id) ?? throw new InvalidOperationException();
+                DbContext.Entry(dbData).CurrentValues.SetValues(data);
+                dbData.TagMaps.AddRange(data.TagMaps);
+                var result = DbSet.Update(dbData).Entity;
+                DbContext.SaveChanges();
+                txn.Commit();
+                return result;
+            }
+            catch
+            {
+                txn.Rollback();
+                throw;
+            }
+        });
 
 }

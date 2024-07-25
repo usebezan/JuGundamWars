@@ -1,14 +1,14 @@
-﻿using Ju.GundamWars.BizTxn.Cuspas.Domain.Dto;
+﻿using Ju.GundamWars.Server.Cuspas.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ju.GundamWars.Server.Cuspas.Infrastructure.Persistence;
 
-public class CuspaConfig : IEntityTypeConfiguration<CuspaDto>
+public class CuspaConfig : IEntityTypeConfiguration<CuspaEntity>
 {
-    public void Configure(EntityTypeBuilder<CuspaDto> builder)
+    public void Configure(EntityTypeBuilder<CuspaEntity> builder)
     {
         builder.ToTable("Cuspa");
-        builder.HasMany(e => e.TagMaps).WithOne(e => e.Cuspa).HasForeignKey(e => e.CuspaId).IsRequired(false);
+        builder.HasMany(e => e.TagMaps).WithOne(e => e.Cuspa).HasForeignKey(e => e.CuspaId).IsRequired(false).OnDelete(DeleteBehavior.Cascade);
     }
 }

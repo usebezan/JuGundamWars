@@ -1,4 +1,10 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Ju.GundamWars.Server.CoMobiles.Domain.Service;
+using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Cuspas.Domain.Service;
+using Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Ju.GundamWars.Server;
 
@@ -8,10 +14,32 @@ public static class TransactionServerHosting
         self
             .ConfigureServices((context, services) =>
             {
+                // CoMobiles
+                services
+                    // Domain.Service
+                    .AddSingleton(typeof(CoMobileMapper<,,,>))
+                    .AddSingleton(typeof(CoMobileTagMapMapper<,>))
+                    .AddSingleton(typeof(InsertCoMobileSanitizer<>))
+                    .AddSingleton(typeof(UpdateCoMobileSanitizer<>))
+                    // Infrastructure.WebApi
+                    .AddSingleton<CoMobileWebApiController>()
+                ;
+
+                // Cuspas
+                services
+                    // Domain.Service
+                    .AddSingleton(typeof(CuspaMapper<,,,>))
+                    .AddSingleton(typeof(CuspaTagMapMapper<,>))
+                    .AddSingleton<InsertCuspaServerSanitizer>()
+                    .AddSingleton<UpdateCuspaServerSanitizer>()
+                    // Infrastructure.WebApi
+                    .AddSingleton<CuspaWebApiController>()
+                ;
+
+                // Tags
+                services
+                    // Infrastructure.WebApi
+                    .AddSingleton<TagWebApiController>()
+                ;
             });
 }
-
-//.AddSingleton<ITxnRepository<CoMobileDto>, CoMobileRepository>()
-//.AddSingleton<ITxnRepository<CuspaDto>, CuspaRepository>()
-//.AddSingleton<ITxnRepository<PilotDto>, PilotRepository>()
-//.AddSingleton<ITxnRepository<SupportDto>, SupportRepository>()

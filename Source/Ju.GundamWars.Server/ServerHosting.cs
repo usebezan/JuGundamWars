@@ -2,10 +2,11 @@
 using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Server.Commons.Domain.Gateway;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+using Ju.GundamWars.Server.CoMobiles.Domain.Gateway;
 using Ju.GundamWars.Server.CoMobiles.Infrastructure.Persistence;
-using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Cuspas.Domain.Gateway;
+using Ju.GundamWars.Server.Cuspas.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Systems.Infrastructure.WebApi;
-using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
 using Ju.GundamWars.Share;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -71,8 +72,12 @@ public static class ServerHosting
                 services
                     // Infrastructure.Persistence
                     .AddSingleton<ICoMobileRepository, CoMobileRepository>()
-                    // Infrastructure.WebApi
-                    .AddSingleton<CoMobileWebApiController>()
+                ;
+
+                // Cuspas
+                services
+                    // Infrastructure.Persistence
+                    .AddSingleton<ICuspaRepository, CuspaRepository>()
                 ;
 
                 // Systems
@@ -80,16 +85,5 @@ public static class ServerHosting
                     // Infrastructure.WebApi
                     .AddSingleton<SystemWebApiController>()
                 ;
-
-                // Tags
-                services
-                    // Infrastructure.WebApi
-                    .AddSingleton<TagWebApiController>()
-                ;
             });
 }
-
-//.AddSingleton<ITxnRepository<CoMobileDto>, CoMobileRepository>()
-//.AddSingleton<ITxnRepository<CuspaDto>, CuspaRepository>()
-//.AddSingleton<ITxnRepository<PilotDto>, PilotRepository>()
-//.AddSingleton<ITxnRepository<SupportDto>, SupportRepository>()
