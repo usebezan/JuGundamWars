@@ -9,7 +9,7 @@ using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Client.Tags.Domain;
 
-namespace ConsoleApp1;
+namespace ConsoleApp1.Presentation;
 
 internal class LoadAllClientPresenter(
     MobileSSkillInventory mobileSSkills,
@@ -51,7 +51,7 @@ internal class LoadAllClientPresenter(
 
     public void CompleteMobileSSkill(List<MobileSSkill> output)
     {
-        Console.WriteLine("CompleteMobileSSkill");
+        Console.WriteLine("*** CompleteMobileSSkill ***");
         foreach (var item in output)
         {
             mobileSSkills.Add(item);
@@ -61,7 +61,7 @@ internal class LoadAllClientPresenter(
 
     public void CompletePilotAbility(List<PilotAbility> output)
     {
-        Console.WriteLine("CompletePilotAbility");
+        Console.WriteLine("*** CompletePilotAbility ***");
         foreach (var item in output)
         {
             pilotAbilities.Add(item);
@@ -71,7 +71,7 @@ internal class LoadAllClientPresenter(
 
     public void CompletePilotSkill(List<PilotSkill> output)
     {
-        Console.WriteLine("CompletePilotSkill");
+        Console.WriteLine("*** CompletePilotSkill ***");
         foreach (var item in output)
         {
             pilotSkills.Add(item);
@@ -81,7 +81,7 @@ internal class LoadAllClientPresenter(
 
     public void CompleteSerial(List<Serial> output)
     {
-        Console.WriteLine("CompleteSerial");
+        Console.WriteLine("*** CompleteSerial ***");
         foreach (var item in output)
         {
             serials.Add(item);
@@ -91,7 +91,7 @@ internal class LoadAllClientPresenter(
 
     public void CompleteSkill(List<Skill> output)
     {
-        Console.WriteLine("CompleteSkill");
+        Console.WriteLine("*** CompleteSkill ***");
         foreach (var item in output)
         {
             skills.Add(item);
@@ -101,7 +101,7 @@ internal class LoadAllClientPresenter(
 
     public void CompleteSupportBadge(List<SupportBadge> output)
     {
-        Console.WriteLine("CompleteSupportBadge");
+        Console.WriteLine("*** CompleteSupportBadge ***");
         foreach (var item in output)
         {
             supportBadges.Add(item);
@@ -111,7 +111,7 @@ internal class LoadAllClientPresenter(
 
     public void CompleteSupportSlot(List<SupportSlot> output)
     {
-        Console.WriteLine("CompleteSupportSlot");
+        Console.WriteLine("*** CompleteSupportSlot ***");
         foreach (var item in output)
         {
             supportSlots.Add(item);
@@ -122,12 +122,12 @@ internal class LoadAllClientPresenter(
 
     public void CompleteVersioning(string output)
     {
-
+        Console.WriteLine("*** CompleteVersioning ***");
     }
 
     public void CompleteTag(List<Tag> output)
     {
-        Console.WriteLine("CompleteTag");
+        Console.WriteLine("*** CompleteTag ***");
         foreach (var item in output)
         {
             tags.Add(item);
@@ -137,7 +137,7 @@ internal class LoadAllClientPresenter(
 
     public void CompleteCoMobile(List<CoMobile> output)
     {
-        Console.WriteLine("CompleteTag");
+        Console.WriteLine("*** CompleteTag ***");
         foreach (var item in output)
         {
             coMobiles.Add(item);

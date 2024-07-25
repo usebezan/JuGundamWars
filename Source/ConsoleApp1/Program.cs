@@ -1,4 +1,6 @@
-﻿using Ju.GundamWars.Client;
+﻿using ConsoleApp1.Presentation;
+using Ju.GundamWars.Client;
+using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
@@ -25,6 +27,9 @@ internal class Program
                 services.AddSingleton<Runner>();
                 services.AddSingleton<ILoadAllClientPresenter, LoadAllClientPresenter>();
                 services.AddSingleton<IUpdatePresenter<Tag>, UpdateTagPresenter>();
+                services.AddSingleton<IDeletePresenter<CoMobile>, DeleteCoMobilePresenter>();
+                services.AddSingleton<IInsertPresenter<CoMobile>, InsertCoMobilePresenter>();
+                services.AddSingleton<IUpdatePresenter<CoMobile>, UpdateCoMobilePresenter>();
             })
             .Build();
         try

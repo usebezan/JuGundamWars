@@ -23,28 +23,28 @@ internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPr
                 //}
                 //presenter.CompleteVersioning(remoteVersion);
 
-                var serials = await gateway.GetAllSerialsAsync();
+                var serials = await gateway.SelectAllSerialsAsync();
                 presenter.CompleteSerial(serials);
 
-                var skills = await gateway.GetAllSkillsAsync();
+                var skills = await gateway.SelectAllSkillsAsync();
                 presenter.CompleteSkill(skills);
 
-                var mobileSSkills = await gateway.GetAllMobileSSkillsAsync();
+                var mobileSSkills = await gateway.SelectAllMobileSSkillsAsync();
                 presenter.CompleteMobileSSkill(mobileSSkills);
 
-                var pilotAbilities = await gateway.GetAllPilotAbilitiesAsync();
+                var pilotAbilities = await gateway.SelectAllPilotAbilitiesAsync();
                 presenter.CompletePilotAbility(pilotAbilities);
 
-                var pilotSkills = await gateway.GetAllPilotSkillsAsync();
+                var pilotSkills = await gateway.SelectAllPilotSkillsAsync();
                 presenter.CompletePilotSkill(pilotSkills);
 
-                var supportBadges = await gateway.GetAllSupportBadgesAsync();
+                var supportBadges = await gateway.SelectAllSupportBadgesAsync();
                 presenter.CompleteSupportBadge(supportBadges);
 
-                var supportSlots = await gateway.GetAllSupportSlotsAsync();
+                var supportSlots = await gateway.SelectAllSupportSlotsAsync();
                 presenter.CompleteSupportSlot(supportSlots);
 
-                var tags = await gateway.GetAllTagsAsync();
+                var tags = await gateway.SelectAllTagsAsync();
                 presenter.CompleteTag(tags);
 
                 presenter.Complete();

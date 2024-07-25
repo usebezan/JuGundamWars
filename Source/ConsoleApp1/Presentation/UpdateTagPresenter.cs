@@ -2,7 +2,7 @@
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 
-namespace ConsoleApp1;
+namespace ConsoleApp1.Presentation;
 
 internal class UpdateTagPresenter(
     ) : IUpdatePresenter<Tag>

@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.Client.Systems.Application;
+﻿using Ju.GundamWars.Client.CoMobiles.Infrastructure.WebClient;
+using Ju.GundamWars.Client.Systems.Application;
 using Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Systems.UseCase.InputPort;
 using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
@@ -30,6 +31,12 @@ public static class ClientHosting
                     .AddSingleton(typeof(IUpdatePresentableUseCase<,,,,>), typeof(UpdatePresentableInteractor<,,,,>))
                     // Infrastructure.WebClient
                     .AddSingleton<HttpClient>()
+                ;
+
+                // CoMobiles
+                services
+                    // Infrastructure.WebClient
+                    .AddSingleton<CoMobileWebClient>()
                 ;
 
                 // Systems

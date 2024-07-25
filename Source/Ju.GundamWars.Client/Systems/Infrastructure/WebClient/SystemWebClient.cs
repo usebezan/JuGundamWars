@@ -42,43 +42,43 @@ public class SystemWebClient(
     ) : IGw
 {
 
-    public Task<List<MobileSSkill>> GetAllMobileSSkillsAsync() =>
+    public Task<List<MobileSSkill>> SelectAllMobileSSkillsAsync() =>
         this.Execute(logger, async () =>
         {
             var dtos = await controller.SelectAllMobileSSkillsAsync();
             return dtos.Select(d => mobileSSkillModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<PilotAbility>> GetAllPilotAbilitiesAsync() =>
+    public Task<List<PilotAbility>> SelectAllPilotAbilitiesAsync() =>
         this.Execute(logger, async () =>
         {
             var dtos = await controller.SelectAllPilotAbilitiesAsync();
             return dtos.Select(d => pilotAbilityModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<PilotSkill>> GetAllPilotSkillsAsync() =>
+    public Task<List<PilotSkill>> SelectAllPilotSkillsAsync() =>
         this.Execute(logger, async () =>
         {
             var dtos = await controller.SelectAllPilotSkillsAsync();
             return dtos.Select(d => pilotSkillModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<Serial>> GetAllSerialsAsync() =>
+    public Task<List<Serial>> SelectAllSerialsAsync() =>
         this.Execute(logger, async () =>
         {
             var dtos = await controller.SelectAllSerialsAsync();
             return dtos.Select(d => serialModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<Skill>> GetAllSkillsAsync() =>
+    public Task<List<Skill>> SelectAllSkillsAsync() =>
         this.Execute(logger, async () =>
         {
             var dtos = await controller.SelectAllSkillsAsync();
             return dtos.Select(d => skillModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<SupportBadge>> GetAllSupportBadgesAsync() =>
+    public Task<List<SupportBadge>> SelectAllSupportBadgesAsync() =>
         this.Execute(logger, async () =>
         {
             var dtos = await controller.SelectAllSupportBadgesAsync();
             return dtos.Select(d => supportBadgeModelMapper.Map(d, new())).ToList();
         });
-    public Task<List<SupportSlot>> GetAllSupportSlotsAsync() =>
+    public Task<List<SupportSlot>> SelectAllSupportSlotsAsync() =>
         this.Execute(logger, async () =>
         {
             var dtos = await controller.SelectAllSupportSlotsAsync();
@@ -130,7 +130,7 @@ public class SystemWebClient(
             }
         });
 
-    public Task<List<Tag>> GetAllTagsAsync() =>
+    public Task<List<Tag>> SelectAllTagsAsync() =>
         this.Execute(logger, async () =>
         {
             var dtos = await controller.SelectAllTagsAsync();
