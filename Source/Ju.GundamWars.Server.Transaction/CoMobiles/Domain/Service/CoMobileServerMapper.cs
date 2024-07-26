@@ -1,41 +1,21 @@
-﻿using Ju.GundamWars.Commons.Domain.Service.Mapping;
-using Ju.GundamWars.Share;
-using Ju.GundamWars.Share.CoMobiles.Domain;
+﻿using Ju.GundamWars.Share.CoMobiles.Domain;
+using Ju.GundamWars.Share.CoMobiles.Domain.Service;
 
 namespace Ju.GundamWars.Server.CoMobiles.Domain.Service;
 
-public class CoMobileServerMapper<TSrc, TTagLinkSrc, TDest, TTagLinkDest>(CoMobileTagLinkServerMapper<TTagLinkSrc, TTagLinkDest> tagLinkMapper) : IMapper<TSrc, TDest>
-    where TSrc : ICoMobile<CoMobileStatus, TTagLinkSrc>
+public class CoMobileServerMapper<TSrc, TTagLinkSrc, TDest, TTagLinkDest> : CoMobileMapperBase<TSrc, CoMobileStatusRecord, CoMobileUpgradedCountRecord, TDest, CoMobileStatusRecord, CoMobileUpgradedCountRecord>
+    where TSrc : ICoMobile<CoMobileStatusRecord, CoMobileUpgradedCountRecord, TTagLinkSrc>
     where TTagLinkSrc : ICoMobileTagLink
-    where TDest : ICoMobile<CoMobileStatus, TTagLinkDest>
+    where TDest : ICoMobile<CoMobileStatusRecord, CoMobileUpgradedCountRecord, TTagLinkDest>
     where TTagLinkDest : ICoMobileTagLink, new()
 {
-    public TDest Map(TSrc src, TDest dest)
+    public override TDest Map(TSrc src, TDest dest)
     {
-        dest.Id = src.Id;
-        dest.Name = src.Name;
-        dest.SerialId = src.SerialId;
-        dest.RoleType = src.RoleType;
-        dest.Level = src.Level;
-        dest.BasicStatus.Set(src.BasicStatus);
-        dest.UpgradedStatus.Set(src.UpgradedStatus);
-        dest.HpUpgradedCount = src.HpUpgradedCount;
-        dest.BeamAttackUpgradedCount = src.BeamAttackUpgradedCount;
-        dest.PhysicalAttackUpgradedCount = src.PhysicalAttackUpgradedCount;
-        dest.BeamDefenceUpgradedCount = src.BeamDefenceUpgradedCount;
-        dest.PhysicalDefenceUpgradedCount = src.PhysicalDefenceUpgradedCount;
-        dest.CriticalDamageUpgradedCount = src.CriticalDamageUpgradedCount;
-        dest.AccuracyUpgradedCount = src.AccuracyUpgradedCount;
-        dest.EvasionUpgradedCount = src.EvasionUpgradedCount;
-        dest.MobilityUpgradedCount = src.MobilityUpgradedCount;
-        dest.StartupUpgradedCount = src.StartupUpgradedCount;
-        dest.SuperMoveUpgradedCount = src.SuperMoveUpgradedCount;
-        dest.Memo = src.Memo;
-        dest.IsPinned = src.IsPinned;
+        MapCore(src, dest);
         dest.TagLinks.Clear();
         foreach (var srcTagMap in src.TagLinks)
         {
-            dest.TagLinks.Add(tagLinkMapper.Map(srcTagMap, new()));
+            dest.TagLinks.Add(new() { CoMobileId = srcTagMap.CoMobileId, TagId = srcTagMap.TagId, });
         }
         return dest;
     }

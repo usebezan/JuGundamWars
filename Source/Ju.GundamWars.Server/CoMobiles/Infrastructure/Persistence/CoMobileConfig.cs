@@ -35,5 +35,19 @@ public class CoMobileConfig : IEntityTypeConfiguration<CoMobileEntity>
             b.Property(e => e.Evasion).HasColumnName("UpgradedEvasion");
             b.Property(e => e.Mobility).HasColumnName("UpgradedMobility");
         });
+        builder.OwnsOne(e => e.UpgradedCount, b =>
+        {
+            b.Property(e => e.Hp).HasColumnName("HpUpgradedCount");
+            b.Property(e => e.BeamAttack).HasColumnName("BeamAttackUpgradedCount");
+            b.Property(e => e.PhysicalAttack).HasColumnName("PhysicalAttackUpgradedCount");
+            b.Property(e => e.BeamDefence).HasColumnName("BeamDefenceUpgradedCount");
+            b.Property(e => e.PhysicalDefence).HasColumnName("PhysicalDefenceUpgradedCount");
+            b.Property(e => e.CriticalDamage).HasColumnName("CriticalDamageUpgradedCount");
+            b.Property(e => e.Accuracy).HasColumnName("AccuracyUpgradedCount");
+            b.Property(e => e.Evasion).HasColumnName("EvasionUpgradedCount");
+            b.Property(e => e.Mobility).HasColumnName("MobilityUpgradedCount");
+            b.Property(e => e.Startup).HasColumnName("StartupUpgradedCount");
+            b.Property(e => e.SuperMove).HasColumnName("SuperMoveUpgradedCount");
+        });
     }
 }

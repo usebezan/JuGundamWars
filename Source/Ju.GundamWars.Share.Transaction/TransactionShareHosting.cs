@@ -1,4 +1,5 @@
-﻿using Ju.GundamWars.Share.Tags.Domain.Service;
+﻿using Ju.GundamWars.Share.CoMobiles.Domain.Service;
+using Ju.GundamWars.Share.Tags.Domain.Service;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -10,6 +11,11 @@ public static class TransactionShareHosting
         self
             .ConfigureServices((context, services) =>
             {
+                // CoMobiles
+                services
+                    // Domain.Service
+                    .AddSingleton(typeof(CoMobileSanitizer<>))
+                ;
                 // Tags
                 services
                     // Domain.Service

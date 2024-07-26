@@ -1,6 +1,6 @@
 ﻿namespace Ju.GundamWars.Share.CoMobiles.Domain;
 
-public record CoMobileStatus : ICoMobileStatus
+public record CoMobileUpgradedCountRecord : ICoMobileUpgradedCount
 {
 
     #region Primitives
@@ -14,6 +14,8 @@ public record CoMobileStatus : ICoMobileStatus
     public int Accuracy { get; set; }
     public int Evasion { get; set; }
     public int Mobility { get; set; }
+    public int Startup { get; set; }
+    public int SuperMove { get; set; }
 
     #endregion
 

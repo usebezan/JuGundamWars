@@ -28,6 +28,8 @@ public partial class BizBase : ModelBase, IIdentifiable
 
     [ObservableProperty]
     private int _Id;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasMemo))]
+    private string? _Memo;
 
     #endregion
 
@@ -38,6 +40,8 @@ public partial class BizBase : ModelBase, IIdentifiable
     #endregion
 
     #region Extensions
+
+    public bool HasMemo => !string.IsNullOrEmpty(Memo);
 
     [ObservableProperty]
     private string _TagsText = "";

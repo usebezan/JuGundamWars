@@ -14,6 +14,8 @@ public interface ICoMobileUpgradedCount
     int Accuracy { get; set; }
     int Evasion { get; set; }
     int Mobility { get; set; }
+    int Startup { get; set; }
+    int SuperMove { get; set; }
 
     #endregion
 

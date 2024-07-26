@@ -1,15 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Client.Commons.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
-using Ju.GundamWars.Share;
+using Ju.GundamWars.Share.CoMobiles;
+using Ju.GundamWars.Share.CoMobiles.Domain;
 using Ju.GundamWars.Share.Roles.Domain;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
 
 namespace Ju.GundamWars.Client.CoMobiles.Domain;
 
-public partial class CoMobile : BizBase
+public partial class CoMobile : BizBase, ICoMobile<CoMobileStatus, CoMobileUpgradedCount>
 {
 
     public CoMobile()
@@ -30,12 +30,14 @@ public partial class CoMobile : BizBase
 
     #region Primitives
 
-    [ObservableProperty, Required]
+    [ObservableProperty]
     private string _Name = string.Empty;
-    [ObservableProperty, Required]
+    [ObservableProperty]
+    private int _SerialId;
+    [ObservableProperty]
+    private RoleType _RoleType;
+    [ObservableProperty]
     private byte _Level;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasMemo))]
-    private string? _Memo;
     [ObservableProperty]
     private bool _IsPinned;
 
@@ -43,9 +45,9 @@ public partial class CoMobile : BizBase
 
     #region Primitive Models
 
-    [ObservableProperty, Required]
+    [ObservableProperty]
     private Serial? _Serial;
-    [ObservableProperty, Required]
+    [ObservableProperty]
     private Role? _Role;
 
     public CoMobileStatus BasicStatus { get; }
@@ -55,8 +57,6 @@ public partial class CoMobile : BizBase
     #endregion
 
     #region Extensions
-
-    public bool HasMemo => !string.IsNullOrEmpty(Memo);
 
     [ObservableProperty]
     private int _UpgradedCountTotal;
@@ -75,7 +75,7 @@ public partial class CoMobile : BizBase
     {
         Suspend(initializer);
         SetJoinedTags();
-        OnPropertyChanged(nameof(Memo));
+        OnPropertyChanged(nameof(HasMemo));
         SetUpgradedCountTotal();
         CalculateActualStatus();
         RaiseMobileBoostChanged();
@@ -87,8 +87,8 @@ public partial class CoMobile : BizBase
         Suspend(() =>
         {
             UpgradedStatus.Reset();
-            UpgradedDefaultStatus.Reset();
             UpgradedCount.Reset();
+            UpgradedDefaultStatus.Reset();
         });
         SetUpgradedCountTotal();
         CalculateActualStatus();
@@ -109,6 +109,7 @@ public partial class CoMobile : BizBase
         RaiseMobileBoostChanged();
     }
 
+    // NOTE: ActualStatus の計算は UpgradedStatus のイベントで実行される
     private void WhenUpgradedCountChanged(PropertyChangedEventArgs e)
     {
         if (!IsIdle) return;

@@ -33,8 +33,6 @@ public partial class Cuspa : BizBase
     private byte _Level;
     [ObservableProperty]
     private int _BasicValue;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasMemo))]
-    private string? _Memo;
 
     #endregion
 
@@ -53,7 +51,6 @@ public partial class Cuspa : BizBase
     #region Extensions
 
     public string ForUnitIcon => ForUnitType.ToIcon();
-    public bool HasMemo => !string.IsNullOrEmpty(Memo);
     public string Name => $"{BoostStatus?.Type.ToString()}{CuspaKind?.Type.ToSurffix()} {BasicStatus.ToText()}/{BonusStatus.ToText()}";
 
     public CuspaStatus ActualStatus { get; }

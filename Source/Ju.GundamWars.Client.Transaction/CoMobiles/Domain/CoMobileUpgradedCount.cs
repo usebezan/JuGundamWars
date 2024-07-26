@@ -1,9 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Commons.Domain.Model;
+using Ju.GundamWars.Share.CoMobiles.Domain;
 
 namespace Ju.GundamWars.Client.CoMobiles.Domain;
 
-public partial class CoMobileUpgradedCount : ModelBase
+public partial class CoMobileUpgradedCount : ModelBase, ICoMobileUpgradedCount
 {
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(HpText)), NotifyPropertyChangedFor(nameof(Total))]
@@ -56,22 +57,6 @@ public partial class CoMobileUpgradedCount : ModelBase
         Mobility = 0;
         Startup = 0;
         SuperMove = 0;
-        return this;
-    }
-
-    public CoMobileUpgradedCount Set(CoMobileUpgradedCount status)
-    {
-        Hp = status.Hp;
-        BeamAttack = status.BeamAttack;
-        PhysicalAttack = status.PhysicalAttack;
-        BeamDefence = status.BeamDefence;
-        PhysicalDefence = status.PhysicalDefence;
-        CriticalDamage = status.CriticalDamage;
-        Accuracy = status.Accuracy;
-        Evasion = status.Evasion;
-        Mobility = status.Mobility;
-        Startup = status.Startup;
-        SuperMove = status.SuperMove;
         return this;
     }
 

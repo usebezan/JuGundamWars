@@ -4,8 +4,7 @@ using Ju.GundamWars.Share.Tags.Domain;
 
 namespace Ju.GundamWars.Share.CoMobiles.Domain;
 
-public interface ICoMobile<TStatus, TTagLink> : IIdentifiable, ITagMaps<TTagLink>
-    where TStatus : ICoMobileStatus
+public interface ICoMobile : IIdentifiable
 {
 
     #region Primitives
@@ -14,22 +13,30 @@ public interface ICoMobile<TStatus, TTagLink> : IIdentifiable, ITagMaps<TTagLink
     int SerialId { get; set; }
     RoleType RoleType { get; set; }
     byte Level { get; set; }
-    TStatus BasicStatus { get; set; }
-    TStatus UpgradedStatus { get; set; }
-    int HpUpgradedCount { get; set; }
-    int BeamAttackUpgradedCount { get; set; }
-    int PhysicalAttackUpgradedCount { get; set; }
-    int BeamDefenceUpgradedCount { get; set; }
-    int PhysicalDefenceUpgradedCount { get; set; }
-    int CriticalDamageUpgradedCount { get; set; }
-    int AccuracyUpgradedCount { get; set; }
-    int EvasionUpgradedCount { get; set; }
-    int MobilityUpgradedCount { get; set; }
-    int StartupUpgradedCount { get; set; }
-    int SuperMoveUpgradedCount { get; set; }
     string? Memo { get; set; }
     bool IsPinned { get; set; }
 
     #endregion
 
+}
+
+public interface ICoMobile<TStatus, TCount> : ICoMobile
+    where TStatus : ICoMobileStatus
+    where TCount : ICoMobileUpgradedCount
+{
+
+    #region Primitives
+
+    TStatus BasicStatus { get; }
+    TStatus UpgradedStatus { get; }
+    TCount UpgradedCount { get; }
+
+    #endregion
+
+}
+
+public interface ICoMobile<TStatus, TCount, TTagLink> : ICoMobile<TStatus, TCount>, ITagMaps<TTagLink>
+    where TStatus : ICoMobileStatus
+    where TCount : ICoMobileUpgradedCount
+{
 }
