@@ -1,18 +1,19 @@
-﻿using Ju.GundamWars.BizConst.Grades.Domain;
-using Ju.GundamWars.BizConst.Units.Domain;
+﻿using Ju.GundamWars.Share.Grades.Domain;
+using Ju.GundamWars.Share.Tags.Domain;
+using Ju.GundamWars.Share.Units.Domain;
 
-namespace Ju.GundamWars.BizTxn.Pilots.Domain.Dto;
+namespace Ju.GundamWars.Share.Pilots.Domain;
 
-public class PilotDto : IPilot
+public record PilotBase<TTag> : IPilot, ITagMaps<TTag>
 {
 
     #region Primitives
 
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    public UnitType ForUnit { get; set; } = UnitType.MobileSuit;
+    public UnitType ForUnitType { get; set; } = UnitType.MobileSuit;
     public int SerialId { get; set; } = 1;
-    public GradeType Grade { get; set; } = GradeType.Grade6;
+    public GradeType GradeType { get; set; } = GradeType.Grade6;
     public byte Level { get; set; } = 30;
     public int Shooting { get; set; }
     public int Melee { get; set; }
@@ -42,7 +43,7 @@ public class PilotDto : IPilot
 
     #region Navigations
 
-    public List<PilotTagMapDto> TagMaps { get; set; } = [];
+    public List<TTag> TagMaps { get; set; } = [];
 
     #endregion
 

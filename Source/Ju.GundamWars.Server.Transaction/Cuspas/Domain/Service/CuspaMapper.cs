@@ -12,10 +12,10 @@ public class CuspaMapper<TSrc, TDest, TTagMapSrc, TTagMapDest>(CuspaTagMapMapper
     public TDest Map(TSrc src, TDest dest)
     {
         dest.Id = src.Id;
-        dest.ForUnit = src.ForUnit;
-        dest.Kind = src.Kind;
+        dest.ForUnitType = src.ForUnitType;
+        dest.CuspaKindType = src.CuspaKindType;
         dest.Level = src.Level;
-        dest.BoostStatus = src.BoostStatus;
+        dest.BoostStatusType = src.BoostStatusType;
         dest.BasicValue = src.BasicValue;
         dest.BonusHp = src.BonusHp;
         dest.BonusBeamAttack = src.BonusBeamAttack;

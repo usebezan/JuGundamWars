@@ -14,10 +14,10 @@ public class CuspaModelMapper(CuspaKindInventory cuspaKinds, BoostStatusInventor
             model.IsChecked = false;
 
             model.Id = dto.Id;
-            model.ForUnit = dto.ForUnit;
-            model.Kind = cuspaKinds.FirstOrDefault(i => i.Type == dto.Kind);
+            model.ForUnitType = dto.ForUnitType;
+            model.CuspaKind = cuspaKinds.FirstOrDefault(i => i.Type == dto.CuspaKindType);
             model.Level = dto.Level;
-            model.BoostStatus = boostStatuses.FirstOrDefault(i => i.Type == dto.BoostStatus);
+            model.BoostStatus = boostStatuses.FirstOrDefault(i => i.Type == dto.BoostStatusType);
 
             model.BasicValue = dto.BasicValue;
             model.BonusStatus.Hp = dto.BonusHp;

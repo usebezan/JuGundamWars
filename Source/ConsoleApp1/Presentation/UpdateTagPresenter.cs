@@ -36,6 +36,6 @@ internal class UpdateTagPresenter(
     public void Complete(Tag output)
     {
         Console.WriteLine("*** Complete ***");
-        Console.WriteLine($"{output.Id} {output.GroupText} {output.Name} {output.Order}");
+        Console.WriteLine($"{output.Id} {output.TagGroupText} {output.Name} {output.Order}");
     }
 }

@@ -8,10 +8,10 @@ public class CuspaDtoMapper : IMapper<Cuspa, CuspaDto>
     public CuspaDto Map(Cuspa model, CuspaDto dto)
     {
         dto.Id = model.Id;
-        dto.ForUnit = model.ForUnit;
-        dto.Kind = model.Kind?.Type ?? 0;
+        dto.ForUnitType = model.ForUnitType;
+        dto.CuspaKindType = model.CuspaKind?.Type ?? 0;
         dto.Level = model.Level;
-        dto.BoostStatus = model.BoostStatus?.Type ?? 0;
+        dto.BoostStatusType = model.BoostStatus?.Type ?? 0;
         dto.BasicValue = model.BasicValue;
         dto.BonusHp = model.BonusStatus.Hp;
         dto.BonusBeamAttack = model.BonusStatus.BeamAttack;

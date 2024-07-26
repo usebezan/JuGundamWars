@@ -9,7 +9,7 @@ public class TagMapper<TSrc, TDest> : IMapper<TSrc, TDest>
     public TDest Map(TSrc src, TDest dest)
     {
         dest.Id = src.Id;
-        dest.Group = src.Group;
+        dest.TagGroupType = src.TagGroupType;
         dest.Name = src.Name;
         dest.Order = src.Order;
         return dest;

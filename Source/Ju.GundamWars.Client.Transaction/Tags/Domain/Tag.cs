@@ -14,8 +14,8 @@ public partial class Tag : ModelBase, ITag
 
     [ObservableProperty]
     private int _Id;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(GroupText))]
-    private TagGroupType _Group;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(TagGroupText))]
+    private TagGroupType _TagGroupType;
     [ObservableProperty]
     private string? _Name = string.Empty;
     [ObservableProperty]
@@ -25,7 +25,7 @@ public partial class Tag : ModelBase, ITag
 
     #region Extensions
 
-    public string GroupText => Group.ToText();
+    public string TagGroupText => TagGroupType.ToText();
 
     #endregion
 

@@ -10,7 +10,7 @@ public interface ICoMobile : IIdentifiable
 
     string Name { get; set; }
     int SerialId { get; set; }
-    RoleType Role { get; set; }
+    RoleType RoleType { get; set; }
     byte Level { get; set; }
     int Hp { get; set; }
     int BeamAttack { get; set; }

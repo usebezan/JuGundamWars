@@ -10,10 +10,10 @@ public record CuspaBase<TTagMap> : ICuspa<TTagMap>
     #region Primitives
 
     public int Id { get; set; }
-    public UnitType ForUnit { get; set; } = UnitType.MobileSuit;
-    public CuspaKindType Kind { get; set; } = CuspaKindType.Special3;
+    public UnitType ForUnitType { get; set; } = UnitType.MobileSuit;
+    public CuspaKindType CuspaKindType { get; set; } = CuspaKindType.Special3;
     public byte Level { get; set; } = 10;
-    public BoostStatusType BoostStatus { get; set; } = BoostStatusType.Hp;
+    public BoostStatusType BoostStatusType { get; set; } = BoostStatusType.Hp;
     public int BasicValue { get; set; }
     public int BonusHp { get; set; }
     public int BonusBeamAttack { get; set; }

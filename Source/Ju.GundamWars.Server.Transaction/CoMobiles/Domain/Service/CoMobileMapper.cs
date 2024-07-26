@@ -15,7 +15,7 @@ public class CoMobileMapper<TSrc, TDest, TTagSrc, TTagDest>(CoMobileTagMapMapper
         dest.Id = src.Id;
         dest.Name = src.Name;
         dest.SerialId = src.SerialId;
-        dest.Role = src.Role;
+        dest.RoleType = src.RoleType;
         dest.Level = src.Level;
         dest.Hp = src.Hp;
         dest.BeamAttack = src.BeamAttack;

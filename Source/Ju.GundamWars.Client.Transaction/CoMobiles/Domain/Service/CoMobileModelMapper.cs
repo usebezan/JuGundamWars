@@ -16,7 +16,7 @@ public class CoMobileModelMapper(SerialInventory serials, RoleInventory roles, T
             model.Id = dto.Id;
             model.Name = dto.Name;
             model.Serial = serials.FirstOrDefault(i => i.Id == dto.SerialId);
-            model.Role = roles.FirstOrDefault(i => i.Type == dto.Role);
+            model.Role = roles.FirstOrDefault(i => i.Type == dto.RoleType);
             model.Level = dto.Level;
 
             model.BasicStatus.Hp = dto.Hp;

@@ -27,8 +27,8 @@ public partial class Cuspa : BizBase
 
     #region Primitives
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(UnitIcon))]
-    private UnitType _ForUnit = UnitType.MobileSuit;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(ForUnitIcon))]
+    private UnitType _ForUnitType = UnitType.MobileSuit;
     [ObservableProperty]
     private byte _Level;
     [ObservableProperty]
@@ -41,7 +41,7 @@ public partial class Cuspa : BizBase
     #region Primitive Models
 
     [ObservableProperty, Required, NotifyPropertyChangedFor(nameof(Name))]
-    private CuspaKind? _Kind;
+    private CuspaKind? _CuspaKind;
     [ObservableProperty, Required, NotifyPropertyChangedFor(nameof(Name))]
     private BoostStatus? _BoostStatus;
 
@@ -52,16 +52,13 @@ public partial class Cuspa : BizBase
 
     #region Extensions
 
-    public string UnitIcon => ForUnit.ToIcon();
+    public string ForUnitIcon => ForUnitType.ToIcon();
     public bool HasMemo => !string.IsNullOrEmpty(Memo);
-    public string Name => $"{BoostStatus?.Type.ToString()}{Kind?.Type.ToSurffix()} {BasicStatus.ToText()}/{BonusStatus.ToText()}";
+    public string Name => $"{BoostStatus?.Type.ToString()}{CuspaKind?.Type.ToSurffix()} {BasicStatus.ToText()}/{BonusStatus.ToText()}";
 
     public CuspaStatus ActualStatus { get; }
 
     #endregion
-
-    [ObservableProperty]
-    private bool _IsPinned = true;
 
 
     public Cuspa Initialize(Action initializer)

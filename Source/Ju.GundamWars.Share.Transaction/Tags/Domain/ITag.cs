@@ -7,7 +7,7 @@ public interface ITag : IIdentifiable, IOrderable
 
     #region Primitives
 
-    TagGroupType Group { get; set; }
+    TagGroupType TagGroupType { get; set; }
     string? Name { get; set; }
 
     #endregion

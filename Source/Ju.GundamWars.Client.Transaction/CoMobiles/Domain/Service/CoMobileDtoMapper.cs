@@ -1,5 +1,6 @@
 ﻿using Ju.GundamWars.Commons.Domain.Service.Mapping;
 using Ju.GundamWars.Share.CoMobiles.Domain;
+using Ju.GundamWars.Share.Roles.Domain;
 
 namespace Ju.GundamWars.Client.CoMobiles.Domain.Service;
 
@@ -10,7 +11,7 @@ public class CoMobileDtoMapper : IMapper<CoMobile, CoMobileDto>
         dto.Id = model.Id;
         dto.Name = model.Name;
         dto.SerialId = model.Serial?.Id ?? 0;
-        dto.Role = model.Role?.Type ?? 0;
+        dto.RoleType = model.Role?.Type ?? RoleType.Unknown;
         dto.Level = model.Level;
         dto.Hp = model.BasicStatus.Hp;
         dto.BeamAttack = model.BasicStatus.BeamAttack;

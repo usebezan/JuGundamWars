@@ -11,7 +11,7 @@ public record CoMobileBase<TTag> : ICoMobile, ITagMaps<TTag>
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public int SerialId { get; set; } = 1;
-    public RoleType Role { get; set; } = RoleType.Defensive;
+    public RoleType RoleType { get; set; } = RoleType.Defensive;
     public byte Level { get; set; } = 60;
     public int Hp { get; set; }
     public int BeamAttack { get; set; }

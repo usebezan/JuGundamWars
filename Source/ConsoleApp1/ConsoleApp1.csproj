@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pilots\Domain\" />
+  </ItemGroup>
+
 </Project>

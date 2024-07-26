@@ -132,7 +132,7 @@ internal class LoadAllClientPresenter(
         foreach (var item in output)
         {
             tags.Add(item);
-            Debug.WriteLine($"{item.Id} {item.GroupText} {item.Name} {item.Order}");
+            Debug.WriteLine($"{item.Id} {item.TagGroupText} {item.Name} {item.Order}");
         }
     }
 

@@ -11,10 +11,10 @@ public interface ICuspa<TTagMap> : IIdentifiable, ITagMaps<TTagMap>
 
     #region Primitives
 
-    UnitType ForUnit { get; set; }
-    CuspaKindType Kind { get; set; }
+    UnitType ForUnitType { get; set; }
+    CuspaKindType CuspaKindType { get; set; }
     byte Level { get; set; }
-    BoostStatusType BoostStatus { get; set; }
+    BoostStatusType BoostStatusType { get; set; }
     int BasicValue { get; set; }
     int BonusHp { get; set; }
     int BonusBeamAttack { get; set; }
