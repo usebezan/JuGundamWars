@@ -10,9 +10,9 @@ public class PilotAbilityMapper<TSrc, TDest> : IMapper<TSrc, TDest>
     {
         dest.Id = src.Id;
         dest.Rank = src.Rank;
-        dest.BoostCategory = src.BoostCategory;
-        dest.BoostStatus = src.BoostStatus;
-        dest.CalcMethod = src.CalcMethod;
+        dest.BoostCategoryType = src.BoostCategoryType;
+        dest.BoostStatusType = src.BoostStatusType;
+        dest.CalcMethodType = src.CalcMethodType;
         dest.Value = src.Value;
         dest.Order = src.Order;
         return dest;

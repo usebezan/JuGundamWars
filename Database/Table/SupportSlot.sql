@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS [SupportSlot];
 CREATE TABLE [SupportSlot] (
   [Id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
-  , [Kind] INTEGER NOT NULL
-  , [BoostStatus] INTEGER NOT NULL
-  , [CalcMethod] INTEGER NOT NULL
+  , [SupportSlotKindType] INTEGER NOT NULL
+  , [BoostStatusType] INTEGER NOT NULL
+  , [CalcMethodType] INTEGER NOT NULL
   , [Value] INTEGER NOT NULL
   , [Order] INTEGER NOT NULL
 );

@@ -11,7 +11,7 @@ public class MobileSSkillMapper<TSrc, TDest> : IMapper<TSrc, TDest>
         dest.Id = src.Id;
         dest.SkillId = src.SkillId;
         dest.NameSuffix = src.NameSuffix;
-        dest.Grade = src.Grade;
+        dest.GradeType = src.GradeType;
         dest.Order = src.Order;
         return dest;
     }

@@ -9,8 +9,8 @@ public interface ISupportBadge : IIdentifiable, IOrderable
     #region Primitives
 
     byte Rank { get; set; }
-    BoostStatusType BoostStatus { get; set; }
-    CalcMethodType CalcMethod { get; set; }
+    BoostStatusType BoostStatusType { get; set; }
+    CalcMethodType CalcMethodType { get; set; }
     int Value { get; set; }
 
     #endregion

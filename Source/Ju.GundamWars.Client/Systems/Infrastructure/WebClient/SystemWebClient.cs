@@ -12,19 +12,24 @@ using Ju.GundamWars.Client.Skills.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;
 using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Server.Commons.Infrastructure.WebApi;
 using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
-using Ju.GundamWars.Server.MobileSSkills.Infrastructure.WebApi;
-using Ju.GundamWars.Server.PilotAbilities.Infrastructure.WebApi;
-using Ju.GundamWars.Server.PilotSkills.Infrastructure.WebApi;
-using Ju.GundamWars.Server.Serials.Infrastructure.WebApi;
-using Ju.GundamWars.Server.Skills.Infrastructure.WebApi;
-using Ju.GundamWars.Server.SupportBadges.Infrastructure.WebApi;
-using Ju.GundamWars.Server.SupportSlots.Infrastructure.WebApi;
+using Ju.GundamWars.Server.MobileSSkills.Domain;
+using Ju.GundamWars.Server.PilotAbilities.Domain;
+using Ju.GundamWars.Server.PilotSkills.Domain;
+using Ju.GundamWars.Server.Serials.Domain;
+using Ju.GundamWars.Server.Skills.Domain;
+using Ju.GundamWars.Server.SupportBadges.Domain;
+using Ju.GundamWars.Server.SupportSlots.Domain;
 using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
-using Ju.GundamWars.Server.Versionings.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Versionings.Domain;
+using Ju.GundamWars.Share.MobileSSkills.Domain;
+using Ju.GundamWars.Share.MobileSSkills.Domain.Service;
 using Ju.GundamWars.Share.PilotAbilities.Domain;
 using Ju.GundamWars.Share.PilotAbilities.Domain.Service;
+using Ju.GundamWars.Share.PilotSkills.Domain;
+using Ju.GundamWars.Share.PilotSkills.Domain.Service;
 using Ju.GundamWars.Share.Serials.Domain;
 using Ju.GundamWars.Share.Serials.Domain.Service;
 using Ju.GundamWars.Share.Skills.Domain;
@@ -35,33 +40,35 @@ using Ju.GundamWars.Share.SupportSlots.Domain;
 using Ju.GundamWars.Share.SupportSlots.Domain.Service;
 using Ju.GundamWars.Share.Tags.Domain;
 using Ju.GundamWars.Share.Tags.Domain.Service;
+using Ju.GundamWars.Share.Versionings.Domain;
+using Ju.GundamWars.Share.Versionings.Domain.Service;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 
 public class SystemWebClient(
-    MobileSSkillWebApiController mobileSSkillWebApiController,
+    MasterController<MobileSSkillEntity, MobileSSkillDto, MobileSSkillMapper<MobileSSkillEntity, MobileSSkillDto>> mobileSSkillWebApiController,
     MobileSSkillModelMapper mobileSSkillModelMapper,
 
-    PilotAbilityWebApiController pilotAbilityWebApiController,
+    MasterController<PilotAbilityEntity, PilotAbilityDto, PilotAbilityMapper<PilotAbilityEntity, PilotAbilityDto>> pilotAbilityWebApiController,
     PilotAbilityMapper<PilotAbilityDto, PilotAbility> pilotAbilityModelMapper,
 
-    PilotSkillWebApiController pilotSkillWebApiController,
+    MasterController<PilotSkillEntity, PilotSkillDto, PilotSkillMapper<PilotSkillEntity, PilotSkillDto>> pilotSkillWebApiController,
     PilotSkillModelMapper pilotSkillModelMapper,
 
-    SerialWebApiController serialWebApiController,
+    MasterController<SerialEntity, SerialDto, SerialMapper<SerialEntity, SerialDto>> serialWebApiController,
     SerialMapper<SerialDto, Serial> serialModelMapper,
 
-    SkillWebApiController skillWebApiController,
+    MasterController<SkillEntity, SkillDto, SkillMapper<SkillEntity, SkillDto>> skillWebApiController,
     SkillMapper<SkillDto, Skill> skillModelMapper,
 
-    SupportBadgeWebApiController supportBadgeWebApiController,
+    MasterController<SupportBadgeEntity, SupportBadgeDto, SupportBadgeMapper<SupportBadgeEntity, SupportBadgeDto>> supportBadgeWebApiController,
     SupportBadgeMapper<SupportBadgeDto, SupportBadge> supportBadgeModelMapper,
 
-    SupportSlotWebApiController supportSlotWebApiController,
+    MasterController<SupportSlotEntity, SupportSlotDto, SupportSlotMapper<SupportSlotEntity, SupportSlotDto>> supportSlotWebApiController,
     SupportSlotMapper<SupportSlotDto, SupportSlot> supportSlotModelMapper,
 
-    VersioningWebApiController versioningWebApiController,
+    MasterController<VersioningEntity, VersioningDto, VersioningMapper<VersioningEntity, VersioningDto>> versioningWebApiController,
     HttpClient httpClient,
 
     CoMobileWebApiController coMobileWebApiController,
@@ -122,7 +129,7 @@ public class SystemWebClient(
         this.Execute(logger, async () =>
         {
             var dto = await versioningWebApiController.SelectByIdAsync(1);
-            return dto.Version;
+            return dto?.Version ?? string.Empty;
         });
     public Task<string> GetRemoteVersionAsync(string uriString) =>
         this.Execute(logger, async () =>

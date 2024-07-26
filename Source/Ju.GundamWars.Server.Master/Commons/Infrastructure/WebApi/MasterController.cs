@@ -6,13 +6,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Commons.Infrastructure.WebApi;
 
-public abstract class MasterControllerBase<TEntity, TDto>(
+public class MasterController<TEntity, TDto, TMapper>(
     ISelectByIdUseCase<TEntity, IMasterRepository<TEntity>> selectByIdServerUseCase,
     ISelectAllUseCase<TEntity, IMasterRepository<TEntity>> selectAllServerUseCase,
-    IMapper<TEntity, TDto> dtoMapper,
-    ILogger logger) : IGw
+    TMapper dtoMapper,
+    ILogger<MasterController<TEntity, TDto, TMapper>> logger) : IGw
     where TEntity : IIdentifiable, IOrderable, new()
     where TDto : IIdentifiable, IOrderable, new()
+    where TMapper : IMapper<TEntity, TDto>
 {
     public Task<TDto?> SelectByIdAsync(long id) =>
         this.Execute(logger, async () =>

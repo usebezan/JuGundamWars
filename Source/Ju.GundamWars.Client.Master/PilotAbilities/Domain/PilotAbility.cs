@@ -16,7 +16,7 @@ public record PilotAbility : BoostBase, IPilotAbility
 
     #region Extensions
 
-    public string Name => $"{BoostStatus.ToText()} Lv.{Rank}（{BoostText}）";
+    public string Name => $"{BoostStatusType.ToText()} Lv.{Rank}（{BoostText}）";
 
     #endregion
 

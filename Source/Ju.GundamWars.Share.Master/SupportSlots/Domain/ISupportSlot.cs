@@ -8,9 +8,9 @@ public interface ISupportSlot : IIdentifiable, IOrderable
 
     #region Primitives
 
-    SupportSlotKindType Kind { get; set; }
-    BoostStatusType BoostStatus { get; set; }
-    CalcMethodType CalcMethod { get; set; }
+    SupportSlotKindType SupportSlotKindType { get; set; }
+    BoostStatusType BoostStatusType { get; set; }
+    CalcMethodType CalcMethodType { get; set; }
     int Value { get; set; }
 
     #endregion

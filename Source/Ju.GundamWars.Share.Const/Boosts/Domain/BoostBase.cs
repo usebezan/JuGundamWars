@@ -1,13 +1,13 @@
 ﻿namespace Ju.GundamWars.Share.Boosts.Domain;
 
-public record BoostBase : IBooster
+public abstract record BoostBase
 {
 
     #region Primitives
 
-    public BoostCategoryType BoostCategory { get; set; }
-    public BoostStatusType BoostStatus { get; set; }
-    public CalcMethodType CalcMethod { get; set; }
+    public BoostCategoryType BoostCategoryType { get; set; }
+    public BoostStatusType BoostStatusType { get; set; }
+    public CalcMethodType CalcMethodType { get; set; }
     public int Value { get; set; }
 
     #endregion
@@ -22,11 +22,11 @@ public record BoostBase : IBooster
 
     public int CalcBoostedValue(int baseValue = 0)
     {
-        if (CalcMethod == CalcMethodType.Addition)
+        if (CalcMethodType == CalcMethodType.Addition)
         {
             return baseValue + Value;
         }
-        else if (CalcMethod == CalcMethodType.Multiplication)
+        else if (CalcMethodType == CalcMethodType.Multiplication)
         {
             return baseValue.Multiply1k(Value);
         }
@@ -35,16 +35,16 @@ public record BoostBase : IBooster
 
     private string GetTargetText()
     {
-        if (BoostCategory == BoostCategoryType.None && BoostStatus == BoostStatusType.None) return GwText.None;
-        if (BoostCategory == BoostCategoryType.Unknown && BoostStatus == BoostStatusType.Unknown) return GwText.Unknown;
-        return $"{BoostCategory.ToText()} の {BoostStatus.ToText()}";
+        if (BoostCategoryType == BoostCategoryType.None && BoostStatusType == BoostStatusType.None) return GwText.None;
+        if (BoostCategoryType == BoostCategoryType.Unknown && BoostStatusType == BoostStatusType.Unknown) return GwText.Unknown;
+        return $"{BoostCategoryType.ToText()} の {BoostStatusType.ToText()}";
     }
 
     private string GetBoostText()
     {
-        if (CalcMethod == CalcMethodType.None) return GwText.None;
-        if (CalcMethod == CalcMethodType.Addition) return $"+{Value}";
-        if (CalcMethod == CalcMethodType.Multiplication)
+        if (CalcMethodType == CalcMethodType.None) return GwText.None;
+        if (CalcMethodType == CalcMethodType.Addition) return $"+{Value}";
+        if (CalcMethodType == CalcMethodType.Multiplication)
         {
             var value = Value / 10m;
             if (value % 1 == 0)

@@ -8,7 +8,7 @@ public record SupportBadge : BoostBase, ISupportBadge
 
     public SupportBadge()
     {
-        BoostCategory = BoostCategoryType.Mobile;
+        BoostCategoryType = BoostCategoryType.Mobile;
     }
 
 
@@ -22,7 +22,7 @@ public record SupportBadge : BoostBase, ISupportBadge
 
     #region Extensions
 
-    public string Name => $"{BoostStatus.ToText()}{GetRankText()}（{BoostText}）";
+    public string Name => $"{BoostStatusType.ToText()}{GetRankText()}（{BoostText}）";
 
     #endregion
 

@@ -8,9 +8,9 @@ public record SupportSlotBase : ISupportSlot
     #region Primitives
 
     public int Id { get; set; }
-    public SupportSlotKindType Kind { get; set; }
-    public BoostStatusType BoostStatus { get; set; }
-    public CalcMethodType CalcMethod { get; set; }
+    public SupportSlotKindType SupportSlotKindType { get; set; }
+    public BoostStatusType BoostStatusType { get; set; }
+    public CalcMethodType CalcMethodType { get; set; }
     public int Value { get; set; }
     public int Order { get; set; }
 

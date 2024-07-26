@@ -10,7 +10,7 @@ public interface IMobileSSkill : IIdentifiable, IOrderable
 
     int SkillId { get; set; }
     string NameSuffix { get; set; }
-    GradeType Grade { get; set; }
+    GradeType GradeType { get; set; }
 
     #endregion
 

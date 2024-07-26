@@ -16,7 +16,7 @@ public record PilotSkill : PilotSkillBase
 
     #region Extensions
 
-    public string GroupText => Skill?.Group.ToText() ?? GwText.Unknown;
+    public string SkillGroupText => Skill?.SkillGroupType.ToText() ?? GwText.Unknown;
     public string Name => Skill?.Name ?? GwText.Unknown;
 
     #endregion

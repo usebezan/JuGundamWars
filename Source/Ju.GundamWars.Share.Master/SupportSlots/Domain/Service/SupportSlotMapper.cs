@@ -9,9 +9,9 @@ public class SupportSlotMapper<TSrc, TDest> : IMapper<TSrc, TDest>
     public TDest Map(TSrc src, TDest dest)
     {
         dest.Id = src.Id;
-        dest.Kind = src.Kind;
-        dest.BoostStatus = src.BoostStatus;
-        dest.CalcMethod = src.CalcMethod;
+        dest.SupportSlotKindType = src.SupportSlotKindType;
+        dest.BoostStatusType = src.BoostStatusType;
+        dest.CalcMethodType = src.CalcMethodType;
         dest.Value = src.Value;
         dest.Order = src.Order;
         return dest;

@@ -7,7 +7,7 @@ public interface ISkill : IIdentifiable, IOrderable
 
     #region Primitives
 
-    SkillGroupType Group { get; set; }
+    SkillGroupType SkillGroupType { get; set; }
     string Name { get; set; }
 
     #endregion

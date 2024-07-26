@@ -9,7 +9,7 @@ public class SkillMapper<TSrc, TDest> : IMapper<TSrc, TDest>
     public TDest Map(TSrc src, TDest dest)
     {
         dest.Id = src.Id;
-        dest.Group = src.Group;
+        dest.SkillGroupType = src.SkillGroupType;
         dest.Name = src.Name;
         dest.Order = src.Order;
         return dest;

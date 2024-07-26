@@ -9,9 +9,9 @@ public abstract record PilotAbilityBase : IPilotAbility
 
     public int Id { get; set; }
     public byte Rank { get; set; }
-    public BoostCategoryType BoostCategory { get; set; }
-    public BoostStatusType BoostStatus { get; set; }
-    public CalcMethodType CalcMethod { get; set; }
+    public BoostCategoryType BoostCategoryType { get; set; }
+    public BoostStatusType BoostStatusType { get; set; }
+    public CalcMethodType CalcMethodType { get; set; }
     public int Value { get; set; }
     public int Order { get; set; }
 

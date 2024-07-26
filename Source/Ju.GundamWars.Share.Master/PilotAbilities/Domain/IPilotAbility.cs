@@ -9,9 +9,9 @@ public interface IPilotAbility : IIdentifiable, IOrderable
     #region Primitives
 
     byte Rank { get; set; }
-    BoostCategoryType BoostCategory { get; set; }
-    BoostStatusType BoostStatus { get; set; }
-    CalcMethodType CalcMethod { get; set; }
+    BoostCategoryType BoostCategoryType { get; set; }
+    BoostStatusType BoostStatusType { get; set; }
+    CalcMethodType CalcMethodType { get; set; }
     int Value { get; set; }
 
     #endregion

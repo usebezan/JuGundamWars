@@ -2,8 +2,8 @@ DROP TABLE IF EXISTS [SupportBadge];
 CREATE TABLE [SupportBadge] (
   [Id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
   , [Rank] INTEGER NOT NULL
-  , [BoostStatus] INTEGER NOT NULL
-  , [CalcMethod] INTEGER NOT NULL
+  , [BoostStatusType] INTEGER NOT NULL
+  , [CalcMethodType] INTEGER NOT NULL
   , [Value] INTEGER NOT NULL
   , [Order] INTEGER NOT NULL
 );

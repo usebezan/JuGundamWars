@@ -16,10 +16,10 @@ public record MobileSSkill : MobileSSkillBase
 
     #region Extensions
 
-    public string GroupText => Skill?.Group.ToText() ?? GwText.Unknown;
+    public string SkillGroupText => Skill?.SkillGroupType.ToText() ?? GwText.Unknown;
     public string Name => $"{Skill?.Name}{NameSuffix}";
-    public string GradeText => Grade.ToText();
-    public string GradeColor => Grade.ToColor();
+    public string GradeText => GradeType.ToText();
+    public string GradeColor => GradeType.ToColor();
 
     #endregion
 

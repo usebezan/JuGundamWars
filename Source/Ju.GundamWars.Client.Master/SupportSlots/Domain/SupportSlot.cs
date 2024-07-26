@@ -9,13 +9,13 @@ public record SupportSlot : BoostBase, ISupportSlot
     #region Primitives
 
     public int Id { get; set; }
-    public SupportSlotKindType Kind
+    public SupportSlotKindType SupportSlotKindType
     {
-        get => __Kind;
+        get => __SupportSlotKindType;
         set
         {
-            __Kind = value;
-            BoostCategory = Kind switch
+            __SupportSlotKindType = value;
+            BoostCategoryType = SupportSlotKindType switch
             {
                 SupportSlotKindType.Normal => BoostCategoryType.None,
                 SupportSlotKindType.Unlock => BoostCategoryType.Mobile,
@@ -24,29 +24,29 @@ public record SupportSlot : BoostBase, ISupportSlot
             };
         }
     }
-    private SupportSlotKindType __Kind;
+    private SupportSlotKindType __SupportSlotKindType;
     public int Order { get; set; }
 
     #endregion
 
     #region Extensions
 
-    public string Name => Kind == SupportSlotKindType.Normal ? "通常" : GetName();
-    public bool IsAttachable => Kind == SupportSlotKindType.Bonus || Kind == SupportSlotKindType.Normal;
-    public bool IsBonusable => Kind == SupportSlotKindType.Bonus;
+    public string Name => SupportSlotKindType == SupportSlotKindType.Normal ? "通常" : GetName();
+    public bool IsAttachable => SupportSlotKindType == SupportSlotKindType.Bonus || SupportSlotKindType == SupportSlotKindType.Normal;
+    public bool IsBonusable => SupportSlotKindType == SupportSlotKindType.Bonus;
 
     #endregion
 
 
     private string GetName()
     {
-        if (BoostCategory == BoostCategoryType.Mobile)
+        if (BoostCategoryType == BoostCategoryType.Mobile)
         {
-            return $"{BoostStatus.ToText()} {BoostText}";
+            return $"{BoostStatusType.ToText()} {BoostText}";
         }
-        else if (BoostCategory == BoostCategoryType.Badge)
+        else if (BoostCategoryType == BoostCategoryType.Badge)
         {
-            return $"{BoostStatus.ToText()}バッジ {BoostText}";
+            return $"{BoostStatusType.ToText()}バッジ {BoostText}";
         }
         else
         {
