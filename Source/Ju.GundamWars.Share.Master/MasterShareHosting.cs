@@ -19,42 +19,42 @@ public static class MasterShareHosting
             {
                 // MobileSSkills
                 services
-                    // Domain
+                    // Domain.Service
                     .AddSingleton(typeof(MobileSSkillMapper<,>))
                 ;
                 // PilotAbilities
                 services
-                    // Domain
+                    // Domain.Service
                     .AddSingleton(typeof(PilotAbilityMapper<,>))
                 ;
                 // PilotSkills
                 services
-                    // Domain
+                    // Domain.Service
                     .AddSingleton(typeof(PilotSkillMapper<,>))
                 ;
                 // Serials
                 services
-                    // Domain
+                    // Domain.Service
                     .AddSingleton(typeof(SerialMapper<,>))
                 ;
                 // Skills
                 services
-                    // Domain
+                    // Domain.Service
                     .AddSingleton(typeof(SkillMapper<,>))
                 ;
                 // SupportBadges
                 services
-                    // Domain
+                    // Domain.Service
                     .AddSingleton(typeof(SupportBadgeMapper<,>))
                 ;
                 // SupportSlots
                 services
-                    // Domain
+                    // Domain.Service
                     .AddSingleton(typeof(SupportSlotMapper<,>))
                 ;
                 // Versionings
                 services
-                    // Domain
+                    // Domain.Service
                     .AddSingleton(typeof(VersioningMapper<,>))
                 ;
             });

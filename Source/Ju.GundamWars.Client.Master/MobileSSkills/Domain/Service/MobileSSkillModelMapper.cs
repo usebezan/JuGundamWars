@@ -6,10 +6,10 @@ namespace Ju.GundamWars.Client.MobileSSkills.Domain.Service;
 
 public class MobileSSkillModelMapper(SkillInventory skills) : MobileSSkillMapper<MobileSSkillDto, MobileSSkill>
 {
-    public new MobileSSkill Map(MobileSSkillDto src, MobileSSkill dest)
+    public new MobileSSkill Map(MobileSSkillDto dto, MobileSSkill model)
     {
-        base.Map(src, dest);
-        dest.Skill = skills.FirstOrDefault(m => m.Id == src.SkillId);
-        return dest;
+        base.Map(dto, model);
+        model.Skill = skills.FirstOrDefault(m => m.Id == dto.SkillId);
+        return model;
     }
 }

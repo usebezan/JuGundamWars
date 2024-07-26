@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Share.MobileSSkills.Domain;
 
-public record MobileSSkillBase : IMobileSSkill
+public abstract record MobileSSkillBase : IMobileSSkill
 {
 
     #region Primitives

@@ -6,10 +6,10 @@ namespace Ju.GundamWars.Client.PilotSkills.Domain.Service;
 
 public class PilotSkillModelMapper(SkillInventory skills) : PilotSkillMapper<PilotSkillDto, PilotSkill>
 {
-    public new PilotSkill Map(PilotSkillDto src, PilotSkill dest)
+    public new PilotSkill Map(PilotSkillDto dto, PilotSkill model)
     {
-        base.Map(src, dest);
-        dest.Skill = skills.FirstOrDefault(m => m.Id == src.SkillId);
-        return dest;
+        base.Map(dto, model);
+        model.Skill = skills.FirstOrDefault(m => m.Id == dto.SkillId);
+        return model;
     }
 }
