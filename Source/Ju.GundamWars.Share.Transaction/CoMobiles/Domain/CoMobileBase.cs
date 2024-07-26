@@ -2,8 +2,7 @@
 
 namespace Ju.GundamWars.Share.CoMobiles.Domain;
 
-public abstract record CoMobileBase<TStatus, TTagLink> : ICoMobile<TStatus, TTagLink>
-    where TStatus : ICoMobileStatus, new()
+public abstract record CoMobileBase<TTagLink> : ICoMobile<CoMobileStatus, TTagLink>
 {
 
     #region Primitives
@@ -13,8 +12,8 @@ public abstract record CoMobileBase<TStatus, TTagLink> : ICoMobile<TStatus, TTag
     public int SerialId { get; set; } = 1;
     public RoleType RoleType { get; set; } = RoleType.Defensive;
     public byte Level { get; set; } = 60;
-    public TStatus BasicStatus { get; set; } = new();
-    public TStatus UpgradedStatus { get; set; } = new();
+    public CoMobileStatus BasicStatus { get; set; } = new();
+    public CoMobileStatus UpgradedStatus { get; set; } = new();
     public int HpUpgradedCount { get; set; }
     public int BeamAttackUpgradedCount { get; set; }
     public int PhysicalAttackUpgradedCount { get; set; }

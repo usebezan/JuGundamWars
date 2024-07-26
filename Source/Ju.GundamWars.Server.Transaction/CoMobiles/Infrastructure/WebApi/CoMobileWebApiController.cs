@@ -13,8 +13,8 @@ public class CoMobileWebApiController(
     IInsertUseCase<CoMobileEntity, ICoMobileRepository, CoMobileServerSanitizer> insertServerUseCase,
     IUpdateUseCase<CoMobileEntity, ICoMobileRepository, CoMobileServerSanitizer> updateServerUseCase,
     IDeleteUseCase<long, CoMobileEntity, ICoMobileRepository> deleteServerUseCase,
-    CoMobileServerMapper<CoMobileEntity, CoMobileStatusEntity, CoMobileTagLinkEntity, CoMobileDto, CoMobileStatusDto, CoMobileTagLinkDto> dtoMapper,
-    CoMobileServerMapper<CoMobileDto, CoMobileStatusDto, CoMobileTagLinkDto, CoMobileEntity, CoMobileStatusEntity, CoMobileTagLinkEntity> entityMapper,
+    CoMobileServerMapper<CoMobileEntity, CoMobileTagLinkEntity, CoMobileDto, CoMobileTagLinkDto> dtoMapper,
+    CoMobileServerMapper<CoMobileDto, CoMobileTagLinkDto, CoMobileEntity, CoMobileTagLinkEntity> entityMapper,
     ILogger<CoMobileWebApiController> logger)
         : TxnControllerBase<CoMobileEntity, CoMobileDto, ICoMobileRepository, CoMobileServerSanitizer, CoMobileServerSanitizer>(
             selectAllServerUseCase,

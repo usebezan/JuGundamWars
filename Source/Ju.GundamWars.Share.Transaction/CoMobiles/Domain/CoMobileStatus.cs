@@ -1,6 +1,6 @@
 ﻿namespace Ju.GundamWars.Share.CoMobiles.Domain;
 
-public abstract record CoMobileStatusBase : ICoMobileStatus
+public record CoMobileStatus : ICoMobileStatus
 {
 
     #region Primitives

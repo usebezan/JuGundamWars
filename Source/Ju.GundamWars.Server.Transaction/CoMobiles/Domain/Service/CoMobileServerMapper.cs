@@ -4,12 +4,10 @@ using Ju.GundamWars.Share.CoMobiles.Domain;
 
 namespace Ju.GundamWars.Server.CoMobiles.Domain.Service;
 
-public class CoMobileServerMapper<TSrc, TStatusSrc, TTagLinkSrc, TDest, TStatusDest, TTagLinkDest>(CoMobileTagLinkServerMapper<TTagLinkSrc, TTagLinkDest> tagLinkMapper) : IMapper<TSrc, TDest>
-    where TSrc : ICoMobile<TStatusSrc, TTagLinkSrc>
-    where TStatusSrc : ICoMobileStatus
+public class CoMobileServerMapper<TSrc, TTagLinkSrc, TDest, TTagLinkDest>(CoMobileTagLinkServerMapper<TTagLinkSrc, TTagLinkDest> tagLinkMapper) : IMapper<TSrc, TDest>
+    where TSrc : ICoMobile<CoMobileStatus, TTagLinkSrc>
     where TTagLinkSrc : ICoMobileTagLink
-    where TDest : ICoMobile<TStatusDest, TTagLinkDest>
-    where TStatusDest : ICoMobileStatus
+    where TDest : ICoMobile<CoMobileStatus, TTagLinkDest>
     where TTagLinkDest : ICoMobileTagLink, new()
 {
     public TDest Map(TSrc src, TDest dest)

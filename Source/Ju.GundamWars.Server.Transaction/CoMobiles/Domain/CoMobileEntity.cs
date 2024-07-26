@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.CoMobiles.Domain;
 
-public record CoMobileEntity : CoMobileBase<CoMobileStatusEntity, CoMobileTagLinkEntity>
+public record CoMobileEntity : CoMobileBase<CoMobileTagLinkEntity>
 {
 }
