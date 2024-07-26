@@ -1,6 +1,6 @@
 ﻿namespace Ju.GundamWars.Share.Cuspas.Domain;
 
-public interface ICuspaTagMap
+public interface ICuspaTagLink
 {
 
     #region Primitives

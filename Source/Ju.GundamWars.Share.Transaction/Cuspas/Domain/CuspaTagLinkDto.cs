@@ -1,5 +1,5 @@
 ﻿namespace Ju.GundamWars.Share.Cuspas.Domain;
 
-public record CuspaTagMapDto : CuspaTagMapBase
+public record CuspaTagLinkDto : CuspaTagLinkBase
 {
 }

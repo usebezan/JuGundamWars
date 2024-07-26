@@ -25,10 +25,7 @@ public static class TransactionServerHosting
                 // Cuspas
                 services
                     // Domain.Service
-                    .AddSingleton(typeof(CuspaMapper<,,,>))
-                    .AddSingleton(typeof(CuspaTagMapMapper<,>))
-                    .AddSingleton<InsertCuspaServerSanitizer>()
-                    .AddSingleton<UpdateCuspaServerSanitizer>()
+                    .AddSingleton(typeof(CuspaServerMapper<,,,>))
                     // Infrastructure.WebApi
                     .AddSingleton<CuspaWebApiController>()
                 ;

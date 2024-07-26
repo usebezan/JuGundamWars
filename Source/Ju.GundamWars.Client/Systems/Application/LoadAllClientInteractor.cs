@@ -50,6 +50,9 @@ internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPr
                 var coMobiles = await gateway.SelectAllCoMobilesAsync();
                 presenter.CompleteCoMobile(coMobiles);
 
+                var cuspas = await gateway.SelectAllCuspasAsync();
+                presenter.CompleteCuspa(cuspas);
+
                 presenter.Complete();
             }
             finally

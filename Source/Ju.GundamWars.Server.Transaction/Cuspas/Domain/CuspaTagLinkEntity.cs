@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.Cuspas.Domain;
 
 namespace Ju.GundamWars.Server.Cuspas.Domain;
 
-public record CuspaTagMapEntity : CuspaTagMapBase
+public record CuspaTagLinkEntity : CuspaTagLinkBase
 {
 
     #region Navigations

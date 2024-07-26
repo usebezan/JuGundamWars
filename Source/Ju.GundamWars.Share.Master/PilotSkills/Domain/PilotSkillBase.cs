@@ -1,6 +1,6 @@
 ﻿namespace Ju.GundamWars.Share.PilotSkills.Domain;
 
-public record PilotSkillBase : IPilotSkill
+public abstract record PilotSkillBase : IPilotSkill
 {
 
     #region Primitives

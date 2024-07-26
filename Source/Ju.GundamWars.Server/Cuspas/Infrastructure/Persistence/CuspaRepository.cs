@@ -19,7 +19,7 @@ public class CuspaRepository(IDbContextFactory<GwTxnDbContext> factory, ILogger<
             try
             {
                 // 子を明示的に削除
-                DbContext.Set<CuspaTagMapEntity>().RemoveRange(e => e.CuspaId == data.Id);
+                DbContext.Set<CuspaTagLinkEntity>().RemoveRange(e => e.CuspaId == data.Id);
                 DbContext.SaveChanges();
 
                 var dbData = Find(data.Id) ?? throw new InvalidOperationException();

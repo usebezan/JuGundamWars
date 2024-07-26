@@ -1,4 +1,5 @@
 ﻿using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.MobileSSkills.Domain;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain;
@@ -26,4 +27,5 @@ public interface ILoadAllClientPresenter : IPresenter, IProgressivePresenter
     void CompleteTag(List<Tag> output);
 
     void CompleteCoMobile(List<CoMobile> output);
+    void CompleteCuspa(List<Cuspa> output);
 }

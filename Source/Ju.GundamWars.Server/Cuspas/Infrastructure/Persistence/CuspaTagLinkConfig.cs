@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ju.GundamWars.Server.Cuspas.Infrastructure.Persistence;
 
-public class CuspaTagMapConfig : IEntityTypeConfiguration<CuspaTagMapEntity>
+public class CuspaTagLinkConfig : IEntityTypeConfiguration<CuspaTagLinkEntity>
 {
-    public void Configure(EntityTypeBuilder<CuspaTagMapEntity> builder)
+    public void Configure(EntityTypeBuilder<CuspaTagLinkEntity> builder)
     {
-        builder.ToTable("CuspaTagMap");
+        builder.ToTable("CuspaTagLink");
         builder.HasKey(e => new { e.CuspaId, e.TagId, });
     }
 }

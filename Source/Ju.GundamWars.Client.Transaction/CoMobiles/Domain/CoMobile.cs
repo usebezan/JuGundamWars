@@ -71,29 +71,11 @@ public partial class CoMobile : BizBase, ICoMobile<CoMobileStatus, CoMobileUpgra
     //private MobileSubject? _Mobile;
 
 
-    public CoMobile Initialize(Action initializer)
-    {
-        Suspend(initializer);
-        SetJoinedTags();
-        OnPropertyChanged(nameof(HasMemo));
-        SetUpgradedCountTotal();
-        CalculateActualStatus();
-        RaiseMobileBoostChanged();
-        return this;
-    }
+    partial void OnSerialChanged(Serial? value) =>
+        SerialId = Serial?.Id ?? 0;
 
-    public void ResetUpgraded()
-    {
-        Suspend(() =>
-        {
-            UpgradedStatus.Reset();
-            UpgradedCount.Reset();
-            UpgradedDefaultStatus.Reset();
-        });
-        SetUpgradedCountTotal();
-        CalculateActualStatus();
-        RaiseMobileBoostChanged();
-    }
+    partial void OnRoleChanged(Role? value) =>
+        RoleType = Role?.Type ?? RoleType.Unknown;
 
     private void WhenBasicStatusChanged(PropertyChangedEventArgs _)
     {
@@ -109,7 +91,7 @@ public partial class CoMobile : BizBase, ICoMobile<CoMobileStatus, CoMobileUpgra
         RaiseMobileBoostChanged();
     }
 
-    // NOTE: ActualStatus の計算は UpgradedStatus のイベントで実行される
+    // NOTE: ActualStatus の計算は UpgradedStatus に値を設定したイベントで実行される
     private void WhenUpgradedCountChanged(PropertyChangedEventArgs e)
     {
         if (!IsIdle) return;
@@ -162,5 +144,29 @@ public partial class CoMobile : BizBase, ICoMobile<CoMobileStatus, CoMobileUpgra
 
     private void CalculateActualStatus() =>
         ActualStatus.Set(BasicStatus).Add(UpgradedStatus);
+
+    public CoMobile Initialize(Action initializer)
+    {
+        Suspend(initializer);
+        SetJoinedTags();
+        OnPropertyChanged(nameof(HasMemo));
+        SetUpgradedCountTotal();
+        CalculateActualStatus();
+        RaiseMobileBoostChanged();
+        return this;
+    }
+
+    public void ResetUpgraded()
+    {
+        Suspend(() =>
+        {
+            UpgradedStatus.Reset();
+            UpgradedCount.Reset();
+            UpgradedDefaultStatus.Reset();
+        });
+        SetUpgradedCountTotal();
+        CalculateActualStatus();
+        RaiseMobileBoostChanged();
+    }
 
 }

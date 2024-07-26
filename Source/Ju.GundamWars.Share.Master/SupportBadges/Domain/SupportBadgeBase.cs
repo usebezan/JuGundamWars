@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Share.SupportBadges.Domain;
 
-public record SupportBadgeBase : ISupportBadge
+public abstract record SupportBadgeBase : ISupportBadge
 {
 
     #region Primitives

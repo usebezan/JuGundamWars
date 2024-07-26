@@ -6,7 +6,7 @@ using Ju.GundamWars.Share.Units.Domain;
 
 namespace Ju.GundamWars.Share.Cuspas.Domain;
 
-public interface ICuspa<TTagMap> : IIdentifiable, ITagMaps<TTagMap>
+public interface ICuspa : IIdentifiable
 {
 
     #region Primitives
@@ -16,19 +16,26 @@ public interface ICuspa<TTagMap> : IIdentifiable, ITagMaps<TTagMap>
     byte Level { get; set; }
     BoostStatusType BoostStatusType { get; set; }
     int BasicValue { get; set; }
-    int BonusHp { get; set; }
-    int BonusBeamAttack { get; set; }
-    int BonusPhysicalAttack { get; set; }
-    int BonusBeamDefence { get; set; }
-    int BonusPhysicalDefence { get; set; }
-    int BonusCriticalRate { get; set; }
-    int BonusCriticalDamage { get; set; }
-    int BonusAccuracy { get; set; }
-    int BonusEvasion { get; set; }
-    int BonusMobility { get; set; }
-    int BonusEnRecovery { get; set; }
     string? Memo { get; set; }
 
     #endregion
 
+}
+
+public interface ICuspa<TStatus> : ICuspa
+    where TStatus : ICuspaStatus
+{
+
+    #region Primitive Models
+
+    TStatus BonusStatus { get; }
+
+    #endregion
+
+}
+
+public interface ICuspa<TStatus, TTagLink> : ICuspa<TStatus>, ITagMaps<TTagLink>
+    where TStatus : ICuspaStatus
+    where TTagLink : ICuspaTagLink
+{
 }

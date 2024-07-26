@@ -25,7 +25,7 @@ public interface ICoMobile<TStatus, TCount> : ICoMobile
     where TCount : ICoMobileUpgradedCount
 {
 
-    #region Primitives
+    #region Primitive Models
 
     TStatus BasicStatus { get; }
     TStatus UpgradedStatus { get; }
@@ -38,5 +38,6 @@ public interface ICoMobile<TStatus, TCount> : ICoMobile
 public interface ICoMobile<TStatus, TCount, TTagLink> : ICoMobile<TStatus, TCount>, ITagMaps<TTagLink>
     where TStatus : ICoMobileStatus
     where TCount : ICoMobileUpgradedCount
+    where TTagLink : ICoMobileTagLink
 {
 }

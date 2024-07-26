@@ -4,19 +4,20 @@ using Ju.GundamWars.Server.Cuspas.Domain;
 using Ju.GundamWars.Server.Cuspas.Domain.Gateway;
 using Ju.GundamWars.Server.Cuspas.Domain.Service;
 using Ju.GundamWars.Share.Cuspas.Domain;
+using Ju.GundamWars.Share.Cuspas.Domain.Service;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
 
 public class CuspaWebApiController(
     ISelectAllUseCase<CuspaEntity, ICuspaRepository> selectAllServerUseCase,
-    IInsertUseCase<CuspaEntity, ICuspaRepository, InsertCuspaServerSanitizer> insertServerUseCase,
-    IUpdateUseCase<CuspaEntity, ICuspaRepository, UpdateCuspaServerSanitizer> updateServerUseCase,
+    IInsertUseCase<CuspaEntity, ICuspaRepository, CuspaSanitizer<CuspaEntity>> insertServerUseCase,
+    IUpdateUseCase<CuspaEntity, ICuspaRepository, CuspaSanitizer<CuspaEntity>> updateServerUseCase,
     IDeleteUseCase<long, CuspaEntity, ICuspaRepository> deleteServerUseCase,
-    CuspaMapper<CuspaEntity, CuspaDto, CuspaTagMapEntity, CuspaTagMapDto> dtoMapper,
-    CuspaMapper<CuspaDto, CuspaEntity, CuspaTagMapDto, CuspaTagMapEntity> entityMapper,
+    CuspaServerMapper<CuspaEntity, CuspaTagLinkEntity, CuspaDto, CuspaTagLinkDto> dtoMapper,
+    CuspaServerMapper<CuspaDto, CuspaTagLinkDto, CuspaEntity, CuspaTagLinkEntity> entityMapper,
     ILogger<CuspaWebApiController> logger)
-        : TxnControllerBase<CuspaEntity, CuspaDto, ICuspaRepository, InsertCuspaServerSanitizer, UpdateCuspaServerSanitizer>(
+        : TxnControllerBase<CuspaEntity, CuspaDto, ICuspaRepository, CuspaSanitizer<CuspaEntity>, CuspaSanitizer<CuspaEntity>>(
             selectAllServerUseCase,
             insertServerUseCase,
             updateServerUseCase,

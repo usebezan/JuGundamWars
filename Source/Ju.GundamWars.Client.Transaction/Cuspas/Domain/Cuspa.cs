@@ -2,14 +2,15 @@
 using Ju.GundamWars.Client.Commons.Domain;
 using Ju.GundamWars.Share.Boosts.Domain;
 using Ju.GundamWars.Share.CuspaKinds.Domain;
+using Ju.GundamWars.Share.Cuspas;
+using Ju.GundamWars.Share.Cuspas.Domain;
 using Ju.GundamWars.Share.Units.Domain;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
 
 namespace Ju.GundamWars.Client.Cuspas.Domain;
 
-public partial class Cuspa : BizBase
+public partial class Cuspa : BizBase, ICuspa<CuspaStatus>
 {
 
     public Cuspa()
@@ -30,7 +31,11 @@ public partial class Cuspa : BizBase
     [ObservableProperty, NotifyPropertyChangedFor(nameof(ForUnitIcon))]
     private UnitType _ForUnitType = UnitType.MobileSuit;
     [ObservableProperty]
+    private CuspaKindType _CuspaKindType;
+    [ObservableProperty]
     private byte _Level;
+    [ObservableProperty]
+    private BoostStatusType _BoostStatusType;
     [ObservableProperty]
     private int _BasicValue;
 
@@ -38,9 +43,9 @@ public partial class Cuspa : BizBase
 
     #region Primitive Models
 
-    [ObservableProperty, Required, NotifyPropertyChangedFor(nameof(Name))]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Name))]
     private CuspaKind? _CuspaKind;
-    [ObservableProperty, Required, NotifyPropertyChangedFor(nameof(Name))]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Name))]
     private BoostStatus? _BoostStatus;
 
     public CuspaStatus BasicStatus { get; }
@@ -58,20 +63,18 @@ public partial class Cuspa : BizBase
     #endregion
 
 
-    public Cuspa Initialize(Action initializer)
-    {
-        Suspend(initializer);
-        SetJoinedTags();
-        CalculateActualStatus();
-        RaiseMobileBoostChanged();
-        return this;
-    }
-
     partial void OnBasicValueChanged(int value) =>
         BasicStatus.Reset(BoostStatus?.Type ?? BoostStatusType.Unknown, BasicValue);
 
-    partial void OnBoostStatusChanged(BoostStatus? value) =>
-        BasicStatus.Reset(BoostStatus?.Type ?? BoostStatusType.Unknown, BasicValue);
+    partial void OnCuspaKindChanged(CuspaKind? value) =>
+        CuspaKindType = CuspaKind?.Type ?? CuspaKindType.Unknown;
+
+    partial void OnBoostStatusChanged(BoostStatus? value)
+    {
+        var type = BoostStatus?.Type ?? BoostStatusType.Unknown;
+        BoostStatusType = type;
+        BasicStatus.Reset(type, BasicValue);
+    }
 
     private void WhenBasicStatusChanged(PropertyChangedEventArgs _)
     {
@@ -91,5 +94,15 @@ public partial class Cuspa : BizBase
 
     private void CalculateActualStatus() =>
         ActualStatus.Set(BasicStatus).Add(BonusStatus);
+
+    public Cuspa Initialize(Action initializer)
+    {
+        Suspend(initializer);
+        SetJoinedTags();
+        OnPropertyChanged(nameof(HasMemo));
+        CalculateActualStatus();
+        RaiseMobileBoostChanged();
+        return this;
+    }
 
 }

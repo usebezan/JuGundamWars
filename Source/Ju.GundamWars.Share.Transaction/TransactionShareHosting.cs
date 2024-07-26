@@ -1,4 +1,5 @@
 ﻿using Ju.GundamWars.Share.CoMobiles.Domain.Service;
+using Ju.GundamWars.Share.Cuspas.Domain.Service;
 using Ju.GundamWars.Share.Tags.Domain.Service;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +17,13 @@ public static class TransactionShareHosting
                     // Domain.Service
                     .AddSingleton(typeof(CoMobileSanitizer<>))
                 ;
+
+                // Cuspas
+                services
+                    // Domain.Service
+                    .AddSingleton(typeof(CuspaSanitizer<>))
+                ;
+
                 // Tags
                 services
                     // Domain.Service

@@ -1,4 +1,5 @@
 ﻿using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.MobileSSkills.Domain;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain;
@@ -21,6 +22,7 @@ internal class LoadAllClientPresenter(
     SupportBadgeInventory supportBadges,
     SupportSlotInventory supportSlots,
     CoMobileInventory coMobiles,
+    CuspaInventory cuspas,
     TagInventory tags
     ) : ILoadAllClientPresenter
 {
@@ -138,7 +140,7 @@ internal class LoadAllClientPresenter(
 
     public void CompleteCoMobile(List<CoMobile> output)
     {
-        Console.WriteLine("*** CompleteTag ***");
+        Console.WriteLine("*** CompleteCoMobile ***");
         foreach (var item in output)
         {
             coMobiles.Add(item);
@@ -149,4 +151,19 @@ internal class LoadAllClientPresenter(
             }
         }
     }
+
+    public void CompleteCuspa(List<Cuspa> output)
+    {
+        Console.WriteLine("*** CompleteCuspa ***");
+        foreach (var item in output)
+        {
+            cuspas.Add(item);
+            Debug.WriteLine($"{item.Id} {item.Name}");
+            foreach (var tag in item.Tags)
+            {
+                Debug.WriteLine($"{tag.Id} {tag.Name}");
+            }
+        }
+    }
+
 }

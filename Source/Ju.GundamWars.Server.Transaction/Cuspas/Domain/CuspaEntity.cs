@@ -2,6 +2,6 @@
 
 namespace Ju.GundamWars.Server.Cuspas.Domain;
 
-public record CuspaEntity : CuspaBase<CuspaTagMapEntity>
+public record CuspaEntity : CuspaBase<CuspaTagLinkEntity>
 {
 }

@@ -1,10 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Commons.Domain.Model;
 using Ju.GundamWars.Share.Boosts.Domain;
+using Ju.GundamWars.Share.Cuspas.Domain;
 
 namespace Ju.GundamWars.Client.Cuspas.Domain;
 
-public partial class CuspaStatus : ModelBase
+public partial class CuspaStatus : ModelBase, ICuspaStatus
 {
 
     [ObservableProperty]
@@ -60,22 +61,6 @@ public partial class CuspaStatus : ModelBase
         Evasion = type == BoostStatusType.Evasion ? value : 0;
         Mobility = type == BoostStatusType.Mobility ? value : 0;
         EnRecovery = type == BoostStatusType.EnRecovery ? value : 0;
-        return this;
-    }
-
-    public CuspaStatus Set(CuspaStatus status)
-    {
-        Hp = status.Hp;
-        BeamAttack = status.BeamAttack;
-        PhysicalAttack = status.PhysicalAttack;
-        BeamDefence = status.BeamDefence;
-        PhysicalDefence = status.PhysicalDefence;
-        CriticalRate = status.CriticalRate;
-        CriticalDamage = status.CriticalDamage;
-        Accuracy = status.Accuracy;
-        Evasion = status.Evasion;
-        Mobility = status.Mobility;
-        EnRecovery = status.EnRecovery;
         return this;
     }
 

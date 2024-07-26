@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Share.SupportSlots.Domain;
 
-public record SupportSlotBase : ISupportSlot
+public abstract record SupportSlotBase : ISupportSlot
 {
 
     #region Primitives
