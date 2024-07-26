@@ -43,7 +43,7 @@ public record PilotBase<TTag> : IPilot, ITagMaps<TTag>
 
     #region Navigations
 
-    public List<TTag> TagMaps { get; set; } = [];
+    public List<TTag> TagLinks { get; set; } = [];
 
     #endregion
 

@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.CoMobiles.Domain;
 
 namespace Ju.GundamWars.Server.CoMobiles.Domain;
 
-public record CoMobileTagMapEntity : CoMobileTagMapBase
+public record CoMobileTagLinkEntity : CoMobileTagLinkBase
 {
 
     #region Navigations

@@ -1,13 +1,11 @@
-﻿using Ju.GundamWars.Commons.Domain;
+﻿namespace Ju.GundamWars.Share.Tags.Domain;
 
-namespace Ju.GundamWars.Share.Tags.Domain;
-
-public interface ITagMaps<TTag> : IIdentifiable
+public interface ITagMaps<TTagLink>
 {
 
     #region Navigations
 
-    List<TTag> TagMaps { get; set; }
+    List<TTagLink> TagLinks { get; set; }
 
     #endregion
 

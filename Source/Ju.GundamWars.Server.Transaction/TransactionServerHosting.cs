@@ -17,10 +17,9 @@ public static class TransactionServerHosting
                 // CoMobiles
                 services
                     // Domain.Service
-                    .AddSingleton(typeof(CoMobileMapper<,,,>))
-                    .AddSingleton(typeof(CoMobileTagMapMapper<,>))
-                    .AddSingleton<InsertCoMobileSanitizer>()
-                    .AddSingleton<UpdateCoMobileSanitizer>()
+                    .AddSingleton(typeof(CoMobileServerMapper<,,,,,>))
+                    .AddSingleton(typeof(CoMobileTagLinkServerMapper<,>))
+                    .AddSingleton<CoMobileServerSanitizer>()
                     // Infrastructure.WebApi
                     .AddSingleton<CoMobileWebApiController>()
                 ;

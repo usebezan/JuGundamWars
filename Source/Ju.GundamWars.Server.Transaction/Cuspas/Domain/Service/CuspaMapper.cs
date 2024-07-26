@@ -29,10 +29,10 @@ public class CuspaMapper<TSrc, TDest, TTagMapSrc, TTagMapDest>(CuspaTagMapMapper
         dest.BonusMobility = src.BonusMobility;
         dest.BonusEnRecovery = src.BonusEnRecovery;
         dest.Memo = src.Memo;
-        dest.TagMaps.Clear();
-        foreach (var srcTagMap in src.TagMaps)
+        dest.TagLinks.Clear();
+        foreach (var srcTagMap in src.TagLinks)
         {
-            dest.TagMaps.Add(coMobileTagMapMapper.Map(srcTagMap, new()));
+            dest.TagLinks.Add(coMobileTagMapMapper.Map(srcTagMap, new()));
         }
         return dest;
     }

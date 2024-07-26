@@ -1,9 +1,9 @@
 ﻿using Ju.GundamWars.Share.Roles.Domain;
-using Ju.GundamWars.Share.Tags.Domain;
 
 namespace Ju.GundamWars.Share.CoMobiles.Domain;
 
-public record CoMobileBase<TTag> : ICoMobile, ITagMaps<TTag>
+public abstract record CoMobileBase<TStatus, TTagLink> : ICoMobile<TStatus, TTagLink>
+    where TStatus : ICoMobileStatus, new()
 {
 
     #region Primitives
@@ -13,24 +13,8 @@ public record CoMobileBase<TTag> : ICoMobile, ITagMaps<TTag>
     public int SerialId { get; set; } = 1;
     public RoleType RoleType { get; set; } = RoleType.Defensive;
     public byte Level { get; set; } = 60;
-    public int Hp { get; set; }
-    public int BeamAttack { get; set; }
-    public int PhysicalAttack { get; set; }
-    public int BeamDefence { get; set; }
-    public int PhysicalDefence { get; set; }
-    public int CriticalDamage { get; set; }
-    public int Accuracy { get; set; }
-    public int Evasion { get; set; }
-    public int Mobility { get; set; }
-    public int UpgradedHp { get; set; }
-    public int UpgradedBeamAttack { get; set; }
-    public int UpgradedPhysicalAttack { get; set; }
-    public int UpgradedBeamDefence { get; set; }
-    public int UpgradedPhysicalDefence { get; set; }
-    public int UpgradedCriticalDamage { get; set; }
-    public int UpgradedAccuracy { get; set; }
-    public int UpgradedEvasion { get; set; }
-    public int UpgradedMobility { get; set; }
+    public TStatus BasicStatus { get; set; } = new();
+    public TStatus UpgradedStatus { get; set; } = new();
     public int HpUpgradedCount { get; set; }
     public int BeamAttackUpgradedCount { get; set; }
     public int PhysicalAttackUpgradedCount { get; set; }
@@ -49,7 +33,7 @@ public record CoMobileBase<TTag> : ICoMobile, ITagMaps<TTag>
 
     #region Navigations
 
-    public List<TTag> TagMaps { get; set; } = [];
+    public List<TTagLink> TagLinks { get; set; } = [];
 
     #endregion
 

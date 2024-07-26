@@ -32,7 +32,7 @@ public record CuspaBase<TTagMap> : ICuspa<TTagMap>
 
     #region Navigations
 
-    public List<TTagMap> TagMaps { get; set; } = [];
+    public List<TTagMap> TagLinks { get; set; } = [];
 
     #endregion
 

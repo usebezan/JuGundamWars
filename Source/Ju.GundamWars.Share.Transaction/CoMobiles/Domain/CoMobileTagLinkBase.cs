@@ -1,6 +1,6 @@
 ﻿namespace Ju.GundamWars.Share.CoMobiles.Domain;
 
-public record CoMobileTagMapBase : ICoMobileTagMap
+public abstract record CoMobileTagLinkBase : ICoMobileTagLink
 {
 
     #region Primitives

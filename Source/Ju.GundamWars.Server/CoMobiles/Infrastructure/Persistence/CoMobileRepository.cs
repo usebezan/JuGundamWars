@@ -10,7 +10,7 @@ public class CoMobileRepository(IDbContextFactory<GwTxnDbContext> factory, ILogg
     : TxnRepository<CoMobileEntity>(factory, logger), ICoMobileRepository
 {
 
-    protected override IQueryable<CoMobileEntity> Queryable => DbSet.Include(e => e.TagMaps).OrderBy(e => e.Name).ThenBy(e => e.Id);
+    protected override IQueryable<CoMobileEntity> Queryable => DbSet.Include(e => e.TagLinks).OrderBy(e => e.Name).ThenBy(e => e.Id);
 
     public override Task<CoMobileEntity> UpdateAsync(CoMobileEntity data) =>
         this.ExecuteAsync(Logger, () =>
@@ -19,12 +19,12 @@ public class CoMobileRepository(IDbContextFactory<GwTxnDbContext> factory, ILogg
             try
             {
                 // 子を明示的に削除
-                DbContext.Set<CoMobileTagMapEntity>().RemoveRange(e => e.CoMobileId == data.Id);
+                DbContext.Set<CoMobileTagLinkEntity>().RemoveRange(e => e.CoMobileId == data.Id);
                 DbContext.SaveChanges();
 
                 var dbData = Find(data.Id) ?? throw new InvalidOperationException();
                 DbContext.Entry(dbData).CurrentValues.SetValues(data);
-                dbData.TagMaps.AddRange(data.TagMaps);
+                dbData.TagLinks.AddRange(data.TagLinks);
                 var result = DbSet.Update(dbData).Entity;
                 DbContext.SaveChanges();
                 txn.Commit();

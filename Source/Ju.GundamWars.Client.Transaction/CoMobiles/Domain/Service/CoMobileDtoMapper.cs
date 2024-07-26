@@ -13,24 +13,24 @@ public class CoMobileDtoMapper : IMapper<CoMobile, CoMobileDto>
         dto.SerialId = model.Serial?.Id ?? 0;
         dto.RoleType = model.Role?.Type ?? RoleType.Unknown;
         dto.Level = model.Level;
-        dto.Hp = model.BasicStatus.Hp;
-        dto.BeamAttack = model.BasicStatus.BeamAttack;
-        dto.PhysicalAttack = model.BasicStatus.PhysicalAttack;
-        dto.BeamDefence = model.BasicStatus.BeamDefence;
-        dto.PhysicalDefence = model.BasicStatus.PhysicalDefence;
-        dto.CriticalDamage = model.BasicStatus.CriticalDamage;
-        dto.Accuracy = model.BasicStatus.Accuracy;
-        dto.Evasion = model.BasicStatus.Evasion;
-        dto.Mobility = model.BasicStatus.Mobility;
-        dto.UpgradedHp = model.UpgradedStatus.Hp;
-        dto.UpgradedBeamAttack = model.UpgradedStatus.BeamAttack;
-        dto.UpgradedPhysicalAttack = model.UpgradedStatus.PhysicalAttack;
-        dto.UpgradedBeamDefence = model.UpgradedStatus.BeamDefence;
-        dto.UpgradedPhysicalDefence = model.UpgradedStatus.PhysicalDefence;
-        dto.UpgradedCriticalDamage = model.UpgradedStatus.CriticalDamage;
-        dto.UpgradedAccuracy = model.UpgradedStatus.Accuracy;
-        dto.UpgradedEvasion = model.UpgradedStatus.Evasion;
-        dto.UpgradedMobility = model.UpgradedStatus.Mobility;
+        //dto.Hp = model.BasicStatus.Hp;
+        //dto.BeamAttack = model.BasicStatus.BeamAttack;
+        //dto.PhysicalAttack = model.BasicStatus.PhysicalAttack;
+        //dto.BeamDefence = model.BasicStatus.BeamDefence;
+        //dto.PhysicalDefence = model.BasicStatus.PhysicalDefence;
+        //dto.CriticalDamage = model.BasicStatus.CriticalDamage;
+        //dto.Accuracy = model.BasicStatus.Accuracy;
+        //dto.Evasion = model.BasicStatus.Evasion;
+        //dto.Mobility = model.BasicStatus.Mobility;
+        //dto.UpgradedHp = model.UpgradedStatus.Hp;
+        //dto.UpgradedBeamAttack = model.UpgradedStatus.BeamAttack;
+        //dto.UpgradedPhysicalAttack = model.UpgradedStatus.PhysicalAttack;
+        //dto.UpgradedBeamDefence = model.UpgradedStatus.BeamDefence;
+        //dto.UpgradedPhysicalDefence = model.UpgradedStatus.PhysicalDefence;
+        //dto.UpgradedCriticalDamage = model.UpgradedStatus.CriticalDamage;
+        //dto.UpgradedAccuracy = model.UpgradedStatus.Accuracy;
+        //dto.UpgradedEvasion = model.UpgradedStatus.Evasion;
+        //dto.UpgradedMobility = model.UpgradedStatus.Mobility;
         dto.HpUpgradedCount = model.UpgradedCount.Hp;
         dto.BeamAttackUpgradedCount = model.UpgradedCount.BeamAttack;
         dto.PhysicalAttackUpgradedCount = model.UpgradedCount.PhysicalAttack;
@@ -45,9 +45,9 @@ public class CoMobileDtoMapper : IMapper<CoMobile, CoMobileDto>
         dto.Memo = model.Memo;
         dto.IsPinned = model.IsPinned;
 
-        dto.TagMaps.Clear();
-        dto.TagMaps.AddRange(model.Tags
-            .Select(m => new CoMobileTagMapDto()
+        dto.TagLinks.Clear();
+        dto.TagLinks.AddRange(model.Tags
+            .Select(m => new CoMobileTagLinkDto()
             {
                 CoMobileId = dto.Id,
                 TagId = m.Id,

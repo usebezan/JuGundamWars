@@ -19,25 +19,25 @@ public class CoMobileModelMapper(SerialInventory serials, RoleInventory roles, T
             model.Role = roles.FirstOrDefault(i => i.Type == dto.RoleType);
             model.Level = dto.Level;
 
-            model.BasicStatus.Hp = dto.Hp;
-            model.BasicStatus.BeamAttack = dto.BeamAttack;
-            model.BasicStatus.PhysicalAttack = dto.PhysicalAttack;
-            model.BasicStatus.BeamDefence = dto.BeamDefence;
-            model.BasicStatus.PhysicalDefence = dto.PhysicalDefence;
-            model.BasicStatus.CriticalDamage = dto.CriticalDamage;
-            model.BasicStatus.Accuracy = dto.Accuracy;
-            model.BasicStatus.Evasion = dto.Evasion;
-            model.BasicStatus.Mobility = dto.Mobility;
+            //model.BasicStatus.Hp = dto.Hp;
+            //model.BasicStatus.BeamAttack = dto.BeamAttack;
+            //model.BasicStatus.PhysicalAttack = dto.PhysicalAttack;
+            //model.BasicStatus.BeamDefence = dto.BeamDefence;
+            //model.BasicStatus.PhysicalDefence = dto.PhysicalDefence;
+            //model.BasicStatus.CriticalDamage = dto.CriticalDamage;
+            //model.BasicStatus.Accuracy = dto.Accuracy;
+            //model.BasicStatus.Evasion = dto.Evasion;
+            //model.BasicStatus.Mobility = dto.Mobility;
 
-            model.UpgradedStatus.Hp = dto.UpgradedHp;
-            model.UpgradedStatus.BeamAttack = dto.UpgradedBeamAttack;
-            model.UpgradedStatus.PhysicalAttack = dto.UpgradedPhysicalAttack;
-            model.UpgradedStatus.BeamDefence = dto.UpgradedBeamDefence;
-            model.UpgradedStatus.PhysicalDefence = dto.UpgradedPhysicalDefence;
-            model.UpgradedStatus.CriticalDamage = dto.UpgradedCriticalDamage;
-            model.UpgradedStatus.Accuracy = dto.UpgradedAccuracy;
-            model.UpgradedStatus.Evasion = dto.UpgradedEvasion;
-            model.UpgradedStatus.Mobility = dto.UpgradedMobility;
+            //model.UpgradedStatus.Hp = dto.UpgradedHp;
+            //model.UpgradedStatus.BeamAttack = dto.UpgradedBeamAttack;
+            //model.UpgradedStatus.PhysicalAttack = dto.UpgradedPhysicalAttack;
+            //model.UpgradedStatus.BeamDefence = dto.UpgradedBeamDefence;
+            //model.UpgradedStatus.PhysicalDefence = dto.UpgradedPhysicalDefence;
+            //model.UpgradedStatus.CriticalDamage = dto.UpgradedCriticalDamage;
+            //model.UpgradedStatus.Accuracy = dto.UpgradedAccuracy;
+            //model.UpgradedStatus.Evasion = dto.UpgradedEvasion;
+            //model.UpgradedStatus.Mobility = dto.UpgradedMobility;
 
             model.UpgradedCount.Hp = dto.HpUpgradedCount;
             model.UpgradedCount.BeamAttack = dto.BeamAttackUpgradedCount;
@@ -54,7 +54,7 @@ public class CoMobileModelMapper(SerialInventory serials, RoleInventory roles, T
             model.Memo = dto.Memo;
             model.IsPinned = dto.IsPinned;
 
-            model.Tags.ReAddRange(dto.TagMaps
+            model.Tags.ReAddRange(dto.TagLinks
                 .Select(d => tags.FirstOrDefault(i => i.Id == d.TagId))
                 .Where(i => i != null)
                 .Select(i => i!));

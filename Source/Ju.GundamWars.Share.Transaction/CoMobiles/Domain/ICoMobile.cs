@@ -1,9 +1,11 @@
 ﻿using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Share.Roles.Domain;
+using Ju.GundamWars.Share.Tags.Domain;
 
 namespace Ju.GundamWars.Share.CoMobiles.Domain;
 
-public interface ICoMobile : IIdentifiable
+public interface ICoMobile<TStatus, TTagLink> : IIdentifiable, ITagMaps<TTagLink>
+    where TStatus : ICoMobileStatus
 {
 
     #region Primitives
@@ -12,24 +14,8 @@ public interface ICoMobile : IIdentifiable
     int SerialId { get; set; }
     RoleType RoleType { get; set; }
     byte Level { get; set; }
-    int Hp { get; set; }
-    int BeamAttack { get; set; }
-    int PhysicalAttack { get; set; }
-    int BeamDefence { get; set; }
-    int PhysicalDefence { get; set; }
-    int CriticalDamage { get; set; }
-    int Accuracy { get; set; }
-    int Evasion { get; set; }
-    int Mobility { get; set; }
-    int UpgradedHp { get; set; }
-    int UpgradedBeamAttack { get; set; }
-    int UpgradedPhysicalAttack { get; set; }
-    int UpgradedBeamDefence { get; set; }
-    int UpgradedPhysicalDefence { get; set; }
-    int UpgradedCriticalDamage { get; set; }
-    int UpgradedAccuracy { get; set; }
-    int UpgradedEvasion { get; set; }
-    int UpgradedMobility { get; set; }
+    TStatus BasicStatus { get; set; }
+    TStatus UpgradedStatus { get; set; }
     int HpUpgradedCount { get; set; }
     int BeamAttackUpgradedCount { get; set; }
     int PhysicalAttackUpgradedCount { get; set; }

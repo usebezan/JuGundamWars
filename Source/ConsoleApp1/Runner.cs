@@ -40,19 +40,19 @@ internal class Runner(
         //    await updateTagClientUseCase.HandleAsync(tag);
         //}
 
-        //logger.LogInformation("Insert CoMobile.");
-        //var coMobile1 = new CoMobile()
-        //{
-        //    Name = "test CoMobile",
-        //    Serial = serials.FirstOrDefault(),
-        //    Role = roles.FirstOrDefault(),
-        //};
-        //var coMobile1Tag = tags.FirstOrDefault(m => m.Id == 511);
-        //if (coMobile1Tag != null)
-        //{
-        //    coMobile1.Tags.Add(coMobile1Tag);
-        //}
-        //await insertCoMobileClientUseCase.HandleAsync(coMobile1);
+        logger.LogInformation("Insert CoMobile.");
+        var coMobile1 = new CoMobile()
+        {
+            Name = "test CoMobile",
+            Serial = serials.FirstOrDefault(),
+            Role = roles.FirstOrDefault(),
+        };
+        var coMobile1Tag = tags.FirstOrDefault(m => m.Id == 511);
+        if (coMobile1Tag != null)
+        {
+            coMobile1.Tags.Add(coMobile1Tag);
+        }
+        await insertCoMobileClientUseCase.HandleAsync(coMobile1);
 
         logger.LogInformation("Update CoMobile. Id: 1");
         var coMobile2 = coMobiles.FirstOrDefault(m => m.Id == 1);

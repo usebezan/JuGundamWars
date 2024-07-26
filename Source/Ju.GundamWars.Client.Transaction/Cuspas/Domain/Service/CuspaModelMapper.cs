@@ -34,7 +34,7 @@ public class CuspaModelMapper(CuspaKindInventory cuspaKinds, BoostStatusInventor
 
             model.Memo = dto.Memo;
 
-            model.Tags.ReAddRange(dto.TagMaps
+            model.Tags.ReAddRange(dto.TagLinks
                 .Select(d => tags.FirstOrDefault(i => i.Id == d.TagId))
                 .Where(i => i != null)
                 .Select(i => i!));

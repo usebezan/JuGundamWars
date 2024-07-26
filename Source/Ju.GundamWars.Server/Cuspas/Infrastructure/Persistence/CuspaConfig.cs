@@ -9,6 +9,6 @@ public class CuspaConfig : IEntityTypeConfiguration<CuspaEntity>
     public void Configure(EntityTypeBuilder<CuspaEntity> builder)
     {
         builder.ToTable("Cuspa");
-        builder.HasMany(e => e.TagMaps).WithOne(e => e.Cuspa).HasForeignKey(e => e.CuspaId).IsRequired(false).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(e => e.TagLinks).WithOne(e => e.Cuspa).HasForeignKey(e => e.CuspaId).IsRequired(false).OnDelete(DeleteBehavior.Cascade);
     }
 }

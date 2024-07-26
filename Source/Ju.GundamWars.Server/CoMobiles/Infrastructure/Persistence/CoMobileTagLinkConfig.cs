@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ju.GundamWars.Server.CoMobiles.Infrastructure.Persistence;
 
-public class CoMobileTagMapConfig : IEntityTypeConfiguration<CoMobileTagMapEntity>
+public class CoMobileTagLinkConfig : IEntityTypeConfiguration<CoMobileTagLinkEntity>
 {
-    public void Configure(EntityTypeBuilder<CoMobileTagMapEntity> builder)
+    public void Configure(EntityTypeBuilder<CoMobileTagLinkEntity> builder)
     {
-        builder.ToTable("CoMobileTagMap");
+        builder.ToTable("CoMobileTagLink");
         builder.HasKey(e => new { e.CoMobileId, e.TagId, });
     }
 }

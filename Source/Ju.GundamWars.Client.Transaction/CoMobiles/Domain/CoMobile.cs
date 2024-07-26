@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Client.Commons.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
+using Ju.GundamWars.Share;
 using Ju.GundamWars.Share.Roles.Domain;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

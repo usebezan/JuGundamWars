@@ -2,7 +2,7 @@
 
 namespace Ju.GundamWars.Server.CoMobiles.Domain.Service;
 
-public class UpdateCoMobileSanitizer : IUpdateSanitizer<CoMobileEntity>
+public class CoMobileServerSanitizer : IInsertSanitizer<CoMobileEntity>, IUpdateSanitizer<CoMobileEntity>
 {
     public CoMobileEntity Sanitize(CoMobileEntity data)
     {

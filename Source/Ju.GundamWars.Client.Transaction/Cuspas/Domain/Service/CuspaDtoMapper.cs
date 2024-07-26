@@ -26,8 +26,8 @@ public class CuspaDtoMapper : IMapper<Cuspa, CuspaDto>
         dto.BonusEnRecovery = model.BonusStatus.EnRecovery;
         dto.Memo = model.Memo;
 
-        dto.TagMaps.Clear();
-        dto.TagMaps.AddRange(model.Tags
+        dto.TagLinks.Clear();
+        dto.TagLinks.AddRange(model.Tags
             .Select(m => new CuspaTagMapDto()
             {
                 CuspaId = dto.Id,

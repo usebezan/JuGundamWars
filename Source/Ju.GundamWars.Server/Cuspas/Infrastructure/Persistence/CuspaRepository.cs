@@ -10,7 +10,7 @@ public class CuspaRepository(IDbContextFactory<GwTxnDbContext> factory, ILogger<
     : TxnRepository<CuspaEntity>(factory, logger), ICuspaRepository
 {
 
-    protected override IQueryable<CuspaEntity> Queryable => DbSet.Include(e => e.TagMaps).OrderBy(e => e.Id).ThenBy(e => e.Id);
+    protected override IQueryable<CuspaEntity> Queryable => DbSet.Include(e => e.TagLinks).OrderBy(e => e.Id).ThenBy(e => e.Id);
 
     public override Task<CuspaEntity> UpdateAsync(CuspaEntity data) =>
         this.ExecuteAsync(Logger, () =>
@@ -24,7 +24,7 @@ public class CuspaRepository(IDbContextFactory<GwTxnDbContext> factory, ILogger<
 
                 var dbData = Find(data.Id) ?? throw new InvalidOperationException();
                 DbContext.Entry(dbData).CurrentValues.SetValues(data);
-                dbData.TagMaps.AddRange(data.TagMaps);
+                dbData.TagLinks.AddRange(data.TagLinks);
                 var result = DbSet.Update(dbData).Entity;
                 DbContext.SaveChanges();
                 txn.Commit();
