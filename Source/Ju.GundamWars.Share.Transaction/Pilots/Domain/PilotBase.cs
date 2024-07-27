@@ -3,8 +3,8 @@ using Ju.GundamWars.Share.Units.Domain;
 
 namespace Ju.GundamWars.Share.Pilots.Domain;
 
-public record PilotBase<TAbility, TTagLink> : IPilot<PilotStatusRecord, TAbility, TTagLink>
-    where TAbility : IPilotSlotAbility
+public record PilotBase<TSlotAbility, TTagLink> : IPilot<PilotStatusRecord, TSlotAbility, TTagLink>
+    where TSlotAbility : IPilotSlotAbility
     where TTagLink : IPilotTagLink
 {
 
@@ -28,7 +28,7 @@ public record PilotBase<TAbility, TTagLink> : IPilot<PilotStatusRecord, TAbility
 
     #region Navigations
 
-    public List<TAbility> Abilities { get; set; } = [];
+    public List<TSlotAbility> PilotSlotAbilities { get; set; } = [];
     public List<TTagLink> TagLinks { get; set; } = [];
 
     #endregion

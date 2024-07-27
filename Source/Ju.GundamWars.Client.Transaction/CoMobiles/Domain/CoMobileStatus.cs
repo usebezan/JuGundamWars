@@ -7,6 +7,8 @@ namespace Ju.GundamWars.Client.CoMobiles.Domain;
 public partial class CoMobileStatus : ModelBase, ICoMobileStatus
 {
 
+    #region Primitives
+
     [ObservableProperty]
     private int _Hp;
     [ObservableProperty]
@@ -25,6 +27,8 @@ public partial class CoMobileStatus : ModelBase, ICoMobileStatus
     private int _Evasion;
     [ObservableProperty]
     private int _Mobility;
+
+    #endregion
 
 
     public CoMobileStatus Reset()

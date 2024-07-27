@@ -1,23 +1,35 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.GundamWars.Commons.Domain.Model;
+using Ju.GundamWars.Share.Boosts.Domain;
+using Ju.GundamWars.Share.Pilots.Domain;
 
-namespace Ju.GundamWars.BizTxn.Pilots.Domain.Model;
+namespace Ju.GundamWars.Client.Pilots.Domain;
 
-public partial class PilotStatus : ModelBase
+public partial class PilotStatus : ModelBase, IPilotStatus
 {
 
-    [ObservableProperty]
+    #region Primitives
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Total))]
     private int _Shooting;
-    [ObservableProperty]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Total))]
     private int _Melee;
-    [ObservableProperty]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Total))]
     private int _Accuracy;
-    [ObservableProperty]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Total))]
     private int _Evasion;
-    [ObservableProperty]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Total))]
     private int _Awakened;
-    [ObservableProperty]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Total))]
     private int _Defense;
+
+    #endregion
+
+    #region Extensions
+
+    public int Total => Shooting + Melee + Accuracy + Evasion + Awakened + Defense;
+
+    #endregion
 
 
     public PilotStatus Reset()
@@ -28,17 +40,6 @@ public partial class PilotStatus : ModelBase
         Evasion = 0;
         Awakened = 0;
         Defense = 0;
-        return this;
-    }
-
-    public PilotStatus Set(PilotStatus status)
-    {
-        Shooting = status.Shooting;
-        Melee = status.Melee;
-        Accuracy = status.Accuracy;
-        Evasion = status.Evasion;
-        Awakened = status.Awakened;
-        Defense = status.Defense;
         return this;
     }
 
@@ -78,11 +79,5 @@ public partial class PilotStatus : ModelBase
         }
         return this;
     }
-
-    public PilotStatus Add(BoostStatusType type, decimal value) =>
-        Add(type, decimal.ToInt32(value));
-
-    public int Total() =>
-        Shooting + Melee + Accuracy + Evasion + Awakened + Defense;
 
 }

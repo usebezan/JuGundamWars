@@ -38,15 +38,15 @@ public interface IPilot<TStatus> : IPilot
 
 }
 
-public interface IPilot<TStatus, TAbility, TTagLink> : IPilot<TStatus>, ITagMaps<TTagLink>
+public interface IPilot<TStatus, TSlotAbility, TTagLink> : IPilot<TStatus>, ITagMaps<TTagLink>
     where TStatus : IPilotStatus
-    where TAbility : IPilotSlotAbility
+    where TSlotAbility : IPilotSlotAbility
     where TTagLink : IPilotTagLink
 {
 
     #region Navigations
 
-    List<TAbility> Abilities { get; set; }
+    List<TSlotAbility> PilotSlotAbilities { get; set; }
 
     #endregion
 

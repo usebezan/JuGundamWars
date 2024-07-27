@@ -8,6 +8,8 @@ namespace Ju.GundamWars.Client.Cuspas.Domain;
 public partial class CuspaStatus : ModelBase, ICuspaStatus
 {
 
+    #region Primitives
+
     [ObservableProperty]
     private int _Hp;
     [ObservableProperty]
@@ -30,6 +32,8 @@ public partial class CuspaStatus : ModelBase, ICuspaStatus
     private int _Mobility;
     [ObservableProperty]
     private int _EnRecovery;
+
+    #endregion
 
 
     public CuspaStatus Reset()

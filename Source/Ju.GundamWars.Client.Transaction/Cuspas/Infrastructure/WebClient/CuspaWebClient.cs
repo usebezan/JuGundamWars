@@ -1,13 +1,12 @@
 ﻿using Ju.GundamWars.Client.Commons.Domain.Gateway;
 using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.Cuspas.Domain.Service;
-using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 using Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Client.Cuspas.Infrastructure.WebClient;
 
-public class CuspaWebClient(CuspaWebApiController controller, CuspaDtoMapper dtoMapper, CuspaModelMapper modelMapper, ILogger<TagWebClient> logger)
+public class CuspaWebClient(CuspaWebApiController controller, CuspaDtoMapper dtoMapper, CuspaModelMapper modelMapper, ILogger<CuspaWebClient> logger)
     : ITxnClientGateway<Cuspa>
 {
     public Task<Cuspa> InsertAsync(Cuspa model) =>

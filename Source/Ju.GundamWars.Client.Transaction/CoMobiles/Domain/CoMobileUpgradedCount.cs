@@ -7,6 +7,8 @@ namespace Ju.GundamWars.Client.CoMobiles.Domain;
 public partial class CoMobileUpgradedCount : ModelBase, ICoMobileUpgradedCount
 {
 
+    #region Primitives
+
     [ObservableProperty, NotifyPropertyChangedFor(nameof(HpText)), NotifyPropertyChangedFor(nameof(Total))]
     private int _Hp;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(BeamAttackText)), NotifyPropertyChangedFor(nameof(Total))]
@@ -30,6 +32,10 @@ public partial class CoMobileUpgradedCount : ModelBase, ICoMobileUpgradedCount
     [ObservableProperty, NotifyPropertyChangedFor(nameof(SuperMoveText)), NotifyPropertyChangedFor(nameof(Total))]
     private int _SuperMove;
 
+    #endregion
+
+    #region Extensions
+
     public string HpText => GetText(Hp);
     public string BeamAttackText => GetText(BeamAttack);
     public string PhysicalAttackText => GetText(PhysicalAttack);
@@ -42,6 +48,8 @@ public partial class CoMobileUpgradedCount : ModelBase, ICoMobileUpgradedCount
     public string StartupText => GetText(Startup);
     public string SuperMoveText => GetText(SuperMove);
     public int Total => Hp + BeamAttack + PhysicalAttack + BeamDefence + PhysicalDefence + CriticalDamage + Accuracy + Evasion + Mobility + Startup + SuperMove;
+
+    #endregion
 
 
     public CoMobileUpgradedCount Reset()
