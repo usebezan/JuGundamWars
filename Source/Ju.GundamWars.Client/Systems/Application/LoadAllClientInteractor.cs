@@ -53,6 +53,9 @@ internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPr
                 var cuspas = await gateway.SelectAllCuspasAsync();
                 presenter.CompleteCuspa(cuspas);
 
+                var pilots = await gateway.SelectAllPilotsAsync();
+                presenter.CompletePilot(pilots);
+
                 presenter.Complete();
             }
             finally

@@ -1,30 +1,41 @@
-﻿using Ju.GundamWars.BizTxn.Pilots.Domain.Dto;
-using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+﻿using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+using Ju.GundamWars.Server.Pilots.Domain;
+using Ju.GundamWars.Server.Pilots.Domain.Gateway;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Pilots.Infrastructure.Persistence;
 
-public class PilotRepository(IDbContextFactory<GwDbContext> factory, ILogger<PilotRepository> logger)
-    : TxnRepositoryBase<PilotDto>(factory, logger)
+public class PilotRepository(IDbContextFactory<GwTxnDbContext> factory, ILogger<PilotRepository> logger)
+    : TxnRepository<PilotEntity>(factory, logger), IPilotRepository
 {
 
-    protected override IQueryable<PilotDto> Queryable => DbSet.Include(e => e.TagMaps).OrderBy(e => e.Name).ThenBy(e => e.Id);
+    protected override IQueryable<PilotEntity> Queryable => DbSet.Include(e => e.PilotSlotAbilities).Include(e => e.TagLinks).OrderBy(e => e.Name).ThenBy(e => e.Id);
 
-    //// 元々付いていた機体の関係を削除する
-    //protected override List<int> DeleteExMobileRelations(GwDbContext dbContext, int id)
-    //{
-    //    var exMobileIds = dbContext.Set<Mobile>().Include(e => e.PilotMaps).Where(e => e.PilotMaps.Any(r => r.PilotId == id)).Select(e => e.Id).Distinct().ToList();
-    //    dbContext.Set<MobilePilotMap>().RemoveRange(e => e.PilotId == id);
-    //    return exMobileIds;
-    //}
+    public override Task<PilotEntity> UpdateAsync(PilotEntity data) =>
+        this.ExecuteAsync(Logger, () =>
+        {
+            using var txn = DbContext.Database.BeginTransaction();
+            try
+            {
+                // 子を明示的に削除
+                DbContext.Set<PilotSlotAbilityEntity>().RemoveRange(e => e.PilotId == data.Id);
+                DbContext.Set<PilotTagLinkEntity>().RemoveRange(e => e.PilotId == data.Id);
+                DbContext.SaveChanges();
 
-    //// 子を明示的に削除
-    //protected override void DeleteRelations(GwDbContext dbContext, int id) =>
-    //    dbContext.Set<PilotTagMap>().RemoveRange(e => e.PilotId == id);
-
-    //// DbUpdateConcurrencyException
-    //protected override void SetZeroToId(Pilot entity) =>
-    //    entity.TagMaps.ForEach(e => e.PilotId = 0);
+                var dbData = Find(data.Id) ?? throw new InvalidOperationException();
+                DbContext.Entry(dbData).CurrentValues.SetValues(data);
+                dbData.TagLinks.AddRange(data.TagLinks);
+                var result = DbSet.Update(dbData).Entity;
+                DbContext.SaveChanges();
+                txn.Commit();
+                return result;
+            }
+            catch
+            {
+                txn.Rollback();
+                throw;
+            }
+        });
 
 }

@@ -2,6 +2,7 @@
 using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.MobileSSkills.Domain;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
+using Ju.GundamWars.Client.Pilots.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Skills.Domain;
@@ -23,8 +24,8 @@ internal class LoadAllClientPresenter(
     SupportSlotInventory supportSlots,
     CoMobileInventory coMobiles,
     CuspaInventory cuspas,
-    TagInventory tags
-    ) : ILoadAllClientPresenter
+    PilotInventory pilots,
+    TagInventory tags) : ILoadAllClientPresenter
 {
     public void ShowProgress()
     {
@@ -147,7 +148,7 @@ internal class LoadAllClientPresenter(
             Debug.WriteLine($"{item.Id} {item.Name}");
             foreach (var tag in item.Tags)
             {
-                Debug.WriteLine($"{tag.Id} {tag.Name}");
+                Debug.WriteLine($"  {tag.Id} {tag.Name}");
             }
         }
     }
@@ -161,7 +162,25 @@ internal class LoadAllClientPresenter(
             Debug.WriteLine($"{item.Id} {item.Name}");
             foreach (var tag in item.Tags)
             {
-                Debug.WriteLine($"{tag.Id} {tag.Name}");
+                Debug.WriteLine($"  {tag.Id} {tag.Name}");
+            }
+        }
+    }
+
+    public void CompletePilot(List<Pilot> output)
+    {
+        Console.WriteLine("*** CompletePilot ***");
+        foreach (var item in output)
+        {
+            pilots.Add(item);
+            Debug.WriteLine($"{item.Id} {item.Name}");
+            foreach (var slotAbility in item.PilotSlotAbilities.Where(m => m.PilotAbility != null))
+            {
+                Debug.WriteLine($"  {slotAbility.Seq} {slotAbility.SlotRank} {slotAbility.PilotAbility?.Name}");
+            }
+            foreach (var tag in item.Tags)
+            {
+                Debug.WriteLine($"  {tag.Id} {tag.Name}");
             }
         }
     }

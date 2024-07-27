@@ -11,11 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pilots\**" />
     <Compile Remove="Supports\**" />
-    <EmbeddedResource Remove="Pilots\**" />
     <EmbeddedResource Remove="Supports\**" />
-    <None Remove="Pilots\**" />
     <None Remove="Supports\**" />
   </ItemGroup>
 

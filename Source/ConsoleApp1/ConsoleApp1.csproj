@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pilots\**" />
+    <EmbeddedResource Remove="Pilots\**" />
+    <None Remove="Pilots\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
   </ItemGroup>
@@ -15,10 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Ju.GundamWars.Client\Ju.GundamWars.Client.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Core\Ju.GundamWars.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pilots\Domain\" />
   </ItemGroup>
 
 </Project>

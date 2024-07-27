@@ -4,6 +4,9 @@ using Ju.GundamWars.Client.CoMobiles.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.Cuspas.Domain.Service;
 using Ju.GundamWars.Client.Cuspas.Infrastructure.WebClient;
+using Ju.GundamWars.Client.Pilots.Domain.Service;
+using Ju.GundamWars.Client.Pilots.Domain;
+using Ju.GundamWars.Client.Pilots.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +40,17 @@ public static class TransactionClientHosting
                     .AddSingleton<CuspaModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<CuspaWebClient>()
+                ;
+
+                // Pilots
+                services
+                    // Domain
+                    .AddSingleton<PilotInventory>()
+                    // Domain.Service
+                    .AddSingleton<PilotDtoMapper>()
+                    .AddSingleton<PilotModelMapper>()
+                    // Infrastructure.WebClient
+                    .AddSingleton<PilotWebClient>()
                 ;
 
                 // Tags

@@ -5,6 +5,8 @@ using Ju.GundamWars.Client.Cuspas.Domain.Service;
 using Ju.GundamWars.Client.MobileSSkills.Domain;
 using Ju.GundamWars.Client.MobileSSkills.Domain.Service;
 using Ju.GundamWars.Client.PilotAbilities.Domain;
+using Ju.GundamWars.Client.Pilots.Domain;
+using Ju.GundamWars.Client.Pilots.Domain.Service;
 using Ju.GundamWars.Client.PilotSkills.Domain;
 using Ju.GundamWars.Client.PilotSkills.Domain.Service;
 using Ju.GundamWars.Client.Serials.Domain;
@@ -17,6 +19,7 @@ using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
 using Ju.GundamWars.Server.MobileSSkills.Domain;
 using Ju.GundamWars.Server.PilotAbilities.Domain;
+using Ju.GundamWars.Server.Pilots.Infrastructure.WebApi;
 using Ju.GundamWars.Server.PilotSkills.Domain;
 using Ju.GundamWars.Server.Serials.Domain;
 using Ju.GundamWars.Server.Skills.Domain;
@@ -76,6 +79,9 @@ public class SystemWebClient(
 
     CuspaWebApiController cuspaWebApiController,
     CuspaModelMapper cuspaModelMapper,
+
+    PilotWebApiController pilotWebApiController,
+    PilotModelMapper pilotModelMapper,
 
     TagWebApiController tagWebApiController,
     TagMapper<TagDto, Tag> tagModelMapper,
@@ -189,6 +195,13 @@ public class SystemWebClient(
         {
             var dtos = await cuspaWebApiController.SelectAllAsync();
             return dtos.Select(d => cuspaModelMapper.Map(d, new())).ToList();
+        });
+
+    public Task<List<Pilot>> SelectAllPilotsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var dtos = await pilotWebApiController.SelectAllAsync();
+            return dtos.Select(d => pilotModelMapper.Map(d, new())).ToList();
         });
 
 }

@@ -6,6 +6,8 @@ using Ju.GundamWars.Server.CoMobiles.Domain.Gateway;
 using Ju.GundamWars.Server.CoMobiles.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Cuspas.Domain.Gateway;
 using Ju.GundamWars.Server.Cuspas.Infrastructure.Persistence;
+using Ju.GundamWars.Server.Pilots.Domain.Gateway;
+using Ju.GundamWars.Server.Pilots.Infrastructure.Persistence;
 using Ju.GundamWars.Share;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -78,6 +80,12 @@ public static class ServerHosting
                 services
                     // Infrastructure.Persistence
                     .AddSingleton<ICuspaRepository, CuspaRepository>()
+                ;
+
+                // Pilots
+                services
+                    // Infrastructure.Persistence
+                    .AddSingleton<IPilotRepository, PilotRepository>()
                 ;
             });
 }
