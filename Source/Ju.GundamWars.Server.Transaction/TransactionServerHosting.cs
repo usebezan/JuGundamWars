@@ -2,6 +2,8 @@
 using Ju.GundamWars.Server.CoMobiles.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Cuspas.Domain.Service;
 using Ju.GundamWars.Server.Cuspas.Infrastructure.WebApi;
+using Ju.GundamWars.Server.Pilots.Domain.Service;
+using Ju.GundamWars.Server.Pilots.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +30,14 @@ public static class TransactionServerHosting
                     .AddSingleton(typeof(CuspaServerMapper<,,,>))
                     // Infrastructure.WebApi
                     .AddSingleton<CuspaWebApiController>()
+                ;
+
+                // Pilots
+                services
+                    // Domain.Service
+                    .AddSingleton(typeof(PilotServerMapper<,,,,,>))
+                    // Infrastructure.WebApi
+                    .AddSingleton<PilotWebApiController>()
                 ;
 
                 // Tags

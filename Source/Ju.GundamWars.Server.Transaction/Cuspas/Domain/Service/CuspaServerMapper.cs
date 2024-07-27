@@ -3,19 +3,19 @@ using Ju.GundamWars.Share.Cuspas.Domain.Service;
 
 namespace Ju.GundamWars.Server.Cuspas.Domain.Service;
 
-public class CuspaServerMapper<TSrc, TTagLinkSrc, TDest, TTagLinkDest> : CuspaMapperBase<TSrc, CuspaStatusRecord, TDest, CuspaStatusRecord>
-    where TSrc : ICuspa<CuspaStatusRecord, TTagLinkSrc>
-    where TTagLinkSrc : ICuspaTagLink
-    where TDest : ICuspa<CuspaStatusRecord, TTagLinkDest>
-    where TTagLinkDest : ICuspaTagLink, new()
+public class CuspaServerMapper<TSrc, TSrcTagLink, TDest, TDestTagLink> : CuspaMapperBase<TSrc, CuspaStatusRecord, TDest, CuspaStatusRecord>
+    where TSrc : ICuspa<CuspaStatusRecord, TSrcTagLink>
+    where TSrcTagLink : ICuspaTagLink
+    where TDest : ICuspa<CuspaStatusRecord, TDestTagLink>
+    where TDestTagLink : ICuspaTagLink, new()
 {
     public override TDest Map(TSrc src, TDest dest)
     {
         MapCore(src, dest);
         dest.TagLinks.Clear();
-        foreach (var srcTagMap in src.TagLinks)
+        foreach (var srcTagLink in src.TagLinks)
         {
-            dest.TagLinks.Add(new() { CuspaId = srcTagMap.CuspaId, TagId = srcTagMap.TagId, });
+            dest.TagLinks.Add(new() { CuspaId = srcTagLink.CuspaId, TagId = srcTagLink.TagId, });
         }
         return dest;
     }

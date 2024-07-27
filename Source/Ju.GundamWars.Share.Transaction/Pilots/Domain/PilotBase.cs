@@ -28,7 +28,7 @@ public record PilotBase<TAbility, TTagLink> : IPilot<PilotStatusRecord, TAbility
 
     #region Navigations
 
-    public List<TAbility> PilotAbilities { get; set; } = [];
+    public List<TAbility> Abilities { get; set; } = [];
     public List<TTagLink> TagLinks { get; set; } = [];
 
     #endregion

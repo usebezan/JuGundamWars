@@ -3,19 +3,19 @@ using Ju.GundamWars.Share.CoMobiles.Domain.Service;
 
 namespace Ju.GundamWars.Server.CoMobiles.Domain.Service;
 
-public class CoMobileServerMapper<TSrc, TTagLinkSrc, TDest, TTagLinkDest> : CoMobileMapperBase<TSrc, CoMobileStatusRecord, CoMobileUpgradedCountRecord, TDest, CoMobileStatusRecord, CoMobileUpgradedCountRecord>
-    where TSrc : ICoMobile<CoMobileStatusRecord, CoMobileUpgradedCountRecord, TTagLinkSrc>
-    where TTagLinkSrc : ICoMobileTagLink
-    where TDest : ICoMobile<CoMobileStatusRecord, CoMobileUpgradedCountRecord, TTagLinkDest>
-    where TTagLinkDest : ICoMobileTagLink, new()
+public class CoMobileServerMapper<TSrc, TSrcTagLink, TDest, TDestTagLink> : CoMobileMapperBase<TSrc, CoMobileStatusRecord, CoMobileUpgradedCountRecord, TDest, CoMobileStatusRecord, CoMobileUpgradedCountRecord>
+    where TSrc : ICoMobile<CoMobileStatusRecord, CoMobileUpgradedCountRecord, TSrcTagLink>
+    where TSrcTagLink : ICoMobileTagLink
+    where TDest : ICoMobile<CoMobileStatusRecord, CoMobileUpgradedCountRecord, TDestTagLink>
+    where TDestTagLink : ICoMobileTagLink, new()
 {
     public override TDest Map(TSrc src, TDest dest)
     {
         MapCore(src, dest);
         dest.TagLinks.Clear();
-        foreach (var srcTagMap in src.TagLinks)
+        foreach (var srcTagLink in src.TagLinks)
         {
-            dest.TagLinks.Add(new() { CoMobileId = srcTagMap.CoMobileId, TagId = srcTagMap.TagId, });
+            dest.TagLinks.Add(new() { CoMobileId = srcTagLink.CoMobileId, TagId = srcTagLink.TagId, });
         }
         return dest;
     }

@@ -46,7 +46,7 @@ public interface IPilot<TStatus, TAbility, TTagLink> : IPilot<TStatus>, ITagMaps
 
     #region Navigations
 
-    List<TAbility> PilotAbilities { get; set; }
+    List<TAbility> Abilities { get; set; }
 
     #endregion
 
