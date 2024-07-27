@@ -1,10 +1,11 @@
 ﻿using Ju.GundamWars.Share.Grades.Domain;
-using Ju.GundamWars.Share.Tags.Domain;
 using Ju.GundamWars.Share.Units.Domain;
 
 namespace Ju.GundamWars.Share.Pilots.Domain;
 
-public record PilotBase<TTag> : IPilot, ITagMaps<TTag>
+public record PilotBase<TAbility, TTagLink> : IPilot<PilotStatusRecord, TAbility, TTagLink>
+    where TAbility : IPilotSlotAbility
+    where TTagLink : IPilotTagLink
 {
 
     #region Primitives
@@ -15,27 +16,11 @@ public record PilotBase<TTag> : IPilot, ITagMaps<TTag>
     public int SerialId { get; set; } = 1;
     public GradeType GradeType { get; set; } = GradeType.Grade6;
     public byte Level { get; set; } = 30;
-    public int Shooting { get; set; }
-    public int Melee { get; set; }
-    public int Accuracy { get; set; }
-    public int Evasion { get; set; }
-    public int Awakened { get; set; }
-    public int Defense { get; set; }
-    public int PracticedShooting { get; set; }
-    public int PracticedMelee { get; set; }
-    public int PracticedAccuracy { get; set; }
-    public int PracticedEvasion { get; set; }
-    public int PracticedAwakened { get; set; }
-    public int PracticedDefense { get; set; }
-    public int SkillId { get; set; } = 1;
-    public string? SkillText1 { get; set; }
-    public string? SkillText2 { get; set; }
-    public int SlotRank1 { get; set; } = 1;
-    public int? AbilityId1 { get; set; }
-    public int SlotRank2 { get; set; } = 1;
-    public int? AbilityId2 { get; set; }
-    public int SlotRank3 { get; set; } = 1;
-    public int? AbilityId3 { get; set; }
+    public PilotStatusRecord BasicStatus { get; set; } = new();
+    public PilotStatusRecord PracticedStatus { get; set; } = new();
+    public int PilotSkillId { get; set; } = 1;
+    public string? PilotSkillText1 { get; set; }
+    public string? PilotSkillText2 { get; set; }
     public string? Memo { get; set; }
     public bool IsPinned { get; set; } = true;
 
@@ -43,7 +28,8 @@ public record PilotBase<TTag> : IPilot, ITagMaps<TTag>
 
     #region Navigations
 
-    public List<TTag> TagLinks { get; set; } = [];
+    public List<TAbility> PilotAbilities { get; set; } = [];
+    public List<TTagLink> TagLinks { get; set; } = [];
 
     #endregion
 

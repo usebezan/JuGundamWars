@@ -1,6 +1,6 @@
 ﻿namespace Ju.GundamWars.Share.Pilots.Domain;
 
-public record PilotTagMapBase : IPilotTagMap
+public record PilotTagLinkBase : IPilotTagLink
 {
 
     #region Primitives
