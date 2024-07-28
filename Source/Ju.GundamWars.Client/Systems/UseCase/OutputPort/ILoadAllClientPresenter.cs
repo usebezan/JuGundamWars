@@ -7,6 +7,7 @@ using Ju.GundamWars.Client.PilotSkills.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Skills.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;
+using Ju.GundamWars.Client.Supports.Domain;
 using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
@@ -30,4 +31,5 @@ public interface ILoadAllClientPresenter : IPresenter, IProgressivePresenter
     void CompleteCoMobile(List<CoMobile> output);
     void CompleteCuspa(List<Cuspa> output);
     void CompletePilot(List<Pilot> output);
+    void CompleteSupport(List<Support> output);
 }

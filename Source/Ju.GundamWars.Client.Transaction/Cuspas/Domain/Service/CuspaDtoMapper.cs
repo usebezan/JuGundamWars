@@ -9,7 +9,7 @@ public class CuspaDtoMapper : CuspaMapperBase<Cuspa, CuspaStatus, CuspaDto, Cusp
     {
         MapCore(model, dto);
         dto.TagLinks.Clear();
-        dto.TagLinks.AddRange(model.Tags.Select(m => new CuspaTagLinkDto() { CuspaId = dto.Id, TagId = m.Id, }));
+        dto.TagLinks.AddRange(model.Tags.Select(m => new CuspaTagLinkDto() { CuspaId = model.Id, TagId = m.Id, }));
         return dto;
     }
 }

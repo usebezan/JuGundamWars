@@ -1,9 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Const;
+using Ju.GundamWars.Commons.Domain.Model;
+using Ju.GundamWars.Share.Boosts.Domain;
 
-namespace Ju.GundamWars.Domain.Supports;
+namespace Ju.GundamWars.Client.Supports.Domain;
 
-public partial class SupportStatusSubject : GwObservableObject
+public partial class SupportStatus : ModelBase
 {
 
     [ObservableProperty]
@@ -25,17 +26,16 @@ public partial class SupportStatusSubject : GwObservableObject
     [ObservableProperty]
     private int _Mobility;
     [ObservableProperty]
-    private int _EnRecovery;
-
-    [ObservableProperty]
     private int _SuperPower;
     [ObservableProperty]
     private int _AcePower;
     [ObservableProperty]
     private int _RecoveryPower;
+    [ObservableProperty]
+    private int _EnRecovery;
 
 
-    public SupportStatusSubject Reset()
+    public SupportStatus Reset()
     {
         Hp = 0;
         BeamAttack = 0;
@@ -46,14 +46,14 @@ public partial class SupportStatusSubject : GwObservableObject
         Accuracy = 0;
         Evasion = 0;
         Mobility = 0;
-        EnRecovery = 0;
         SuperPower = 0;
         AcePower = 0;
         RecoveryPower = 0;
+        EnRecovery = 0;
         return this;
     }
 
-    public SupportStatusSubject Set(SupportStatusSubject status)
+    public SupportStatus Set(SupportStatus status)
     {
         Hp = status.Hp;
         BeamAttack = status.BeamAttack;
@@ -64,14 +64,14 @@ public partial class SupportStatusSubject : GwObservableObject
         Accuracy = status.Accuracy;
         Evasion = status.Evasion;
         Mobility = status.Mobility;
-        EnRecovery = status.EnRecovery;
         SuperPower = status.SuperPower;
         AcePower = status.AcePower;
         RecoveryPower = status.RecoveryPower;
+        EnRecovery = status.EnRecovery;
         return this;
     }
 
-    public SupportStatusSubject Add(SupportStatusSubject status)
+    public SupportStatus Add(SupportStatus status)
     {
         Hp += status.Hp;
         BeamAttack += status.BeamAttack;
@@ -82,55 +82,55 @@ public partial class SupportStatusSubject : GwObservableObject
         Accuracy += status.Accuracy;
         Evasion += status.Evasion;
         Mobility += status.Mobility;
-        EnRecovery += status.EnRecovery;
         SuperPower += status.SuperPower;
         AcePower += status.AcePower;
         RecoveryPower += status.RecoveryPower;
+        EnRecovery += status.EnRecovery;
         return this;
     }
 
-    public SupportStatusSubject Add(SupportStatusType type, int value)
+    public SupportStatus Add(BoostStatusType type, int value)
     {
         switch (type)
         {
-            case SupportStatusType.Hp:
+            case BoostStatusType.Hp:
                 Hp += value;
                 break;
-            case SupportStatusType.BeamAttack:
+            case BoostStatusType.BeamAttack:
                 BeamAttack += value;
                 break;
-            case SupportStatusType.PhysicalAttack:
+            case BoostStatusType.PhysicalAttack:
                 PhysicalAttack += value;
                 break;
-            case SupportStatusType.BeamDefence:
+            case BoostStatusType.BeamDefence:
                 BeamDefence += value;
                 break;
-            case SupportStatusType.PhysicalDefence:
+            case BoostStatusType.PhysicalDefence:
                 PhysicalDefence += value;
                 break;
-            case SupportStatusType.CriticalDamage:
+            case BoostStatusType.CriticalDamage:
                 CriticalDamage += value;
                 break;
-            case SupportStatusType.Accuracy:
+            case BoostStatusType.Accuracy:
                 Accuracy += value;
                 break;
-            case SupportStatusType.Evasion:
+            case BoostStatusType.Evasion:
                 Evasion += value;
                 break;
-            case SupportStatusType.Mobility:
+            case BoostStatusType.Mobility:
                 Mobility += value;
                 break;
-            case SupportStatusType.EnRecovery:
-                EnRecovery += value;
-                break;
-            case SupportStatusType.SuperPower:
+            case BoostStatusType.SuperPower:
                 SuperPower += value;
                 break;
-            case SupportStatusType.AcePower:
+            case BoostStatusType.AcePower:
                 AcePower += value;
                 break;
-            case SupportStatusType.RecoveryPower:
+            case BoostStatusType.RecoveryPower:
                 RecoveryPower += value;
+                break;
+            case BoostStatusType.EnRecovery:
+                EnRecovery += value;
                 break;
         }
         return this;

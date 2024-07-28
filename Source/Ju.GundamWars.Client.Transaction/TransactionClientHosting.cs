@@ -7,6 +7,9 @@ using Ju.GundamWars.Client.Cuspas.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Pilots.Domain;
 using Ju.GundamWars.Client.Pilots.Domain.Service;
 using Ju.GundamWars.Client.Pilots.Infrastructure.WebClient;
+using Ju.GundamWars.Client.Supports.Domain.Service;
+using Ju.GundamWars.Client.Supports.Domain;
+using Ju.GundamWars.Client.Supports.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
 using Microsoft.Extensions.DependencyInjection;
@@ -51,6 +54,17 @@ public static class TransactionClientHosting
                     .AddSingleton<PilotModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<PilotWebClient>()
+                ;
+
+                // Supports
+                services
+                    // Domain
+                    .AddSingleton<SupportInventory>()
+                    // Domain.Service
+                    .AddSingleton<SupportDtoMapper>()
+                    .AddSingleton<SupportModelMapper>()
+                    // Infrastructure.WebClient
+                    .AddSingleton<SupportWebClient>()
                 ;
 
                 // Tags

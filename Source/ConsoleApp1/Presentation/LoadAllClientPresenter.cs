@@ -7,6 +7,7 @@ using Ju.GundamWars.Client.PilotSkills.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Skills.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;
+using Ju.GundamWars.Client.Supports.Domain;
 using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Client.Tags.Domain;
@@ -25,6 +26,7 @@ internal class LoadAllClientPresenter(
     CoMobileInventory coMobiles,
     CuspaInventory cuspas,
     PilotInventory pilots,
+    SupportInventory supports,
     TagInventory tags) : ILoadAllClientPresenter
 {
     public void ShowProgress()
@@ -177,6 +179,24 @@ internal class LoadAllClientPresenter(
             foreach (var slotAbility in item.PilotSlotAbilities.Where(m => m.PilotAbility != null))
             {
                 Debug.WriteLine($"  {slotAbility.Seq} {slotAbility.SlotRank} {slotAbility.PilotAbility?.Name}");
+            }
+            foreach (var tag in item.Tags)
+            {
+                Debug.WriteLine($"  {tag.Id} {tag.Name}");
+            }
+        }
+    }
+
+    public void CompleteSupport(List<Support> output)
+    {
+        Console.WriteLine("*** CompleteSupport ***");
+        foreach (var item in output)
+        {
+            supports.Add(item);
+            Debug.WriteLine($"{item.Id} {item.Name} {item.LimitedSerialsText}");
+            foreach (var slotBadge in item.SupportSlotBadges.Where(m => m.SupportSlot != null))
+            {
+                Debug.WriteLine($"  {slotBadge.Seq} {slotBadge.SlotName} {slotBadge.BadgeName}");
             }
             foreach (var tag in item.Tags)
             {

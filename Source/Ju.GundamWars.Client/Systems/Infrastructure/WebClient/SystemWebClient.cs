@@ -12,6 +12,8 @@ using Ju.GundamWars.Client.PilotSkills.Domain.Service;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Skills.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;
+using Ju.GundamWars.Client.Supports.Domain;
+using Ju.GundamWars.Client.Supports.Domain.Service;
 using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Server.Commons.Infrastructure.WebApi;
@@ -24,6 +26,7 @@ using Ju.GundamWars.Server.PilotSkills.Domain;
 using Ju.GundamWars.Server.Serials.Domain;
 using Ju.GundamWars.Server.Skills.Domain;
 using Ju.GundamWars.Server.SupportBadges.Domain;
+using Ju.GundamWars.Server.Supports.Infrastructure.WebApi;
 using Ju.GundamWars.Server.SupportSlots.Domain;
 using Ju.GundamWars.Server.Tags.Infrastructure.WebApi;
 using Ju.GundamWars.Server.Versionings.Domain;
@@ -82,6 +85,10 @@ public class SystemWebClient(
 
     PilotWebApiController pilotWebApiController,
     PilotModelMapper pilotModelMapper,
+
+    SupportWebApiController supportWebApiController,
+    SupportModelMapper supportModelMapper,
+
 
     TagWebApiController tagWebApiController,
     TagMapper<TagDto, Tag> tagModelMapper,
@@ -202,6 +209,13 @@ public class SystemWebClient(
         {
             var dtos = await pilotWebApiController.SelectAllAsync();
             return dtos.Select(d => pilotModelMapper.Map(d, new())).ToList();
+        });
+
+    public Task<List<Support>> SelectAllSupportsAsync() =>
+        this.Execute(logger, async () =>
+        {
+            var dtos = await supportWebApiController.SelectAllAsync();
+            return dtos.Select(d => supportModelMapper.Map(d, new())).ToList();
         });
 
 }

@@ -9,9 +9,9 @@ public class PilotDtoMapper : PilotMapperBase<Pilot, PilotStatus, PilotDto, Pilo
     {
         MapCore(model, dto);
         dto.PilotSlotAbilities.Clear();
-        dto.PilotSlotAbilities.AddRange(model.PilotSlotAbilities.Select(m => new PilotSlotAbilityDto() { PilotId = m.PilotId, Seq = m.Seq, SlotRank = m.SlotRank, PilotAbilityId = m.PilotAbilityId, }));
+        dto.PilotSlotAbilities.AddRange(model.PilotSlotAbilities.Select(m => new PilotSlotAbilityDto() { PilotId = model.Id, Seq = m.Seq, SlotRank = m.SlotRank, PilotAbilityId = m.PilotAbilityId, }));
         dto.TagLinks.Clear();
-        dto.TagLinks.AddRange(model.Tags.Select(m => new PilotTagLinkDto() { PilotId = dto.Id, TagId = m.Id, }));
+        dto.TagLinks.AddRange(model.Tags.Select(m => new PilotTagLinkDto() { PilotId = model.Id, TagId = m.Id, }));
         return dto;
     }
 }

@@ -1,36 +1,36 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.BizConst.Grades.Domain;
-using Ju.GundamWars.BizConst.Units.Domain;
-using Ju.GundamWars.BizMaster.Serials.Domain;
-using Ju.GundamWars.BizMaster.SupportSlots.Domain;
-using Ju.GundamWars.BizTxn.Commons.Domain;
-using Ju.GundamWars.Collections;
+using Ju.Collections.ObjectModel;
+using Ju.GundamWars.Client.Commons.Domain;
+using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Share.Grades.Domain;
+using Ju.GundamWars.Share.Supports.Domain;
+using Ju.GundamWars.Share.SupportSlots.Domain;
+using Ju.GundamWars.Share.Units.Domain;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Reactive.Linq;
 
-namespace Ju.GundamWars.BizTxn.Supports.Domain.Model;
+namespace Ju.GundamWars.Client.Supports.Domain;
 
 public partial class Support : BizBase, ISupport
 {
 
     public Support()
     {
-        LimitedSerials = [];
-        SlotBadges = new ObservableItemPropertyChangedCollection<SupportSlotBadge>().AddTo(Disposables);
+        SupportLimitedSerials = [];
+        SupportSlotBadges = new ObservableItemPropertyChangedCollection<SupportSlotBadge>().AddTo(Disposables);
 
         NormalStatus = new SupportStatus().AddTo(Disposables);
         UnlockStatus = new SupportStatus().AddTo(Disposables);
         BonusStatus = new SupportStatus().AddTo(Disposables);
         ActualStatus = new SupportStatus().AddTo(Disposables);
 
-        LimitedSerials.CollectionChanged.Subscribe(WhenLimitedSerialsChanged).AddTo(Disposables);
-        SlotBadges.CollectionChanged.Subscribe(WhenSlotBadgesChanged).AddTo(Disposables);
-        SlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "Slot").Subscribe(WhenSlotChanged).AddTo(Disposables);
-        SlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "Badge").Subscribe(WhenBadgeChanged).AddTo(Disposables);
-        SlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "Status").Subscribe(WhenStatusChanged).AddTo(Disposables);
+        SupportLimitedSerials.CollectionChanged.Subscribe(WhenLimitedSerialsChanged).AddTo(Disposables);
+        SupportSlotBadges.CollectionChanged.Subscribe(WhenSlotBadgesChanged).AddTo(Disposables);
+        SupportSlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "Slot").Subscribe(WhenSlotChanged).AddTo(Disposables);
+        SupportSlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "Badge").Subscribe(WhenBadgeChanged).AddTo(Disposables);
+        SupportSlotBadges.ItemPropertyChanged.Where(e => e.PropertyName == "SlotBadge").Subscribe(WhenSlotBadgeChanged).AddTo(Disposables);
 
         IsIdle = true;
     }
@@ -38,12 +38,14 @@ public partial class Support : BizBase, ISupport
 
     #region Primitives
 
-    [ObservableProperty, Required]
+    [ObservableProperty]
     private string _Name = string.Empty;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(UnitIcon))]
-    private UnitType _ForUnit = UnitType.MobileSuit;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasMemo))]
-    private string? _Memo;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(ForUnitIcon))]
+    private UnitType _ForUnitType = UnitType.MobileSuit;
+    [ObservableProperty]
+    private int _SerialId;
+    [ObservableProperty]
+    private GradeType _GradeType;
     [ObservableProperty]
     private bool _IsPinned;
 
@@ -51,24 +53,23 @@ public partial class Support : BizBase, ISupport
 
     #region Primitive Models
 
-    [ObservableProperty, Required]
+    [ObservableProperty]
     private Serial? _Serial;
-    [ObservableProperty, Required, NotifyPropertyChangedFor(nameof(GradeText)), NotifyPropertyChangedFor(nameof(GradeColor))]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(GradeText)), NotifyPropertyChangedFor(nameof(GradeColor))]
     private Grade? _Grade;
 
     #endregion
 
     #region Navigations
 
-    public MasterInventory<Serial> LimitedSerials { get; }
-    public ObservableItemPropertyChangedCollection<SupportSlotBadge> SlotBadges { get; }
+    public MasterInventory<Serial> SupportLimitedSerials { get; }
+    public ObservableItemPropertyChangedCollection<SupportSlotBadge> SupportSlotBadges { get; }
 
     #endregion
 
     #region Extensions
 
-    public string UnitIcon => ForUnit.ToIcon();
-    public bool HasMemo => !string.IsNullOrEmpty(Memo);
+    public string ForUnitIcon => ForUnitType.ToIcon();
     public string GradeText => Grade?.Name ?? "?";
     public string GradeColor => Grade?.Color ?? "White";
 
@@ -91,28 +92,11 @@ public partial class Support : BizBase, ISupport
     //private MobileSubject? _Mobile;
 
 
-    public void Initialize(Action initializer)
-    {
-        Suspend(initializer);
-        SetJoinedLimitedSerials();
-        SetAttachableSlotsCount();
-        SetAttachedBadgesCount();
-        SetJoinedTags();
-        CalculateActualStatus();
-    }
+    partial void OnSerialChanged(Serial? value) =>
+        SerialId = Serial?.Id ?? 0;
 
-    public void DetachAllBadges()
-    {
-        Suspend(() =>
-        {
-            foreach (var slotBadge in SlotBadges)
-            {
-                slotBadge.Badge = null;
-            }
-        });
-        SetAttachedBadgesCount();
-        CalculateActualStatus();
-    }
+    partial void OnGradeChanged(Grade? value) =>
+        GradeType = Grade?.Type ?? GradeType.Unknown;
 
     private void WhenLimitedSerialsChanged(NotifyCollectionChangedEventArgs _)
     {
@@ -140,20 +124,20 @@ public partial class Support : BizBase, ISupport
         SetAttachedBadgesCount();
     }
 
-    private void WhenStatusChanged(PropertyChangedEventArgs _)
+    private void WhenSlotBadgeChanged(PropertyChangedEventArgs _)
     {
         if (!IsIdle) return;
         CalculateActualStatus();
     }
 
     private void SetJoinedLimitedSerials() =>
-        LimitedSerialsText = string.Join(", ", LimitedSerials.OrderBy(i => i.Order).Select(i => i.Name));
+        LimitedSerialsText = string.Join(", ", SupportLimitedSerials.OrderBy(i => i.Order).Select(i => i.Name));
 
     private void SetAttachableSlotsCount() =>
-        AttachableSlotsCount = SlotBadges.Where(s => s.Slot?.IsAttachable ?? false).Count();
+        AttachableSlotsCount = SupportSlotBadges.Where(s => s.SupportSlot?.IsAttachable ?? false).Count();
 
     private void SetAttachedBadgesCount() =>
-        AttachedBadgesCount = SlotBadges.Where(s => (s.Slot?.IsAttachable ?? false) && s.Badge != null).Count();
+        AttachedBadgesCount = SupportSlotBadges.Where(s => (s.SupportSlot?.IsAttachable ?? false) && s.SupportBadge != null).Count();
 
     private void CalculateActualStatus()
     {
@@ -161,11 +145,11 @@ public partial class Support : BizBase, ISupport
         UnlockStatus.Reset();
         BonusStatus.Reset();
         ActualStatus.Reset();
-        if (!SlotBadges.All(s => s.Badge == null))
+        if (!SupportSlotBadges.All(s => s.SupportBadge == null))
         {
-            foreach (var slotBadge in SlotBadges)
+            foreach (var slotBadge in SupportSlotBadges)
             {
-                var slotKind = slotBadge.Slot?.Kind ?? SupportSlotKindType.Unknown;
+                var slotKind = slotBadge.SupportSlot?.SupportSlotKindType ?? SupportSlotKindType.Unknown;
                 if (slotKind == SupportSlotKindType.Normal)
                 {
                     NormalStatus.Add(slotBadge.BoostStatusType, slotBadge.StatusValue);
@@ -182,6 +166,31 @@ public partial class Support : BizBase, ISupport
             ActualStatus.Set(NormalStatus).Add(UnlockStatus).Add(BonusStatus);
         }
         RaiseMobileBoostChanged();
+    }
+
+    public Support Initialize(Action initializer)
+    {
+        Suspend(initializer);
+        SetJoinedTags();
+        OnPropertyChanged(nameof(HasMemo));
+        SetJoinedLimitedSerials();
+        SetAttachableSlotsCount();
+        SetAttachedBadgesCount();
+        CalculateActualStatus();
+        return this;
+    }
+
+    public void DetachAllBadges()
+    {
+        Suspend(() =>
+        {
+            foreach (var slotBadge in SupportSlotBadges)
+            {
+                slotBadge.SupportBadge = null;
+            }
+        });
+        SetAttachedBadgesCount();
+        CalculateActualStatus();
     }
 
 }

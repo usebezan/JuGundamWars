@@ -9,7 +9,7 @@ public class CoMobileDtoMapper : CoMobileMapperBase<CoMobile, CoMobileStatus, Co
     {
         MapCore(model, dto);
         dto.TagLinks.Clear();
-        dto.TagLinks.AddRange(model.Tags.Select(m => new CoMobileTagLinkDto() { CoMobileId = dto.Id, TagId = m.Id, }));
+        dto.TagLinks.AddRange(model.Tags.Select(m => new CoMobileTagLinkDto() { CoMobileId = model.Id, TagId = m.Id, }));
         return dto;
     }
 }

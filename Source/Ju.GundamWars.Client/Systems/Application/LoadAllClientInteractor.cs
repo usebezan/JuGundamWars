@@ -56,6 +56,9 @@ internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPr
                 var pilots = await gateway.SelectAllPilotsAsync();
                 presenter.CompletePilot(pilots);
 
+                var supports = await gateway.SelectAllSupportsAsync();
+                presenter.CompleteSupport(supports);
+
                 presenter.Complete();
             }
             finally
