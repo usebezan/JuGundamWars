@@ -1,14 +1,14 @@
-﻿using Ju.GundamWars.BizTxn.Supports.Domain.Dto;
+﻿using Ju.GundamWars.Server.Supports.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ju.GundamWars.Server.Supports.Infrastructure.Persistence;
 
-public class SupportLimitedSerialMapConfig : IEntityTypeConfiguration<SupportLimitedSerialMapDto>
+public class SupportLimitedSerialMapConfig : IEntityTypeConfiguration<SupportLimitedSerialLinkEntity>
 {
-    public void Configure(EntityTypeBuilder<SupportLimitedSerialMapDto> builder)
+    public void Configure(EntityTypeBuilder<SupportLimitedSerialLinkEntity> builder)
     {
-        builder.ToTable("SupportLimitedSerialMap");
+        builder.ToTable("SupportLimitedSerialLink");
         builder.HasKey(e => new { e.SupportId, e.SerialId, });
     }
 }

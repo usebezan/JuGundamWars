@@ -7,8 +7,8 @@ public record SupportSlotBadgeBase : ISupportSlotBadge
 
     public int SupportId { get; set; }
     public byte Seq { get; set; }
-    public int SlotId { get; set; }
-    public int? BadgeId { get; set; }
+    public int SupportSlotId { get; set; }
+    public int? SupportBadgeId { get; set; }
 
     #endregion
 

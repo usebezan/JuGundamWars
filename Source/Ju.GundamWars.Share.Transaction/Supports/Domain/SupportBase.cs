@@ -3,7 +3,7 @@ using Ju.GundamWars.Share.Units.Domain;
 
 namespace Ju.GundamWars.Share.Supports.Domain;
 
-public class SupportBase<TLimitedSerialLink, TSlotBadge, TTagLink> : ISupport<TLimitedSerialLink, TSlotBadge, TTagLink>
+public record SupportBase<TLimitedSerialLink, TSlotBadge, TTagLink> : ISupport<TLimitedSerialLink, TSlotBadge, TTagLink>
     where TLimitedSerialLink : ISupportLimitedSerialLink
     where TSlotBadge : ISupportSlotBadge
     where TTagLink : ISupportTagLink

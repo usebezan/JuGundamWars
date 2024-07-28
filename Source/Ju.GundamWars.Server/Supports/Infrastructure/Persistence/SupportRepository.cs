@@ -1,38 +1,46 @@
-﻿using Ju.GundamWars.BizTxn.Supports.Domain.Dto;
-using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+﻿using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+using Ju.GundamWars.Server.Supports.Domain;
+using Ju.GundamWars.Server.Supports.Domain.Gateway;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Ju.GundamWars.Server.Supports.Infrastructure.Persistence;
 
-public class SupportRepository(IDbContextFactory<GwDbContext> factory, ILogger<SupportRepository> logger)
-    : TxnRepositoryBase<SupportDto>(factory, logger)
+public class SupportRepository(IDbContextFactory<GwTxnDbContext> factory, ILogger<SupportRepository> logger)
+    : TxnRepository<SupportEntity>(factory, logger), ISupportRepository
 {
 
-    protected override IQueryable<SupportDto> Queryable => DbSet.Include(e => e.LimitedSerialMaps).Include(e => e.TagMaps).Include(e => e.SlotBadges).OrderBy(e => e.Name).ThenBy(e => e.Id);
+    protected override IQueryable<SupportEntity> Queryable => DbSet
+        .Include(e => e.SupportLimitedSerialLinks)
+        .Include(e => e.SupportSlotBadges)
+        .Include(e => e.TagLinks)
+        .OrderBy(e => e.Name).ThenBy(e => e.Id);
 
-    //// 元々付いていた機体の関係を削除する
-    //protected override List<int> DeleteExMobileRelations(GwDbContext dbContext, int id)
-    //{
-    //    var exMobileIds = dbContext.Set<Mobile>().Include(e => e.Supports).Where(e => e.Supports.Any(r => r.SupportId == id)).Select(e => e.Id).Distinct().ToList();
-    //    dbContext.Set<MobileSupport>().RemoveRange(e => e.SupportId == id);
-    //    return exMobileIds;
-    //}
+    public override Task<SupportEntity> UpdateAsync(SupportEntity data) =>
+        this.ExecuteAsync(Logger, () =>
+        {
+            using var txn = DbContext.Database.BeginTransaction();
+            try
+            {
+                // 子を明示的に削除
+                DbContext.Set<SupportLimitedSerialLinkEntity>().RemoveRange(e => e.SupportId == data.Id);
+                DbContext.Set<SupportSlotBadgeEntity>().RemoveRange(e => e.SupportId == data.Id);
+                DbContext.Set<SupportTagLinkEntity>().RemoveRange(e => e.SupportId == data.Id);
+                DbContext.SaveChanges();
 
-    //// 子を明示的に削除
-    //protected override void DeleteRelations(GwDbContext dbContext, int id)
-    //{
-    //    dbContext.Set<SupportLimitedSerialMap>().RemoveRange(e => e.SupportId == id);
-    //    dbContext.Set<SupportTagMap>().RemoveRange(e => e.SupportId == id);
-    //    dbContext.Set<SupportSlotBadge>().RemoveRange(e => e.SupportId == id);
-    //}
-
-    //// DbUpdateConcurrencyException
-    //protected override void SetZeroToId(Support entity)
-    //{
-    //    entity.LimitedSerialMaps.ForEach(e => e.SupportId = 0);
-    //    entity.TagMaps.ForEach(e => e.SupportId = 0);
-    //    entity.SlotBadges.ForEach(e => e.SupportId = 0);
-    //}
+                var dbData = Find(data.Id) ?? throw new InvalidOperationException();
+                DbContext.Entry(dbData).CurrentValues.SetValues(data);
+                dbData.TagLinks.AddRange(data.TagLinks);
+                var result = DbSet.Update(dbData).Entity;
+                DbContext.SaveChanges();
+                txn.Commit();
+                return result;
+            }
+            catch
+            {
+                txn.Rollback();
+                throw;
+            }
+        });
 
 }

@@ -7,8 +7,8 @@ public interface ISupportSlotBadge
 
     int SupportId { get; set; }
     byte Seq { get; set; }
-    int SlotId { get; set; }
-    int? BadgeId { get; set; }
+    int SupportSlotId { get; set; }
+    int? SupportBadgeId { get; set; }
 
     #endregion
 

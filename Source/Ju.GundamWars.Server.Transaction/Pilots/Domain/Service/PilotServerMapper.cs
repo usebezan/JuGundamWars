@@ -3,13 +3,13 @@ using Ju.GundamWars.Share.Pilots.Domain.Service;
 
 namespace Ju.GundamWars.Server.Pilots.Domain.Service;
 
-public class PilotServerMapper<TSrc, TSrcAbility, TTagLinkSrc, TDest, TDestAbility, TTagLinkDest> : PilotMapperBase<TSrc, PilotStatusRecord, TDest, PilotStatusRecord>
-    where TSrc : IPilot<PilotStatusRecord, TSrcAbility, TTagLinkSrc>
+public class PilotServerMapper<TSrc, TSrcAbility, TSrcTagLink, TDest, TDestAbility, TDestTagLink> : PilotMapperBase<TSrc, PilotStatusRecord, TDest, PilotStatusRecord>
+    where TSrc : IPilot<PilotStatusRecord, TSrcAbility, TSrcTagLink>
     where TSrcAbility : IPilotSlotAbility
-    where TTagLinkSrc : IPilotTagLink
-    where TDest : IPilot<PilotStatusRecord, TDestAbility, TTagLinkDest>
+    where TSrcTagLink : IPilotTagLink
+    where TDest : IPilot<PilotStatusRecord, TDestAbility, TDestTagLink>
     where TDestAbility : IPilotSlotAbility, new()
-    where TTagLinkDest : IPilotTagLink, new()
+    where TDestTagLink : IPilotTagLink, new()
 {
     public override TDest Map(TSrc src, TDest dest)
     {
