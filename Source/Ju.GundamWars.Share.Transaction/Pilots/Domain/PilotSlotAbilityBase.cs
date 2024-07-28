@@ -8,7 +8,7 @@ public record PilotSlotAbilityBase : IPilotSlotAbility
     public int PilotId { get; set; }
     public byte Seq { get; set; }
     public byte SlotRank { get; set; }
-    public int PilotAbilityId { get; set; }
+    public int? PilotAbilityId { get; set; }
 
     #endregion
 

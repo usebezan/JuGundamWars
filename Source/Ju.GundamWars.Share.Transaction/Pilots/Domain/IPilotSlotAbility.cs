@@ -8,7 +8,7 @@ public interface IPilotSlotAbility
     int PilotId { get; set; }
     byte Seq { get; set; }
     byte SlotRank { get; set; }
-    int PilotAbilityId { get; set; }
+    int? PilotAbilityId { get; set; }
 
     #endregion
 

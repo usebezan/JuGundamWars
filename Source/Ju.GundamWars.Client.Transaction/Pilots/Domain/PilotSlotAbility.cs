@@ -17,7 +17,7 @@ public partial class PilotSlotAbility : ModelBase, IPilotSlotAbility
     [ObservableProperty]
     private byte _SlotRank;
     [ObservableProperty]
-    private int _PilotAbilityId;
+    private int? _PilotAbilityId;
 
     #endregion
 
