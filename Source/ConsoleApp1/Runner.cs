@@ -9,6 +9,7 @@ using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.IO;
 
 namespace ConsoleApp1;
 

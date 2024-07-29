@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.Share._TODO.System;
+﻿namespace Ju.GundamWars.Commons.Domain;
 
 public class SystemOption
 {
