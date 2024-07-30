@@ -10,7 +10,5 @@ internal partial class MenuItemViewModel : ModelBase
     private string _Icon = GwIcon.Unknown;
     [ObservableProperty]
     private string _Text = GwText.Unknown;
-    [ObservableProperty]
-    private object _Content = null!;
 
 }

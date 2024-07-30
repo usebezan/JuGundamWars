@@ -17,9 +17,6 @@ internal partial class MainViewModel(
     public Menus Menus { get; } = menus;
     public ViewState ViewState { get; } = viewState;
 
-    [ObservableProperty]
-    private MenuItemViewModel? __SelectedMenu;
-
 
     [RelayCommand]
     private async Task LoadAsync()

@@ -1,6 +1,6 @@
 ﻿namespace Ju.GundamWars.Commons.Domain;
 
-public enum TabIndexType : byte
+public enum MenuIndexType : byte
 {
     Mobile = 0,
     Pilot,
@@ -11,15 +11,15 @@ public enum TabIndexType : byte
     Unknown = byte.MaxValue,
 }
 
-public static class TabIndexTypeExtension
+public static class MenuIndexTypeExtension
 {
 
-    public static TabIndexType ToTabIndexType(this int self)
+    public static MenuIndexType ToMenuIndexType(this int self)
     {
-        try { return (TabIndexType)self; } catch { return TabIndexType.Unknown; }
+        try { return (MenuIndexType)self; } catch { return MenuIndexType.Unknown; }
     }
 
-    public static byte ToValue(this TabIndexType self) =>
+    public static byte ToValue(this MenuIndexType self) =>
         (byte)self;
 
 }

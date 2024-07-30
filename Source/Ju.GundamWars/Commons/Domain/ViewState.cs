@@ -26,11 +26,11 @@ internal partial class ViewState : ModelBase
     [ObservableProperty, NotifyPropertyChangedFor(nameof(SlideIndex))]
     private SlideIndexType _SlideIndexType = SlideIndexType.Main;
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(TabIndexType))]
-    private int _TabIndex = TabIndexType.Mobile.ToValue();
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(MenuIndexType))]
+    private int _MenuIndex = MenuIndexType.Mobile.ToValue();
 
     public int SlideIndex => SlideIndexType.ToValue();
-    public TabIndexType TabIndexType => TabIndex.ToTabIndexType();
+    public MenuIndexType MenuIndexType => MenuIndex.ToMenuIndexType();
 
 
     partial void OnIsDialogOpenChanged(bool value)

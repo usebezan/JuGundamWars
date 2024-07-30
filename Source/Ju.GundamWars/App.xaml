@@ -25,8 +25,8 @@
                     <Color x:Key="GwErrorColor">#ffE7233A</Color>
                     <!-- Brush -->
                     <SolidColorBrush x:Key="GwForegroundBrush" Color="{DynamicResource GwForegroundColor}" />
-                    <SolidColorBrush x:Key="GwGwBackgroundBrush" Color="{DynamicResource GwBackgroundColor}" />
-                    <SolidColorBrush x:Key="GwGwBackground2Brush" Color="{DynamicResource GwBackground2Color}" />
+                    <SolidColorBrush x:Key="GwBackgroundBrush" Color="{DynamicResource GwBackgroundColor}" />
+                    <SolidColorBrush x:Key="GwBackground2Brush" Color="{DynamicResource GwBackground2Color}" />
                     <SolidColorBrush x:Key="GwPrimaryBrush" Color="{DynamicResource GwPrimaryColor}" />
                     <SolidColorBrush x:Key="GwSecondaryBrush" Color="{DynamicResource GwSecondaryColor}" />
                     <SolidColorBrush x:Key="GwValidationErrorBrush" Color="{DynamicResource GwErrorColor}" />
@@ -49,6 +49,95 @@
 
             <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MaterialDesignScrollViewer}" />
             <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" />
+
+            <Style TargetType="{x:Type Hyperlink}" BasedOn="{StaticResource MaterialDesignCaptionHyperlink}">
+                <Setter Property="Inline.TextDecorations" Value="Underline" />
+            </Style>
+
+            <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource MaterialDesignDataGrid}">
+                <Setter Property="AutoGenerateColumns" Value="False" />
+                <Setter Property="CanUserAddRows" Value="False" />
+                <Setter Property="CanUserDeleteRows" Value="False" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="GridLinesVisibility" Value="Horizontal" />
+                <Setter Property="HeadersVisibility" Value="Column" />
+                <Setter Property="SelectionMode" Value="Single" />
+                <Setter Property="SelectionUnit" Value="Cell" />
+                <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+                <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
+                <Setter Property="EnableRowVirtualization" Value="True" />
+            </Style>
+
+
+            <Style x:Key="GwListTextColumn" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Style.Triggers>
+                    <Trigger Property="Text" Value="0">
+                        <Setter Property="Opacity" Value="0.2" />
+                    </Trigger>
+                    <Trigger Property="Text" Value="0%">
+                        <Setter Property="Opacity" Value="0.2" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="GwListRightTextColumn" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource GwListTextColumn}">
+                <Setter Property="HorizontalAlignment" Value="Right" />
+            </Style>
+
+            <DataTemplate x:Key="GwListNameTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center">
+                        <!-- TODO: <Hyperlink Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">-->
+                        <Hyperlink>
+                            <TextBlock Text="{Binding Name}" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <materialDesign:PackIcon x:Name="pin" Width="12" VerticalAlignment="Top" Kind="Pin" Visibility="Collapsed" />
+                </StackPanel>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding IsPinned}" Value="True">
+                        <Setter TargetName="pin" Property="Visibility" Value="Visible" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+
+            <DataTemplate x:Key="GwListMemoTemplate">
+                <Grid x:Name="memo" Width="24" Height="24" Background="Transparent" ToolTip="{Binding Memo}" Visibility="Hidden">
+                    <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16" Kind="TooltipText" />
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding HasMemo}" Value="True">
+                        <Setter TargetName="memo" Property="Visibility" Value="Visible" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+
+            <Style x:Key="GwListCopyButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignIconForegroundButton}" x:Shared="False">
+                <Setter Property="Width" Value="36" />
+                <Setter Property="Height" Value="36" />
+                <!--<Setter TODO: Property="Command" Value="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />-->
+                <!--<Setter Property="CommandParameter" Value="{Binding}" />-->
+                <Setter Property="ToolTip" Value="Copy" />
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Width="16" Height="16" Kind="ContentCopy" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <DataTemplate x:Key="GwCoMobileListNameCellTemplate">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ContentControl Grid.Column="0" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListNameTemplate}" />
+                    <ContentControl Grid.Column="1" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListMemoTemplate}" />
+                    <Button Grid.Column="2" Margin="8 0 0 0" Style="{StaticResource GwListCopyButton}" />
+                </Grid>
+            </DataTemplate>
 
         </ResourceDictionary>
     </Application.Resources>

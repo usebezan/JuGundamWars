@@ -6,6 +6,10 @@ public static class GwText
     public static readonly string Unknown = "不明";
     public static readonly string None = "なし";
 
+    public readonly static string Startup = "スタートアップ";
+    public readonly static string SuperMove = "必殺技";
+
+
     // ユニット
     public static readonly string MobileSuit = "MS";
     public static readonly string MobileArmor = "MA";
@@ -50,5 +54,8 @@ public static class GwText
 
 
     public readonly static string Tag = "タグ";
+
+    // 連携機体
+    public readonly static string Upgraded = "改修";
 
 }
