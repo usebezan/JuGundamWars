@@ -48,4 +48,7 @@ public static class GwText
     public readonly static string Awakened = "覚醒";
     public readonly static string Defense = "防御";
 
+
+    public readonly static string Tag = "タグ";
+
 }

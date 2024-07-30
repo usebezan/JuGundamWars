@@ -1,9 +1,16 @@
 ﻿using Ju.GundamWars.Client;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.CoMobiles.View;
+using Ju.GundamWars.Cuspas.View;
+using Ju.GundamWars.Mobiles.View;
+using Ju.GundamWars.Pilots.View;
 using Ju.GundamWars.Server;
+using Ju.GundamWars.Supports.View;
+using Ju.GundamWars.Systems.Domain;
 using Ju.GundamWars.Systems.Presentation;
 using Ju.GundamWars.Systems.View;
+using Ju.GundamWars.Tags.View;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.IO;
@@ -45,12 +52,20 @@ public partial class App : Application
                 .ConfigureServer()
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddSingleton<ViewState>();
-                    services.AddSingleton<MainViewModel>();
-                    services.AddSingleton<MainWindow>();
+                    services.AddSingleton<CoMobileListViewModel>();
+                    services.AddSingleton<CuspaListViewModel>();
+                    services.AddSingleton<MobileListViewModel>();
+                    services.AddSingleton<PilotListViewModel>();
+                    services.AddSingleton<SupportListViewModel>();
+                    services.AddSingleton<TagListViewModel>();
 
                     services.AddSingleton<ILoadAllClientPresenter, LoadAllPresenter>();
                     services.AddSingleton<LoadAllProgressViewModel>();
+
+                    services.AddSingleton<Menus>();
+                    services.AddSingleton<ViewState>();
+                    services.AddSingleton<MainViewModel>();
+                    services.AddSingleton<MainWindow>();
                 }).Build();
         }
         catch (Exception ex)

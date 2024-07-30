@@ -13,18 +13,20 @@
                 <ResourceDictionary>
                     <!-- Color -->
                     <!-- RX-93 νガンダム -->
-                    <!--白 #FAFAF8-->
-                    <!--黒 #13131F-->
-                    <!--黄 #F99427-->
-                    <!--赤 #E7233A-->
+                    <!--白 #ffFAFAF8-->
+                    <!--黒 #ff13131F-->
+                    <!--黄 #ffF99427-->
+                    <!--赤 #ffE7233A-->
                     <Color x:Key="GwForegroundColor">#ffFAFAF8</Color>
-                    <Color x:Key="GwBackgroundColor">#ff27273f</Color>
+                    <Color x:Key="GwBackgroundColor">#ff13131F</Color>
+                    <Color x:Key="GwBackground2Color">#ff27273f</Color>
                     <Color x:Key="GwPrimaryColor">#ff13131F</Color>
                     <Color x:Key="GwSecondaryColor">#ffF99427</Color>
                     <Color x:Key="GwErrorColor">#ffE7233A</Color>
                     <!-- Brush -->
                     <SolidColorBrush x:Key="GwForegroundBrush" Color="{DynamicResource GwForegroundColor}" />
                     <SolidColorBrush x:Key="GwGwBackgroundBrush" Color="{DynamicResource GwBackgroundColor}" />
+                    <SolidColorBrush x:Key="GwGwBackground2Brush" Color="{DynamicResource GwBackground2Color}" />
                     <SolidColorBrush x:Key="GwPrimaryBrush" Color="{DynamicResource GwPrimaryColor}" />
                     <SolidColorBrush x:Key="GwSecondaryBrush" Color="{DynamicResource GwSecondaryColor}" />
                     <SolidColorBrush x:Key="GwValidationErrorBrush" Color="{DynamicResource GwErrorColor}" />
@@ -36,12 +38,12 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <!-- Material Design -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ObsoleteBrushes.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
                 <!-- Material Design: MahApps Compatibility -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+            
             <!-- Converter -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 

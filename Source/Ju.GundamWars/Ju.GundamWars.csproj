@@ -17,4 +17,13 @@
     <ProjectReference Include="..\Ju.GundamWars.Client\Ju.GundamWars.Client.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CoMobiles\Presentation\" />
+    <Folder Include="Cuspas\Presentation\" />
+    <Folder Include="Mobiles\Presentation\" />
+    <Folder Include="Pilots\Presentation\" />
+    <Folder Include="Supports\Presentation\" />
+    <Folder Include="Tags\Presentation\" />
+  </ItemGroup>
+
 </Project>

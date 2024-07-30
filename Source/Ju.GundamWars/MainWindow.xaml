@@ -7,7 +7,6 @@
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:Ju.GundamWars"
-    xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     xmlns:systems="clr-namespace:Ju.GundamWars.Systems.View"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
@@ -19,23 +18,23 @@
     BorderThickness="0"
     SaveWindowPosition="True"
     SnapsToDevicePixels="True"
-    TitleForeground="{DynamicResource GwForegroundBrush}"
-    WindowTitleBrush="{DynamicResource GwPrimaryBrush}"
-    NonActiveWindowTitleBrush="{DynamicResource GwPrimaryBrush}"
+    Background="{DynamicResource GwGwBackgroundBrush}"
+    WindowTitleBrush="{DynamicResource GwGwBackgroundBrush}"
+    NonActiveWindowTitleBrush="{DynamicResource GwGwBackgroundBrush}"
     >
     <mahApps:MetroWindow.Resources>
-        <Style x:Key="MenuItemContainer" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
+        <Style x:Key="GwMenuItemContainer" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
             <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding Icon}" />
             <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding Icon}" />
         </Style>
-        <Style x:Key="MenuListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
+        <Style x:Key="GwMenuListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
             <Style.Resources>
-                <DataTemplate DataType="{x:Type commons:IMenuItemViewModel}">
+                <DataTemplate DataType="{x:Type systems:MenuItemViewModel}">
                     <TextBlock Text="{Binding Text}" TextAlignment="Center" TextWrapping="Wrap" />
                 </DataTemplate>
             </Style.Resources>
             <Setter Property="SelectedValue" Value="{Binding SelectedMenu}" />
-            <Setter Property="ItemContainerStyle" Value="{StaticResource MenuItemContainer}" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource GwMenuItemContainer}" />
         </Style>
     </mahApps:MetroWindow.Resources>
     <i:Interaction.Triggers>
@@ -44,8 +43,8 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <mahApps:MetroWindow.LeftWindowCommands>
-        <mahApps:WindowCommands>
-            <Button Command="{Binding LoadCommand}" ToolTip="Reload" Content="{materialDesign:PackIcon Refresh}" />
+        <mahApps:WindowCommands ShowSeparators="False">
+            <Button Command="{Binding ReloadCommand}" ToolTip="Reload" Content="{materialDesign:PackIcon Refresh}" />
         </mahApps:WindowCommands>
     </mahApps:MetroWindow.LeftWindowCommands>
     <mahApps:MetroWindow.RightWindowCommands>
@@ -75,12 +74,18 @@
                             <ColumnDefinition Width="80" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <ListBox
-                            Grid.Column="0"
-                            Style="{StaticResource MenuListBox}"
-                            ItemsSource="{Binding MainMenus}"
-                        />
-                        <Grid Grid.Column="1" />
+                        <Border Grid.Column="0" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 0">
+                            <ListBox Style="{StaticResource GwMenuListBox}" ItemsSource="{Binding Menus}" />
+                        </Border>
+                        <Border Grid.Column="1" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="8 0 0 0">
+
+                            <StackPanel>
+                                <TextBox Margin="20" Width="100" Height="40" Text="Text" />
+                                <Button Margin="20" Width="100" Height="40" Content="Text" />
+                                <ToggleButton Margin="20" />
+                            </StackPanel>
+
+                        </Border>
                     </Grid>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
