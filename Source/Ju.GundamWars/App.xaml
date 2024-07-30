@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Ju.GundamWars"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
     Startup="OnStartup"
     Exit="OnExit"
     >
@@ -17,15 +19,11 @@
                     <!--黒 #ff13131F-->
                     <!--黄 #ffF99427-->
                     <!--赤 #ffE7233A-->
-                    <Color x:Key="GwForegroundColor">#ffFAFAF8</Color>
-                    <Color x:Key="GwBackgroundColor">#ff13131F</Color>
                     <Color x:Key="GwBackground2Color">#ff27273f</Color>
                     <Color x:Key="GwPrimaryColor">#ff13131F</Color>
                     <Color x:Key="GwSecondaryColor">#ffF99427</Color>
                     <Color x:Key="GwErrorColor">#ffE7233A</Color>
                     <!-- Brush -->
-                    <SolidColorBrush x:Key="GwForegroundBrush" Color="{DynamicResource GwForegroundColor}" />
-                    <SolidColorBrush x:Key="GwBackgroundBrush" Color="{DynamicResource GwBackgroundColor}" />
                     <SolidColorBrush x:Key="GwBackground2Brush" Color="{DynamicResource GwBackground2Color}" />
                     <SolidColorBrush x:Key="GwPrimaryBrush" Color="{DynamicResource GwPrimaryColor}" />
                     <SolidColorBrush x:Key="GwSecondaryBrush" Color="{DynamicResource GwSecondaryColor}" />
@@ -43,7 +41,8 @@
                 <!-- Material Design: MahApps Compatibility -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
+
+
             <!-- Converter -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
@@ -52,6 +51,23 @@
 
             <Style TargetType="{x:Type Hyperlink}" BasedOn="{StaticResource MaterialDesignCaptionHyperlink}">
                 <Setter Property="Inline.TextDecorations" Value="Underline" />
+            </Style>
+
+            <Style TargetType="{x:Type ToolBarTray}" BasedOn="{StaticResource MaterialDesignToolBarTray}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="IsLocked" Value="True" />
+            </Style>
+
+            <Style TargetType="{x:Type ToolBar}" BasedOn="{StaticResource MaterialDesignToolBar}">
+                <Style.Resources>
+                    <Style TargetType="{x:Type materialDesign:PackIcon}">
+                        <Setter Property="FrameworkElement.Width" Value="16" />
+                        <Setter Property="FrameworkElement.Height" Value="16" />
+                    </Style>
+                </Style.Resources>
+                <Setter Property="Height" Value="50" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
             </Style>
 
             <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource MaterialDesignDataGrid}">
@@ -66,6 +82,35 @@
                 <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
                 <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
                 <Setter Property="EnableRowVirtualization" Value="True" />
+                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
+            </Style>
+
+
+            <Style x:Key="GwComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Height" Value="30" />
+                <Setter Property="IsSynchronizedWithCurrentItem" Value="False" />
+                <Setter Property="materialDesign:ValidationAssist.Background" Value="Transparent" />
+            </Style>
+
+
+            <Style x:Key="GwCancelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}" x:Shared="False">
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="32" />
+                <!--<Setter Property="FontFamily" Value="Yu Gothic UI" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="FontWeight" Value="SemiBold" />-->
+                <!--<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />-->
+                <!--<Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />-->
+                <Setter Property="Command" Value="{Binding CancelCommand}" />
+                <Setter Property="Content" Value="Cancel" />
+                <Setter Property="IsCancel" Value="True" />
             </Style>
 
 
@@ -85,11 +130,14 @@
                 <Setter Property="HorizontalAlignment" Value="Right" />
             </Style>
 
+            <DataTemplate x:Key="GwListCheckTemplate">
+                <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Id}" />
+            </DataTemplate>
+
             <DataTemplate x:Key="GwListNameTemplate">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center">
-                        <!-- TODO: <Hyperlink Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">-->
-                        <Hyperlink>
+                        <Hyperlink Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                             <TextBlock Text="{Binding Name}" />
                         </Hyperlink>
                     </TextBlock>
@@ -138,6 +186,80 @@
                     <Button Grid.Column="2" Margin="8 0 0 0" Style="{StaticResource GwListCopyButton}" />
                 </Grid>
             </DataTemplate>
+
+
+            <Style x:Key="GwFilterComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwComboBox}">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+            </Style>
+
+            <Style x:Key="GwFilterSerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+                <Setter Property="Width" Value="300" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding Serials}" />
+                <!--<Setter Property="SelectedItem" Value="{Binding Serial}" />-->
+                <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Serial}}" />
+            </Style>
+
+            <Style x:Key="GwFilterTagComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+                <Setter Property="Width" Value="120" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding Tags}" />
+                <!--<Setter Property="SelectedItem" Value="{Binding Tag}" />-->
+                <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Tag}}" />
+            </Style>
+
+            <Style x:Key="GwFilterHasMemoToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" x:Shared="False">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <!--<Setter Property="IsChecked" Value="{Binding HasMemo}" />-->
+                <Setter Property="ToolTip" Value="メモあり" />
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Kind="TooltipTextOutline" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Kind="TooltipText" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="GwFilterPinnedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" x:Shared="False">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <!--<Setter Property="IsChecked" Value="{Binding IsPinned}" />-->
+                <Setter Property="ToolTip" Value="ピン止め" />
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Kind="PinOutline" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Kind="Pin" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="GwFilterHasNoMobileToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" x:Shared="False">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <!--<Setter Property="IsChecked" Value="{Binding HasMobile}" />-->
+                <Setter Property="ToolTip" Value="機体未設定" />
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Kind="RobotOffOutline" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Kind="RobotOff" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

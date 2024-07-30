@@ -6,6 +6,11 @@ public static class GwText
     public static readonly string Unknown = "不明";
     public static readonly string None = "なし";
 
+    public readonly static string Serial = "シリーズ";
+    public readonly static string Role = "役割";
+    public readonly static string Level = "レベル";
+
+
     public readonly static string Startup = "スタートアップ";
     public readonly static string SuperMove = "必殺技";
 

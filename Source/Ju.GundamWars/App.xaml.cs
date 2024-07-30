@@ -52,7 +52,10 @@ public partial class App : Application
                 .ConfigureServer()
                 .ConfigureServices((context, services) =>
                 {
+                    services.AddSingleton<CoMobileEntryViewModel>();
                     services.AddSingleton<CoMobileListViewModel>();
+                    services.AddSingleton<CoMobileViewModel>();
+
                     services.AddSingleton<CuspaListViewModel>();
                     services.AddSingleton<MobileListViewModel>();
                     services.AddSingleton<PilotListViewModel>();

@@ -1,15 +1,15 @@
 ﻿<mahApps:MetroWindow x:Class="Ju.GundamWars.MainWindow"
-                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                     xmlns:local="clr-namespace:Ju.GundamWars"
-                     xmlns:coMobiles="clr-namespace:Ju.GundamWars.CoMobiles.View"
-                     xmlns:systems="clr-namespace:Ju.GundamWars.Systems.View"
-                     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                     mc:Ignorable="d"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Ju.GundamWars"
+    xmlns:coMobiles="clr-namespace:Ju.GundamWars.CoMobiles.View"
+    xmlns:systems="clr-namespace:Ju.GundamWars.Systems.View"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    mc:Ignorable="d"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
     FontFamily="Yu Gothic UI"
     Title="J.U Gundam Wars"
@@ -19,10 +19,8 @@
     BorderThickness="0"
     SaveWindowPosition="True"
     SnapsToDevicePixels="True"
-    Foreground="{DynamicResource GwForegroundBrush}"
-    Background="{DynamicResource GwBackgroundBrush}"
-    WindowTitleBrush="{DynamicResource GwBackgroundBrush}"
-    NonActiveWindowTitleBrush="{DynamicResource GwBackgroundBrush}"
+    WindowTitleBrush="{DynamicResource GwPrimaryBrush}"
+    NonActiveWindowTitleBrush="{DynamicResource GwPrimaryBrush}"
     >
     <mahApps:MetroWindow.Resources>
         <Style x:Key="GwMenuItemContainer" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
@@ -35,6 +33,7 @@
                     <TextBlock Text="{Binding Text}" TextAlignment="Center" TextWrapping="Wrap" />
                 </DataTemplate>
             </Style.Resources>
+            <Setter Property="Background" Value="{DynamicResource GwPrimaryBrush}" />
             <Setter Property="ItemsSource" Value="{Binding Menus}" />
             <Setter Property="SelectedIndex" Value="{Binding ViewState.MenuIndex}" />
             <Setter Property="ItemContainerStyle" Value="{StaticResource GwMenuItemContainer}" />
@@ -66,20 +65,20 @@
                     <systems:LoadAllProgressView />
                 </DataTemplate>
             </materialDesign:DialogHost.DialogContentTemplate>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 0">
-                    <ListBox Style="{StaticResource GwMenuListBox}" />
-                </Border>
-                <Border Grid.Column="1" Background="{DynamicResource MaterialDesignPaper}" CornerRadius="8 0 0 0">
-                    <materialDesign:Transitioner SelectedIndex="{Binding ViewState.MenuIndex}">
+            <DockPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 0">
+                        <ListBox Style="{StaticResource GwMenuListBox}" />
+                    </Border>
+                    <materialDesign:Transitioner Grid.Column="1" SelectedIndex="{Binding ViewState.MenuIndex}">
                         <!-- Mobile -->
                         <materialDesign:TransitionerSlide>
                             <materialDesign:TransitionerSlide.ForwardWipe>
-                                <materialDesign:SlideWipe Direction="Up" />
+                                <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.ForwardWipe>
                             <materialDesign:TransitionerSlide.BackwardWipe>
                                 <materialDesign:SlideWipe Direction="Down" />
@@ -88,7 +87,7 @@
                         <!-- Pilot -->
                         <materialDesign:TransitionerSlide>
                             <materialDesign:TransitionerSlide.ForwardWipe>
-                                <materialDesign:SlideWipe Direction="Up" />
+                                <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.ForwardWipe>
                             <materialDesign:TransitionerSlide.BackwardWipe>
                                 <materialDesign:SlideWipe Direction="Down" />
@@ -97,7 +96,7 @@
                         <!-- Support -->
                         <materialDesign:TransitionerSlide>
                             <materialDesign:TransitionerSlide.ForwardWipe>
-                                <materialDesign:SlideWipe Direction="Up" />
+                                <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.ForwardWipe>
                             <materialDesign:TransitionerSlide.BackwardWipe>
                                 <materialDesign:SlideWipe Direction="Down" />
@@ -106,17 +105,17 @@
                         <!-- CoMobile -->
                         <materialDesign:TransitionerSlide>
                             <materialDesign:TransitionerSlide.ForwardWipe>
-                                <materialDesign:SlideWipe Direction="Up" />
+                                <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.ForwardWipe>
                             <materialDesign:TransitionerSlide.BackwardWipe>
                                 <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.BackwardWipe>
-                            <coMobiles:CoMobileListView />
+                            <coMobiles:CoMobileView />
                         </materialDesign:TransitionerSlide>
                         <!-- Cuspa -->
                         <materialDesign:TransitionerSlide>
                             <materialDesign:TransitionerSlide.ForwardWipe>
-                                <materialDesign:SlideWipe Direction="Up" />
+                                <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.ForwardWipe>
                             <materialDesign:TransitionerSlide.BackwardWipe>
                                 <materialDesign:SlideWipe Direction="Down" />
@@ -125,15 +124,15 @@
                         <!-- Tag -->
                         <materialDesign:TransitionerSlide>
                             <materialDesign:TransitionerSlide.ForwardWipe>
-                                <materialDesign:SlideWipe Direction="Up" />
+                                <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.ForwardWipe>
                             <materialDesign:TransitionerSlide.BackwardWipe>
                                 <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.BackwardWipe>
                         </materialDesign:TransitionerSlide>
                     </materialDesign:Transitioner>
-                </Border>
-            </Grid>
+                </Grid>
+            </DockPanel>
         </materialDesign:DialogHost>
         <materialDesign:Snackbar Grid.Row="0" Margin="16" HorizontalAlignment="Right" MessageQueue="{Binding ViewState.SnackbarMessageQueue}" />
     </Grid>

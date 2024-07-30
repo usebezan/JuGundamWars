@@ -1,19 +1,19 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.CoMobiles.View;
 
-internal partial class CoMobileListViewModel : CoMobileListViewModelBase
+internal partial class CoMobileEntryViewModel : ModelBase
 {
 
-    public CoMobileListViewModel(
+    public CoMobileEntryViewModel(
         CoMobileViewModel coMobileViewModel,
-        CoMobileInventory coMobiles,
         SerialInventory serials,
         TagInventory tags)
-        : base(coMobiles, serials, tags)
     {
         this.coMobileViewModel = coMobileViewModel;
     }
@@ -23,17 +23,12 @@ internal partial class CoMobileListViewModel : CoMobileListViewModelBase
 
 
     [RelayCommand]
-    private Task OpenEntryAsEditAsync(CoMobile model)
+    private Task CancelAsync()
     {
         return Task.Run(() =>
         {
-            coMobileViewModel.PageIndex = 1;
+            coMobileViewModel.PageIndex = 0;
         });
-    }
-
-    protected override bool Filter(object obj)
-    {
-        return true;
     }
 
 }
