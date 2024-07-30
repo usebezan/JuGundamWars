@@ -17,7 +17,7 @@ using Ju.GundamWars.Systems.View;
 namespace Ju.GundamWars.Systems.Presentation;
 
 internal class LoadAllPresenter(
-    ViewState windowState,
+    ViewState viewState,
     LoadAllProgressViewModel loadAllProgressViewModel,
     MobileSSkillInventory mobileSSkills,
     PilotAbilityInventory pilotAbilities,
@@ -35,17 +35,17 @@ internal class LoadAllPresenter(
 
     public void Initialize()
     {
-        // TODO: ?
+        // Do nothing.
     }
     public void ShowProgress()
     {
         loadAllProgressViewModel.IsIndeterminate = true;
-        windowState.DialogContent = loadAllProgressViewModel;
-        windowState.IsDialogOpen = true;
+        viewState.DialogContent = loadAllProgressViewModel;
+        viewState.IsDialogOpen = true;
     }
     public void CloseProgress()
     {
-        windowState.IsDialogOpen = false;
+        viewState.IsDialogOpen = false;
         loadAllProgressViewModel.IsIndeterminate = false;
     }
     public void ValidationError(string _)
@@ -80,7 +80,7 @@ internal class LoadAllPresenter(
 
     public void CompleteVersioning(string output)
     {
-        windowState.Version = output;
+        viewState.Version = output;
     }
 
     #endregion

@@ -1,15 +1,15 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Client.Systems.UseCase.InputPort;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
+using Ju.GundamWars.CoMobiles.View;
 using Ju.GundamWars.Systems.Domain;
-using Ju.GundamWars.Systems.View;
 
 namespace Ju.GundamWars;
 
 internal partial class MainViewModel(
     ILoadAllClientUseCase loadAllClientUseCase,
+    CoMobileListViewModel coMobileListViewModel,
     Menus menus,
     ViewState viewState) : ModelBase
 {
@@ -29,6 +29,7 @@ internal partial class MainViewModel(
     private async Task ReloadAsync()
     {
         await loadAllClientUseCase.HandleAsync();
+        coMobileListViewModel.SetCount();
         ViewState.ShowSnackbar("Loaded.");
     }
 

@@ -22,6 +22,8 @@ internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPr
                 //    await gateway.TryDownloadFileAsync("https://raw.githubusercontent.com/usebezan/JuGundamWarsData/main/MasterData.db", masterDbFilePath);
                 //}
                 //presenter.CompleteVersioning(remoteVersion);
+                var localVersion = await gateway.GetLocalVersionAsync();
+                presenter.CompleteVersioning(localVersion);
 
                 var serials = await gateway.SelectAllSerialsAsync();
                 presenter.CompleteSerial(serials);

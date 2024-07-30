@@ -11,7 +11,7 @@
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
-    FontFamily="Yu Gothic UI"
+    FontFamily="Meiryo UI"
     Title="J.U Gundam Wars"
     TitleAlignment="Center"
     Height="600"
@@ -46,7 +46,15 @@
     </i:Interaction.Triggers>
     <mahApps:MetroWindow.LeftWindowCommands>
         <mahApps:WindowCommands ShowSeparators="False">
-            <Button Command="{Binding ReloadCommand}" ToolTip="Reload" Content="{materialDesign:PackIcon Refresh}" />
+            <Button Command="{Binding ReloadCommand}" ToolTip="最新の情報に更新">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Refresh" />
+                    <TextBlock Margin="4 0 0 0">
+                        <Run Text="Ver." />
+                        <Run Text="{Binding ViewState.Version}" />
+                    </TextBlock>
+                </StackPanel>
+            </Button>
         </mahApps:WindowCommands>
     </mahApps:MetroWindow.LeftWindowCommands>
     <mahApps:MetroWindow.RightWindowCommands>

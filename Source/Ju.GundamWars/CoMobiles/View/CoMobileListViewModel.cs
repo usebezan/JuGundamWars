@@ -19,7 +19,9 @@ internal partial class CoMobileListViewModel : CoMobileListViewModelBase
     {
         this.coMobileViewModel = coMobileViewModel;
 
-        CoMobiles.ItemPropertyChanged.Where(e => e.PropertyName == "IsChecked").Subscribe(WhenIsCheckedChanged).AddTo(Disposables);
+        Items.ItemPropertyChanged.Where(e => e.PropertyName == "IsChecked").Subscribe(WhenIsCheckedChanged).AddTo(Disposables);
+
+        IsIdle = true;
     }
 
 
@@ -31,19 +33,19 @@ internal partial class CoMobileListViewModel : CoMobileListViewModelBase
     private int _FilteredCheckedCount = 0;
 
 
-    private void WhenIsCheckedChanged(PropertyChangedEventArgs _) => SetCount();
-
-    private void SetCount()
-    {
-        CheckedCount = CoMobiles.Where(e => e.IsChecked).Count();
-        FilteredCheckedCount = ItemsView.OfType<CoMobile>().Where(e => e.IsChecked).Count();
-    }
+    private void WhenIsCheckedChanged(PropertyChangedEventArgs e) => SetCount();
 
     protected override void Refresh()
     {
         base.Refresh();
         if (!IsIdle) return;
         SetCount();
+    }
+
+    public void SetCount()
+    {
+        CheckedCount = Items.Where(e => e.IsChecked).Count();
+        FilteredCheckedCount = ItemsView.OfType<CoMobile>().Where(e => e.IsChecked).Count();
     }
 
     [RelayCommand]

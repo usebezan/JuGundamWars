@@ -21,21 +21,19 @@ internal abstract partial class CoMobileListViewModelBase : ModelBase
     {
         IsIdle = false;
 
-        CoMobiles = coMobiles;
+        Items = coMobiles;
         ItemsView = new(coMobiles) { Filter = Filter, };
         Serials = new(serials);
         Tags = new(tags) { Filter = FilterTag, };
 
         ItemsView.SortDescriptions.Add(new("Name", ListSortDirection.Ascending));
         ItemsView.SortDescriptions.Add(new("Id", ListSortDirection.Ascending));
-
-        IsIdle = true;
     }
 
 
     protected bool IsIdle { get; set; }
-    protected CoMobileInventory CoMobiles { get; set; }
 
+    public CoMobileInventory Items { get; set; }
     public ListCollectionView ItemsView { get; }
     public ListCollectionView Serials { get; }
     public ListCollectionView Tags { get; }
