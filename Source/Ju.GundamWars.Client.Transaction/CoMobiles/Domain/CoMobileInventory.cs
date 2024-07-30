@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using Ju.Collections.ObjectModel;
 
 namespace Ju.GundamWars.Client.CoMobiles.Domain;
 
-public class CoMobileInventory : ObservableCollection<CoMobile>
+public class CoMobileInventory : ObservableItemPropertyChangedCollection<CoMobile>
 {
 }

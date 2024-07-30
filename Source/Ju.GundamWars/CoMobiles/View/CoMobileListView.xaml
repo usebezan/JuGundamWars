@@ -12,37 +12,5 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     >
-    <DockPanel>
-        <ToolBarTray DockPanel.Dock="Top">
-            <ToolBar>
-                <Button>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
-                        <TextBlock VerticalAlignment="Center" Text="New" />
-                    </StackPanel>
-                </Button>
-                <Separator Margin="4" />
-                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
-                <ToggleButton Style="{StaticResource GwFilterPinnedToggleButton}" />
-                <ToggleButton Style="{StaticResource GwFilterHasNoMobileToggleButton}" />
-                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
-                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
-                <!--
-                <Button Command="{Binding OpenEntryAsNewForMsCommand}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
-                        <TextBlock VerticalAlignment="Center" Text="New" FontFamily="Yu Gothic UI" FontSize="13" FontWeight="SemiBold" />
-                    </StackPanel>
-                </Button>
-                <Button Command="{Binding ChechAllCommand}" Content="{materialDesign:PackIcon CheckboxMultipleMarked}" ToolTip="Chech all filtered" />
-                <Button Command="{Binding UnchechAllCommand}" Content="{materialDesign:PackIcon CheckboxMultipleBlankOutline}" ToolTip="Unchech all filtered" />
-                <Button Command="{Binding ClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="Clear filter" />
-                <ToggleButton Style="{StaticResource GwFilterCheckedToggleButton}" />
-                <TextBox Style="{StaticResource GwFilterWordTextBox}" />
-                <ComboBox Style="{StaticResource GwFilterCategoryComboBox}" />
-                -->
-            </ToolBar>
-        </ToolBarTray>
-        <coMobiles:CoMobileDataGridView />
-    </DockPanel>
+    <coMobiles:CoMobileDataGridView />
 </UserControl>

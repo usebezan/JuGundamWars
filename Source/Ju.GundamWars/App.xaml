@@ -86,6 +86,12 @@
             </Style>
 
 
+            <Style x:Key="GwTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Height" Value="30" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="materialDesign:ValidationAssist.Background" Value="Transparent" />
+            </Style>
+
             <Style x:Key="GwComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
@@ -113,6 +119,7 @@
                 <Setter Property="IsCancel" Value="True" />
             </Style>
 
+            <!-- #region List -->
 
             <Style x:Key="GwListTextColumn" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
                 <Setter Property="VerticalAlignment" Value="Center" />
@@ -164,8 +171,8 @@
             <Style x:Key="GwListCopyButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignIconForegroundButton}" x:Shared="False">
                 <Setter Property="Width" Value="36" />
                 <Setter Property="Height" Value="36" />
-                <!--<Setter TODO: Property="Command" Value="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />-->
-                <!--<Setter Property="CommandParameter" Value="{Binding}" />-->
+                <Setter Property="Command" Value="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                <Setter Property="CommandParameter" Value="{Binding}" />
                 <Setter Property="ToolTip" Value="Copy" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -174,18 +181,21 @@
                 </Setter>
             </Style>
 
-            <DataTemplate x:Key="GwCoMobileListNameCellTemplate">
-                <Grid VerticalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <ContentControl Grid.Column="0" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListNameTemplate}" />
-                    <ContentControl Grid.Column="1" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListMemoTemplate}" />
-                    <Button Grid.Column="2" Margin="8 0 0 0" Style="{StaticResource GwListCopyButton}" />
-                </Grid>
-            </DataTemplate>
+
+            <!-- #endregion -->
+
+            <!-- #region Filter -->
+
+            <!--<Style x:Key="GwFilterWordTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwTextBox}" x:Shared="False">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Width" Value="120" />
+                <Setter Property="InputMethod.PreferredImeState" Value="On" />
+                <Setter Property="InputMethod.PreferredImeConversionMode" Value="FullShape,Native" />
+                <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+                <Setter Property="materialDesign:HintAssist.Hint" Value="フリー ワード" />
+                <Setter Property="Text" Value="{Binding WordFilter, UpdateSourceTrigger=PropertyChanged}" />
+            </Style>-->
 
 
             <Style x:Key="GwFilterComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwComboBox}">
@@ -194,26 +204,30 @@
                 <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
             </Style>
 
-            <Style x:Key="GwFilterSerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+            <Style x:Key="GwFilterSerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="300" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
                 <Setter Property="ItemsSource" Value="{Binding Serials}" />
-                <!--<Setter Property="SelectedItem" Value="{Binding Serial}" />-->
+                <Setter Property="SelectedItem" Value="{Binding SerialFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Serial}}" />
             </Style>
 
-            <Style x:Key="GwFilterTagComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+            <Style x:Key="GwFilterTagComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="120" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
                 <Setter Property="ItemsSource" Value="{Binding Tags}" />
-                <!--<Setter Property="SelectedItem" Value="{Binding Tag}" />-->
+                <Setter Property="SelectedItem" Value="{Binding TagFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Tag}}" />
             </Style>
 
-            <Style x:Key="GwFilterHasMemoToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" x:Shared="False">
+
+            <Style x:Key="GwFilterToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
                 <Setter Property="Margin" Value="8" />
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <!--<Setter Property="IsChecked" Value="{Binding HasMemo}" />-->
+            </Style>
+
+            <Style x:Key="GwFilterHasMemoToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
+                <Setter Property="IsChecked" Value="{Binding HasMemoFilter}" />
                 <Setter Property="ToolTip" Value="メモあり" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -227,10 +241,23 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="GwFilterPinnedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" x:Shared="False">
-                <Setter Property="Margin" Value="8" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <!--<Setter Property="IsChecked" Value="{Binding IsPinned}" />-->
+            <Style x:Key="GwFilterHasNoMobileToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
+                <Setter Property="IsChecked" Value="{Binding HasNoMobileFilter}" />
+                <Setter Property="ToolTip" Value="機体未設定" />
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Kind="RobotOffOutline" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
+                    <Setter.Value>
+                        <materialDesign:PackIcon Kind="RobotOff" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="GwFilterIsNotPinnedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
+                <Setter Property="IsChecked" Value="{Binding IsNotPinnedFilter}" />
                 <Setter Property="ToolTip" Value="ピン止め" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -244,22 +271,7 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="GwFilterHasNoMobileToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" x:Shared="False">
-                <Setter Property="Margin" Value="8" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <!--<Setter Property="IsChecked" Value="{Binding HasMobile}" />-->
-                <Setter Property="ToolTip" Value="機体未設定" />
-                <Setter Property="Content">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Kind="RobotOffOutline" />
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Kind="RobotOff" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
+            <!-- #endregion -->
 
         </ResourceDictionary>
     </Application.Resources>
