@@ -6,6 +6,7 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Ju.GundamWars"
+    xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     xmlns:coMobiles="clr-namespace:Ju.GundamWars.CoMobiles.View"
     xmlns:systems="clr-namespace:Ju.GundamWars.Systems.View"
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
@@ -62,11 +63,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <materialDesign:DialogHost Grid.Row="0" CloseOnClickAway="False" IsOpen="{Binding ViewState.IsDialogOpen}" DialogContent="{Binding ViewState.DialogContent}">
-            <materialDesign:DialogHost.DialogContentTemplate>
-                <DataTemplate DataType="{x:Type systems:LoadAllProgressViewModel}">
-                    <systems:LoadAllProgressView />
+            <materialDesign:DialogHost.Resources>
+                <DataTemplate DataType="{x:Type commons:ProgressViewModel}">
+                    <commons:ProgressView />
                 </DataTemplate>
-            </materialDesign:DialogHost.DialogContentTemplate>
+            </materialDesign:DialogHost.Resources>
             <DockPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>

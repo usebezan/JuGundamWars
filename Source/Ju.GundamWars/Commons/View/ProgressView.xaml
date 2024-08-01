@@ -1,21 +1,32 @@
-﻿<UserControl x:Class="Ju.GundamWars.Systems.View.LoadAllProgressView"
+﻿<UserControl x:Class="Ju.GundamWars.Commons.View.ProgressView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-    xmlns:systems="clr-namespace:Ju.GundamWars.Systems.View"
+    xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance systems:LoadAllProgressViewModel}"
+    d:DataContext="{d:DesignInstance commons:ProgressViewModel}"
     >
-    <Grid>
-        <StackPanel Margin="32" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid Width="320" Background="#ffA0B596">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="64" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Background="#ff273756">
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" Width="24" Height="24" Foreground="#ffEF9EC7" IsIndeterminate="True" />
+        </Grid>
+        <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#ff273756" Text="Loading..." />
+
+        <!--<StackPanel Margin="32" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <materialDesign:PackIcon VerticalAlignment="Center" Kind="RobotIndustrial" Width="48" Height="48" />
                 <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="16 0 0 0" VerticalAlignment="Bottom" Text="Loading..." />
             </StackPanel>
             <ProgressBar Margin="0 16 0 0" HorizontalAlignment="Center" Width="280" Height="16" IsIndeterminate="{Binding IsIndeterminate}" materialDesign:TransitionAssist.DisableTransitions="True" />
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using Ju.GundamWars.Client;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.CoMobiles.View;
 using Ju.GundamWars.Cuspas.View;
 using Ju.GundamWars.Mobiles.View;
@@ -100,7 +101,8 @@ public partial class App : Application
                     services.AddSingleton<TagListViewModel>();
 
                     services.AddSingleton<ILoadAllClientPresenter, LoadAllPresenter>();
-                    services.AddSingleton<LoadAllProgressViewModel>();
+
+                    services.AddSingleton<ProgressViewModel>();
 
                     services.AddSingleton<Menus>();
                     services.AddSingleton<ViewState>();

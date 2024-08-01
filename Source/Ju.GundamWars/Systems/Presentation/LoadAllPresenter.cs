@@ -12,14 +12,13 @@ using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.Systems.View;
 using System;
 
 namespace Ju.GundamWars.Systems.Presentation;
 
 internal class LoadAllPresenter(
-    ViewState viewState,
-    LoadAllProgressViewModel loadAllProgressViewModel,
     MobileSSkillInventory mobileSSkills,
     PilotAbilityInventory pilotAbilities,
     PilotSkillInventory pilotSkills,
@@ -31,7 +30,9 @@ internal class LoadAllPresenter(
     CuspaInventory cuspas,
     PilotInventory pilots,
     SupportInventory supports,
-    TagInventory tags) : ILoadAllClientPresenter
+    TagInventory tags,
+    ProgressViewModel progressViewModel,
+    ViewState viewState) : ILoadAllClientPresenter
 {
 
     public void Initialize()
@@ -41,14 +42,16 @@ internal class LoadAllPresenter(
     }
     public void ShowProgress()
     {
-        loadAllProgressViewModel.IsIndeterminate = true;
-        viewState.DialogContent = loadAllProgressViewModel;
+        progressViewModel.IsIndeterminate = true;
+        progressViewModel.Message = "Loading...";
+        viewState.DialogContent = progressViewModel;
         viewState.IsDialogOpen = true;
     }
     public void CloseProgress()
     {
         viewState.IsDialogOpen = false;
-        loadAllProgressViewModel.IsIndeterminate = false;
+        progressViewModel.IsIndeterminate = false;
+        progressViewModel.Message = string.Empty;
     }
     public void ValidationError(string _)
     {
