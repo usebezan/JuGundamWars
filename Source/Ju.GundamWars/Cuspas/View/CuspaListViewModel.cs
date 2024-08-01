@@ -1,7 +1,5 @@
-﻿using Ju.GundamWars.Commons.Domain.Model;
+﻿namespace Ju.GundamWars.Cuspas.View;
 
-namespace Ju.GundamWars.Cuspas.View;
-
-internal partial class CuspaListViewModel : ModelBase
+internal partial class CuspaListViewModel : CuspaListViewModelBase
 {
 }

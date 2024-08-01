@@ -6,7 +6,28 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\JuGundamWars.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CoMobiles\Presentation\**" />
+    <Compile Remove="Cuspas\Presentation\**" />
+    <EmbeddedResource Remove="CoMobiles\Presentation\**" />
+    <EmbeddedResource Remove="Cuspas\Presentation\**" />
+    <None Remove="CoMobiles\Presentation\**" />
+    <None Remove="Cuspas\Presentation\**" />
+    <Page Remove="CoMobiles\Presentation\**" />
+    <Page Remove="Cuspas\Presentation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\JuGundamWars.ico" />
+    <None Remove="Resources\SplashScreen.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\JuGundamWars.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="3.1.0" />
@@ -18,12 +39,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CoMobiles\Presentation\" />
-    <Folder Include="Cuspas\Presentation\" />
     <Folder Include="Mobiles\Presentation\" />
     <Folder Include="Pilots\Presentation\" />
     <Folder Include="Supports\Presentation\" />
     <Folder Include="Tags\Presentation\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Resources\SplashScreen.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </SplashScreen>
   </ItemGroup>
 
   <ItemGroup>

@@ -13,15 +13,18 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
     FontFamily="Meiryo UI"
+    ShowIconOnTitleBar="True"
+    Icon="/Ju.GundamWars;component/Resources/JuGundamWars.ico"
     Title="J.U Gundam Wars"
     TitleAlignment="Center"
     Height="600"
     Width="1000"
     BorderThickness="0"
+    ResizeMode="CanResizeWithGrip"
     SaveWindowPosition="True"
-    SnapsToDevicePixels="True"
     WindowTitleBrush="{DynamicResource GwPrimaryBrush}"
     NonActiveWindowTitleBrush="{DynamicResource GwPrimaryBrush}"
+    SnapsToDevicePixels="True"
     >
     <mahApps:MetroWindow.Resources>
         <Style x:Key="GwMenuItemContainer" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">

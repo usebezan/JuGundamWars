@@ -62,7 +62,7 @@ internal abstract partial class CoMobileListViewModelBase : ModelBase
         if (SerialFilter != null && item.Serial?.Id != SerialFilter.Id) return false;
         if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
         if (HasMemoFilter && !item.HasMemo) return false;
-        //if (HasNoMobileFilter && item.Mobile != null) return false;
+        // TODO: if (HasNoMobileFilter && item.Mobile != null) return false;
         if (IsNotPinnedFilter && item.IsPinned) return false;
         return true;
     }
