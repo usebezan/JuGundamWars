@@ -5,7 +5,6 @@ using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Units.Domain;
 using Ju.GundamWars.Commons.Domain;
-using Ju.GundamWars.Share._TODO.Categories.Domain;
 using Ju.GundamWars.Share.Boosts.Domain;
 using Ju.GundamWars.Share.CuspaKinds.Domain;
 using Ju.GundamWars.Share.Tags.Domain;

@@ -22,7 +22,7 @@ public static class GwText
     public static readonly string Battleship = "戦艦";
 
     // ユニット（複合）
-    public static readonly string Mobile = "MS/MA";
+    public static readonly string Mobile = "機体";
 
     // カスタム
     public static readonly string Pilot = "パイロット";

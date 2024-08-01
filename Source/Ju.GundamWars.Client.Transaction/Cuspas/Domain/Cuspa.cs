@@ -57,7 +57,7 @@ public partial class Cuspa : BizBase, ICuspa<CuspaStatus>
 
     public string ForUnitIcon => ForUnitType.ToIcon();
     public string ForUnitText => ForUnitType.ToText();
-    public string Name => $"{BoostStatusType.ToText()}{CuspaKindType.ToSurffix()} {BasicStatus.ToText()}/{BonusStatus.ToText()}";
+    public string Name => $"{BoostStatusType.ToText()}{CuspaKindType.ToSurffix()} {BasicValue}/{BonusStatus.ToText()}";
 
     public CuspaStatus ActualStatus { get; }
 

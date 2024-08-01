@@ -3,7 +3,6 @@ using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.Domain;
-using Ju.GundamWars.Share._TODO.Categories.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
 using System.Windows.Data;
 
