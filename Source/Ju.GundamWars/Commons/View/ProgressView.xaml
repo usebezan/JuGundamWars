@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance commons:ProgressViewModel}"
     >
-    <Grid Width="320" Background="#ffA0B596">
+    <Grid Width="320" Background="#ff6A715A">
         <Grid.RowDefinitions>
             <RowDefinition Height="64" />
             <RowDefinition Height="32" />
@@ -19,7 +19,7 @@
         <Grid Grid.Row="1" Background="#ff273756">
             <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" Width="24" Height="24" Foreground="#ffEF9EC7" IsIndeterminate="True" />
         </Grid>
-        <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#ff273756" Text="Loading..." />
+        <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading..." />
 
         <!--<StackPanel Margin="32" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">

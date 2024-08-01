@@ -14,7 +14,7 @@
     >
     <Grid>
         <Grid Height="50" VerticalAlignment="Top" Background="{DynamicResource GwPrimaryBrush}" />
-        <materialDesign:Transitioner SelectedIndex="{Binding PageIndex}">
+        <materialDesign:Transitioner SelectedIndex="{Binding ViewState.PageIndex}">
             <!-- List -->
             <materialDesign:TransitionerSlide>
                 <materialDesign:TransitionerSlide.ForwardWipe>

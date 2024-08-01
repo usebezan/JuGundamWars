@@ -54,7 +54,7 @@
             </Style>
 
             <Style TargetType="{x:Type ToolBarTray}" BasedOn="{StaticResource MaterialDesignToolBarTray}">
-                <Setter Property="Background" Value="Transparent" />
+                <!--<Setter Property="Background" Value="Transparent" />-->
                 <Setter Property="IsLocked" Value="True" />
             </Style>
 
@@ -66,7 +66,7 @@
                     </Style>
                 </Style.Resources>
                 <Setter Property="Height" Value="50" />
-                <Setter Property="Background" Value="Transparent" />
+                <!--<Setter Property="Background" Value="Transparent" />-->
                 <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
             </Style>
 
@@ -82,7 +82,7 @@
                 <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
                 <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
                 <Setter Property="EnableRowVirtualization" Value="True" />
-                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
+                <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />-->
             </Style>
 
 
@@ -207,16 +207,16 @@
             <Style x:Key="GwFilterSerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="300" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding Serials}" />
-                <Setter Property="SelectedItem" Value="{Binding SerialFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding List.Serials}" />
+                <Setter Property="SelectedItem" Value="{Binding List.SerialFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Serial}}" />
             </Style>
 
             <Style x:Key="GwFilterTagComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="120" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding Tags}" />
-                <Setter Property="SelectedItem" Value="{Binding TagFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding List.Tags}" />
+                <Setter Property="SelectedItem" Value="{Binding List.TagFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Tag}}" />
             </Style>
 
@@ -227,7 +227,7 @@
             </Style>
 
             <Style x:Key="GwFilterHasMemoToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding HasMemoFilter}" />
+                <Setter Property="IsChecked" Value="{Binding List.HasMemoFilter}" />
                 <Setter Property="ToolTip" Value="メモあり" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -242,7 +242,7 @@
             </Style>
 
             <Style x:Key="GwFilterHasNoMobileToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding HasNoMobileFilter}" />
+                <Setter Property="IsChecked" Value="{Binding List.HasNoMobileFilter}" />
                 <Setter Property="ToolTip" Value="機体未設定" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -257,7 +257,7 @@
             </Style>
 
             <Style x:Key="GwFilterIsNotPinnedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding IsNotPinnedFilter}" />
+                <Setter Property="IsChecked" Value="{Binding List.IsNotPinnedFilter}" />
                 <Setter Property="ToolTip" Value="ピン止め" />
                 <Setter Property="Content">
                     <Setter.Value>

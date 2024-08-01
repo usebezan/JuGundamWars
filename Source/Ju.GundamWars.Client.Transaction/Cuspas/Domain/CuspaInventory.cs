@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using Ju.Collections.ObjectModel;
 
 namespace Ju.GundamWars.Client.Cuspas.Domain;
 
-public class CuspaInventory : ObservableCollection<Cuspa>
+public class CuspaInventory : ObservableItemPropertyChangedCollection<Cuspa>
 {
 }

@@ -33,16 +33,16 @@
         <StatusBar DockPanel.Dock="Bottom" Margin="2 0 0 2" Height="24" Padding="4 0" Background="Transparent">
             <StatusBarItem >
                 <TextBlock Margin="0" VerticalAlignment="Center">
-                    <Run Text="{Binding ItemsView.Count, Mode=OneWay}"/>
+                    <Run Text="{Binding List.ItemsView.Count, Mode=OneWay}"/>
                     <Run Text="items" />
                     <Run Text="/" />
-                    <Run Text="{Binding FilteredCheckedCount, Mode=OneWay}"/>
+                    <Run Text="{Binding List.FilteredCheckedCount, Mode=OneWay}"/>
                     <Run Text="checked" />
                     <Run Text="(" />
-                    <Run Text="{Binding Items.Count, Mode=OneWay}"/>
+                    <Run Text="{Binding List.Items.Count, Mode=OneWay}"/>
                     <Run Text="items" />
                     <Run Text="/" />
-                    <Run Text="{Binding CheckedCount, Mode=OneWay}"/>
+                    <Run Text="{Binding List.CheckedCount, Mode=OneWay}"/>
                     <Run Text="checked" />
                     <Run Text=")" />
                 </TextBlock>

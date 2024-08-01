@@ -2,6 +2,7 @@
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.View;
+using Ju.GundamWars.CoMobiles.Domain;
 using Ju.GundamWars.CoMobiles.View;
 using Ju.GundamWars.Cuspas.View;
 using Ju.GundamWars.Mobiles.View;
@@ -89,7 +90,10 @@ public partial class App : Application
                         options.UseSqlite($@"Filename={systemOption.TxnDbFilePath}");
                     });
 
-
+                    // Domain
+                    services.AddSingleton<CoMobileList>();
+                    services.AddSingleton<CoMobileViewState>();
+                    // View
                     services.AddSingleton<CoMobileEntryViewModel>();
                     services.AddSingleton<CoMobileListViewModel>();
                     services.AddSingleton<CoMobileViewModel>();

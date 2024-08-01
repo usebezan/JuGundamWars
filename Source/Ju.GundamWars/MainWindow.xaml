@@ -13,9 +13,6 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
     FontFamily="Meiryo UI"
-    ShowIconOnTitleBar="True"
-    Icon="/Ju.GundamWars;component/Resources/JuGundamWars.ico"
-    Title="J.U Gundam Wars"
     TitleAlignment="Center"
     Height="600"
     Width="1000"
@@ -26,6 +23,14 @@
     NonActiveWindowTitleBrush="{DynamicResource GwPrimaryBrush}"
     SnapsToDevicePixels="True"
     >
+    <mahApps:MetroWindow.TitleTemplate>
+        <DataTemplate>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <Image Margin="0 0 4 0" VerticalAlignment="Center" Width="24" Height="24" Source="/Ju.GundamWars;component/Resources/JuGundamWars.ico" />
+                <TextBlock VerticalAlignment="Center" FontSize="{DynamicResource MahApps.Font.Size.Window.Title}" Text="J.U GUNDAM WARS" />
+            </StackPanel>
+        </DataTemplate>
+    </mahApps:MetroWindow.TitleTemplate>
     <mahApps:MetroWindow.Resources>
         <Style x:Key="GwMenuItemContainer" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
             <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding Icon}" />

@@ -1,12 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Commons.Domain.Model;
+﻿using Ju.GundamWars.Commons.Domain.Model;
+using Ju.GundamWars.CoMobiles.Domain;
 
 namespace Ju.GundamWars.CoMobiles.View;
 
-internal partial class CoMobileViewModel : ModelBase
+internal partial class CoMobileViewModel(CoMobileViewState viewState) : ModelBase
 {
 
-    [ObservableProperty]
-    private int _PageIndex = 0;
+    public CoMobileViewState ViewState { get; } = viewState;
 
 }
