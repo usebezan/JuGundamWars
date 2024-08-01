@@ -46,15 +46,9 @@
     </i:Interaction.Triggers>
     <mahApps:MetroWindow.LeftWindowCommands>
         <mahApps:WindowCommands ShowSeparators="False">
-            <Button Command="{Binding ReloadCommand}" ToolTip="最新の情報に更新">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Refresh" />
-                    <TextBlock Margin="4 0 0 0">
-                        <Run Text="Ver." />
-                        <Run Text="{Binding ViewState.Version}" />
-                    </TextBlock>
-                </StackPanel>
-            </Button>
+            <Button Command="{Binding ReloadCommand}" Content="{materialDesign:PackIcon Kind=Refresh}" ToolTip="最新の情報に更新" />
+            <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{Binding ViewState.VersionText}" />
+            <materialDesign:PackIcon VerticalAlignment="Center" Kind="AlertBox" Foreground="{DynamicResource SecondaryHueMidBrush}" ToolTip="{Binding ViewState.VersionMessage}" Visibility="{Binding ViewState.HasVersionMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </mahApps:WindowCommands>
     </mahApps:MetroWindow.LeftWindowCommands>
     <mahApps:MetroWindow.RightWindowCommands>

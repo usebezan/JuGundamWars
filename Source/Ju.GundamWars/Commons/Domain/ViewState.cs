@@ -20,8 +20,12 @@ internal partial class ViewState : ModelBase
     [ObservableProperty]
     private object? _DialogContent;
 
-    [ObservableProperty]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(VersionText))]
     private string _Version = string.Empty;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasVersionMessage))]
+    private string _VersionMessage = string.Empty;
+    public string VersionText => string.IsNullOrEmpty(Version) ? string.Empty : $"Ver.{Version}";
+    public bool HasVersionMessage => !string.IsNullOrEmpty(VersionMessage);
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(SlideIndex))]
     private SlideIndexType _SlideIndexType = SlideIndexType.Main;

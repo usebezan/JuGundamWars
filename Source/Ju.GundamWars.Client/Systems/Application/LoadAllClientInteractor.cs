@@ -1,29 +1,49 @@
 ﻿using Ju.GundamWars.Client.Systems.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Systems.UseCase.InputPort;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
+using Ju.GundamWars.Commons.Domain;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Ju.GundamWars.Client.Systems.Application;
 
-internal class LoadAllClientInteractor(SystemWebClient gateway, ILoadAllClientPresenter presenter, ILogger<LoadAllClientInteractor> logger) : IGw, ILoadAllClientUseCase
+internal class LoadAllClientInteractor(
+    SystemWebClient gateway,
+    ILoadAllClientPresenter presenter,
+    IOptions<SystemOption> systemOptions,
+    IOptions<MasterUpdateOption> masterUpdateOptions,
+    ILogger<LoadAllClientInteractor> logger) : IGw, ILoadAllClientUseCase
 {
+    private readonly SystemOption systemOption = systemOptions.Value;
+    private readonly MasterUpdateOption masterUpdateOption = masterUpdateOptions.Value;
     public Task HandleAsync() =>
         this.Execute(logger, async () =>
         {
+            presenter.Initialize();
             presenter.ShowProgress();
             try
             {
-                //// TODO: message etc...
-                //var remoteVersion = await gateway.GetRemoteVersionAsync("https://raw.githubusercontent.com/usebezan/JuGundamWarsData/main/MasterData.ver");
-                //var localVersion = await gateway.GetLocalVersionAsync();
-                //if (remoteVersion != localVersion)
-                //{
-                //    var masterDbFilePath = $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "."}\Data\JuGundamWarsMaster.db";
-                //    await gateway.TryDownloadFileAsync("https://raw.githubusercontent.com/usebezan/JuGundamWarsData/main/MasterData.db", masterDbFilePath);
-                //}
-                //presenter.CompleteVersioning(remoteVersion);
                 var localVersion = await gateway.GetLocalVersionAsync();
-                presenter.CompleteVersioning(localVersion);
+                var remoteVersion = await gateway.GetRemoteVersionAsync(masterUpdateOption.MasterDbVersionUri);
+                if (string.IsNullOrEmpty(remoteVersion))
+                {
+                    presenter.AbortVersioning(localVersion, "最新バージョンの取得に失敗しました。");
+                }
+                else
+                {
+                    if (remoteVersion != localVersion)
+                    {
+                        var isSuccessed = await gateway.TryDownloadFileAsync(masterUpdateOption.MasterDbFileUri, systemOption.MasterDbFilePath);
+                        if (isSuccessed)
+                        {
+                            presenter.CompleteVersioning(remoteVersion);
+                        }
+                        else
+                        {
+                            presenter.AbortVersioning(localVersion, "最新データの取得に失敗しました。");
+                        }
+                    }
+                }
 
                 var serials = await gateway.SelectAllSerialsAsync();
                 presenter.CompleteSerial(serials);

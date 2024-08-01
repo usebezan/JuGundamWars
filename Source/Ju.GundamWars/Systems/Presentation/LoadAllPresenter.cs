@@ -13,6 +13,7 @@ using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Systems.View;
+using System;
 
 namespace Ju.GundamWars.Systems.Presentation;
 
@@ -35,7 +36,8 @@ internal class LoadAllPresenter(
 
     public void Initialize()
     {
-        // Do nothing.
+        viewState.Version = string.Empty;
+        viewState.VersionMessage = string.Empty;
     }
     public void ShowProgress()
     {
@@ -78,9 +80,15 @@ internal class LoadAllPresenter(
     public void CompleteSupportSlot(List<SupportSlot> output) =>
         supportSlots.ReAddRange(output);
 
-    public void CompleteVersioning(string output)
+    public void AbortVersioning(string version, string message)
     {
-        viewState.Version = output;
+        viewState.Version = version;
+        viewState.VersionMessage = message;
+    }
+    public void CompleteVersioning(string version)
+    {
+        viewState.Version = version;
+        viewState.VersionMessage = string.Empty;
     }
 
     #endregion

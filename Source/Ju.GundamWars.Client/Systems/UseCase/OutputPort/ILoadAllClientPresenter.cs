@@ -24,7 +24,8 @@ public interface ILoadAllClientPresenter : IPresenter, IProgressivePresenter
     void CompleteSupportBadge(List<SupportBadge> output);
     void CompleteSupportSlot(List<SupportSlot> output);
 
-    void CompleteVersioning(string output);
+    void AbortVersioning(string version, string message);
+    void CompleteVersioning(string version);
 
     void CompleteTag(List<Tag> output);
 
