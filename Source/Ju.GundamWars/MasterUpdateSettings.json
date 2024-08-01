@@ -1,0 +1,6 @@
+{
+  "MasterUpdate": {
+    "MasterDbVersionUri": "https://raw.githubusercontent.com/usebezan/JuGundamWarsData/feature/refactoring/MasterData.ver",
+    "MasterDbFileUri": "https://github.com/usebezan/JuGundamWarsData/raw/feature/refactoring/MasterData.db"
+  }
+}

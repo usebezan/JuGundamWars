@@ -4,6 +4,8 @@ using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 using Ju.GundamWars.CoMobiles.View;
 using Ju.GundamWars.Systems.Domain;
+using Microsoft.Extensions.Options;
+using System.Diagnostics;
 
 namespace Ju.GundamWars;
 
@@ -11,7 +13,8 @@ internal partial class MainViewModel(
     ILoadAllClientUseCase loadAllClientUseCase,
     CoMobileListViewModel coMobileListViewModel,
     Menus menus,
-    ViewState viewState) : ModelBase
+    ViewState viewState,
+    IOptions<SystemOption> systemOptions) : ModelBase
 {
 
     public Menus Menus { get; } = menus;
@@ -34,9 +37,10 @@ internal partial class MainViewModel(
     }
 
     [RelayCommand]
-    private void VisitGitHub()
-    {
-
-    }
+    private Task VisitGitHubAsync() =>
+        Task.Run(() =>
+        {
+            using var _ = Process.Start(new ProcessStartInfo() { FileName = systemOptions.Value.GitHubUri, UseShellExecute = true, });
+        });
 
 }

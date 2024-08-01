@@ -6,14 +6,19 @@ using Ju.GundamWars.Cuspas.View;
 using Ju.GundamWars.Mobiles.View;
 using Ju.GundamWars.Pilots.View;
 using Ju.GundamWars.Server;
+using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
 using Ju.GundamWars.Supports.View;
 using Ju.GundamWars.Systems.Domain;
 using Ju.GundamWars.Systems.Presentation;
 using Ju.GundamWars.Systems.View;
 using Ju.GundamWars.Tags.View;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 
 namespace Ju.GundamWars;
@@ -39,10 +44,11 @@ public partial class App : Application
         try
         {
             Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
-                //.ConfigureAppConfiguration((context, builder) =>
-                //{
-                //    builder.AddJsonFile("appsettings.json", true, true);
-                //})
+                .ConfigureAppConfiguration((context, builder) =>
+                {
+                    builder.AddJsonFile("SystemSettings.json", false, true);
+                    builder.AddJsonFile("MasterUpdateSettings.json", false, true);
+                })
                 //.ConfigureLogging((context, builder) =>
                 //{
                 //    builder.ClearProviders();
@@ -52,6 +58,37 @@ public partial class App : Application
                 .ConfigureServer()
                 .ConfigureServices((context, services) =>
                 {
+                    services.Configure<SystemOption>(context.Configuration.GetSection("System"))
+                        .PostConfigure<SystemOption>(c =>
+                        {
+                            c.ExecutingLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".";
+                        });
+                    services.Configure<MasterUpdateOption>(context.Configuration.GetSection("MasterUpdate"));
+
+                    // add DbContext
+                    services.AddDbContextFactory<GwMasterDbContext>((provider, options) =>
+                    {
+#if DEBUG
+                        options.EnableSensitiveDataLogging();
+#endif
+                        var systemOption = provider.GetRequiredService<IOptions<SystemOption>>().Value;
+                        // アップデートでファイルを上書きできるように Pooling を False にする
+                        options.UseSqlite($@"Filename={systemOption.MasterDbFilePath};Pooling=False");
+                    });
+                    services.AddDbContextFactory<GwTxnDbContext>((provider, options) =>
+                    {
+#if DEBUG
+                        options.EnableSensitiveDataLogging();
+#endif
+                        var systemOption = provider.GetRequiredService<IOptions<SystemOption>>().Value;
+                        if (!File.Exists(systemOption.TxnDbFilePath))
+                        {
+                            File.Copy(systemOption.TxnBaseDbFilePath, systemOption.TxnDbFilePath);
+                        }
+                        options.UseSqlite($@"Filename={systemOption.TxnDbFilePath}");
+                    });
+
+
                     services.AddSingleton<CoMobileEntryViewModel>();
                     services.AddSingleton<CoMobileListViewModel>();
                     services.AddSingleton<CoMobileViewModel>();

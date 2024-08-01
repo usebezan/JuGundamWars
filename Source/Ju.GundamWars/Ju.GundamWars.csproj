@@ -26,4 +26,13 @@
     <Folder Include="Tags\Presentation\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="MasterUpdateSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SystemSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

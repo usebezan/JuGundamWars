@@ -1,9 +1,7 @@
 ﻿namespace Ju.GundamWars.Commons.Domain;
 
-public class SystemOption
+public class MasterUpdateOption
 {
-    public string GitHubUri { get; set; } = string.Empty;
     public string MasterDbVersionUri { get; set; } = string.Empty;
     public string MasterDbFileUri { get; set; } = string.Empty;
-    public string MasterDbFilePath { get; set; } = string.Empty;
 }

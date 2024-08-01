@@ -142,6 +142,6 @@
                 </Grid>
             </DockPanel>
         </materialDesign:DialogHost>
-        <materialDesign:Snackbar Grid.Row="0" Margin="16" HorizontalAlignment="Right" MessageQueue="{Binding ViewState.SnackbarMessageQueue}" />
+        <materialDesign:Snackbar Grid.Row="0" Margin="16 0 16 16" HorizontalAlignment="Stretch" MessageQueue="{Binding ViewState.SnackbarMessageQueue}" />
     </Grid>
 </mahApps:MetroWindow>

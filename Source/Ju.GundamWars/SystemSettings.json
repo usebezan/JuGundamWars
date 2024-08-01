@@ -1,0 +1,8 @@
+{
+  "System": {
+    "GitHubUri": "https://github.com/usebezan/JuGundamWars",
+    "MasterDbFileRelativePath": "\\Data\\JuGundamWarsMaster.db",
+    "TxnBaseDbFileRelativePath": "\\Data\\JuGundamWars.base.db",
+    "TxnDbFileRelativePath": "\\Data\\JuGundamWars.d"
+  }
+}

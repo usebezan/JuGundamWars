@@ -28,33 +28,6 @@ public static class ServerHosting
             .ConfigureTransactionServer()
             .ConfigureServices((context, services) =>
             {
-                var exeDirectoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".";
-                var masterDbFilePath = $@"{exeDirectoryPath}\Data\JuGundamWarsMaster.db";
-                var baseDbFilePath = $@"{exeDirectoryPath}\Data\JuGundamWars.base.db";
-                var dbFilePath = $@"{exeDirectoryPath}\Data\JuGundamWars.db";
-
-                if (!File.Exists(dbFilePath))
-                {
-                    File.Copy(baseDbFilePath, dbFilePath);
-                }
-
-                // add DbContext
-                services.AddDbContextFactory<GwMasterDbContext>(options =>
-                {
-#if DEBUG
-                    options.EnableSensitiveDataLogging();
-#endif
-                    // アップデートでファイルを上書きできるように Pooling を False にする
-                    options.UseSqlite($@"Filename={masterDbFilePath};Pooling=False");
-                });
-                services.AddDbContextFactory<GwTxnDbContext>(options =>
-                {
-#if DEBUG
-                    options.EnableSensitiveDataLogging();
-#endif
-                    options.UseSqlite($@"Filename={dbFilePath}");
-                });
-
                 // Commons
                 services
                     // Application
