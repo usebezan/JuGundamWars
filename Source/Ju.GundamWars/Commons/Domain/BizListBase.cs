@@ -10,11 +10,11 @@ using System.Windows.Data;
 
 namespace Ju.GundamWars.Commons.Domain;
 
-internal abstract partial class BizListBase<T> : ModelBase, IBizList
-    where T : BizBase
+internal abstract partial class BizListBase<TBiz> : ModelBase, IBizList<TBiz>
+    where TBiz : BizBase
 {
 
-    public BizListBase(ObservableItemPropertyChangedCollection<T> items, TagInventory tags)
+    public BizListBase(ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tags)
     {
         IsIdle = false;
 
@@ -31,7 +31,7 @@ internal abstract partial class BizListBase<T> : ModelBase, IBizList
 
     protected bool IsIdle { get; set; }
 
-    public ObservableItemPropertyChangedCollection<T> Items { get; }
+    public ObservableItemPropertyChangedCollection<TBiz> Items { get; }
     public ListCollectionView ItemsView { get; }
     public ListCollectionView Tags { get; }
     public bool IsCountable { get; set; }

@@ -8,11 +8,12 @@
     xmlns:local="clr-namespace:Ju.GundamWars"
     xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     xmlns:coMobiles="clr-namespace:Ju.GundamWars.CoMobiles.View"
+    xmlns:cuspas="clr-namespace:Ju.GundamWars.Cuspas.View"
     xmlns:systems="clr-namespace:Ju.GundamWars.Systems.View"
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
-    FontFamily="Meiryo UI"
+    FontFamily="Yu Gothic UI"
     TitleAlignment="Center"
     Height="600"
     Width="1000"
@@ -131,6 +132,7 @@
                             <materialDesign:TransitionerSlide.BackwardWipe>
                                 <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.BackwardWipe>
+                            <cuspas:CuspaView />
                         </materialDesign:TransitionerSlide>
                         <!-- Tag -->
                         <materialDesign:TransitionerSlide>

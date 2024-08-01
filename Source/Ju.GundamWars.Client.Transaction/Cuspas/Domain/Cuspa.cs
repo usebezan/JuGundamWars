@@ -28,7 +28,7 @@ public partial class Cuspa : BizBase, ICuspa<CuspaStatus>
 
     #region Primitives
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(ForUnitIcon))]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(ForUnitIcon)), NotifyPropertyChangedFor(nameof(ForUnitText))]
     private UnitType _ForUnitType = UnitType.MobileSuit;
     [ObservableProperty]
     private CuspaKindType _CuspaKindType;
@@ -56,7 +56,8 @@ public partial class Cuspa : BizBase, ICuspa<CuspaStatus>
     #region Extensions
 
     public string ForUnitIcon => ForUnitType.ToIcon();
-    public string Name => $"{BoostStatus?.Type.ToString()}{CuspaKind?.Type.ToSurffix()} {BasicStatus.ToText()}/{BonusStatus.ToText()}";
+    public string ForUnitText => ForUnitType.ToText();
+    public string Name => $"{BoostStatusType.ToText()}{CuspaKindType.ToSurffix()} {BasicStatus.ToText()}/{BonusStatus.ToText()}";
 
     public CuspaStatus ActualStatus { get; }
 

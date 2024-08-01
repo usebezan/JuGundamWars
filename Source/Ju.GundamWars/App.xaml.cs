@@ -4,6 +4,7 @@ using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.CoMobiles.Domain;
 using Ju.GundamWars.CoMobiles.View;
+using Ju.GundamWars.Cuspas.Domain;
 using Ju.GundamWars.Cuspas.View;
 using Ju.GundamWars.Mobiles.View;
 using Ju.GundamWars.Pilots.View;
@@ -98,7 +99,14 @@ public partial class App : Application
                     services.AddSingleton<CoMobileListViewModel>();
                     services.AddSingleton<CoMobileViewModel>();
 
+                    // Domain
+                    services.AddSingleton<CuspaList>();
+                    services.AddSingleton<CuspaViewState>();
+                    // View
+                    services.AddSingleton<CuspaEntryViewModel>();
                     services.AddSingleton<CuspaListViewModel>();
+                    services.AddSingleton<CuspaViewModel>();
+
                     services.AddSingleton<MobileListViewModel>();
                     services.AddSingleton<PilotListViewModel>();
                     services.AddSingleton<SupportListViewModel>();

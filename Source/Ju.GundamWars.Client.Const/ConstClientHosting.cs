@@ -6,6 +6,7 @@ using Ju.GundamWars.Client.MobileKinds.Domain;
 using Ju.GundamWars.Client.Positions.Domain;
 using Ju.GundamWars.Client.Roles.Domain;
 using Ju.GundamWars.Client.Terrains.Domain;
+using Ju.GundamWars.Client.Units.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -56,6 +57,11 @@ public static class ConstClientHosting
                 services
                     // Domain
                     .AddSingleton<TerrainInventory>()
+                ;
+                // Units
+                services
+                    // Domain
+                    .AddSingleton<UnitInventory>()
                 ;
             });
 }

@@ -1,12 +1,92 @@
 ﻿<UserControl x:Class="Ju.GundamWars.Cuspas.View.CuspaDataGridView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Ju.GundamWars.Cuspas.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
+    xmlns:cuspas="clr-namespace:Ju.GundamWars.Cuspas.View"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance cuspas:CuspaListViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    >
+    <UserControl.Resources>
+        <DataTemplate x:Key="GwCuspaListNameCellTemplate">
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwListForUnitTemplate}" />
+                <ContentControl Grid.Column="1" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListName2Template}" />
+                <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListMemoTemplate}" />
+                <Button Grid.Column="3" Margin="8 0 0 0" Style="{StaticResource GwListCopyButton}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <DataGrid ItemsSource="{Binding List.ItemsView}" FrozenColumnCount="1">
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Header="Name"
+                CellTemplate="{StaticResource GwCuspaListNameCellTemplate}"
+                SortMemberPath="Name"
+                SortDirection="Ascending"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Hp}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamAttack}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalAttack}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamDefence}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalDefence}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalRate}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.CriticalRate, StringFormat={}{0:N0}%}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalDamage}}"
+                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}}"
+                />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Accuracy}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Evasion}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Mobility}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.EnRecovery}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding ActualStatus.EnRecovery, StringFormat={}{0:N0}}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Level}}"
+                ElementStyle="{StaticResource GwListRightTextColumn}"
+                Binding="{Binding Level}"
+            />
+            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Tag}}"
+                ElementStyle="{StaticResource GwListTextColumn}"
+                Binding="{Binding TagsText}"
+            />
+        </DataGrid.Columns>
+    </DataGrid>
 </UserControl>

@@ -44,7 +44,7 @@ internal partial class CoMobileList : BizListBase<CoMobile>
     protected override bool FilterItem(object obj)
     {
         if (obj is not CoMobile item) return false;
-        if (SerialFilter != null && item.Serial?.Id != SerialFilter.Id) return false;
+        if (SerialFilter != null && item.SerialId != SerialFilter.Id) return false;
         if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
         if (HasMemoFilter && !item.HasMemo) return false;
         // TODO: if (HasNoMobileFilter && item.Mobile != null) return false;

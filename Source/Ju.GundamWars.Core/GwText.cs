@@ -9,6 +9,7 @@ public static class GwText
     public readonly static string Serial = "シリーズ";
     public readonly static string Role = "役割";
     public readonly static string Level = "レベル";
+    public readonly static string ForUnit = "For";
 
 
     public readonly static string Startup = "スタートアップ";

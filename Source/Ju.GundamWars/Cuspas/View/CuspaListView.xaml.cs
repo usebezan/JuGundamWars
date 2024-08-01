@@ -1,28 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
-namespace Ju.GundamWars.Cuspas.View
+namespace Ju.GundamWars.Cuspas.View;
+
+/// <summary>
+/// CuspaListView.xaml の相互作用ロジック
+/// </summary>
+public partial class CuspaListView : UserControl
 {
-    /// <summary>
-    /// CuspaListView.xaml の相互作用ロジック
-    /// </summary>
-    public partial class CuspaListView : UserControl
+    public CuspaListView()
     {
-        public CuspaListView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        DataContext = App.GetRequiredService<CuspaListViewModel>();
     }
 }

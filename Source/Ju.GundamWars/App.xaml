@@ -42,6 +42,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <SolidColorBrush x:Key="MaterialDesign.Brush.ToolBar.Background" Color="{DynamicResource GwPrimaryColor}" />
 
             <!-- Converter -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -54,7 +55,6 @@
             </Style>
 
             <Style TargetType="{x:Type ToolBarTray}" BasedOn="{StaticResource MaterialDesignToolBarTray}">
-                <!--<Setter Property="Background" Value="Transparent" />-->
                 <Setter Property="IsLocked" Value="True" />
             </Style>
 
@@ -66,7 +66,6 @@
                     </Style>
                 </Style.Resources>
                 <Setter Property="Height" Value="50" />
-                <!--<Setter Property="Background" Value="Transparent" />-->
                 <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
             </Style>
 
@@ -82,7 +81,7 @@
                 <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
                 <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
                 <Setter Property="EnableRowVirtualization" Value="True" />
-                <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />-->
+                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
             </Style>
 
 
@@ -141,6 +140,13 @@
                 <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Id}" />
             </DataTemplate>
 
+            <DataTemplate x:Key="GwListForUnitTemplate">
+                <StackPanel>
+                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="{Binding ForUnitIcon}" />
+                    <TextBlock HorizontalAlignment="Center" Text="{Binding ForUnitText}" FontSize="10" />
+                </StackPanel>
+            </DataTemplate>
+
             <DataTemplate x:Key="GwListNameTemplate">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center">
@@ -155,6 +161,14 @@
                         <Setter TargetName="pin" Property="Visibility" Value="Visible" />
                     </DataTrigger>
                 </DataTemplate.Triggers>
+            </DataTemplate>
+
+            <DataTemplate x:Key="GwListName2Template">
+                <TextBlock VerticalAlignment="Center">
+                    <Hyperlink Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                        <TextBlock Text="{Binding Name}" />
+                    </Hyperlink>
+                </TextBlock>
             </DataTemplate>
 
             <DataTemplate x:Key="GwListMemoTemplate">
@@ -213,11 +227,35 @@
             </Style>
 
             <Style x:Key="GwFilterTagComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
-                <Setter Property="Width" Value="120" />
+                <Setter Property="Width" Value="144" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
                 <Setter Property="ItemsSource" Value="{Binding List.Tags}" />
                 <Setter Property="SelectedItem" Value="{Binding List.TagFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Tag}}" />
+            </Style>
+
+            <Style x:Key="GwFilterForUnitComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
+                <Setter Property="Width" Value="80" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.ForUnits}" />
+                <Setter Property="SelectedItem" Value="{Binding List.ForUnitFilter}" />
+                <!--<Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.ForUnit}}" />-->
+            </Style>
+
+            <Style x:Key="GwFilterCuspaKindComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
+                <Setter Property="Width" Value="96" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.CuspaKinds}" />
+                <Setter Property="SelectedItem" Value="{Binding List.CuspaKindFilter}" />
+                <!--<Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.CuspaKind}}" />-->
+            </Style>
+
+            <Style x:Key="GwFilterBoostStatusComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
+                <Setter Property="Width" Value="144" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.BoostStatuses}" />
+                <Setter Property="SelectedItem" Value="{Binding List.BoostStatusFilter}" />
+                <!--<Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.BoostStatus}}" />-->
             </Style>
 
 

@@ -21,7 +21,7 @@ internal class LoadAllClientInteractor(
         {
             presenter.Initialize();
             presenter.ShowProgress();
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
             try
             {
                 var localVersion = await gateway.GetLocalVersionAsync();

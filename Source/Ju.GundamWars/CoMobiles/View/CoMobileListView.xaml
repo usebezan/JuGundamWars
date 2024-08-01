@@ -6,6 +6,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
+    xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     xmlns:coMobiles="clr-namespace:Ju.GundamWars.CoMobiles.View"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance coMobiles:CoMobileListViewModel}"
@@ -30,24 +31,7 @@
                 <ToggleButton Style="{StaticResource GwFilterIsNotPinnedToggleButton}" />
             </ToolBar>
         </ToolBarTray>
-        <StatusBar DockPanel.Dock="Bottom" Margin="2 0 0 2" Height="24" Padding="4 0" Background="Transparent">
-            <StatusBarItem >
-                <TextBlock Margin="0" VerticalAlignment="Center">
-                    <Run Text="{Binding List.ItemsView.Count, Mode=OneWay}"/>
-                    <Run Text="items" />
-                    <Run Text="/" />
-                    <Run Text="{Binding List.FilteredCheckedCount, Mode=OneWay}"/>
-                    <Run Text="checked" />
-                    <Run Text="(" />
-                    <Run Text="{Binding List.Items.Count, Mode=OneWay}"/>
-                    <Run Text="items" />
-                    <Run Text="/" />
-                    <Run Text="{Binding List.CheckedCount, Mode=OneWay}"/>
-                    <Run Text="checked" />
-                    <Run Text=")" />
-                </TextBlock>
-            </StatusBarItem>
-        </StatusBar>
+        <commons:StatusBarView DockPanel.Dock="Bottom" />
         <coMobiles:CoMobileDataGridView />
     </DockPanel>
 </UserControl>

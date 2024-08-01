@@ -1,18 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.Commons.Domain;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 
-namespace Ju.GundamWars.CoMobiles.View;
+namespace Ju.GundamWars.Commons.View;
 
-internal abstract partial class ListViewModelBase<TBizList, TViewState>(TBizList list, TViewState viewState) : ModelBase
-    where TBizList : IBizList
+internal abstract partial class ListViewModelBase<TBiz, TBizList, TViewState>(TBizList list, TViewState viewState) : ModelBase
+    where TBiz : BizBase
+    where TBizList : IBizList<TBiz>
     where TViewState : IPageController
 {
 
-    protected TViewState ViewState { get; set; } = viewState;
+    protected TViewState ViewState { get; } = viewState;
 
-    public TBizList List { get; set; } = list;
+    public TBizList List { get; } = list;
 
 
     [RelayCommand]
@@ -23,14 +24,14 @@ internal abstract partial class ListViewModelBase<TBizList, TViewState>(TBizList
         });
 
     [RelayCommand]
-    private Task OpenEntryAsEditAsync(CoMobile model) =>
+    private Task OpenEntryAsEditAsync(TBiz model) =>
         Task.Run(() =>
         {
             ViewState.PageIndex = 1;
         });
 
     [RelayCommand]
-    private Task OpenEntryAsCopyAsync(CoMobile model) =>
+    private Task OpenEntryAsCopyAsync(TBiz model) =>
         Task.Run(() =>
         {
             ViewState.PageIndex = 1;

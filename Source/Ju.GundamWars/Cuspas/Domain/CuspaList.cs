@@ -1,39 +1,65 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.Client.Boosts.Domain;
+using Ju.GundamWars.Client.CuspaKinds.Domain;
 using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Client.Units.Domain;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Share._TODO.Categories.Domain;
+using Ju.GundamWars.Share.Boosts.Domain;
+using Ju.GundamWars.Share.CuspaKinds.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
+using Ju.GundamWars.Share.Units.Domain;
+using System.Windows.Data;
 
 namespace Ju.GundamWars.Cuspas.Domain;
 
-internal abstract partial class CuspaList : BizListBase<Cuspa>
+internal partial class CuspaList : BizListBase<Cuspa>
 {
 
     public CuspaList(
         CuspaInventory items,
+        UnitInventory units,
+        CuspaKindInventory cuspaKinds,
+        BoostStatusInventory boostStatuses,
         TagInventory tags)
         : base(items, tags)
     {
+        ForUnits = new(units);
+        CuspaKinds = new(cuspaKinds);
+        BoostStatuses = new(boostStatuses);
+
         IsIdle = true;
     }
 
 
+    public ListCollectionView ForUnits { get; }
+    public ListCollectionView CuspaKinds { get; }
+    public ListCollectionView BoostStatuses { get; }
+
+    [ObservableProperty]
+    private Unit? _ForUnitFilter = null;
+    [ObservableProperty]
+    private CuspaKind? _CuspaKindFilter = null;
+    [ObservableProperty]
+    private BoostStatus? _BoostStatusFilter = null;
     [ObservableProperty]
     private bool _HasMemoFilter = false;
-    [ObservableProperty]
-    private bool _HasNoMobileFilter = false;
 
 
+    partial void OnForUnitFilterChanged(Unit? value) => Refresh();
+    partial void OnCuspaKindFilterChanged(CuspaKind? value) => Refresh();
+    partial void OnBoostStatusFilterChanged(BoostStatus? value) => Refresh();
     partial void OnHasMemoFilterChanged(bool value) => Refresh();
-    partial void OnHasNoMobileFilterChanged(bool value) => Refresh();
 
     protected override bool FilterItem(object obj)
     {
         if (obj is not Cuspa item) return false;
         if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
+        if (ForUnitFilter != null && item.ForUnitType != ForUnitFilter.Type) return false;
+        if (CuspaKindFilter != null && item.CuspaKindType != CuspaKindFilter.Type) return false;
+        if (BoostStatusFilter != null && item.BoostStatusType != BoostStatusFilter.Type) return false;
         if (HasMemoFilter && !item.HasMemo) return false;
-        // TODO: if (HasNoMobileFilter && item.Mobile != null) return false;
         return true;
     }
 
@@ -48,8 +74,10 @@ internal abstract partial class CuspaList : BizListBase<Cuspa>
     {
         IsIdle = false;
         TagFilter = null;
+        ForUnitFilter = null;
+        CuspaKindFilter = null;
+        BoostStatusFilter = null;
         HasMemoFilter = false;
-        HasNoMobileFilter = false;
         IsIdle = true;
         Refresh();
     }

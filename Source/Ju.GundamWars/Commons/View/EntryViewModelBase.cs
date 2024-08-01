@@ -8,7 +8,7 @@ internal abstract partial class EntryViewModelBase<TViewState>(TViewState viewSt
     where TViewState : IPageController
 {
 
-    protected TViewState ViewState { get; set; } = viewState;
+    protected TViewState ViewState { get; } = viewState;
 
 
     [RelayCommand]
