@@ -65,14 +65,14 @@ public partial class Cuspa : BizBase, ICuspa<CuspaStatus>
 
 
     partial void OnBasicValueChanged(int value) =>
-        BasicStatus.Reset(BoostStatus?.Type ?? BoostStatusType.Unknown, BasicValue);
+        BasicStatus.Reset(BoostStatusType, value);
 
     partial void OnCuspaKindChanged(CuspaKind? value) =>
-        CuspaKindType = CuspaKind?.Type ?? CuspaKindType.Unknown;
+        CuspaKindType = value?.Type ?? CuspaKindType.Unknown;
 
     partial void OnBoostStatusChanged(BoostStatus? value)
     {
-        var type = BoostStatus?.Type ?? BoostStatusType.Unknown;
+        var type = value?.Type ?? BoostStatusType.Unknown;
         BoostStatusType = type;
         BasicStatus.Reset(type, BasicValue);
     }

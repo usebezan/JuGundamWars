@@ -18,15 +18,9 @@
 
         <Grid Grid.Row="1" Background="#ff273756">
             <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" Width="24" Height="24" Foreground="#ffEF9EC7" IsIndeterminate="True" />
+            <Grid Margin="48 0 0 0" HorizontalAlignment="Left" Width="16" Background="#ff6A715A" />
+            <Grid Margin="0 0 48 0" HorizontalAlignment="Right" Width="16" Background="#ff6A715A" />
         </Grid>
         <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading..." />
-
-        <!--<StackPanel Margin="32" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <materialDesign:PackIcon VerticalAlignment="Center" Kind="RobotIndustrial" Width="48" Height="48" />
-                <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="16 0 0 0" VerticalAlignment="Bottom" Text="Loading..." />
-            </StackPanel>
-            <ProgressBar Margin="0 16 0 0" HorizontalAlignment="Center" Width="280" Height="16" IsIndeterminate="{Binding IsIndeterminate}" materialDesign:TransitionAssist.DisableTransitions="True" />
-        </StackPanel>-->
     </Grid>
 </UserControl>

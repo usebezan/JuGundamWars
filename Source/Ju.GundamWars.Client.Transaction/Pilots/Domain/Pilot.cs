@@ -77,8 +77,8 @@ public partial class Pilot : BizBase, IPilot<PilotStatus>
     #region Extensions
 
     public string ForUnitIcon => ForUnitType.ToIcon();
-    public string GradeText => Grade?.Name ?? "?";
-    public string GradeColor => Grade?.Color ?? "White";
+    public string GradeText => GradeType.ToText();
+    public string GradeColor => GradeType.ToColor();
 
     [ObservableProperty]
     private int _PracticedStatusTotal;
@@ -94,13 +94,13 @@ public partial class Pilot : BizBase, IPilot<PilotStatus>
 
 
     partial void OnSerialChanged(Serial? value) =>
-        SerialId = Serial?.Id ?? 0;
+        SerialId = value?.Id ?? 0;
 
     partial void OnGradeChanged(Grade? value) =>
-        GradeType = Grade?.Type ?? GradeType.Unknown;
+        GradeType = value?.Type ?? GradeType.Unknown;
 
     partial void OnPilotSkillChanged(PilotSkill? value) =>
-        PilotSkillId = PilotSkill?.Id ?? 0;
+        PilotSkillId = value?.Id ?? 0;
 
     private void WhenBasicStatusChanged(PropertyChangedEventArgs _)
     {

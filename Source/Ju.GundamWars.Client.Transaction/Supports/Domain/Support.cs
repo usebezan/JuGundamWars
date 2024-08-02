@@ -70,8 +70,8 @@ public partial class Support : BizBase, ISupport
     #region Extensions
 
     public string ForUnitIcon => ForUnitType.ToIcon();
-    public string GradeText => Grade?.Name ?? "?";
-    public string GradeColor => Grade?.Color ?? "White";
+    public string GradeText => GradeType.ToText();
+    public string GradeColor => GradeType.ToColor();
 
     [ObservableProperty]
     private string _LimitedSerialsText = string.Empty;
@@ -93,10 +93,10 @@ public partial class Support : BizBase, ISupport
 
 
     partial void OnSerialChanged(Serial? value) =>
-        SerialId = Serial?.Id ?? 0;
+        SerialId = value?.Id ?? 0;
 
     partial void OnGradeChanged(Grade? value) =>
-        GradeType = Grade?.Type ?? GradeType.Unknown;
+        GradeType = value?.Type ?? GradeType.Unknown;
 
     private void WhenLimitedSerialsChanged(NotifyCollectionChangedEventArgs _)
     {

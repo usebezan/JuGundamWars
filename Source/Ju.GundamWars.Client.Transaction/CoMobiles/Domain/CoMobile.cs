@@ -72,10 +72,10 @@ public partial class CoMobile : BizBase, ICoMobile<CoMobileStatus, CoMobileUpgra
 
 
     partial void OnSerialChanged(Serial? value) =>
-        SerialId = Serial?.Id ?? 0;
+        SerialId = value?.Id ?? 0;
 
     partial void OnRoleChanged(Role? value) =>
-        RoleType = Role?.Type ?? RoleType.Unknown;
+        RoleType = value?.Type ?? RoleType.Unknown;
 
     private void WhenBasicStatusChanged(PropertyChangedEventArgs _)
     {

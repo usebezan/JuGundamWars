@@ -8,6 +8,25 @@ namespace Ju.GundamWars.Client.Cuspas.Domain;
 public partial class CuspaStatus : ModelBase, ICuspaStatus
 {
 
+    public CuspaStatus()
+    {
+        statuses = new Dictionary<BoostStatusType, Func<int>>()
+        {
+            { BoostStatusType.Hp, () => Hp },
+            { BoostStatusType.BeamAttack, () => BeamAttack },
+            { BoostStatusType.PhysicalAttack, () => PhysicalAttack },
+            { BoostStatusType.BeamDefence, () => BeamDefence },
+            { BoostStatusType.PhysicalDefence, () => PhysicalDefence },
+            { BoostStatusType.CriticalRate, () => CriticalRate },
+            { BoostStatusType.CriticalDamage, () => CriticalDamage },
+            { BoostStatusType.Accuracy, () => Accuracy },
+            { BoostStatusType.Evasion, () => Evasion },
+            { BoostStatusType.Mobility, () => Mobility },
+            { BoostStatusType.EnRecovery, () => EnRecovery },
+        };
+    }
+
+
     #region Primitives
 
     [ObservableProperty]
@@ -34,6 +53,10 @@ public partial class CuspaStatus : ModelBase, ICuspaStatus
     private int _EnRecovery;
 
     #endregion
+
+    //[ObservableProperty]
+    //private string _Text = string.Empty;
+    private readonly Dictionary<BoostStatusType, Func<int>> statuses;
 
 
     public CuspaStatus Reset()
@@ -141,9 +164,7 @@ public partial class CuspaStatus : ModelBase, ICuspaStatus
         return this;
     }
 
-    public string ToText()
-    {
-        return "TODO:";
-    }
+    public string ToText() =>
+        string.Join(",", statuses.Where(d => d.Value() != 0).Select(d => $"{d.Key.ToText()} {d.Value()}"));
 
 }

@@ -39,7 +39,7 @@ internal partial class ViewState : ModelBase
 
     partial void OnIsDialogOpenChanged(bool value)
     {
-        if (!IsDialogOpen)
+        if (!value)
         {
             DialogContent = null;
         }

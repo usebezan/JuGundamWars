@@ -58,7 +58,7 @@ public partial class SupportSlotBadge : ModelBase, ISupportSlotBadge
 
     partial void OnSupportSlotChanged(SupportSlot? value)
     {
-        SupportSlotId = SupportSlot?.Id ?? 0;
+        SupportSlotId = value?.Id ?? 0;
         if (!isIdle) return;
         if (!(SupportSlot != null && SupportSlot.IsAttachable))
         {
@@ -73,7 +73,7 @@ public partial class SupportSlotBadge : ModelBase, ISupportSlotBadge
 
     partial void OnSupportBadgeChanged(SupportBadge? value)
     {
-        SupportBadgeId = SupportBadge?.Id;
+        SupportBadgeId = value?.Id;
         if (!isIdle) return;
         CalculateStatus();
     }
