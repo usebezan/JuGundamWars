@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Ju.Collections.ObjectModel;
 using Ju.GundamWars.Client.Commons.Domain;
-using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 using System.ComponentModel;
@@ -65,10 +64,10 @@ internal abstract partial class BizListBase<TBiz> : ModelBase, IBizList<TBiz>
     {
         if (!IsCountable) return;
         CheckedCount = Items.Where(e => e.IsChecked).Count();
-        FilteredCheckedCount = ItemsView.OfType<CoMobile>().Where(e => e.IsChecked).Count();
+        FilteredCheckedCount = ItemsView.OfType<TBiz>().Where(e => e.IsChecked).Count();
     }
 
-    public void CheckAll() => ItemsView.CheckAll<CoMobile>();
-    public void UncheckAll() => ItemsView.UncheckAll<CoMobile>();
+    public void CheckAll() => ItemsView.CheckAll<TBiz>();
+    public void UncheckAll() => ItemsView.UncheckAll<TBiz>();
 
 }

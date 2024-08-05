@@ -5,12 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:local="clr-namespace:Ju.GundamWars"
     xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     xmlns:coMobiles="clr-namespace:Ju.GundamWars.CoMobiles.View"
     xmlns:cuspas="clr-namespace:Ju.GundamWars.Cuspas.View"
+    xmlns:pilots="clr-namespace:Ju.GundamWars.Pilots.View"
     xmlns:systems="clr-namespace:Ju.GundamWars.Systems.View"
-    xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance local:MainViewModel}"
     FontFamily="Yu Gothic UI"
@@ -104,6 +105,7 @@
                             <materialDesign:TransitionerSlide.BackwardWipe>
                                 <materialDesign:SlideWipe Direction="Down" />
                             </materialDesign:TransitionerSlide.BackwardWipe>
+                            <pilots:PilotView />
                         </materialDesign:TransitionerSlide>
                         <!-- Support -->
                         <materialDesign:TransitionerSlide>

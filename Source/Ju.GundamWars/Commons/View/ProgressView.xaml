@@ -15,12 +15,23 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="64" />
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="1" Background="#ff273756">
-            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" Width="24" Height="24" Foreground="#ffEF9EC7" IsIndeterminate="True" />
+            <Button
+                Style="{StaticResource MaterialDesignFloatingActionButton}"
+                Width="24"
+                Height="24"
+                Background="#ffEF9EC7"
+                BorderBrush="#ffEF9EC7"
+                materialDesign:ButtonProgressAssist.IsIndeterminate="{Binding IsIndeterminate}"
+                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                materialDesign:ButtonProgressAssist.Value="0"
+                materialDesign:ButtonProgressAssist.IndicatorForeground="#ffEF9EC7"
+                materialDesign:ElevationAssist.Elevation="Dp0"
+                IsHitTestVisible="False"
+            />
             <Grid Margin="48 0 0 0" HorizontalAlignment="Left" Width="16" Background="#ff6A715A" />
             <Grid Margin="0 0 48 0" HorizontalAlignment="Right" Width="16" Background="#ff6A715A" />
         </Grid>
-        <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading..." />
+        <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Message}" />
     </Grid>
 </UserControl>

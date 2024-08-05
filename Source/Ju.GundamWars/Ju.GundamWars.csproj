@@ -40,7 +40,6 @@
 
   <ItemGroup>
     <Folder Include="Mobiles\Presentation\" />
-    <Folder Include="Pilots\Presentation\" />
     <Folder Include="Supports\Presentation\" />
     <Folder Include="Tags\Presentation\" />
   </ItemGroup>

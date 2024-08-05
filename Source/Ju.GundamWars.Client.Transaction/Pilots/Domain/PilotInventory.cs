@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using Ju.Collections.ObjectModel;
 
 namespace Ju.GundamWars.Client.Pilots.Domain;
 
-public class PilotInventory : ObservableCollection<Pilot>
+public class PilotInventory : ObservableItemPropertyChangedCollection<Pilot>
 {
 }

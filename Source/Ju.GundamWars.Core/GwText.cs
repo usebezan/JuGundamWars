@@ -10,6 +10,7 @@ public static class GwText
     public readonly static string Role = "役割";
     public readonly static string Level = "レベル";
     public readonly static string ForUnit = "For";
+    public readonly static string Grade = "グレード";
 
 
     public readonly static string Startup = "スタートアップ";
@@ -63,5 +64,7 @@ public static class GwText
 
     // 連携機体
     public readonly static string Upgraded = "改修";
+
+    //public readonly static string AbilitySlot = "アビリティ\r\nスロット";
 
 }

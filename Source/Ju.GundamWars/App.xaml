@@ -37,6 +37,7 @@
                 <!-- Material Design -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ObsoleteBrushes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SplitButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
                 <!-- Material Design: MahApps Compatibility -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>
@@ -90,6 +91,10 @@
                 <Setter Property="VerticalContentAlignment" Value="Center" />
                 <Setter Property="materialDesign:ValidationAssist.Background" Value="Transparent" />
             </Style>
+
+            <DataTemplate x:Key="GwComboBoxGroupHeaderTemplate">
+                <TextBlock Padding="8 4" Text="{Binding Name}" Foreground="{DynamicResource PrimaryHueMidBrush}" />
+            </DataTemplate>
 
             <Style x:Key="GwComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
                 <Setter Property="ItemsPanel">
@@ -180,6 +185,13 @@
                         <Setter TargetName="memo" Property="Visibility" Value="Visible" />
                     </DataTrigger>
                 </DataTemplate.Triggers>
+            </DataTemplate>
+
+            <DataTemplate x:Key="GwGradeTemplate">
+                <TextBlock VerticalAlignment="Center">
+                    <Run Text="★" Foreground="{Binding GradeColor}" />
+                    <Run Text="{Binding GradeText, Mode=OneWay}" />
+                </TextBlock>
             </DataTemplate>
 
             <Style x:Key="GwListCopyButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignIconForegroundButton}" x:Shared="False">
@@ -307,6 +319,23 @@
                         <materialDesign:PackIcon Kind="Pin" />
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+
+            <Style x:Key="GwFilterPilotAbilityComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+                <Setter Property="Width" Value="224" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.PilotAbilities}" />
+                <Setter Property="SelectedItem" Value="{Binding List.PilotAbilityFilter}" />
+                <Setter Property="materialDesign:HintAssist.Hint" Value="アビリティ" />
+            </Style>
+
+            <Style x:Key="GwFilterPilotSkillComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+                <Setter Property="Width" Value="224" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.PilotSkills}" />
+                <Setter Property="SelectedItem" Value="{Binding List.PilotSkillFilter}" />
+                <Setter Property="materialDesign:HintAssist.Hint" Value="スキル" />
             </Style>
 
             <!-- #endregion -->

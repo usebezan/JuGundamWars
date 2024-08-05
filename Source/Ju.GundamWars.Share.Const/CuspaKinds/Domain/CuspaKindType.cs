@@ -49,11 +49,11 @@ public static class CuspaGroupTypeExtension
             CuspaKindType.Normal2 => "+",
             CuspaKindType.Normal3 => "++",
 
-            CuspaKindType.Special1 => "特殊Ⅰ",
-            CuspaKindType.Special2 => "特殊Ⅱ",
-            CuspaKindType.Special3 => "特殊Ⅲ",
+            CuspaKindType.Special1 => " 特殊Ⅰ",
+            CuspaKindType.Special2 => " 特殊Ⅱ",
+            CuspaKindType.Special3 => " 特殊Ⅲ",
 
-            CuspaKindType.Super1 => "【S】",
+            CuspaKindType.Super1 => " 【S】",
 
             _ => GwText.Unknown,
         };
