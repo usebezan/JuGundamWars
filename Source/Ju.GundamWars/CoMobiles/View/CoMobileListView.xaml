@@ -16,7 +16,7 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button Command="{Binding OpenEntryAsNewCommand}">
+                <Button FontSize="14" FontWeight="Medium" Command="{Binding OpenEntryAsNewCommand}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
                         <TextBlock VerticalAlignment="Center" Text="New" />

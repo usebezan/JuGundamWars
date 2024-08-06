@@ -16,7 +16,7 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <materialDesign:SplitButton Style="{StaticResource MaterialDesignFlatSplitButton}" Command="{Binding OpenEntryAsNewCommand}">
+                <materialDesign:SplitButton Style="{StaticResource MaterialDesignFlatSplitButton}" Command="{Binding OpenEntryAsNewCommand}" PopupPlacementMode="BottomAndAlignRightEdges">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
                         <TextBlock VerticalAlignment="Center" Text="New" />

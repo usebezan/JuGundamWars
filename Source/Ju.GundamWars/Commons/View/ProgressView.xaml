@@ -9,17 +9,17 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance commons:ProgressViewModel}"
     >
-    <Grid Width="320" Background="#ff6A715A">
+    <Grid Width="280" Background="#ff6A715A">
         <Grid.RowDefinitions>
-            <RowDefinition Height="64" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="64" />
+            <RowDefinition Height="48" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="48" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="1" Background="#ff273756">
             <Button
                 Style="{StaticResource MaterialDesignFloatingActionButton}"
-                Width="24"
-                Height="24"
+                Width="32"
+                Height="32"
                 Background="#ffEF9EC7"
                 BorderBrush="#ffEF9EC7"
                 materialDesign:ButtonProgressAssist.IsIndeterminate="{Binding IsIndeterminate}"
@@ -29,8 +29,8 @@
                 materialDesign:ElevationAssist.Elevation="Dp0"
                 IsHitTestVisible="False"
             />
-            <Grid Margin="48 0 0 0" HorizontalAlignment="Left" Width="16" Background="#ff6A715A" />
-            <Grid Margin="0 0 48 0" HorizontalAlignment="Right" Width="16" Background="#ff6A715A" />
+            <Grid Margin="8 0 0 0" HorizontalAlignment="Left" Width="20" Background="#ff6A715A" />
+            <Grid Margin="0 0 8 0" HorizontalAlignment="Right" Width="20" Background="#ff6A715A" />
         </Grid>
         <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Message}" />
     </Grid>
