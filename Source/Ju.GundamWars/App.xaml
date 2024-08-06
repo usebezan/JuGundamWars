@@ -56,6 +56,13 @@
                 <Setter Property="Inline.TextDecorations" Value="Underline" />
             </Style>
 
+            <Style x:Key="GwBorder" TargetType="{x:Type Border}">
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Padding" Value="8 0" />
+            </Style>
+
             <Style TargetType="{x:Type ToolBarTray}" BasedOn="{StaticResource MaterialDesignToolBarTray}">
                 <Setter Property="IsLocked" Value="True" />
             </Style>
@@ -249,11 +256,20 @@
             </Style>
 
             <Style x:Key="GwFilterForUnitComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
-                <Setter Property="Width" Value="80" />
-                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="Width" Value="88" />
                 <Setter Property="ItemsSource" Value="{Binding List.ForUnits}" />
                 <Setter Property="SelectedItem" Value="{Binding List.ForUnitFilter}" />
                 <!--<Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.ForUnit}}" />-->
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <materialDesign:PackIcon Margin="0 0 8 0" VerticalAlignment="Center" Kind="{Binding Icon}" />
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <Style x:Key="GwFilterCuspaKindComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
@@ -339,6 +355,39 @@
                 <Setter Property="SelectedItem" Value="{Binding List.PilotSkillFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="スキル" />
             </Style>
+
+
+            <Style x:Key="GwFilterSupportBadgeComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+                <Setter Property="Width" Value="220" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.SupportBadges}" />
+                <Setter Property="SelectedItem" Value="{Binding List.SupportBadgeFilter}" />
+                <Setter Property="materialDesign:HintAssist.Hint" Value="バッジ" />
+            </Style>
+
+            <Style x:Key="GwFilterSupportSlotComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+                <Setter Property="Width" Value="224" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.SupportSlots}" />
+                <Setter Property="SelectedItem" Value="{Binding List.SupportSlotFilter}" />
+                <Setter Property="materialDesign:HintAssist.Hint" Value="スロット" />
+            </Style>
+
+            <!--<Style x:Key="GwFilterUnlockSlotComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+                <Setter Property="Width" Value="224" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.UnlockSlots}" />
+                <Setter Property="SelectedItem" Value="{Binding List.UnlockSlotFilter}" />
+                <Setter Property="materialDesign:HintAssist.Hint" Value="Unlock Slot" />
+            </Style>
+
+            <Style x:Key="GwFilterBonusSlotComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
+                <Setter Property="Width" Value="224" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding List.BonusSlots}" />
+                <Setter Property="SelectedItem" Value="{Binding List.BonusSlotFilter}" />
+                <Setter Property="materialDesign:HintAssist.Hint" Value="Bonus Slot" />
+            </Style>-->
 
             <!-- #endregion -->
 

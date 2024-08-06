@@ -11,6 +11,7 @@ using Ju.GundamWars.Pilots.Domain;
 using Ju.GundamWars.Pilots.View;
 using Ju.GundamWars.Server;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
+using Ju.GundamWars.Supports.Domain;
 using Ju.GundamWars.Supports.View;
 using Ju.GundamWars.Systems.Domain;
 using Ju.GundamWars.Systems.Presentation;
@@ -116,8 +117,15 @@ public partial class App : Application
                     services.AddSingleton<PilotListViewModel>();
                     services.AddSingleton<PilotViewModel>();
 
-                    services.AddSingleton<MobileListViewModel>();
+                    // Domain
+                    services.AddSingleton<SupportList>();
+                    services.AddSingleton<SupportViewState>();
+                    // View
+                    services.AddSingleton<SupportEntryViewModel>();
                     services.AddSingleton<SupportListViewModel>();
+                    services.AddSingleton<SupportViewModel>();
+
+                    services.AddSingleton<MobileListViewModel>();
                     services.AddSingleton<TagListViewModel>();
 
                     services.AddSingleton<ILoadAllClientPresenter, LoadAllPresenter>();

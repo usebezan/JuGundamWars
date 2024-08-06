@@ -24,11 +24,11 @@
                 </Button>
                 <Separator Margin="4" />
                 <Button Command="{Binding FilterClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="フィルター解除" />
-                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
                 <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
                 <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
                 <ToggleButton Style="{StaticResource GwFilterHasNoMobileToggleButton}" />
                 <ToggleButton Style="{StaticResource GwFilterIsNotPinnedToggleButton}" />
+                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
             </ToolBar>
         </ToolBarTray>
         <commons:StatusBarView DockPanel.Dock="Bottom" />

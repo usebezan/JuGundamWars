@@ -40,7 +40,7 @@ public partial class Support : BizBase, ISupport
 
     [ObservableProperty]
     private string _Name = string.Empty;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(ForUnitIcon))]
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(ForUnitIcon)), NotifyPropertyChangedFor(nameof(ForUnitText))]
     private UnitType _ForUnitType = UnitType.MobileSuit;
     [ObservableProperty]
     private int _SerialId;
@@ -70,6 +70,7 @@ public partial class Support : BizBase, ISupport
     #region Extensions
 
     public string ForUnitIcon => ForUnitType.ToIcon();
+    public string ForUnitText => ForUnitType.ToText();
     public string GradeText => GradeType.ToText();
     public string GradeColor => GradeType.ToColor();
 

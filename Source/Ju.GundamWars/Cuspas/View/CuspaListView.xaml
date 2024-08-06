@@ -26,9 +26,9 @@
                 <Button Command="{Binding FilterClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="フィルター解除" />
                 <ComboBox Style="{StaticResource GwFilterForUnitComboBox}" />
                 <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
-                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
                 <ComboBox Style="{StaticResource GwFilterCuspaKindComboBox}" />
                 <ComboBox Style="{StaticResource GwFilterBoostStatusComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
             </ToolBar>
         </ToolBarTray>
         <commons:StatusBarView DockPanel.Dock="Bottom" />

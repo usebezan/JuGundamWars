@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using Ju.Collections.ObjectModel;
 
 namespace Ju.GundamWars.Client.Supports.Domain;
 
-public class SupportInventory : ObservableCollection<Support>
+public class SupportInventory : ObservableItemPropertyChangedCollection<Support>
 {
 }
