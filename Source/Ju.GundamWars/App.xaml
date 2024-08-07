@@ -96,6 +96,21 @@
                 <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
                 <Setter Property="EnableRowVirtualization" Value="True" />
                 <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />-->
+                <Setter Property="RowStyle">
+                    <Setter.Value>
+                        <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="False" />
+                                        <Condition Binding="{Binding IsChecked}" Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Background" Value="{DynamicResource GwBackground2Brush}"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
 

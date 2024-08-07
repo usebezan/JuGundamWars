@@ -86,9 +86,7 @@
                         <ColumnDefinition Width="80" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 0">
-                        <ListBox Style="{StaticResource GwMenuListBox}" />
-                    </Border>
+                    <ListBox Grid.Column="0" Style="{StaticResource GwMenuListBox}" />
                     <materialDesign:Transitioner Grid.Column="1" SelectedIndex="{Binding ViewState.MenuIndex}">
                         <!-- Mobile -->
                         <materialDesign:TransitionerSlide>
