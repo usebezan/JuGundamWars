@@ -113,6 +113,24 @@
                 </Setter>
             </Style>
 
+            <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource MaterialDesignCardGroupBox}">
+                <Setter Property="Margin" Value="0 0 0 16" />
+                <Setter Property="Padding" Value="8 4" />
+                <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
+                <Setter Property="materialDesign:ColorZoneAssist.Mode" Value="Custom" />
+                <Setter Property="materialDesign:ColorZoneAssist.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                <!--<Setter Property="materialDesign:ColorZoneAssist.Background" Value="Transparent" />-->
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Grid Height="24">
+                                <TextBlock Text="{Binding}" />
+                            </Grid>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
 
             <Style x:Key="GwTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
                 <Setter Property="Height" Value="30" />
@@ -325,12 +343,12 @@
                 <Setter Property="ToolTip" Value="ピン止め" />
                 <Setter Property="Content">
                     <Setter.Value>
-                        <materialDesign:PackIcon Kind="PinOutline" />
+                        <materialDesign:PackIcon Kind="PinOffOutline" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
                     <Setter.Value>
-                        <materialDesign:PackIcon Kind="Pin" />
+                        <materialDesign:PackIcon Kind="PinOff" />
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -396,6 +414,107 @@
             </Style>-->
 
             <!-- #endregion -->
+
+
+            <Style x:Key="GwEntryTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwTextBox}">
+                <Setter Property="Margin" Value="8 0 8 8" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="InputMethod.PreferredImeState" Value="Off" />
+                <Setter Property="materialDesign:ValidationAssist.UsePopup" Value="True" />
+                <Setter Property="materialDesign:ValidationAssist.Background" Value="Transparent" />
+                <Setter Property="materialDesign:ValidationAssist.FontSize" Value="11" />
+            </Style>
+
+            <Style x:Key="GwEntryRightTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntryTextBox}">
+                <Setter Property="TextAlignment" Value="Right" />
+            </Style>
+
+            <Style x:Key="GwEntryFullTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntryTextBox}">
+                <Setter Property="InputMethod.PreferredImeState" Value="On" />
+                <Setter Property="InputMethod.PreferredImeConversionMode" Value="FullShape,Native" />
+            </Style>
+
+            <Style x:Key="GwEntryStatusTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntryRightTextBox}">
+                <Setter Property="Width" Value="120" />
+            </Style>
+
+            <Style x:Key="GwEntryComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwComboBox}">
+                <Setter Property="Margin" Value="8 0 8 8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="materialDesign:HintAssist.Hint" Value="Select..." />
+            </Style>
+
+            <Style x:Key="GwEntryListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
+                <Setter Property="Margin" Value="8 0 8 8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="materialDesign:ListBoxAssist.IsToggle" Value="False" />
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style x:Key="GwEntryLevelTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntryRightTextBox}">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Width" Value="40" />
+                <Setter Property="Text" Value="{Binding Model.Level}" />
+            </Style>
+
+
+            <Style x:Key="GwEntrySerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding Serials}" />
+                <Setter Property="SelectedItem" Value="{Binding Model.Serial}" />
+            </Style>
+
+            <Style x:Key="GwEntryGradeListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource GwEntryListBox}">
+                <Setter Property="Width" Value="360" />
+                <Setter Property="ItemTemplate" Value="{StaticResource GwGradeTemplate}" />
+                <Setter Property="ItemsSource" Value="{Binding Grades}" />
+                <Setter Property="SelectedItem" Value="{Binding Model.Grade}" />
+            </Style>
+
+            <Style x:Key="GwEntryRoleListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource GwEntryListBox}">
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding Roles}" />
+                <Setter Property="SelectedItem" Value="{Binding Model.Role}" />
+            </Style>
+
+            <Style x:Key="GwEntryTagListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignFilterChipOutlineListBoxItem}">
+                <Setter Property="IsSelected" Value="{Binding IsChecked}"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Name}" Value="">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="GwEntryTagListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipOutlineListBox}">
+                <Setter Property="ItemContainerStyle" Value="{StaticResource GwEntryTagListBoxItem}" />
+                <Setter Property="DisplayMemberPath" Value="Name" />
+                <Setter Property="ItemsSource" Value="{Binding Tags}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBox}">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="GwEntryMemoTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntryFullTextBox}">
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="AcceptsReturn" Value="True" />
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+                <Setter Property="Text" Value="{Binding Model.Memo}" />
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

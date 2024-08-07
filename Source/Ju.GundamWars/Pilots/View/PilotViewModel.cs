@@ -4,8 +4,8 @@ using Ju.GundamWars.Commons.View;
 
 namespace Ju.GundamWars.Pilots.View;
 
-internal partial class PilotViewModel(PilotListViewModel listViewModel)
-    : PageControllerViewModelBase<Pilot, PilotListViewModel>(listViewModel)
+internal partial class PilotViewModel(PilotListViewModel listViewModel, PilotEntryViewModel entryViewModel)
+    : PageControllerViewModelBase<Pilot, PilotListViewModel, PilotEntryViewModel>(listViewModel, entryViewModel)
 {
     [RelayCommand]
     private Task OpenEntryAsNewForMaAsync() =>

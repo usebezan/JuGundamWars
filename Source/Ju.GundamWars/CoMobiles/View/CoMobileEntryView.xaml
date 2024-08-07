@@ -13,8 +13,24 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     >
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Height="50" Orientation="Horizontal">
+    <UserControl.Resources>
+        <Style x:Key="GwEntryCoMobileUpgradedCountComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="ItemsSource" Value="{Binding UpgradedCounts}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="520" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Orientation="Horizontal">
             <Button
                 Style="{StaticResource GwCancelButton}"
                 HorizontalAlignment="Left"
@@ -22,6 +38,138 @@
                 Command="{Binding DataContext.CancelCommand, RelativeSource={StaticResource GwCoMobileListRelativeSource}}"
             />
         </StackPanel>
-        <Grid />
-    </DockPanel>
+        <Grid Grid.Row="1" Grid.Column="0" Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Margin="0 0 0 16" Header="Name">
+                <DockPanel>
+                    <ToggleButton DockPanel.Dock="Right" IsChecked="{Binding Model.IsPinned}" Content="{materialDesign:PackIcon Kind=PinOutline}" materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Pin}" />
+                    <TextBox Style="{StaticResource GwEntryFullTextBox}" Text="{Binding Model.Name}" />
+                </DockPanel>
+            </GroupBox>
+            <TabControl Grid.Row="1" SelectedIndex="{Binding TabIndex, Mode=OneWay}">
+                <TabItem Header="Default">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Header="Series">
+                                <ComboBox Style="{StaticResource GwEntrySerialComboBox}" />
+                            </GroupBox>
+                            <GroupBox Header="Role">
+                                <ListBox Style="{StaticResource GwEntryRoleListBox}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Leveling">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox Header="{Binding Source={x:Static core:GwText.Level}}">
+                                <TextBox Style="{StaticResource GwEntryLevelTextBox}" />
+                            </GroupBox>
+                            <GroupBox Header="{Binding Source={x:Static core:GwText.BasicStatus}}">
+                                <coMobiles:CoMobileEntryStatusView DataContext="{Binding Model.BasicStatus}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Custom">
+                    <ScrollViewer Margin="0 16 0 0" VerticalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <GroupBox>
+                                <!--<GroupBox.Header>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding ResetUpgradedCommand}"
+                                            Content="{materialDesign:PackIcon CircleOutline}"
+                                            ToolTip="Reset all Upgraded"
+                                        />
+                                        <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0 0 32 0">
+                                            <Run Text="{Binding Model.UpgradedCountTotal, Mode=OneWay}" />
+                                            <Run Text="/" />
+                                            <Run Text="10" />
+                                        </TextBlock>
+                                        <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Upgraded Count" />
+                                    </DockPanel>
+                                </GroupBox.Header>-->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ComboBox Grid.Column="0" Grid.Row="0" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.Hp}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.Hp}}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="0" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.BeamAttack}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.BeamAttack}}" />
+                                    <ComboBox Grid.Column="2" Grid.Row="0" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.PhysicalAttack}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.PhysicalAttack}}" />
+                                    <ComboBox Grid.Column="0" Grid.Row="1" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.BeamDefence}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.BeamDefence}}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="1" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.PhysicalDefence}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.PhysicalDefence}}" />
+                                    <ComboBox Grid.Column="2" Grid.Row="1" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.CriticalDamage}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.CriticalDamage}}" />
+                                    <ComboBox Grid.Column="0" Grid.Row="2" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.Accuracy}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.Accuracy}}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="2" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.Evasion}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.Evasion}}" />
+                                    <ComboBox Grid.Column="2" Grid.Row="2" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.Mobility}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.Mobility}}" />
+                                    <ComboBox Grid.Column="0" Grid.Row="3" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.Startup}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.Startup}}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="3" Style="{StaticResource GwEntryCoMobileUpgradedCountComboBox}" SelectedValue="{Binding Model.UpgradedCount.SuperMove}" materialDesign:TextFieldAssist.PrefixText="{Binding Source={x:Static core:GwText.SuperMove}}" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox>
+                                <!--<GroupBox.Header>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding ResetUpgradedCommand}"
+                                            Content="{materialDesign:PackIcon CircleOutline}"
+                                            ToolTip="Reset all Upgraded"
+                                        />
+                                        <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Upgraded Status" />
+                                    </DockPanel>
+                                </GroupBox.Header>-->
+                                <coMobiles:CoMobileEntryStatusView DataContext="{Binding Model.UpgradedStatus}" />
+                            </GroupBox>
+                            <GroupBox>
+                                <!--<GroupBox.Header>
+                                    <DockPanel>
+                                        <Button
+                                            DockPanel.Dock="Right"
+                                            Margin="8 0 0 0"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource GwEntryToolButton}"
+                                            Command="{Binding UncheckAllTagsCommand}"
+                                            Content="{materialDesign:PackIcon CircleOutline}"
+                                            ToolTip="Uncheck all Tags"
+                                        />
+                                        <TextBlock Style="{StaticResource GwGroupBoxHeaderTextBlock}" Text="Tags" />
+                                    </DockPanel>
+                                </GroupBox.Header>-->
+                                <ListBox Style="{StaticResource GwEntryTagListBox}" />
+                            </GroupBox>
+                            <GroupBox Header="Memo">
+                                <TextBox Style="{StaticResource GwEntryMemoTextBox}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <!--<ScrollViewer Grid.Row="1" Grid.Column="1" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">
+            <Border Style="{StaticResource GwSummaryBorder}" DataContext="{Binding Entry}">
+                <local:CoMobileSummaryUserControl />
+            </Border>
+        </ScrollViewer>
+        <ScrollViewer Grid.Row="1" Grid.Column="2" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">
+            <Border Style="{StaticResource GwSummaryBorder}" DataContext="{Binding Model.Mobile}">
+                <mobile:MobileSummaryUserControl />
+            </Border>
+        </ScrollViewer>-->
+    </Grid>
 </UserControl>

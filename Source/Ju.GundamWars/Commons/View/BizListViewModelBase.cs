@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace Ju.GundamWars.Commons.View;
 
-internal abstract partial class BizListViewModelBase<TBiz> : ModelBase, IBizListViewModel<TBiz>
+internal abstract partial class BizListViewModelBase<TBiz> : ModelBase
     where TBiz : BizBase
 {
 
