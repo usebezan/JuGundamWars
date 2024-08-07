@@ -49,7 +49,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="MaterialDesign.Brush.ToolBar.Background" Color="{DynamicResource GwPrimaryColor}" />
+            <!--<SolidColorBrush x:Key="MaterialDesign.Brush.ToolBar.Background" Color="{DynamicResource GwPrimaryColor}" />-->
 
             <!-- Converter -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -95,7 +95,7 @@
                 <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
                 <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
                 <Setter Property="EnableRowVirtualization" Value="True" />
-                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
+                <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />-->
             </Style>
 
 
