@@ -14,7 +14,12 @@
     >
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Height="50" Orientation="Horizontal">
-            <Button Style="{StaticResource GwCancelButton}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Button
+                Style="{StaticResource GwCancelButton}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Command="{Binding DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType={x:Type supports:SupportView}}}"
+            />
         </StackPanel>
         <Grid />
     </DockPanel>

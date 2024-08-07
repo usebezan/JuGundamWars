@@ -2,20 +2,15 @@
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.CoMobiles.Domain;
 using Ju.GundamWars.CoMobiles.View;
-using Ju.GundamWars.Cuspas.Domain;
 using Ju.GundamWars.Cuspas.View;
 using Ju.GundamWars.Mobiles.View;
-using Ju.GundamWars.Pilots.Domain;
 using Ju.GundamWars.Pilots.View;
 using Ju.GundamWars.Server;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
-using Ju.GundamWars.Supports.Domain;
 using Ju.GundamWars.Supports.View;
 using Ju.GundamWars.Systems.Domain;
 using Ju.GundamWars.Systems.Presentation;
-using Ju.GundamWars.Systems.View;
 using Ju.GundamWars.Tags.View;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -64,14 +59,14 @@ public partial class App : Application
                 .ConfigureServices((context, services) =>
                 {
                     services.Configure<SystemOption>(context.Configuration.GetSection("System"))
-                        .PostConfigure<SystemOption>(c =>
+                        .PostConfigure((SystemOption c) =>
                         {
                             c.ExecutingLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".";
                         });
                     services.Configure<MasterUpdateOption>(context.Configuration.GetSection("MasterUpdate"));
 
                     // add DbContext
-                    services.AddDbContextFactory<GwMasterDbContext>((provider, options) =>
+                    services.AddDbContextFactory<GwMasterDbContext>((IServiceProvider provider, DbContextOptionsBuilder options) =>
                     {
 #if DEBUG
                         options.EnableSensitiveDataLogging();
@@ -80,7 +75,7 @@ public partial class App : Application
                         // アップデートでファイルを上書きできるように Pooling を False にする
                         options.UseSqlite($@"Filename={systemOption.MasterDbFilePath};Pooling=False");
                     });
-                    services.AddDbContextFactory<GwTxnDbContext>((provider, options) =>
+                    services.AddDbContextFactory<GwTxnDbContext>((IServiceProvider provider, DbContextOptionsBuilder options) =>
                     {
 #if DEBUG
                         options.EnableSensitiveDataLogging();
@@ -93,33 +88,21 @@ public partial class App : Application
                         options.UseSqlite($@"Filename={systemOption.TxnDbFilePath}");
                     });
 
-                    // Domain
-                    services.AddSingleton<CoMobileList>();
-                    services.AddSingleton<CoMobileViewState>();
                     // View
                     services.AddSingleton<CoMobileEntryViewModel>();
                     services.AddSingleton<CoMobileListViewModel>();
                     services.AddSingleton<CoMobileViewModel>();
 
-                    // Domain
-                    services.AddSingleton<CuspaList>();
-                    services.AddSingleton<CuspaViewState>();
                     // View
                     services.AddSingleton<CuspaEntryViewModel>();
                     services.AddSingleton<CuspaListViewModel>();
                     services.AddSingleton<CuspaViewModel>();
 
-                    // Domain
-                    services.AddSingleton<PilotList>();
-                    services.AddSingleton<PilotViewState>();
                     // View
                     services.AddSingleton<PilotEntryViewModel>();
                     services.AddSingleton<PilotListViewModel>();
                     services.AddSingleton<PilotViewModel>();
 
-                    // Domain
-                    services.AddSingleton<SupportList>();
-                    services.AddSingleton<SupportViewState>();
                     // View
                     services.AddSingleton<SupportEntryViewModel>();
                     services.AddSingleton<SupportListViewModel>();

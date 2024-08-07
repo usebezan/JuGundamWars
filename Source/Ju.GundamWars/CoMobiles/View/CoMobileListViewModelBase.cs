@@ -2,16 +2,16 @@
 using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
-using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.Share.Tags.Domain;
 using System.Windows.Data;
 
-namespace Ju.GundamWars.CoMobiles.Domain;
+namespace Ju.GundamWars.CoMobiles.View;
 
-internal partial class CoMobileList : BizListBase<CoMobile>
+internal partial class CoMobileListViewModelBase : BizListViewModelBase<CoMobile>
 {
 
-    public CoMobileList(
+    public CoMobileListViewModelBase(
         CoMobileInventory items,
         SerialInventory serials,
         TagInventory tags)
@@ -43,8 +43,8 @@ internal partial class CoMobileList : BizListBase<CoMobile>
     protected override bool FilterItem(object obj)
     {
         if (obj is not CoMobile item) return false;
-        if (SerialFilter != null && item.SerialId != SerialFilter.Id) return false;
         if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
+        if (SerialFilter != null && item.SerialId != SerialFilter.Id) return false;
         if (HasMemoFilter && !item.HasMemo) return false;
         // TODO: if (HasNoMobileFilter && item.Mobile != null) return false;
         if (IsNotPinnedFilter && item.IsPinned) return false;
@@ -58,11 +58,11 @@ internal partial class CoMobileList : BizListBase<CoMobile>
         return item.TagGroupType.ForCoMobile();
     }
 
-    public override void FilterClear()
+    public override void ClearFilter()
     {
         IsIdle = false;
-        SerialFilter = null;
         TagFilter = null;
+        SerialFilter = null;
         HasMemoFilter = false;
         HasNoMobileFilter = false;
         IsNotPinnedFilter = false;

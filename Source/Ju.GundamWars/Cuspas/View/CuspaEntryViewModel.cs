@@ -1,16 +1,13 @@
 ﻿using Ju.GundamWars.Client.Tags.Domain;
-using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Cuspas.Domain;
+using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Cuspas.View;
 
-internal class CuspaEntryViewModel : EntryViewModelBase<CuspaViewState>
+internal class CuspaEntryViewModel : ModelBase
 {
 
     public CuspaEntryViewModel(
-        CuspaViewState viewState,
         TagInventory tags)
-        : base(viewState)
     {
     }
 

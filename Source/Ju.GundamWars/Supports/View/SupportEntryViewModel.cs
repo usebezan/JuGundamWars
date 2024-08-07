@@ -1,18 +1,15 @@
 ﻿using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
-using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Supports.Domain;
+using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Supports.View;
 
-internal partial class SupportEntryViewModel : EntryViewModelBase<SupportViewState>
+internal partial class SupportEntryViewModel : ModelBase
 {
 
     public SupportEntryViewModel(
-        SupportViewState viewState,
         SerialInventory serials,
         TagInventory tags)
-        : base(viewState)
     {
     }
 

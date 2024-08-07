@@ -1,14 +1,24 @@
-﻿using Ju.GundamWars.Client.Pilots.Domain;
-using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Pilots.Domain;
+﻿using Ju.GundamWars.Client.PilotAbilities.Domain;
+using Ju.GundamWars.Client.Pilots.Domain;
+using Ju.GundamWars.Client.PilotSkills.Domain;
+using Ju.GundamWars.Client.Serials.Domain;
+using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Client.Units.Domain;
 
 namespace Ju.GundamWars.Pilots.View;
 
-internal partial class PilotListViewModel : ListViewModelBase<Pilot, PilotList, PilotViewState>
+internal partial class PilotListViewModel : PilotListViewModelBase
 {
-    public PilotListViewModel(PilotList list, PilotViewState viewState)
-        : base(list, viewState)
+    public PilotListViewModel(
+        PilotInventory items,
+        UnitInventory units,
+        SerialInventory serials,
+        PilotAbilityInventory pilotAbilities,
+        PilotSkillInventory pilotSkills,
+        TagInventory tags)
+        : base(items, units, serials, pilotAbilities, pilotSkills, tags)
     {
-        list.IsCountable = true;
+        IsCountableChecked = true;
+        IsFixedForUnitFilter = false;
     }
 }

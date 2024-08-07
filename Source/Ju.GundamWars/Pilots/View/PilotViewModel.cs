@@ -1,11 +1,16 @@
-﻿using Ju.GundamWars.Commons.Domain.Model;
-using Ju.GundamWars.Pilots.Domain;
+﻿using CommunityToolkit.Mvvm.Input;
+using Ju.GundamWars.Client.Pilots.Domain;
+using Ju.GundamWars.Commons.View;
 
 namespace Ju.GundamWars.Pilots.View;
 
-internal partial class PilotViewModel(PilotViewState viewState) : ModelBase
+internal partial class PilotViewModel(PilotListViewModel listViewModel)
+    : PageControllerViewModelBase<Pilot, PilotListViewModel>(listViewModel)
 {
-
-    public PilotViewState ViewState { get; } = viewState;
-
+    [RelayCommand]
+    private Task OpenEntryAsNewForMaAsync() =>
+        Task.Run(() =>
+        {
+            PageIndex = 1;
+        });
 }

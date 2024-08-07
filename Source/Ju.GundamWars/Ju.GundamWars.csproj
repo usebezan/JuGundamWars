@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commons\ViewModel\" />
     <Folder Include="Mobiles\Presentation\" />
     <Folder Include="Tags\Presentation\" />
   </ItemGroup>

@@ -126,7 +126,7 @@
                 <Setter Property="FontWeight" Value="SemiBold" />-->
                 <!--<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />-->
                 <!--<Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0" />-->
-                <Setter Property="Command" Value="{Binding CancelCommand}" />
+                <!--<Setter Property="Command" Value="{Binding CancelCommand}" />-->
                 <Setter Property="Content" Value="Cancel" />
                 <Setter Property="IsCancel" Value="True" />
             </Style>
@@ -161,30 +161,6 @@
                 </StackPanel>
             </DataTemplate>
 
-            <DataTemplate x:Key="GwListNameTemplate">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center">
-                        <Hyperlink Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
-                            <TextBlock Text="{Binding Name}" />
-                        </Hyperlink>
-                    </TextBlock>
-                    <materialDesign:PackIcon x:Name="pin" Width="12" VerticalAlignment="Top" Kind="Pin" Visibility="Collapsed" />
-                </StackPanel>
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding IsPinned}" Value="True">
-                        <Setter TargetName="pin" Property="Visibility" Value="Visible" />
-                    </DataTrigger>
-                </DataTemplate.Triggers>
-            </DataTemplate>
-
-            <DataTemplate x:Key="GwListName2Template">
-                <TextBlock VerticalAlignment="Center">
-                    <Hyperlink Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
-                        <TextBlock Text="{Binding Name}" />
-                    </Hyperlink>
-                </TextBlock>
-            </DataTemplate>
-
             <DataTemplate x:Key="GwListMemoTemplate">
                 <Grid x:Name="memo" Width="24" Height="24" Background="Transparent" ToolTip="{Binding Memo}" Visibility="Hidden">
                     <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16" Kind="TooltipText" />
@@ -206,8 +182,8 @@
             <Style x:Key="GwListCopyButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignIconForegroundButton}" x:Shared="False">
                 <Setter Property="Width" Value="36" />
                 <Setter Property="Height" Value="36" />
-                <Setter Property="Command" Value="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-                <Setter Property="CommandParameter" Value="{Binding}" />
+                <!--<Setter Property="Command" Value="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                <Setter Property="CommandParameter" Value="{Binding}" />-->
                 <Setter Property="ToolTip" Value="Copy" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -242,23 +218,23 @@
             <Style x:Key="GwFilterSerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="300" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.Serials}" />
-                <Setter Property="SelectedItem" Value="{Binding List.SerialFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding Serials}" />
+                <Setter Property="SelectedItem" Value="{Binding SerialFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Serial}}" />
             </Style>
 
             <Style x:Key="GwFilterTagComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="144" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.Tags}" />
-                <Setter Property="SelectedItem" Value="{Binding List.TagFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding Tags}" />
+                <Setter Property="SelectedItem" Value="{Binding TagFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Tag}}" />
             </Style>
 
             <Style x:Key="GwFilterForUnitComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="88" />
-                <Setter Property="ItemsSource" Value="{Binding List.ForUnits}" />
-                <Setter Property="SelectedItem" Value="{Binding List.ForUnitFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding ForUnits}" />
+                <Setter Property="SelectedItem" Value="{Binding ForUnitFilter}" />
                 <!--<Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.ForUnit}}" />-->
                 <Setter Property="ItemTemplate">
                     <Setter.Value>
@@ -275,16 +251,16 @@
             <Style x:Key="GwFilterCuspaKindComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="96" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.CuspaKinds}" />
-                <Setter Property="SelectedItem" Value="{Binding List.CuspaKindFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding CuspaKinds}" />
+                <Setter Property="SelectedItem" Value="{Binding CuspaKindFilter}" />
                 <!--<Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.CuspaKind}}" />-->
             </Style>
 
             <Style x:Key="GwFilterBoostStatusComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}" x:Shared="False">
                 <Setter Property="Width" Value="144" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.BoostStatuses}" />
-                <Setter Property="SelectedItem" Value="{Binding List.BoostStatusFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding BoostStatuses}" />
+                <Setter Property="SelectedItem" Value="{Binding BoostStatusFilter}" />
                 <!--<Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.BoostStatus}}" />-->
             </Style>
 
@@ -295,7 +271,7 @@
             </Style>
 
             <Style x:Key="GwFilterHasMemoToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding List.HasMemoFilter}" />
+                <Setter Property="IsChecked" Value="{Binding HasMemoFilter}" />
                 <Setter Property="ToolTip" Value="メモあり" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -310,7 +286,7 @@
             </Style>
 
             <Style x:Key="GwFilterHasNoMobileToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding List.HasNoMobileFilter}" />
+                <Setter Property="IsChecked" Value="{Binding HasNoMobileFilter}" />
                 <Setter Property="ToolTip" Value="機体未設定" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -325,7 +301,7 @@
             </Style>
 
             <Style x:Key="GwFilterIsNotPinnedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding List.IsNotPinnedFilter}" />
+                <Setter Property="IsChecked" Value="{Binding IsNotPinnedFilter}" />
                 <Setter Property="ToolTip" Value="ピン止め" />
                 <Setter Property="Content">
                     <Setter.Value>
@@ -343,16 +319,16 @@
             <Style x:Key="GwFilterPilotAbilityComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
                 <Setter Property="Width" Value="224" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.PilotAbilities}" />
-                <Setter Property="SelectedItem" Value="{Binding List.PilotAbilityFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding PilotAbilities}" />
+                <Setter Property="SelectedItem" Value="{Binding PilotAbilityFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="アビリティ" />
             </Style>
 
             <Style x:Key="GwFilterPilotSkillComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
                 <Setter Property="Width" Value="224" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.PilotSkills}" />
-                <Setter Property="SelectedItem" Value="{Binding List.PilotSkillFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding PilotSkills}" />
+                <Setter Property="SelectedItem" Value="{Binding PilotSkillFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="スキル" />
             </Style>
 
@@ -360,32 +336,32 @@
             <Style x:Key="GwFilterSupportBadgeComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
                 <Setter Property="Width" Value="220" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.SupportBadges}" />
-                <Setter Property="SelectedItem" Value="{Binding List.SupportBadgeFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding SupportBadges}" />
+                <Setter Property="SelectedItem" Value="{Binding SupportBadgeFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="バッジ" />
             </Style>
 
             <Style x:Key="GwFilterSupportSlotComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
                 <Setter Property="Width" Value="224" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.SupportSlots}" />
-                <Setter Property="SelectedItem" Value="{Binding List.SupportSlotFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding SupportSlots}" />
+                <Setter Property="SelectedItem" Value="{Binding SupportSlotFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="スロット" />
             </Style>
 
             <!--<Style x:Key="GwFilterUnlockSlotComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
                 <Setter Property="Width" Value="224" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.UnlockSlots}" />
-                <Setter Property="SelectedItem" Value="{Binding List.UnlockSlotFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding UnlockSlots}" />
+                <Setter Property="SelectedItem" Value="{Binding UnlockSlotFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="Unlock Slot" />
             </Style>
 
             <Style x:Key="GwFilterBonusSlotComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
                 <Setter Property="Width" Value="224" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding List.BonusSlots}" />
-                <Setter Property="SelectedItem" Value="{Binding List.BonusSlotFilter}" />
+                <Setter Property="ItemsSource" Value="{Binding BonusSlots}" />
+                <Setter Property="SelectedItem" Value="{Binding BonusSlotFilter}" />
                 <Setter Property="materialDesign:HintAssist.Hint" Value="Bonus Slot" />
             </Style>-->
 

@@ -1,14 +1,26 @@
-﻿using Ju.GundamWars.Client.Supports.Domain;
-using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Supports.Domain;
+﻿using Ju.GundamWars.Client.Boosts.Domain;
+using Ju.GundamWars.Client.Serials.Domain;
+using Ju.GundamWars.Client.SupportBadges.Domain;
+using Ju.GundamWars.Client.Supports.Domain;
+using Ju.GundamWars.Client.SupportSlots.Domain;
+using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Client.Units.Domain;
 
 namespace Ju.GundamWars.Supports.View;
 
-internal partial class SupportListViewModel : ListViewModelBase<Support, SupportList, SupportViewState>
+internal partial class SupportListViewModel : SupportListViewModelBase
 {
-    public SupportListViewModel(SupportList list, SupportViewState viewState)
-        : base(list, viewState)
+    public SupportListViewModel(
+        SupportInventory items,
+        UnitInventory units,
+        SerialInventory serials,
+        BoostStatusInventory boostStatuses,
+        SupportSlotInventory supportSlots,
+        SupportBadgeInventory supportBadges,
+        TagInventory tags)
+        : base(items, units, serials, boostStatuses, supportSlots, supportBadges, tags)
     {
-        list.IsCountable = true;
+        IsCountableChecked = true;
+        IsFixedForUnitFilter = false;
     }
 }

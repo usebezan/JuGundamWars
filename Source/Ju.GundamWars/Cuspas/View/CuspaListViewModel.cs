@@ -1,14 +1,22 @@
-﻿using Ju.GundamWars.Client.Cuspas.Domain;
-using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Cuspas.Domain;
+﻿using Ju.GundamWars.Client.Boosts.Domain;
+using Ju.GundamWars.Client.CuspaKinds.Domain;
+using Ju.GundamWars.Client.Cuspas.Domain;
+using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Client.Units.Domain;
 
 namespace Ju.GundamWars.Cuspas.View;
 
-internal partial class CuspaListViewModel : ListViewModelBase<Cuspa, CuspaList, CuspaViewState>
+internal partial class CuspaListViewModel : CuspaListViewModelBase
 {
-    public CuspaListViewModel(CuspaList list, CuspaViewState viewState)
-        : base(list, viewState)
+    public CuspaListViewModel(
+        CuspaInventory items,
+        UnitInventory units,
+        CuspaKindInventory cuspaKinds,
+        BoostStatusInventory boostStatuses,
+        TagInventory tags)
+        : base(items, units, cuspaKinds, boostStatuses, tags)
     {
-        list.IsCountable = true;
+        IsCountableChecked = false;
+        IsFixedForUnitFilter = false;
     }
 }

@@ -6,6 +6,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
+    xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     xmlns:cuspas="clr-namespace:Ju.GundamWars.Cuspas.View"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance cuspas:CuspaViewModel}"
@@ -14,7 +15,7 @@
     >
     <Grid>
         <Grid Height="50" VerticalAlignment="Top" Background="{DynamicResource GwPrimaryBrush}" />
-        <materialDesign:Transitioner SelectedIndex="{Binding ViewState.PageIndex}">
+        <materialDesign:Transitioner SelectedIndex="{Binding PageIndex}">
             <!-- List -->
             <materialDesign:TransitionerSlide>
                 <materialDesign:TransitionerSlide.ForwardWipe>

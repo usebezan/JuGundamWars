@@ -16,14 +16,22 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button FontSize="14" FontWeight="Medium" Command="{Binding OpenEntryAsNewCommand}">
+                <Button
+                    FontSize="14"
+                    FontWeight="Medium"
+                    Command="{Binding DataContext.OpenEntryAsNewCommand, RelativeSource={RelativeSource AncestorType={x:Type coMobiles:CoMobileView}}}"
+                    >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
                         <TextBlock VerticalAlignment="Center" Text="New" />
                     </StackPanel>
                 </Button>
                 <Separator Margin="4" />
-                <Button Command="{Binding FilterClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="フィルター解除" />
+                <Button
+                    Command="{Binding DataContext.ClearFilterCommand, RelativeSource={RelativeSource AncestorType={x:Type coMobiles:CoMobileView}}}"
+                    Content="{materialDesign:PackIcon FilterRemoveOutline}"
+                    ToolTip="フィルター解除"
+                />
                 <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
                 <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
                 <ToggleButton Style="{StaticResource GwFilterHasNoMobileToggleButton}" />

@@ -1,14 +1,17 @@
 ﻿using Ju.GundamWars.Client.CoMobiles.Domain;
-using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.CoMobiles.Domain;
+using Ju.GundamWars.Client.Serials.Domain;
+using Ju.GundamWars.Client.Tags.Domain;
 
 namespace Ju.GundamWars.CoMobiles.View;
 
-internal partial class CoMobileListViewModel : ListViewModelBase<CoMobile, CoMobileList, CoMobileViewState>
+internal partial class CoMobileListViewModel : CoMobileListViewModelBase
 {
-    public CoMobileListViewModel(CoMobileList list, CoMobileViewState viewState)
-        : base(list, viewState)
+    public CoMobileListViewModel(
+        CoMobileInventory items,
+        SerialInventory serials,
+        TagInventory tags)
+        : base(items, serials, tags)
     {
-        list.IsCountable = true;
+        IsCountableChecked = true;
     }
 }

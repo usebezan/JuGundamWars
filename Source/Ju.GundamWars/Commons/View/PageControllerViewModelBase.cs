@@ -1,44 +1,51 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Client.Commons.Domain;
-using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 
 namespace Ju.GundamWars.Commons.View;
 
-internal abstract partial class ListViewModelBase<TBiz, TBizList, TViewState>(TBizList list, TViewState viewState) : ModelBase
+internal abstract partial class PageControllerViewModelBase<TBiz, TBizListViewModel>(TBizListViewModel listViewModel) : ModelBase
     where TBiz : BizBase
-    where TBizList : IBizList<TBiz>
-    where TViewState : IPageController
+    where TBizListViewModel : IBizListViewModel<TBiz>
 {
 
-    protected TViewState ViewState { get; } = viewState;
+    public TBizListViewModel List { get; } = listViewModel;
 
-    public TBizList List { get; } = list;
+    [ObservableProperty]
+    private int _PageIndex = 0;
 
 
     [RelayCommand]
     private Task OpenEntryAsNewAsync() =>
         Task.Run(() =>
         {
-            ViewState.PageIndex = 1;
+            PageIndex = 1;
         });
 
     [RelayCommand]
     private Task OpenEntryAsEditAsync(TBiz model) =>
         Task.Run(() =>
         {
-            ViewState.PageIndex = 1;
+            PageIndex = 1;
         });
 
     [RelayCommand]
     private Task OpenEntryAsCopyAsync(TBiz model) =>
         Task.Run(() =>
         {
-            ViewState.PageIndex = 1;
+            PageIndex = 1;
         });
 
     [RelayCommand]
-    private void FilterClear() => List.FilterClear();
+    private Task CancelAsync() =>
+        Task.Run(() =>
+        {
+            PageIndex = 0;
+        });
+
+    [RelayCommand]
+    private void ClearFilter() => List.ClearFilter();
     [RelayCommand]
     private void CheckAll() => List.CheckAll();
     [RelayCommand]

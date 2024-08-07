@@ -1,11 +1,16 @@
-﻿using Ju.GundamWars.Commons.Domain.Model;
-using Ju.GundamWars.Supports.Domain;
+﻿using CommunityToolkit.Mvvm.Input;
+using Ju.GundamWars.Client.Supports.Domain;
+using Ju.GundamWars.Commons.View;
 
 namespace Ju.GundamWars.Supports.View;
 
-internal partial class SupportViewModel(SupportViewState viewState) : ModelBase
+internal partial class SupportViewModel(SupportListViewModel listViewModel)
+    : PageControllerViewModelBase<Support, SupportListViewModel>(listViewModel)
 {
-
-    public SupportViewState ViewState { get; } = viewState;
-
+    [RelayCommand]
+    private Task OpenEntryAsNewForMaAsync() =>
+        Task.Run(() =>
+        {
+            PageIndex = 1;
+        });
 }

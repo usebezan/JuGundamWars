@@ -6,19 +6,18 @@ using Ju.GundamWars.Client.Supports.Domain;
 using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Units.Domain;
-using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.Share.Boosts.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
 using Ju.GundamWars.Share.Units.Domain;
 using System.Windows.Data;
-using static System.Reflection.Metadata.BlobBuilder;
 
-namespace Ju.GundamWars.Supports.Domain;
+namespace Ju.GundamWars.Supports.View;
 
-internal partial class SupportList : BizListBase<Support>
+internal partial class SupportListViewModelBase : BizListViewModelBase<Support>
 {
 
-    public SupportList(
+    public SupportListViewModelBase(
         SupportInventory items,
         UnitInventory units,
         SerialInventory serials,
@@ -46,6 +45,7 @@ internal partial class SupportList : BizListBase<Support>
     public ListCollectionView BoostStatuses { get; }
     public ListCollectionView SupportSlots { get; }
     public ListCollectionView SupportBadges { get; }
+    public bool IsFixedForUnitFilter { get; protected set; } = false;
 
     [ObservableProperty]
     private Unit? _ForUnitFilter = null;
@@ -77,12 +77,12 @@ internal partial class SupportList : BizListBase<Support>
     protected override bool FilterItem(object obj)
     {
         if (obj is not Support item) return false;
+        if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
         if (ForUnitFilter != null && item.ForUnitType != ForUnitFilter.Type) return false;
         if (SerialFilter != null && item.SerialId != SerialFilter.Id) return false;
         if (BoostStatusFilter != null && !item.SupportSlotBadges.Any(i => i.BoostStatusType == BoostStatusFilter.Type)) return false;
         if (SupportSlotFilter != null && !item.SupportSlotBadges.Any(i => i.SupportSlotId == SupportSlotFilter.Id)) return false;
         if (SupportBadgeFilter != null && !item.SupportSlotBadges.Any(i => i.SupportBadgeId == SupportBadgeFilter.Id)) return false;
-        if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
         if (HasMemoFilter && !item.HasMemo) return false;
         // TODO: if (HasNoMobileFilter && item.Mobile != null) return false;
         if (IsNotPinnedFilter && item.IsPinned) return false;
@@ -96,15 +96,18 @@ internal partial class SupportList : BizListBase<Support>
         return item.TagGroupType.ForSupport();
     }
 
-    public override void FilterClear()
+    public override void ClearFilter()
     {
         IsIdle = false;
-        ForUnitFilter = null;
+        TagFilter = null;
+        if (!IsFixedForUnitFilter)
+        {
+            ForUnitFilter = null;
+        }
         SerialFilter = null;
         BoostStatusFilter = null;
         SupportSlotFilter = null;
         SupportBadgeFilter = null;
-        TagFilter = null;
         HasMemoFilter = false;
         HasNoMobileFilter = false;
         IsNotPinnedFilter = false;

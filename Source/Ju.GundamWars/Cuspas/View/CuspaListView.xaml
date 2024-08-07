@@ -16,14 +16,42 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button FontSize="14" FontWeight="Medium" Command="{Binding OpenEntryAsNewCommand}">
+                <materialDesign:SplitButton
+                    Style="{StaticResource MaterialDesignFlatSplitButton}"
+                    Command="{Binding DataContext.OpenEntryAsNewCommand, RelativeSource={RelativeSource AncestorType={x:Type cuspas:CuspaView}}}"
+                    PopupPlacementMode="BottomAndAlignRightEdges"
+                    >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
                         <TextBlock VerticalAlignment="Center" Text="New" />
                     </StackPanel>
-                </Button>
+                    <materialDesign:SplitButton.PopupContent>
+                        <StackPanel>
+                            <Button
+                                Command="{Binding DataContext.OpenEntryAsNewCommand, RelativeSource={RelativeSource AncestorType={x:Type cuspas:CuspaView}}}"
+                                >
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="{Binding Source={x:Static core:GwIcon.MobileSuit}}" />
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static core:GwText.MobileSuit}}" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Command="{Binding DataContext.OpenEntryAsNewForBsCommand, RelativeSource={RelativeSource AncestorType={x:Type cuspas:CuspaView}}}"
+                                >
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="{Binding Source={x:Static core:GwIcon.Battleship}}" />
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static core:GwText.Battleship}}" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </materialDesign:SplitButton.PopupContent>
+                </materialDesign:SplitButton>
                 <Separator Margin="4" />
-                <Button Command="{Binding FilterClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="フィルター解除" />
+                <Button
+                    Command="{Binding DataContext.ClearFilterCommand, RelativeSource={RelativeSource AncestorType={x:Type cuspas:CuspaView}}}"
+                    Content="{materialDesign:PackIcon FilterRemoveOutline}"
+                    ToolTip="フィルター解除"
+                />
                 <ComboBox Style="{StaticResource GwFilterForUnitComboBox}" />
                 <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
                 <ComboBox Style="{StaticResource GwFilterCuspaKindComboBox}" />

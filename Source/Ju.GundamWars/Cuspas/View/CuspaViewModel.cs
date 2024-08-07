@@ -1,11 +1,16 @@
-﻿using Ju.GundamWars.Commons.Domain.Model;
-using Ju.GundamWars.Cuspas.Domain;
+﻿using CommunityToolkit.Mvvm.Input;
+using Ju.GundamWars.Client.Cuspas.Domain;
+using Ju.GundamWars.Commons.View;
 
 namespace Ju.GundamWars.Cuspas.View;
 
-internal partial class CuspaViewModel(CuspaViewState viewState) : ModelBase
+internal partial class CuspaViewModel(CuspaListViewModel listViewModel)
+    : PageControllerViewModelBase<Cuspa, CuspaListViewModel>(listViewModel)
 {
-
-    public CuspaViewState ViewState { get; } = viewState;
-
+    [RelayCommand]
+    private Task OpenEntryAsNewForBsAsync() =>
+        Task.Run(() =>
+        {
+            PageIndex = 1;
+        });
 }

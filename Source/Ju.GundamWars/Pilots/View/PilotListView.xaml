@@ -16,20 +16,28 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <materialDesign:SplitButton Style="{StaticResource MaterialDesignFlatSplitButton}" Command="{Binding OpenEntryAsNewCommand}" PopupPlacementMode="BottomAndAlignRightEdges">
+                <materialDesign:SplitButton
+                    Style="{StaticResource MaterialDesignFlatSplitButton}"
+                    Command="{Binding DataContext.OpenEntryAsNewCommand, RelativeSource={RelativeSource AncestorType={x:Type pilots:PilotView}}}"
+                    PopupPlacementMode="BottomAndAlignRightEdges"
+                    >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
                         <TextBlock VerticalAlignment="Center" Text="New" />
                     </StackPanel>
                     <materialDesign:SplitButton.PopupContent>
                         <StackPanel>
-                            <Button Command="{Binding OpenEntryAsNewCommand}">
+                            <Button
+                                Command="{Binding DataContext.OpenEntryAsNewCommand, RelativeSource={RelativeSource AncestorType={x:Type pilots:PilotView}}}"
+                                >
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="{Binding Source={x:Static core:GwIcon.MobileSuit}}" />
                                     <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static core:GwText.MobileSuit}}" />
                                 </StackPanel>
                             </Button>
-                            <Button Command="{Binding OpenEntryAsNewCommand}">
+                            <Button
+                                Command="{Binding DataContext.OpenEntryAsNewForMaCommand, RelativeSource={RelativeSource AncestorType={x:Type pilots:PilotView}}}"
+                                >
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="{Binding Source={x:Static core:GwIcon.MobileArmor}}" />
                                     <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static core:GwText.MobileArmor}}" />
@@ -39,7 +47,11 @@
                     </materialDesign:SplitButton.PopupContent>
                 </materialDesign:SplitButton>
                 <Separator Margin="4" />
-                <Button Command="{Binding FilterClearCommand}" Content="{materialDesign:PackIcon FilterRemoveOutline}" ToolTip="フィルター解除" />
+                <Button
+                    Command="{Binding DataContext.ClearFilterCommand, RelativeSource={RelativeSource AncestorType={x:Type pilots:PilotView}}}"
+                    Content="{materialDesign:PackIcon FilterRemoveOutline}"
+                    ToolTip="フィルター解除"
+                />
                 <ComboBox Style="{StaticResource GwFilterForUnitComboBox}" />
                 <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
                 <ComboBox Style="{StaticResource GwFilterPilotAbilityComboBox}">

@@ -7,16 +7,14 @@ using System.ComponentModel;
 using System.Reactive.Linq;
 using System.Windows.Data;
 
-namespace Ju.GundamWars.Commons.Domain;
+namespace Ju.GundamWars.Commons.View;
 
-internal abstract partial class BizListBase<TBiz> : ModelBase, IBizList<TBiz>
+internal abstract partial class BizListViewModelBase<TBiz> : ModelBase, IBizListViewModel<TBiz>
     where TBiz : BizBase
 {
 
-    public BizListBase(ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tags)
+    public BizListViewModelBase(ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tags)
     {
-        IsIdle = false;
-
         Items = items;
         ItemsView = new(items) { Filter = FilterItem, };
         Tags = new(tags) { Filter = FilterTag, };
@@ -28,16 +26,17 @@ internal abstract partial class BizListBase<TBiz> : ModelBase, IBizList<TBiz>
     }
 
 
-    protected bool IsIdle { get; set; }
+    protected bool IsIdle { get; set; } = false;
 
     public ObservableItemPropertyChangedCollection<TBiz> Items { get; }
     public ListCollectionView ItemsView { get; }
     public ListCollectionView Tags { get; }
-    public bool IsCountable { get; set; }
 
     [ObservableProperty]
     private Tag? _TagFilter = null;
 
+    [ObservableProperty]
+    private bool _IsCountableChecked = false;
     [ObservableProperty]
     private int _CheckedCount = 0;
     [ObservableProperty]
@@ -58,16 +57,29 @@ internal abstract partial class BizListBase<TBiz> : ModelBase, IBizList<TBiz>
         SetCount();
     }
 
-    public abstract void FilterClear();
+    public abstract void ClearFilter();
 
     public void SetCount()
     {
-        if (!IsCountable) return;
+        if (!IsCountableChecked) return;
         CheckedCount = Items.Where(e => e.IsChecked).Count();
         FilteredCheckedCount = ItemsView.OfType<TBiz>().Where(e => e.IsChecked).Count();
     }
 
-    public void CheckAll() => ItemsView.CheckAll<TBiz>();
-    public void UncheckAll() => ItemsView.UncheckAll<TBiz>();
+    public void CheckAll()
+    {
+        foreach (var item in ItemsView.OfType<TBiz>().ToList())
+        {
+            item.IsChecked = true;
+        }
+    }
+
+    public void UncheckAll()
+    {
+        foreach (var item in ItemsView.OfType<TBiz>().ToList())
+        {
+            item.IsChecked = false;
+        }
+    }
 
 }

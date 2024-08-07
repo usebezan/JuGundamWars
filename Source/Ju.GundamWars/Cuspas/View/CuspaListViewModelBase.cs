@@ -4,19 +4,19 @@ using Ju.GundamWars.Client.CuspaKinds.Domain;
 using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Units.Domain;
-using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.Share.Boosts.Domain;
 using Ju.GundamWars.Share.CuspaKinds.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
 using Ju.GundamWars.Share.Units.Domain;
 using System.Windows.Data;
 
-namespace Ju.GundamWars.Cuspas.Domain;
+namespace Ju.GundamWars.Cuspas.View;
 
-internal partial class CuspaList : BizListBase<Cuspa>
+internal partial class CuspaListViewModelBase : BizListViewModelBase<Cuspa>
 {
 
-    public CuspaList(
+    public CuspaListViewModelBase(
         CuspaInventory items,
         UnitInventory units,
         CuspaKindInventory cuspaKinds,
@@ -35,6 +35,7 @@ internal partial class CuspaList : BizListBase<Cuspa>
     public ListCollectionView ForUnits { get; }
     public ListCollectionView CuspaKinds { get; }
     public ListCollectionView BoostStatuses { get; }
+    public bool IsFixedForUnitFilter { get; protected set; } = false;
 
     [ObservableProperty]
     private Unit? _ForUnitFilter = null;
@@ -69,11 +70,14 @@ internal partial class CuspaList : BizListBase<Cuspa>
         return item.TagGroupType.ForCuspa();
     }
 
-    public override void FilterClear()
+    public override void ClearFilter()
     {
         IsIdle = false;
         TagFilter = null;
-        ForUnitFilter = null;
+        if (!IsFixedForUnitFilter)
+        {
+            ForUnitFilter = null;
+        }
         CuspaKindFilter = null;
         BoostStatusFilter = null;
         HasMemoFilter = false;

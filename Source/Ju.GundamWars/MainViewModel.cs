@@ -33,7 +33,7 @@ internal partial class MainViewModel(
     {
         await loadAllClientUseCase.HandleAsync();
         // TODO: 強引がすぎる
-        coMobileListViewModel.List.SetCount();
+        coMobileListViewModel.SetCount();
         ViewState.ShowSnackbar("Loaded.");
     }
 

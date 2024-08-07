@@ -6,6 +6,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
+    xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     xmlns:cuspas="clr-namespace:Ju.GundamWars.Cuspas.View"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance cuspas:CuspaListViewModel}"
@@ -13,6 +14,16 @@
     d:DesignWidth="800"
     >
     <UserControl.Resources>
+        <DataTemplate x:Key="GwCuspaListNameTemplate">
+            <TextBlock VerticalAlignment="Center">
+                        <Hyperlink
+                            Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType={x:Type cuspas:CuspaView}}}"
+                            CommandParameter="{Binding}"
+                            >
+                        <TextBlock Text="{Binding Name}" />
+                    </Hyperlink>
+                </TextBlock>
+        </DataTemplate>
         <DataTemplate x:Key="GwCuspaListNameCellTemplate">
             <Grid VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -22,13 +33,19 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwListForUnitTemplate}" />
-                <ContentControl Grid.Column="1" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListName2Template}" />
+                <ContentControl Grid.Column="1" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwCuspaListNameTemplate}" />
                 <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListMemoTemplate}" />
-                <Button Grid.Column="3" Margin="8 0 0 0" Style="{StaticResource GwListCopyButton}" />
+                <Button
+                    Style="{StaticResource GwListCopyButton}"
+                    Grid.Column="3"
+                    Margin="8 0 0 0"
+                    Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType={x:Type cuspas:CuspaView}}}"
+                    CommandParameter="{Binding}"
+                />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-    <DataGrid ItemsSource="{Binding List.ItemsView}" FrozenColumnCount="1">
+    <DataGrid ItemsSource="{Binding ItemsView}" FrozenColumnCount="1">
         <DataGrid.Columns>
             <DataGridTemplateColumn Header="Name"
                 CellTemplate="{StaticResource GwCuspaListNameCellTemplate}"

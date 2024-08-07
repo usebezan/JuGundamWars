@@ -5,17 +5,17 @@ using Ju.GundamWars.Client.PilotSkills.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Units.Domain;
-using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.Share.Tags.Domain;
 using Ju.GundamWars.Share.Units.Domain;
 using System.Windows.Data;
 
-namespace Ju.GundamWars.Pilots.Domain;
+namespace Ju.GundamWars.Pilots.View;
 
-internal partial class PilotList : BizListBase<Pilot>
+internal abstract partial class PilotListViewModelBase : BizListViewModelBase<Pilot>
 {
 
-    public PilotList(
+    public PilotListViewModelBase(
         PilotInventory items,
         UnitInventory units,
         SerialInventory serials,
@@ -40,6 +40,7 @@ internal partial class PilotList : BizListBase<Pilot>
     public ListCollectionView Serials { get; }
     public ListCollectionView PilotAbilities { get; }
     public ListCollectionView PilotSkills { get; }
+    public bool IsFixedForUnitFilter { get; protected set; } = false;
 
     [ObservableProperty]
     private Unit? _ForUnitFilter = null;
@@ -68,11 +69,11 @@ internal partial class PilotList : BizListBase<Pilot>
     protected override bool FilterItem(object obj)
     {
         if (obj is not Pilot item) return false;
+        if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
         if (ForUnitFilter != null && item.ForUnitType != ForUnitFilter.Type) return false;
         if (SerialFilter != null && item.SerialId != SerialFilter.Id) return false;
         if (PilotAbilityFilter != null && !item.PilotSlotAbilities.Any(i => i.PilotAbilityId == PilotAbilityFilter.Id)) return false;
         if (PilotSkillFilter != null && item.PilotSkillId != PilotSkillFilter.Id) return false;
-        if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
         if (HasMemoFilter && !item.HasMemo) return false;
         // TODO: if (HasNoMobileFilter && item.Mobile != null) return false;
         if (IsNotPinnedFilter && item.IsPinned) return false;
@@ -86,14 +87,17 @@ internal partial class PilotList : BizListBase<Pilot>
         return item.TagGroupType.ForPilot();
     }
 
-    public override void FilterClear()
+    public override void ClearFilter()
     {
         IsIdle = false;
-        ForUnitFilter = null;
+        TagFilter = null;
+        if (!IsFixedForUnitFilter)
+        {
+            ForUnitFilter = null;
+        }
         SerialFilter = null;
         PilotAbilityFilter = null;
         PilotSkillFilter = null;
-        TagFilter = null;
         HasMemoFilter = false;
         HasNoMobileFilter = false;
         IsNotPinnedFilter = false;
