@@ -17,7 +17,7 @@
         <DataTemplate x:Key="GwCuspaListNameTemplate">
             <TextBlock VerticalAlignment="Center">
                         <Hyperlink
-                            Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType={x:Type cuspas:CuspaView}}}"
+                            Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={StaticResource GwCuspaListRelativeSource}}"
                             CommandParameter="{Binding}"
                             >
                         <TextBlock Text="{Binding Name}" />
@@ -39,7 +39,7 @@
                     Style="{StaticResource GwListCopyButton}"
                     Grid.Column="3"
                     Margin="8 0 0 0"
-                    Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType={x:Type cuspas:CuspaView}}}"
+                    Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={StaticResource GwCuspaListRelativeSource}}"
                     CommandParameter="{Binding}"
                 />
             </Grid>

@@ -1,5 +1,4 @@
-﻿using Ju.GundamWars.Client.Boosts.Domain;
-using Ju.GundamWars.Client.Serials.Domain;
+﻿using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;
 using Ju.GundamWars.Client.Supports.Domain;
 using Ju.GundamWars.Client.SupportSlots.Domain;
@@ -14,11 +13,10 @@ internal partial class SupportListViewModel : SupportListViewModelBase
         SupportInventory items,
         UnitInventory units,
         SerialInventory serials,
-        BoostStatusInventory boostStatuses,
         SupportSlotInventory supportSlots,
         SupportBadgeInventory supportBadges,
         TagInventory tags)
-        : base(items, units, serials, boostStatuses, supportSlots, supportBadges, tags)
+        : base(items, units, serials, supportSlots, supportBadges, tags)
     {
         IsCountableChecked = true;
         IsFixedForUnitFilter = false;

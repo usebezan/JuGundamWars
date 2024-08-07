@@ -90,4 +90,21 @@ public static class BoostStatusTypeExtension
             _ => [MobileStatusType.Unknown,],
         };
 
+    public static bool ForCuspa(this BoostStatusType self) =>
+        self switch
+        {
+            BoostStatusType.Hp => true,
+            BoostStatusType.BeamAttack => true,
+            BoostStatusType.PhysicalAttack => true,
+            BoostStatusType.BeamDefence => true,
+            BoostStatusType.PhysicalDefence => true,
+            BoostStatusType.CriticalRate => true,
+            BoostStatusType.CriticalDamage => true,
+            BoostStatusType.Accuracy => true,
+            BoostStatusType.Evasion => true,
+            BoostStatusType.Mobility => true,
+            BoostStatusType.EnRecovery => true,
+            _ => false,
+        };
+
 }

@@ -1,4 +1,6 @@
-﻿namespace Ju.GundamWars.Share.Units.Domain;
+﻿using Ju.GundamWars.Share.Roles.Domain;
+
+namespace Ju.GundamWars.Share.Units.Domain;
 
 [Flags]
 public enum UnitType : byte
@@ -39,6 +41,30 @@ public static class UnitTypeExtension
             UnitType.Battleship => GwIcon.Battleship,
             UnitType.Mobile => GwIcon.Mobile,
             _ => GwIcon.Unknown,
+        };
+
+    public static bool ForCuspa(this UnitType self) =>
+        self switch
+        {
+            UnitType.Mobile => true,
+            UnitType.Battleship => true,
+            _ => false,
+        };
+
+    public static bool ForPilot(this UnitType self) =>
+        self switch
+        {
+            UnitType.MobileSuit => true,
+            UnitType.MobileArmor => true,
+            _ => false,
+        };
+
+    public static bool ForSupport(this UnitType self) =>
+        self switch
+        {
+            UnitType.MobileSuit => true,
+            UnitType.MobileArmor => true,
+            _ => false,
         };
 
 }

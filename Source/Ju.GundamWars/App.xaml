@@ -5,6 +5,11 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mahApps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
+    xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
+    xmlns:coMobiles="clr-namespace:Ju.GundamWars.CoMobiles.View"
+    xmlns:cuspas="clr-namespace:Ju.GundamWars.Cuspas.View"
+    xmlns:pilots="clr-namespace:Ju.GundamWars.Pilots.View"
+    xmlns:supports="clr-namespace:Ju.GundamWars.Supports.View"
     Startup="OnStartup"
     Exit="OnExit"
     >
@@ -316,6 +321,14 @@
             </Style>
 
 
+            <RelativeSource x:Key="GwCoMobileListRelativeSource" AncestorType="{x:Type coMobiles:CoMobileView}" />
+
+
+            <RelativeSource x:Key="GwCuspaListRelativeSource" AncestorType="{x:Type cuspas:CuspaView}" />
+
+
+            <RelativeSource x:Key="GwPilotListRelativeSource" AncestorType="{x:Type pilots:PilotView}" />
+
             <Style x:Key="GwFilterPilotAbilityComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
                 <Setter Property="Width" Value="224" />
                 <Setter Property="DisplayMemberPath" Value="Name" />
@@ -332,6 +345,8 @@
                 <Setter Property="materialDesign:HintAssist.Hint" Value="スキル" />
             </Style>
 
+
+            <RelativeSource x:Key="GwSupportListRelativeSource" AncestorType="{x:Type supports:SupportView}" />
 
             <Style x:Key="GwFilterSupportBadgeComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilterComboBox}">
                 <Setter Property="Width" Value="220" />

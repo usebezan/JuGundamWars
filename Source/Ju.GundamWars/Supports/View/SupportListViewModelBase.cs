@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Ju.GundamWars.Client.Boosts.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.SupportBadges.Domain;
 using Ju.GundamWars.Client.Supports.Domain;
@@ -7,7 +6,7 @@ using Ju.GundamWars.Client.SupportSlots.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Units.Domain;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Share.Boosts.Domain;
+using Ju.GundamWars.Share.SupportSlots.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
 using Ju.GundamWars.Share.Units.Domain;
 using System.Windows.Data;
@@ -21,16 +20,14 @@ internal partial class SupportListViewModelBase : BizListViewModelBase<Support>
         SupportInventory items,
         UnitInventory units,
         SerialInventory serials,
-        BoostStatusInventory boostStatuses,
         SupportSlotInventory supportSlots,
         SupportBadgeInventory supportBadges,
         TagInventory tags)
         : base(items, tags)
     {
-        ForUnits = new(units);
+        ForUnits = new(units) { Filter = FilterForUnit, };
         Serials = new(serials);
-        BoostStatuses = new(boostStatuses);
-        SupportSlots = new(supportSlots);
+        SupportSlots = new(supportSlots) { Filter = FilterSupportSlot, };
         SupportBadges = new(supportBadges);
 
         SupportSlots.GroupDescriptions.Add(new PropertyGroupDescription("TargetText"));
@@ -42,7 +39,6 @@ internal partial class SupportListViewModelBase : BizListViewModelBase<Support>
 
     public ListCollectionView ForUnits { get; }
     public ListCollectionView Serials { get; }
-    public ListCollectionView BoostStatuses { get; }
     public ListCollectionView SupportSlots { get; }
     public ListCollectionView SupportBadges { get; }
     public bool IsFixedForUnitFilter { get; protected set; } = false;
@@ -51,8 +47,6 @@ internal partial class SupportListViewModelBase : BizListViewModelBase<Support>
     private Unit? _ForUnitFilter = null;
     [ObservableProperty]
     private Serial? _SerialFilter = null;
-    [ObservableProperty]
-    private BoostStatus? _BoostStatusFilter = null;
     [ObservableProperty]
     private SupportSlot? _SupportSlotFilter = null;
     [ObservableProperty]
@@ -67,12 +61,23 @@ internal partial class SupportListViewModelBase : BizListViewModelBase<Support>
 
     partial void OnForUnitFilterChanged(Unit? value) => Refresh();
     partial void OnSerialFilterChanged(Serial? value) => Refresh();
-    partial void OnBoostStatusFilterChanged(BoostStatus? value) => Refresh();
     partial void OnSupportSlotFilterChanged(SupportSlot? value) => Refresh();
     partial void OnSupportBadgeFilterChanged(SupportBadge? value) => Refresh();
     partial void OnHasMemoFilterChanged(bool value) => Refresh();
     partial void OnHasNoMobileFilterChanged(bool value) => Refresh();
     partial void OnIsNotPinnedFilterChanged(bool value) => Refresh();
+
+    private bool FilterForUnit(object obj)
+    {
+        if (obj is not Unit item) return false;
+        return item.Type.ForSupport();
+    }
+
+    private bool FilterSupportSlot(object obj)
+    {
+        if (obj is not SupportSlot item) return false;
+        return item.SupportSlotKindType != SupportSlotKindType.Unknown && item.SupportSlotKindType != SupportSlotKindType.Normal;
+    }
 
     protected override bool FilterItem(object obj)
     {
@@ -80,7 +85,6 @@ internal partial class SupportListViewModelBase : BizListViewModelBase<Support>
         if (TagFilter != null && !item.Tags.Any(i => i.Id == TagFilter.Id)) return false;
         if (ForUnitFilter != null && item.ForUnitType != ForUnitFilter.Type) return false;
         if (SerialFilter != null && item.SerialId != SerialFilter.Id) return false;
-        if (BoostStatusFilter != null && !item.SupportSlotBadges.Any(i => i.BoostStatusType == BoostStatusFilter.Type)) return false;
         if (SupportSlotFilter != null && !item.SupportSlotBadges.Any(i => i.SupportSlotId == SupportSlotFilter.Id)) return false;
         if (SupportBadgeFilter != null && !item.SupportSlotBadges.Any(i => i.SupportBadgeId == SupportBadgeFilter.Id)) return false;
         if (HasMemoFilter && !item.HasMemo) return false;
@@ -105,7 +109,6 @@ internal partial class SupportListViewModelBase : BizListViewModelBase<Support>
             ForUnitFilter = null;
         }
         SerialFilter = null;
-        BoostStatusFilter = null;
         SupportSlotFilter = null;
         SupportBadgeFilter = null;
         HasMemoFilter = false;

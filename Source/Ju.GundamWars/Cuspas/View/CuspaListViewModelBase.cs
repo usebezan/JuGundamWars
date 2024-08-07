@@ -24,9 +24,9 @@ internal partial class CuspaListViewModelBase : BizListViewModelBase<Cuspa>
         TagInventory tags)
         : base(items, tags)
     {
-        ForUnits = new(units);
+        ForUnits = new(units) { Filter = FilterForUnit, };
         CuspaKinds = new(cuspaKinds);
-        BoostStatuses = new(boostStatuses);
+        BoostStatuses = new(boostStatuses) { Filter = FilterBoostStatus, };
 
         IsIdle = true;
     }
@@ -51,6 +51,18 @@ internal partial class CuspaListViewModelBase : BizListViewModelBase<Cuspa>
     partial void OnCuspaKindFilterChanged(CuspaKind? value) => Refresh();
     partial void OnBoostStatusFilterChanged(BoostStatus? value) => Refresh();
     partial void OnHasMemoFilterChanged(bool value) => Refresh();
+
+    private bool FilterForUnit(object obj)
+    {
+        if (obj is not Unit item) return false;
+        return item.Type.ForCuspa();
+    }
+
+    private bool FilterBoostStatus(object obj)
+    {
+        if (obj is not BoostStatus item) return false;
+        return item.Type.ForCuspa();
+    }
 
     protected override bool FilterItem(object obj)
     {

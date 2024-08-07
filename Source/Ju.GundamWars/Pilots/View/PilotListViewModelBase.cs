@@ -24,7 +24,7 @@ internal abstract partial class PilotListViewModelBase : BizListViewModelBase<Pi
         TagInventory tags)
         : base(items, tags)
     {
-        ForUnits = new(units);
+        ForUnits = new(units) { Filter = FilterForUnit, };
         Serials = new(serials);
         PilotAbilities = new(pilotAbilities);
         PilotSkills = new(pilotSkills);
@@ -65,6 +65,12 @@ internal abstract partial class PilotListViewModelBase : BizListViewModelBase<Pi
     partial void OnHasMemoFilterChanged(bool value) => Refresh();
     partial void OnHasNoMobileFilterChanged(bool value) => Refresh();
     partial void OnIsNotPinnedFilterChanged(bool value) => Refresh();
+
+    private bool FilterForUnit(object obj)
+    {
+        if (obj is not Unit item) return false;
+        return item.Type.ForPilot();
+    }
 
     protected override bool FilterItem(object obj)
     {

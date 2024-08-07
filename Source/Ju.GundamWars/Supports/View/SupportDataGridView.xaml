@@ -18,7 +18,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center">
                         <Hyperlink
-                            Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType={x:Type supports:SupportView}}}"
+                            Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={StaticResource GwSupportListRelativeSource}}"
                             CommandParameter="{Binding}"
                             >
                             <TextBlock Text="{Binding Name}" />
@@ -47,7 +47,7 @@
                     Style="{StaticResource GwListCopyButton}"
                     Grid.Column="3"
                     Margin="8 0 0 0"
-                    Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType={x:Type supports:SupportView}}}"
+                    Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={StaticResource GwSupportListRelativeSource}}"
                     CommandParameter="{Binding}"
                 />
             </Grid>
@@ -186,11 +186,11 @@
         <materialDesign:PopupBox Margin="16" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel>
                 <Button
-                    Command="{Binding DataContext.CheckAllCommand, RelativeSource={RelativeSource AncestorType={x:Type supports:SupportView}}}"
+                    Command="{Binding DataContext.CheckAllCommand, RelativeSource={StaticResource GwSupportListRelativeSource}}"
                     Content="Check all"
                 />
                 <Button
-                    Command="{Binding DataContext.UncheckAllCommand, RelativeSource={RelativeSource AncestorType={x:Type supports:SupportView}}}"
+                    Command="{Binding DataContext.UncheckAllCommand, RelativeSource={StaticResource GwSupportListRelativeSource}}"
                     Content="Uncheck all"
                 />
             </StackPanel>

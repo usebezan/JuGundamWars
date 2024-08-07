@@ -18,7 +18,7 @@
                 Style="{StaticResource GwCancelButton}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Command="{Binding DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType={x:Type supports:SupportView}}}"
+                Command="{Binding DataContext.CancelCommand, RelativeSource={StaticResource GwSupportListRelativeSource}}"
             />
         </StackPanel>
         <Grid />
