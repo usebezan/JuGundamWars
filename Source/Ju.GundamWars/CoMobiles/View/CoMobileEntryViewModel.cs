@@ -21,11 +21,10 @@ internal partial class CoMobileEntryViewModel : BizEntryViewModelBase2<CoMobile>
         IInsertPresentableUseCase<CoMobile, CoMobileWebClient, IInsertPresenter<CoMobile>> insertCoMobileClientUseCase,
         IUpdatePresentableUseCase<CoMobile, CoMobileWebClient, IUpdatePresenter<CoMobile>> updateCoMobileClientUseCase,
         IDeletePresentableUseCase<CoMobile, CoMobile, CoMobileWebClient, IDeletePresenter<CoMobile>> deleteCoMobileClientUseCase,
-        CoMobileViewModel pageControllerViewModel,
         CoMobileM2MMapper mapper,
         SerialInventory serialInventory,
         RoleInventory roleInventory,
-        TagInventory tagInventory) : base(mapper, tagInventory)
+        TagInventory tagInventory) : base(deleteCoMobileClientUseCase, mapper, tagInventory)
     {
         this.insertCoMobileClientUseCase = insertCoMobileClientUseCase;
         this.updateCoMobileClientUseCase = updateCoMobileClientUseCase;
@@ -66,25 +65,6 @@ internal partial class CoMobileEntryViewModel : BizEntryViewModelBase2<CoMobile>
             //    mapper.Map(Origin, Model);
             //}
         });
-
-    public override async Task EnterAsyncCore()
-    {
-        if (IsAdd)
-        {
-            Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
-            await insertCoMobileClientUseCase.HandleAsync(Model);
-        }
-        else if (IsEdit)
-        {
-            Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
-            await updateCoMobileClientUseCase.HandleAsync(Model);
-        }
-    }
-
-    public override async Task DeleteAsyncCore()
-    {
-        await deleteCoMobileClientUseCase.HandleAsync(Model);
-    }
 
     [RelayCommand]
     private void ClearUpgraded() => Model.ClearUpgraded();

@@ -1,10 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Client.Commons.Domain;
+using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.CoMobiles.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 using Ju.GundamWars.Commons.Domain.Service.Mapping;
+using Ju.GundamWars.Commons.UseCase.InputPort;
+using Ju.GundamWars.Commons.UseCase.OutputPort;
 using System.Windows.Data;
 
 namespace Ju.GundamWars.Commons.View;
@@ -13,8 +17,16 @@ internal abstract partial class BizEntryViewModelBase2<TBiz> : ModelBase
     where TBiz : BizBase, new()
 {
 
-    public BizEntryViewModelBase2(IMapper<TBiz, TBiz> mapper, TagInventory tagInventory)
+    public BizEntryViewModelBase2(
+        IUseCase<TBiz, TBiz> insertCoMobileClientUseCase,
+        IUseCase<TBiz, TBiz> updateCoMobileClientUseCase,
+        IUseCase<TBiz, TBiz> deleteCoMobileClientUseCase,
+        IMapper<TBiz, TBiz> mapper,
+        TagInventory tagInventory)
     {
+        InsertCoMobileClientUseCase = insertCoMobileClientUseCase;
+        UpdateCoMobileClientUseCase = updateCoMobileClientUseCase;
+        DeleteCoMobileClientUseCase = deleteCoMobileClientUseCase;
         Mapper = mapper;
         TagInventory = tagInventory;
         Origin = null;
@@ -22,6 +34,9 @@ internal abstract partial class BizEntryViewModelBase2<TBiz> : ModelBase
     }
 
 
+    protected IUseCase<TBiz, TBiz> InsertCoMobileClientUseCase { get; }
+    protected IUseCase<TBiz, TBiz> UpdateCoMobileClientUseCase { get; }
+    protected IUseCase<TBiz, TBiz> DeleteCoMobileClientUseCase { get; }
     protected IMapper<TBiz, TBiz> Mapper { get; }
     protected TagInventory TagInventory { get; }
     protected TBiz? Origin { get; set; }
@@ -53,8 +68,6 @@ internal abstract partial class BizEntryViewModelBase2<TBiz> : ModelBase
     }
 
     public abstract Task CancelAsyncCore();
-    public abstract Task EnterAsyncCore();
-    public abstract Task DeleteAsyncCore();
 
     public Task OpenEntryAsNewAsync() =>
         Task.Run(() =>
@@ -85,9 +98,27 @@ internal abstract partial class BizEntryViewModelBase2<TBiz> : ModelBase
 
     [RelayCommand]
     private Task CancelAsync() => CancelAsyncCore();
+
     [RelayCommand]
-    private Task EnterAsync() => EnterAsyncCore();
+    private Task EnterAsync()
+    {
+        if (IsAdd)
+        {
+            Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
+            return InsertCoMobileClientUseCase.HandleAsync(Model);
+        }
+        else if (IsEdit)
+        {
+            Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
+            return UpdateCoMobileClientUseCase.HandleAsync(Model);
+        }
+        else
+        {
+            throw new InvalidOperationException();
+        }
+    }
+
     [RelayCommand]
-    private Task DeleteAsync() => DeleteAsyncCore();
+    private Task DeleteAsync() => DeleteCoMobileClientUseCase.HandleAsync(Model);
 
 }
