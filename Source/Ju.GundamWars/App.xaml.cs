@@ -1,8 +1,11 @@
 ﻿using Ju.GundamWars.Client;
+using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.CoMobiles.Domain.Service;
+using Ju.GundamWars.CoMobiles.Presentation;
 using Ju.GundamWars.CoMobiles.View;
 using Ju.GundamWars.Cuspas.Domain.Service;
 using Ju.GundamWars.Cuspas.View;
@@ -94,6 +97,10 @@ public partial class App : Application
 
                     // Domain.Service
                     services.AddSingleton<CoMobileM2MMapper>();
+                    // Presentation
+                    services.AddSingleton<IDeletePresenter<CoMobile>, DeleteCoMobilePresenter>();
+                    services.AddSingleton<IInsertPresenter<CoMobile>, InsertCoMobilePresenter>();
+                    services.AddSingleton<IUpdatePresenter<CoMobile>, UpdateCoMobilePresenter>();
                     // View
                     services.AddSingleton<CoMobileEntryViewModel>();
                     services.AddSingleton<CoMobileListViewModel>();
@@ -126,6 +133,7 @@ public partial class App : Application
                     services.AddSingleton<ILoadAllClientPresenter, LoadAllPresenter>();
 
                     services.AddSingleton<ProgressViewModel>();
+                    services.AddSingleton<MessageViewModel>();
 
                     services.AddSingleton<Menus>();
                     services.AddSingleton<ViewState>();

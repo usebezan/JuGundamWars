@@ -49,6 +49,20 @@ internal abstract partial class PageControllerViewModelBase<TBiz, TBizListViewMo
     }
 
     [RelayCommand]
+    private async Task EnterAsync()
+    {
+        await Entry.EnterAsync();
+        PageIndex = 0;
+    }
+
+    [RelayCommand]
+    private async Task DeleteAsync()
+    {
+        await Entry.DeleteAsync();
+        PageIndex = 0;
+    }
+
+    [RelayCommand]
     private void ClearFilter() => List.ClearFilter();
     [RelayCommand]
     private void CheckAll() => List.CheckAll();

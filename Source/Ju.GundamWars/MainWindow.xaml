@@ -80,6 +80,9 @@
                 <DataTemplate DataType="{x:Type commons:ProgressViewModel}">
                     <commons:ProgressView />
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type commons:MessageViewModel}">
+                    <commons:MessageView />
+                </DataTemplate>
             </materialDesign:DialogHost.Resources>
             <DockPanel>
                 <Grid>

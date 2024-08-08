@@ -10,13 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CoMobiles\Presentation\**" />
+    <Compile Remove="Commons\ViewModel\**" />
     <Compile Remove="Cuspas\Presentation\**" />
-    <EmbeddedResource Remove="CoMobiles\Presentation\**" />
+    <EmbeddedResource Remove="Commons\ViewModel\**" />
     <EmbeddedResource Remove="Cuspas\Presentation\**" />
-    <None Remove="CoMobiles\Presentation\**" />
+    <None Remove="Commons\ViewModel\**" />
     <None Remove="Cuspas\Presentation\**" />
-    <Page Remove="CoMobiles\Presentation\**" />
+    <Page Remove="Commons\ViewModel\**" />
     <Page Remove="Cuspas\Presentation\**" />
   </ItemGroup>
 
@@ -39,7 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commons\ViewModel\" />
     <Folder Include="Mobiles\Presentation\" />
     <Folder Include="Tags\Presentation\" />
   </ItemGroup>

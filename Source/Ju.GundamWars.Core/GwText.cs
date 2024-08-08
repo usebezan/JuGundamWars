@@ -12,6 +12,9 @@ public static class GwText
     public readonly static string ForUnit = "For";
     public readonly static string Grade = "グレード";
     public readonly static string BasicStatus = "基礎ステータス";
+    public readonly static string UpgradedCount = "改修回数";
+    public readonly static string UpgradedStatus = "改修ステータス";
+    public readonly static string Memo = "メモ";
 
 
     public readonly static string Startup = "スタートアップ";

@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.CoMobiles.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Roles.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
-using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.UseCase.InputPort;
+using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.CoMobiles.Domain.Service;
 using Ju.GundamWars.Share.Roles.Domain;
@@ -12,23 +14,31 @@ using System.Windows.Data;
 
 namespace Ju.GundamWars.CoMobiles.View;
 
-internal partial class CoMobileEntryViewModel : BizEntryViewModelBase<CoMobile>
+internal partial class CoMobileEntryViewModel : BizEntryViewModelBase2<CoMobile>
 {
 
     public CoMobileEntryViewModel(
+        IInsertPresentableUseCase<CoMobile, CoMobileWebClient, IInsertPresenter<CoMobile>> insertCoMobileClientUseCase,
+        IUpdatePresentableUseCase<CoMobile, CoMobileWebClient, IUpdatePresenter<CoMobile>> updateCoMobileClientUseCase,
+        IDeletePresentableUseCase<CoMobile, CoMobile, CoMobileWebClient, IDeletePresenter<CoMobile>> deleteCoMobileClientUseCase,
+        CoMobileViewModel pageControllerViewModel,
         CoMobileM2MMapper mapper,
         SerialInventory serialInventory,
         RoleInventory roleInventory,
-        TagInventory tagInventory) : base(tagInventory)
+        TagInventory tagInventory) : base(mapper, tagInventory)
     {
-        this.mapper = mapper;
+        this.insertCoMobileClientUseCase = insertCoMobileClientUseCase;
+        this.updateCoMobileClientUseCase = updateCoMobileClientUseCase;
+        this.deleteCoMobileClientUseCase = deleteCoMobileClientUseCase;
         Serials = new(serialInventory);
         Roles = new(roleInventory) { Filter = FilterRole, };
         UpgradedCounts = [0, 1, 2, 3, 4, 5,];
     }
 
 
-    private readonly CoMobileM2MMapper mapper;
+    private readonly IInsertPresentableUseCase<CoMobile, CoMobileWebClient, IInsertPresenter<CoMobile>> insertCoMobileClientUseCase;
+    private readonly IUpdatePresentableUseCase<CoMobile, CoMobileWebClient, IUpdatePresenter<CoMobile>> updateCoMobileClientUseCase;
+    private readonly IDeletePresentableUseCase<CoMobile, CoMobile, CoMobileWebClient, IDeletePresenter<CoMobile>> deleteCoMobileClientUseCase;
 
     public ListCollectionView Serials { get; }
     public ListCollectionView Roles { get; }
@@ -48,43 +58,38 @@ internal partial class CoMobileEntryViewModel : BizEntryViewModelBase<CoMobile>
         return item.TagGroupType.ForCoMobile();
     }
 
-    public override Task OpenEntryAsNewAsync() =>
+    public override Task CancelAsyncCore() =>
         Task.Run(() =>
         {
-            Mode = EntryMode.New;
-            Model = new();
-            Origin = null;
-            ResetTags(Model);
+            //if (Mode == EntryMode.Edit && Origin != null)
+            //{
+            //    mapper.Map(Origin, Model);
+            //}
         });
 
-    public override Task OpenEntryAsEditAsync(CoMobile model) =>
-        Task.Run(() =>
+    public override async Task EnterAsyncCore()
+    {
+        if (IsAdd)
         {
-            Mode = EntryMode.Edit;
-            Model = model;
-            Origin = mapper.Map(model, new());
-            ResetTags(Model);
-        });
+            Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
+            await insertCoMobileClientUseCase.HandleAsync(Model);
+        }
+        else if (IsEdit)
+        {
+            Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
+            await updateCoMobileClientUseCase.HandleAsync(Model);
+        }
+    }
 
-    public override Task OpenEntryAsCopyAsync(CoMobile model) =>
-        Task.Run(() =>
-        {
-            Mode = EntryMode.Copy;
-            Model = mapper.Map(model, new());
-            Origin = null;
-            ResetTags(Model);
-        });
-
-    public override Task CancelAsync() =>
-        Task.Run(() =>
-        {
-            if (Mode == EntryMode.Edit && Origin != null)
-            {
-                mapper.Map(Origin, Model);
-            }
-        });
+    public override async Task DeleteAsyncCore()
+    {
+        await deleteCoMobileClientUseCase.HandleAsync(Model);
+    }
 
     [RelayCommand]
-    private void ResetUpgraded() => Model.ResetUpgraded();
+    private void ClearUpgraded() => Model.ClearUpgraded();
+
+    [RelayCommand]
+    private void UncheckAllTags() => TagInventory.UncheckAll();
 
 }

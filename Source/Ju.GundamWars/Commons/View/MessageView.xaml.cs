@@ -3,11 +3,11 @@
 namespace Ju.GundamWars.Commons.View;
 
 /// <summary>
-/// ProgressView.xaml の相互作用ロジック
+/// MessageView.xaml の相互作用ロジック
 /// </summary>
-public partial class ProgressView : UserControl
+public partial class MessageView : UserControl
 {
-    public ProgressView()
+    public MessageView()
     {
         InitializeComponent();
     }

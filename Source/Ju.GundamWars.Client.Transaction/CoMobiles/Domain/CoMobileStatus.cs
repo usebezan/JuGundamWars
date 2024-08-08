@@ -31,7 +31,7 @@ public partial class CoMobileStatus : ModelBase, ICoMobileStatus
     #endregion
 
 
-    public CoMobileStatus Reset()
+    public CoMobileStatus Clear()
     {
         Hp = 0;
         BeamAttack = 0;

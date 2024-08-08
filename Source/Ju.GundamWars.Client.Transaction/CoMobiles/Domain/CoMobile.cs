@@ -139,6 +139,19 @@ public partial class CoMobile : BizBase, ICoMobile<CoMobileStatus, CoMobileUpgra
         }
     }
 
+    private void SetUpgradedDefaultStatus()
+    {
+        UpgradedDefaultStatus.Hp = 10000 * UpgradedCount.Hp;
+        UpgradedDefaultStatus.BeamAttack = 200 * UpgradedCount.BeamAttack;
+        UpgradedDefaultStatus.PhysicalAttack = 200 * UpgradedCount.PhysicalAttack;
+        UpgradedDefaultStatus.BeamDefence = 400 * UpgradedCount.BeamDefence;
+        UpgradedDefaultStatus.PhysicalDefence = 400 * UpgradedCount.PhysicalDefence;
+        UpgradedDefaultStatus.CriticalDamage = 10 * UpgradedCount.CriticalDamage;
+        UpgradedDefaultStatus.Accuracy = 60 * UpgradedCount.Accuracy;
+        UpgradedDefaultStatus.Evasion = 50 * UpgradedCount.Evasion;
+        UpgradedDefaultStatus.Mobility = 80 * UpgradedCount.Mobility;
+    }
+
     private void SetUpgradedCountTotal() =>
         UpgradedCountTotal = UpgradedCount.Total;
 
@@ -150,20 +163,22 @@ public partial class CoMobile : BizBase, ICoMobile<CoMobileStatus, CoMobileUpgra
         Suspend(initializer);
         SetJoinedTags();
         OnPropertyChanged(nameof(HasMemo));
+        SetUpgradedDefaultStatus();
         SetUpgradedCountTotal();
         CalculateActualStatus();
         RaiseMobileBoostChanged();
         return this;
     }
 
-    public void ResetUpgraded()
+    public void ClearUpgraded()
     {
         Suspend(() =>
         {
-            UpgradedStatus.Reset();
+            UpgradedStatus.Clear();
             UpgradedCount.Reset();
-            UpgradedDefaultStatus.Reset();
+            UpgradedDefaultStatus.Clear();
         });
+        SetUpgradedDefaultStatus();
         SetUpgradedCountTotal();
         CalculateActualStatus();
         RaiseMobileBoostChanged();

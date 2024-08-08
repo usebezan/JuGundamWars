@@ -13,8 +13,6 @@ using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Systems.View;
-using System;
 
 namespace Ju.GundamWars.Systems.Presentation;
 
@@ -43,7 +41,7 @@ internal class LoadAllPresenter(
     public void ShowProgress()
     {
         progressViewModel.IsIndeterminate = true;
-        progressViewModel.Message = "Loading...";
+        progressViewModel.Message = "Loading...?";
         viewState.DialogContent = progressViewModel;
         viewState.IsDialogOpen = true;
     }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Ju.Collections.ObjectModel;
 using Ju.GundamWars.Client.Commons.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
@@ -9,12 +10,16 @@ using System.Windows.Data;
 
 namespace Ju.GundamWars.Commons.View;
 
-internal abstract partial class BizListViewModelBase<TBiz> : ModelBase
-    where TBiz : BizBase
+internal abstract partial class BizListViewModelBase2<TBiz, TPageControllerViewModel, TEntryViewModel> : ModelBase
+    where TBiz : BizBase, new()
+    where TPageControllerViewModel : PageControllerViewModelBase2
+    where TEntryViewModel : BizEntryViewModelBase2<TBiz>
 {
 
-    public BizListViewModelBase(ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tagInventory)
+    public BizListViewModelBase2(TPageControllerViewModel pageControllerViewModel, TEntryViewModel entryViewModel, ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tagInventory)
     {
+        PageControllerViewModel = pageControllerViewModel;
+        EntryViewModel = entryViewModel;
         Items = items;
         ItemsView = new(items) { Filter = FilterItem, };
         Tags = new(tagInventory) { Filter = FilterTag, };
@@ -27,6 +32,8 @@ internal abstract partial class BizListViewModelBase<TBiz> : ModelBase
 
 
     protected bool IsIdle { get; set; } = false;
+    protected TPageControllerViewModel PageControllerViewModel { get; }
+    protected TEntryViewModel EntryViewModel { get; }
 
     public ObservableItemPropertyChangedCollection<TBiz> Items { get; }
     public ListCollectionView ItemsView { get; }
@@ -49,6 +56,7 @@ internal abstract partial class BizListViewModelBase<TBiz> : ModelBase
 
     protected abstract bool FilterItem(object obj);
     protected abstract bool FilterTag(object obj);
+    protected abstract void ClearFilterCore();
 
     protected void Refresh()
     {
@@ -57,7 +65,6 @@ internal abstract partial class BizListViewModelBase<TBiz> : ModelBase
         SetCount();
     }
 
-    public abstract void ClearFilter();
 
     public void SetCount()
     {
@@ -66,7 +73,11 @@ internal abstract partial class BizListViewModelBase<TBiz> : ModelBase
         FilteredCheckedCount = ItemsView.OfType<TBiz>().Where(e => e.IsChecked).Count();
     }
 
-    public void CheckAll()
+    [RelayCommand]
+    private void ClearFilter() => ClearFilterCore();
+
+    [RelayCommand]
+    private void CheckAll()
     {
         foreach (var item in ItemsView.OfType<TBiz>().ToList())
         {
@@ -74,12 +85,34 @@ internal abstract partial class BizListViewModelBase<TBiz> : ModelBase
         }
     }
 
-    public void UncheckAll()
+    [RelayCommand]
+    private void UncheckAll()
     {
         foreach (var item in ItemsView.OfType<TBiz>().ToList())
         {
             item.IsChecked = false;
         }
+    }
+
+    [RelayCommand]
+    private async Task OpenEntryAsNewAsync()
+    {
+        await EntryViewModel.OpenEntryAsNewAsync();
+        PageControllerViewModel.PageIndex = 1;
+    }
+
+    [RelayCommand]
+    private async Task OpenEntryAsEditAsync(TBiz model)
+    {
+        await EntryViewModel.OpenEntryAsEditAsync(model);
+        PageControllerViewModel.PageIndex = 1;
+    }
+
+    [RelayCommand]
+    private async Task OpenEntryAsCopyAsync(TBiz model)
+    {
+        await EntryViewModel.OpenEntryAsCopyAsync(model);
+        PageControllerViewModel.PageIndex = 1;
     }
 
 }

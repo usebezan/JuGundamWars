@@ -15,7 +15,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Height="50" Orientation="Horizontal">
             <Button
-                Style="{StaticResource GwCancelButton}"
+                Style="{StaticResource GwEntryCancelButton}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Command="{Binding DataContext.CancelCommand, RelativeSource={StaticResource GwSupportListRelativeSource}}"

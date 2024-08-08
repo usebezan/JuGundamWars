@@ -78,4 +78,14 @@ internal partial class PilotEntryViewModel : BizEntryViewModelBase<Pilot>
         throw new NotImplementedException();
     }
 
+    public override Task EnterAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override Task DeleteAsync()
+    {
+        throw new NotImplementedException();
+    }
+
 }

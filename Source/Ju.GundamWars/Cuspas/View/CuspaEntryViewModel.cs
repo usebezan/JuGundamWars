@@ -79,4 +79,14 @@ internal partial class CuspaEntryViewModel : BizEntryViewModelBase<Cuspa>
         throw new NotImplementedException();
     }
 
+    public override Task EnterAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override Task DeleteAsync()
+    {
+        throw new NotImplementedException();
+    }
+
 }

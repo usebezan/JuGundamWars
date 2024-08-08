@@ -18,7 +18,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center">
                         <Hyperlink
-                            Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={StaticResource GwCoMobileListRelativeSource}}"
+                            Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                             CommandParameter="{Binding}"
                             >
                             <TextBlock Text="{Binding Name}" />
@@ -45,7 +45,7 @@
                     Style="{StaticResource GwListCopyButton}"
                     Grid.Column="2"
                     Margin="8 0 0 0"
-                    Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={StaticResource GwCoMobileListRelativeSource}}"
+                    Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                     CommandParameter="{Binding}"
                 />
             </Grid>
@@ -273,11 +273,11 @@
         <materialDesign:PopupBox Margin="16" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel>
                 <Button
-                    Command="{Binding DataContext.CheckAllCommand, RelativeSource={StaticResource GwCoMobileListRelativeSource}}"
+                    Command="{Binding CheckAllCommand}"
                     Content="Check all"
                 />
                 <Button
-                    Command="{Binding DataContext.UncheckAllCommand, RelativeSource={StaticResource GwCoMobileListRelativeSource}}"
+                    Command="{Binding UncheckAllCommand}"
                     Content="Uncheck all"
                 />
             </StackPanel>

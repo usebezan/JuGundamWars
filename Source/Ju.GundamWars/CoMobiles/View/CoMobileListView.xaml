@@ -19,7 +19,7 @@
                 <Button
                     FontSize="14"
                     FontWeight="Medium"
-                    Command="{Binding DataContext.OpenEntryAsNewCommand, RelativeSource={StaticResource GwCoMobileListRelativeSource}}"
+                    Command="{Binding OpenEntryAsNewCommand}"
                     >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
@@ -28,11 +28,12 @@
                 </Button>
                 <Separator Margin="4" />
                 <Button
-                    Command="{Binding DataContext.ClearFilterCommand, RelativeSource={StaticResource GwCoMobileListRelativeSource}}"
+                    Command="{Binding ClearFilterCommand}"
                     Content="{materialDesign:PackIcon FilterRemoveOutline}"
                     ToolTip="フィルター解除"
                 />
                 <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
+                <ComboBox Style="{StaticResource GwFilterRoleComboBox}" />
                 <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
                 <ToggleButton Style="{StaticResource GwFilterHasNoMobileToggleButton}" />
                 <ToggleButton Style="{StaticResource GwFilterIsNotPinnedToggleButton}" />

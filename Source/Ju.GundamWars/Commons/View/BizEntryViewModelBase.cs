@@ -13,14 +13,13 @@ internal abstract partial class BizEntryViewModelBase<TBiz> : ModelBase
 
     public BizEntryViewModelBase(TagInventory tagInventory)
     {
-        this.tagInventory = tagInventory;
+        TagInventory = tagInventory;
         Tags = new(tagInventory) { Filter = FilterTag, };
     }
 
 
-    private readonly TagInventory tagInventory;
-
     protected TBiz? Origin { get; set; } = null;
+    protected TagInventory TagInventory { get; }
 
     public ListCollectionView Tags { get; }
 
@@ -42,7 +41,7 @@ internal abstract partial class BizEntryViewModelBase<TBiz> : ModelBase
 
     protected void ResetTags(TBiz model)
     {
-        foreach (var tag in tagInventory)
+        foreach (var tag in TagInventory)
         {
             tag.IsChecked = model.Tags.Contains(tag);
         }
@@ -52,5 +51,7 @@ internal abstract partial class BizEntryViewModelBase<TBiz> : ModelBase
     public abstract Task OpenEntryAsEditAsync(TBiz model);
     public abstract Task OpenEntryAsCopyAsync(TBiz model);
     public abstract Task CancelAsync();
+    public abstract Task EnterAsync();
+    public abstract Task DeleteAsync();
 
 }
