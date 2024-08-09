@@ -24,7 +24,7 @@ internal partial class CoMobileEntryViewModel : BizEntryViewModelBase2<CoMobile>
         CoMobileM2MMapper mapper,
         SerialInventory serialInventory,
         RoleInventory roleInventory,
-        TagInventory tagInventory) : base(deleteCoMobileClientUseCase, mapper, tagInventory)
+        TagInventory tagInventory) : base(insertCoMobileClientUseCase, updateCoMobileClientUseCase, deleteCoMobileClientUseCase, mapper, tagInventory)
     {
         this.insertCoMobileClientUseCase = insertCoMobileClientUseCase;
         this.updateCoMobileClientUseCase = updateCoMobileClientUseCase;

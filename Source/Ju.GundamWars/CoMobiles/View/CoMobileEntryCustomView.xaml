@@ -23,7 +23,7 @@
             <Setter Property="Margin" Value="8 0 8 20" />
         </Style>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Visible">
+    <ScrollViewer Width="497" VerticalScrollBarVisibility="Visible">
         <StackPanel>
             <GroupBox>
                 <GroupBox.Header>
