@@ -32,12 +32,12 @@
                     Content="{materialDesign:PackIcon FilterRemoveOutline}"
                     ToolTip="フィルター解除"
                 />
-                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
-                <ComboBox Style="{StaticResource GwFilterRoleComboBox}" />
-                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
-                <ToggleButton Style="{StaticResource GwFilterHasNoMobileToggleButton}" />
-                <ToggleButton Style="{StaticResource GwFilterIsNotPinnedToggleButton}" />
-                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.TagComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.RoleComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilter.HasMemoToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilter.HasNoMobileToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilter.IsNotPinnedToggleButton}" />
+                <ComboBox Style="{StaticResource GwFilter.SerialComboBox}" />
             </ToolBar>
         </ToolBarTray>
         <commons:StatusBarView DockPanel.Dock="Bottom" />

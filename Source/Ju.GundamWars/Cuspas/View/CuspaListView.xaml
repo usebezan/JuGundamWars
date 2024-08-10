@@ -52,11 +52,11 @@
                     Content="{materialDesign:PackIcon FilterRemoveOutline}"
                     ToolTip="フィルター解除"
                 />
-                <ComboBox Style="{StaticResource GwFilterForUnitComboBox}" />
-                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
-                <ComboBox Style="{StaticResource GwFilterCuspaKindComboBox}" />
-                <ComboBox Style="{StaticResource GwFilterBoostStatusComboBox}" />
-                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
+                <ComboBox Style="{StaticResource GwFilter.ForUnitComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.TagComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.CuspaKindComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.BoostStatusComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilter.HasMemoToggleButton}" />
             </ToolBar>
         </ToolBarTray>
         <commons:StatusBarView DockPanel.Dock="Bottom" />

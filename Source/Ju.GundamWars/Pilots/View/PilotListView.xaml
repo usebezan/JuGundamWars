@@ -52,22 +52,22 @@
                     Content="{materialDesign:PackIcon FilterRemoveOutline}"
                     ToolTip="フィルター解除"
                 />
-                <ComboBox Style="{StaticResource GwFilterForUnitComboBox}" />
-                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
-                <ComboBox Style="{StaticResource GwFilterPilotAbilityComboBox}">
+                <ComboBox Style="{StaticResource GwFilter.ForUnitComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.TagComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.PilotAbilityComboBox}">
                     <ComboBox.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                        <GroupStyle HeaderTemplate="{StaticResource Gw.ComboBox.GroupHeaderTemplate}" />
                     </ComboBox.GroupStyle>
                 </ComboBox>
-                <ComboBox Style="{StaticResource GwFilterPilotSkillComboBox}">
+                <ComboBox Style="{StaticResource GwFilter.PilotSkillComboBox}">
                     <ComboBox.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                        <GroupStyle HeaderTemplate="{StaticResource Gw.ComboBox.GroupHeaderTemplate}" />
                     </ComboBox.GroupStyle>
                 </ComboBox>
-                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
-                <ToggleButton Style="{StaticResource GwFilterHasNoMobileToggleButton}" />
-                <ToggleButton Style="{StaticResource GwFilterIsNotPinnedToggleButton}" />
-                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilter.HasMemoToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilter.HasNoMobileToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilter.IsNotPinnedToggleButton}" />
+                <ComboBox Style="{StaticResource GwFilter.SerialComboBox}" />
             </ToolBar>
         </ToolBarTray>
         <commons:StatusBarView DockPanel.Dock="Bottom" />

@@ -32,11 +32,11 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwListForUnitTemplate}" />
+                <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwList.ForUnitTemplate}" />
                 <ContentControl Grid.Column="1" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwCuspaListNameTemplate}" />
-                <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListMemoTemplate}" />
+                <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.MemoTemplate}" />
                 <Button
-                    Style="{StaticResource GwListCopyButton}"
+                    Style="{StaticResource GwList.CopyButton}"
                     Grid.Column="3"
                     Margin="8 0 0 0"
                     Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={StaticResource GwCuspaListRelativeSource}}"
@@ -53,55 +53,55 @@
                 SortDirection="Ascending"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Hp}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamAttack}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalAttack}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamDefence}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalDefence}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalRate}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.CriticalRate, StringFormat={}{0:N0}%}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalDamage}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}}"
                 />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Accuracy}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Evasion}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Mobility}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.EnRecovery}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding ActualStatus.EnRecovery, StringFormat={}{0:N0}}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Level}}"
-                ElementStyle="{StaticResource GwListRightTextColumn}"
+                ElementStyle="{StaticResource GwList.RightTextColumn}"
                 Binding="{Binding Level}"
             />
             <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Tag}}"
-                ElementStyle="{StaticResource GwListTextColumn}"
+                ElementStyle="{StaticResource GwList.TextColumn}"
                 Binding="{Binding TagsText}"
             />
         </DataGrid.Columns>

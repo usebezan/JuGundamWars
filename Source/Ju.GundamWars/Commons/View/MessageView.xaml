@@ -18,10 +18,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Margin="16" Text="{Binding Message}" />
         <StackPanel Grid.Row="1" Margin="16" Orientation="Horizontal">
-            <Button Style="{StaticResource GwDialogCancelButton}" Visibility="{Binding IsCancelVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Style="{StaticResource GwDialogNoButton}" Visibility="{Binding IsNoVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Style="{StaticResource GwDialogOkButton}" Visibility="{Binding IsOkVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Style="{StaticResource GwDialogYesButton}" Visibility="{Binding IsYesVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Style="{StaticResource GwDialog.CancelButton}" Visibility="{Binding IsCancelVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Style="{StaticResource GwDialog.NoButton}" Visibility="{Binding IsNoVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Style="{StaticResource GwDialog.OkButton}" Visibility="{Binding IsOkVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Style="{StaticResource GwDialog.YesButton}" Visibility="{Binding IsYesVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>
     </Grid>
 </UserControl>

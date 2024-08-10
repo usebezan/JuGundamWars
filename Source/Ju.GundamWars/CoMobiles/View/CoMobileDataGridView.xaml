@@ -40,9 +40,9 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <ContentControl Grid.Column="0" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwCoMobileListNameTemplate}" />
-                <ContentControl Grid.Column="1" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListMemoTemplate}" />
+                <ContentControl Grid.Column="1" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.MemoTemplate}" />
                 <Button
-                    Style="{StaticResource GwListCopyButton}"
+                    Style="{StaticResource GwList.CopyButton}"
                     Grid.Column="2"
                     Margin="8 0 0 0"
                     Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
@@ -54,7 +54,7 @@
     <Grid>
         <DataGrid ItemsSource="{Binding ItemsView}" FrozenColumnCount="2">
             <DataGrid.Columns>
-                <DataGridTemplateColumn CellTemplate="{StaticResource GwListCheckTemplate}" />
+                <DataGridTemplateColumn CellTemplate="{StaticResource GwList.CheckTemplate}" />
                 <DataGridTemplateColumn Header="Name"
                     CellTemplate="{StaticResource GwCoMobileListNameCellTemplate}"
                     SortMemberPath="Name"
@@ -62,17 +62,17 @@
                 />
                 <!-- TODO: 
                 <DataGridTextColumn Header="Mobile"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding Mobile.Name}"
                     Width="120"
                 />
                 -->
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Hp}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.HpText}"
                     SortMemberPath="UpgradedCount.Hp"
                     >
@@ -85,11 +85,11 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamAttack}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.BeamAttackText}"
                     SortMemberPath="UpgradedCount.BeamAttack"
                     >
@@ -102,11 +102,11 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalAttack}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.PhysicalAttackText}"
                     SortMemberPath="UpgradedCount.PhysicalAttack"
                     >
@@ -119,11 +119,11 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamDefence}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.BeamDefenceText}"
                     SortMemberPath="UpgradedCount.BeamDefence"
                     >
@@ -136,11 +136,11 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalDefence}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.PhysicalDefenceText}"
                     SortMemberPath="UpgradedCount.PhysicalDefence"
                     >
@@ -153,11 +153,11 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalDamage}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.CriticalDamageText}"
                     SortMemberPath="UpgradedCount.CriticalDamage"
                     >
@@ -170,11 +170,11 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Accuracy}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.AccuracyText}"
                     SortMemberPath="UpgradedCount.Accuracy"
                     >
@@ -187,11 +187,11 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Evasion}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.EvasionText}"
                     SortMemberPath="UpgradedCount.Evasion"
                     >
@@ -204,11 +204,11 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Mobility}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.MobilityText}"
                     SortMemberPath="UpgradedCount.Mobility"
                     >
@@ -221,7 +221,7 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.StartupText}"
                     SortMemberPath="UpgradedCount.Startup"
                     >
@@ -234,7 +234,7 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding UpgradedCount.SuperMoveText}"
                     SortMemberPath="UpgradedCount.SuperMove"
                     >
@@ -247,25 +247,25 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="改修&#x0a;回数"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding UpgradedCountTotal}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Level}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding Level}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Role}}"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding Role.Name}"
                     SortMemberPath="Role.Value"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Serial}}"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding Serial.Name}"
                     SortMemberPath="Serial.Order"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Tag}}"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding TagsText}"
                 />
             </DataGrid.Columns>

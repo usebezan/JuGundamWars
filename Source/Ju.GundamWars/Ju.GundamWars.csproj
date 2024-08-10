@@ -23,6 +23,7 @@
   <ItemGroup>
     <None Remove="Resources\JuGundamWars.ico" />
     <None Remove="Resources\SplashScreen.png" />
+    <None Remove="Resources\Styles\GwStyle.Commons.DataGrid.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,23 +54,20 @@
     <None Update="MasterUpdateSettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\Styles\GwStyle.Commons.DataGrid.xml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="SystemSettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Themes\GwTheme.Brushes.RX-93.xaml">
+    <Page Update="Resources\Styles\GwStyle.Commons.List.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Themes\GwTheme.ComboBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\GwTheme.GroupBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Themes\GwTheme.TextBox.xaml">
+    <Page Update="Resources\Themes\GwTheme.RX-93.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

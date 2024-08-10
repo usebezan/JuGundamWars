@@ -16,7 +16,7 @@
 
             <ResourceDictionary.MergedDictionaries>
                 <!-- Gw -->
-                <ResourceDictionary Source="Themes/GwTheme.Brushes.RX-93.xaml" />
+                <ResourceDictionary Source="Resources/Themes/GwTheme.RX-93.xaml" />
                 <!-- Theme -->
                 <materialDesign:MahAppsCustomColorTheme BaseTheme="Dark" PrimaryColor="{StaticResource GwPrimaryColor}" SecondaryColor="{StaticResource GwSecondaryColor}" ColorAdjustment="{materialDesign:ColorAdjustment}" />
                 <!-- MahApps -->
@@ -31,9 +31,26 @@
                 <!-- Material Design: MahApps Compatibility -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml"/>
                 <!-- Gw -->
-                <ResourceDictionary Source="Themes/GwTheme.ComboBox.xaml" />
-                <ResourceDictionary Source="Themes/GwTheme.GroupBox.xaml" />
-                <ResourceDictionary Source="Themes/GwTheme.TextBox.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Commons.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Commons.Dialog.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Commons.Entry.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Commons.Filter.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Commons.List.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.CoMobiles.Entry.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.CoMobiles.Filter.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.CoMobiles.List.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Cuspas.Entry.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Cuspas.Filter.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Cuspas.List.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Mobiles.Entry.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Mobiles.Filter.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Mobiles.List.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Pilots.Entry.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Pilots.Filter.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Pilots.List.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Supports.Entry.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Supports.Filter.xaml" />
+                <ResourceDictionary Source="Resources/Styles/GwStyle.Supports.List.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--<SolidColorBrush x:Key="MaterialDesign.Brush.ToolBar.Background" Color="{DynamicResource GwPrimaryColor}" />-->
@@ -41,18 +58,12 @@
             <!-- Converter -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
+
             <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MaterialDesignScrollViewer}" />
             <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" />
 
             <Style TargetType="{x:Type Hyperlink}" BasedOn="{StaticResource MaterialDesignCaptionHyperlink}">
                 <Setter Property="Inline.TextDecorations" Value="Underline" />
-            </Style>
-
-            <Style x:Key="GwBorder" TargetType="{x:Type Border}">
-                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="CornerRadius" Value="4" />
-                <Setter Property="Padding" Value="8 0" />
             </Style>
 
             <Style TargetType="{x:Type ToolBarTray}" BasedOn="{StaticResource MaterialDesignToolBarTray}">
@@ -101,252 +112,9 @@
             </Style>
 
 
-
-            <DataTemplate x:Key="GwIconNameItemTemplate">
-                <StackPanel Orientation="Horizontal" >
-                    <materialDesign:PackIcon Margin="0 0 8 0" VerticalAlignment="Center" Kind="{Binding Icon}" />
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
-                </StackPanel>
-            </DataTemplate>
-
-            
-            <!--<Style x:Key="GwCancelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}" x:Shared="False">
-            </Style>-->
-
-            <Style x:Key="GwCancelButtonBase" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkButton}">
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="32" />
-                <Setter Property="Content" Value="Cancel" />
-                <Setter Property="IsCancel" Value="True" />
-            </Style>
-
-            <Style x:Key="GwDialogCancelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource GwCancelButtonBase}" x:Shared="False">
-                <Setter Property="Command" Value="{Binding CancelCommand, Mode=OneTime}" />
-            </Style>
-
-            <Style x:Key="GwDialogNoButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}" x:Shared="False">
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="32" />
-                <Setter Property="Content" Value="No" />
-                <Setter Property="IsCancel" Value="True" />
-                <Setter Property="Command" Value="{Binding NoCommand, Mode=OneTime}" />
-            </Style>
-
-            <Style x:Key="GwDialogOkButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="32" />
-                <Setter Property="Content" Value="OK" />
-                <Setter Property="Command" Value="{Binding OkCommand, Mode=OneTime}" />
-            </Style>
-
-            <Style x:Key="GwDialogYesButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="32" />
-                <Setter Property="Content" Value="Yes" />
-                <Setter Property="Command" Value="{Binding YesCommand, Mode=OneTime}" />
-            </Style>
-
-            <Style x:Key="GwEntryEnterButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="32" />
-                <Setter Property="Content" Value="Enter" />
-            </Style>
-
-            <Style x:Key="GwEntryCancelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource GwCancelButtonBase}" x:Shared="False">
-            </Style>
-
-            <Style x:Key="GwEntryDeleteButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Height" Value="32" />
-                <Setter Property="Content" Value="Delete" />
-            </Style>
-
-            <!-- #region List -->
-
-            <Style x:Key="GwListTextColumn" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Style.Triggers>
-                    <Trigger Property="Text" Value="0">
-                        <Setter Property="Opacity" Value="0.2" />
-                    </Trigger>
-                    <Trigger Property="Text" Value="0%">
-                        <Setter Property="Opacity" Value="0.2" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style x:Key="GwListRightTextColumn" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource GwListTextColumn}">
-                <Setter Property="HorizontalAlignment" Value="Right" />
-            </Style>
-
-            <DataTemplate x:Key="GwListCheckTemplate">
-                <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Id}" />
-            </DataTemplate>
-
-            <DataTemplate x:Key="GwListForUnitTemplate">
-                <StackPanel>
-                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="{Binding ForUnitIcon}" />
-                    <TextBlock HorizontalAlignment="Center" Text="{Binding ForUnitText}" FontSize="10" />
-                </StackPanel>
-            </DataTemplate>
-
-            <DataTemplate x:Key="GwListMemoTemplate">
-                <Grid x:Name="memo" Width="24" Height="24" Background="Transparent" ToolTip="{Binding Memo}" Visibility="Hidden">
-                    <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16" Kind="TooltipText" />
-                </Grid>
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding HasMemo}" Value="True">
-                        <Setter TargetName="memo" Property="Visibility" Value="Visible" />
-                    </DataTrigger>
-                </DataTemplate.Triggers>
-            </DataTemplate>
-
-            <DataTemplate x:Key="GwGradeTemplate">
-                <TextBlock VerticalAlignment="Center">
-                    <Run Text="★" Foreground="{Binding GradeColor}" />
-                    <Run Text="{Binding GradeText, Mode=OneWay}" />
-                </TextBlock>
-            </DataTemplate>
-
-            <Style x:Key="GwListCopyButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignIconForegroundButton}" x:Shared="False">
-                <Setter Property="Width" Value="36" />
-                <Setter Property="Height" Value="36" />
-                <!--<Setter Property="Command" Value="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-                <Setter Property="CommandParameter" Value="{Binding}" />-->
-                <Setter Property="ToolTip" Value="Copy" />
-                <Setter Property="Content">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Width="16" Height="16" Kind="ContentCopy" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-
-            <!-- #endregion -->
-
-
-
-
-
-
-
-
-            <Style x:Key="GwFilterToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-                <Setter Property="Margin" Value="8" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="GwFilterHasMemoToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding HasMemoFilter}" />
-                <Setter Property="ToolTip" Value="メモあり" />
-                <Setter Property="Content">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Kind="TooltipTextOutline" />
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Kind="TooltipText" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="GwFilterHasNoMobileToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding HasNoMobileFilter}" />
-                <Setter Property="ToolTip" Value="機体未設定" />
-                <Setter Property="Content">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Kind="RobotOffOutline" />
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Kind="RobotOff" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="GwFilterIsNotPinnedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilterToggleButton}" x:Shared="False">
-                <Setter Property="IsChecked" Value="{Binding IsNotPinnedFilter}" />
-                <Setter Property="ToolTip" Value="ピン止め" />
-                <Setter Property="Content">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Kind="PinOffOutline" />
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="materialDesign:ToggleButtonAssist.OnContent">
-                    <Setter.Value>
-                        <materialDesign:PackIcon Kind="PinOff" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-
-
-
             <RelativeSource x:Key="GwCuspaListRelativeSource" AncestorType="{x:Type cuspas:CuspaView}" />
-
-
             <RelativeSource x:Key="GwPilotListRelativeSource" AncestorType="{x:Type pilots:PilotView}" />
-
-
             <RelativeSource x:Key="GwSupportListRelativeSource" AncestorType="{x:Type supports:SupportView}" />
-
-            <Style x:Key="GwEntryListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
-                <Setter Property="Margin" Value="8 0 8 8" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="materialDesign:ListBoxAssist.IsToggle" Value="False" />
-                <Setter Property="ItemsPanel">
-                    <Setter.Value>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-
-            <Style x:Key="GwEntryGradeListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource GwEntryListBox}">
-                <Setter Property="Width" Value="360" />
-                <Setter Property="ItemTemplate" Value="{StaticResource GwGradeTemplate}" />
-                <Setter Property="ItemsSource" Value="{Binding Grades}" />
-                <Setter Property="SelectedItem" Value="{Binding Model.Grade}" />
-            </Style>
-
-            <Style x:Key="GwEntryRoleListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource GwEntryListBox}">
-                <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding Roles}" />
-                <Setter Property="SelectedItem" Value="{Binding Model.Role}" />
-            </Style>
-
-            <Style x:Key="GwEntryTagListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignFilterChipOutlineListBoxItem}">
-                <Setter Property="IsSelected" Value="{Binding IsChecked}"/>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding Name}" Value="">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style x:Key="GwEntryTagListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipOutlineListBox}">
-                <Setter Property="ItemContainerStyle" Value="{StaticResource GwEntryTagListBoxItem}" />
-                <Setter Property="DisplayMemberPath" Value="Name" />
-                <Setter Property="ItemsSource" Value="{Binding Tags}" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ListBox}">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="GwEntryToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignToolForegroundButton}">
-                <Setter Property="FontWeight" Value="Regular" />
-                <Setter Property="MinWidth" Value="24" />
-                <Setter Property="Height" Value="24" />
-            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

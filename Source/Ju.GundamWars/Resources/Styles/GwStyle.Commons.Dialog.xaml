@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
+	>
+
+    <!-- #region Button -->
+
+    <Style x:Key="GwDialog.CancelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource Gw.CancelButtonBase}" x:Shared="False">
+        <Setter Property="Command" Value="{Binding CancelCommand, Mode=OneTime}" />
+    </Style>
+
+    <Style x:Key="GwDialog.NoButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}" x:Shared="False">
+        <Setter Property="Width" Value="96" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Content" Value="No" />
+        <Setter Property="Command" Value="{Binding NoCommand, Mode=OneTime}" />
+    </Style>
+
+    <Style x:Key="GwDialog.OkButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
+        <Setter Property="Width" Value="96" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Content" Value="OK" />
+        <Setter Property="Command" Value="{Binding OkCommand, Mode=OneTime}" />
+    </Style>
+
+    <Style x:Key="GwDialog.YesButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
+        <Setter Property="Width" Value="96" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Content" Value="Yes" />
+        <Setter Property="Command" Value="{Binding YesCommand, Mode=OneTime}" />
+    </Style>
+
+    <!-- #endregion -->
+
+</ResourceDictionary>

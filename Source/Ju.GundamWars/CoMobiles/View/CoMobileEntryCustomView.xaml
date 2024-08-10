@@ -14,12 +14,12 @@
     d:DesignWidth="800"
     >
     <UserControl.Resources>
-        <Style x:Key="GwEntryCoMobileUpgradedCountComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntryComboBox}">
+        <Style x:Key="GwEntryCoMobileUpgradedCountComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntry.ComboBox}">
             <Setter Property="Width" Value="120" />
             <Setter Property="HorizontalContentAlignment" Value="Right" />
             <Setter Property="ItemsSource" Value="{Binding UpgradedCounts}" />
         </Style>
-        <Style x:Key="GwEntryCoMobileStatusTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntryStatusTextBox}">
+        <Style x:Key="GwEntryCoMobileStatusTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntry.StatusTextBox}">
             <Setter Property="Margin" Value="8 0 8 20" />
         </Style>
     </UserControl.Resources>
@@ -28,7 +28,7 @@
             <GroupBox>
                 <GroupBox.Header>
                     <DockPanel>
-                        <Button DockPanel.Dock="Right" Style="{StaticResource GwEntryToolButton}" Command="{Binding ClearUpgradedCommand}" Content="{materialDesign:PackIcon CircleOutline}" ToolTip="クリア" />
+                        <Button DockPanel.Dock="Right" Style="{StaticResource GwEntry.ToolButton}" Command="{Binding ClearUpgradedCommand}" Content="{materialDesign:PackIcon CircleOutline}" ToolTip="クリア" />
                         <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0 0 32 0">
                             <Run Text="{Binding Model.UpgradedCountTotal, Mode=OneWay}" />
                             <Run Text="/" />
@@ -88,14 +88,14 @@
             <GroupBox>
                 <GroupBox.Header>
                     <DockPanel>
-                        <Button DockPanel.Dock="Right" Style="{StaticResource GwEntryToolButton}" Command="{Binding UncheckAllTagsCommand}" Content="{materialDesign:PackIcon CircleOutline}" ToolTip="すべて解除" />
+                        <Button DockPanel.Dock="Right" Style="{StaticResource GwEntry.ToolButton}" Command="{Binding UncheckAllTagsCommand}" Content="{materialDesign:PackIcon CircleOutline}" ToolTip="すべて解除" />
                         <TextBlock Text="{x:Static core:GwText.Tag}" />
                     </DockPanel>
                 </GroupBox.Header>
-                <ListBox Style="{StaticResource GwEntryTagListBox}" />
+                <ListBox Style="{StaticResource GwEntry.TagListBox}" />
             </GroupBox>
             <GroupBox Header="{x:Static core:GwText.Memo}">
-                <TextBox Style="{StaticResource GwEntryMemoTextBox}" />
+                <TextBox Style="{StaticResource GwEntry.MemoTextBox}" />
             </GroupBox>
         </StackPanel>
     </ScrollViewer>

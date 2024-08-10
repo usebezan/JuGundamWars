@@ -16,7 +16,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Visible">
         <StackPanel>
             <GroupBox Header="{x:Static core:GwText.Level}">
-                <TextBox Style="{StaticResource GwEntryLevelTextBox}" />
+                <TextBox Style="{StaticResource GwEntry.LevelTextBox}" />
             </GroupBox>
             <GroupBox Header="{x:Static core:GwText.BasicStatus}">
                 <Grid DataContext="{Binding Model.BasicStatus}">
@@ -30,15 +30,15 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBox Grid.Column="0" Grid.Row="0" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding Hp}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Hp}" />
-                    <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding BeamAttack}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.BeamAttack}" />
-                    <TextBox Grid.Column="2" Grid.Row="0" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding PhysicalAttack}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.PhysicalAttack}" />
-                    <TextBox Grid.Column="0" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding BeamDefence}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.BeamDefence}" />
-                    <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding PhysicalDefence}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.PhysicalDefence}" />
-                    <TextBox Grid.Column="2" Grid.Row="1" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding CriticalDamage}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.CriticalDamage}" />
-                    <TextBox Grid.Column="0" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding Accuracy}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Accuracy}" />
-                    <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding Evasion}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Evasion}" />
-                    <TextBox Grid.Column="2" Grid.Row="2" Style="{StaticResource GwEntryStatusTextBox}" Text="{Binding Mobility}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Mobility}" />
+                    <TextBox Grid.Column="0" Grid.Row="0" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding Hp}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Hp}" />
+                    <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding BeamAttack}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.BeamAttack}" />
+                    <TextBox Grid.Column="2" Grid.Row="0" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding PhysicalAttack}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.PhysicalAttack}" />
+                    <TextBox Grid.Column="0" Grid.Row="1" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding BeamDefence}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.BeamDefence}" />
+                    <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding PhysicalDefence}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.PhysicalDefence}" />
+                    <TextBox Grid.Column="2" Grid.Row="1" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding CriticalDamage}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.CriticalDamage}" />
+                    <TextBox Grid.Column="0" Grid.Row="2" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding Accuracy}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Accuracy}" />
+                    <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding Evasion}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Evasion}" />
+                    <TextBox Grid.Column="2" Grid.Row="2" Style="{StaticResource GwEntry.StatusTextBox}" Text="{Binding Mobility}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Mobility}" />
                 </Grid>
             </GroupBox>
         </StackPanel>

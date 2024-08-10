@@ -40,11 +40,11 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwListForUnitTemplate}" />
+                <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwList.ForUnitTemplate}" />
                 <ContentControl Grid.Column="1" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwPilotListNameTemplate}" />
-                <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListMemoTemplate}" />
+                <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.MemoTemplate}" />
                 <Button
-                    Style="{StaticResource GwListCopyButton}"
+                    Style="{StaticResource GwList.CopyButton}"
                     Grid.Column="3"
                     Margin="8 0 0 0"
                     Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={StaticResource GwPilotListRelativeSource}}"
@@ -56,100 +56,100 @@
     <Grid>
         <DataGrid ItemsSource="{Binding ItemsView}" FrozenColumnCount="3">
             <DataGrid.Columns>
-                <DataGridTemplateColumn CellTemplate="{StaticResource GwListCheckTemplate}" />
+                <DataGridTemplateColumn CellTemplate="{StaticResource GwList.CheckTemplate}" />
                 <DataGridTemplateColumn Header="Name"
                     CellTemplate="{StaticResource GwPilotListNameCellTemplate}"
                     SortMemberPath="Name"
                     SortDirection="Ascending"
                 />
                 <DataGridTextColumn Header="Skill"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding PilotSkill.Name}"
                 />
                 <!-- TODO: 
                 <DataGridTextColumn Header="Mobile"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding Mobile.Name}"
                     Width="120"
                 />
                 -->
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Shooting}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Shooting, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Melee}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Melee, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Accuracy}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Evasion}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Awakened}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Awakened, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Defense}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Defense, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="修練値合計"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding PracticedStatusTotal, StringFormat={}{0:N0}}"
                 />
 
                 <DataGridTextColumn Header="アビリティ&#x0a;スロット1"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding PilotSlotAbilities[0].SlotRank}"
                 />
                 <DataGridTextColumn Header="アビリティ1"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding PilotSlotAbilities[0].PilotAbility.Name}"
                 />
                 <DataGridTextColumn Header="アビリティ&#x0a;スロット2"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding PilotSlotAbilities[1].SlotRank}"
                 />
                 <DataGridTextColumn Header="アビリティ2"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding PilotSlotAbilities[1].PilotAbility.Name}"
                 />
                 <DataGridTextColumn Header="アビリティ&#x0a;スロット3"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding PilotSlotAbilities[2].SlotRank}"
                 />
                 <DataGridTextColumn Header="アビリティ3"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding PilotSlotAbilities[2].PilotAbility.Name}"
                 />
 
                 <DataGridTemplateColumn Header="{Binding Source={x:Static core:GwText.Grade}}"
-                    CellTemplate="{StaticResource GwGradeTemplate}"
+                    CellTemplate="{StaticResource Gw.GradeTemplate}"
                     SortMemberPath="Grade.Value"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Level}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding Level}"
                 />
                 <DataGridTextColumn Header="スキル説明1"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding PilotSkillText1}"
                 />
                 <DataGridTextColumn Header="スキル説明2"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding PilotSkillText2}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Serial}}"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding Serial.Name}"
                     SortMemberPath="Serial.Order"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Tag}}"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding TagsText}"
                 />
             </DataGrid.Columns>

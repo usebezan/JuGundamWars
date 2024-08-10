@@ -40,11 +40,11 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwListForUnitTemplate}" />
+                <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwList.ForUnitTemplate}" />
                 <ContentControl Grid.Column="1" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwSupportListNameTemplate}" />
-                <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwListMemoTemplate}" />
+                <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.MemoTemplate}" />
                 <Button
-                    Style="{StaticResource GwListCopyButton}"
+                    Style="{StaticResource GwList.CopyButton}"
                     Grid.Column="3"
                     Margin="8 0 0 0"
                     Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={StaticResource GwSupportListRelativeSource}}"
@@ -61,7 +61,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Margin="0 -1 4 -1" Style="{StaticResource GwBorder}">
+                        <Border Margin="0 -1 4 -1" Style="{StaticResource Gw.Border}">
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Margin="0 0 0 0" Text="{Binding SlotName}" FontSize="12" />
                                 <TextBlock Text="{Binding BadgeName}" FontSize="12">
@@ -85,73 +85,73 @@
     <Grid>
         <DataGrid ItemsSource="{Binding ItemsView}" FrozenColumnCount="3">
             <DataGrid.Columns>
-                <DataGridTemplateColumn CellTemplate="{StaticResource GwListCheckTemplate}" />
+                <DataGridTemplateColumn CellTemplate="{StaticResource GwList.CheckTemplate}" />
                 <DataGridTemplateColumn Header="Name"
                     CellTemplate="{StaticResource GwSupportListNameCellTemplate}"
                     SortMemberPath="Name"
                     SortDirection="Ascending"
                 />
                 <DataGridTemplateColumn Header="{Binding Source={x:Static core:GwText.Grade}}"
-                    CellTemplate="{StaticResource GwGradeTemplate}"
+                    CellTemplate="{StaticResource Gw.GradeTemplate}"
                     SortMemberPath="Grade.Value"
                 />
                 <!-- TODO: 
                 <DataGridTextColumn Header="Mobile"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding Mobile.Name}"
                     Width="120"
                 />
                 -->
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Hp}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamAttack}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalAttack}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamDefence}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalDefence}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalDamage}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Accuracy}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Evasion}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Mobility}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.EnRecovery}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.EnRecovery, StringFormat={}{0:N0}}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.SuperPower}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.SuperPower, StringFormat={}{0:N0}%}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.AcePower}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.AcePower, StringFormat={}{0:N0}%}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.RecoveryPower}}"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding ActualStatus.RecoveryPower, StringFormat={}{0:N0}%}"
                 />
 
@@ -160,25 +160,25 @@
                 />
 
                 <DataGridTextColumn  Header="Attachable&#x0a;Slots"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding AttachableSlotsCount}"
                 />
                 <DataGridTextColumn Header="Attached&#x0a;Badges"
-                    ElementStyle="{StaticResource GwListRightTextColumn}"
+                    ElementStyle="{StaticResource GwList.RightTextColumn}"
                     Binding="{Binding AttachedBadgesCount}"
                 />
 
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Serial}}"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding Serial.Name}"
                     SortMemberPath="Serial.Order"
                 />
                 <DataGridTextColumn Header="シリーズ制限"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding LimitedSerialsText}"
                 />
                 <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Tag}}"
-                    ElementStyle="{StaticResource GwListTextColumn}"
+                    ElementStyle="{StaticResource GwList.TextColumn}"
                     Binding="{Binding TagsText}"
                 />
             </DataGrid.Columns>

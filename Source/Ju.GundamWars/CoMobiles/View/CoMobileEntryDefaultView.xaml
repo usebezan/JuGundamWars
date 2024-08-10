@@ -16,10 +16,10 @@
     <ScrollViewer VerticalScrollBarVisibility="Visible">
         <StackPanel>
             <GroupBox Header="{x:Static core:GwText.Serial}">
-                <ComboBox Style="{StaticResource GwEntrySerialComboBox}" />
+                <ComboBox Style="{StaticResource GwEntry.SerialComboBox}" />
             </GroupBox>
             <GroupBox Header="{x:Static core:GwText.Role}">
-                <ListBox Style="{StaticResource GwEntryRoleListBox}" />
+                <ListBox Style="{StaticResource GwEntry.RoleListBox}" />
             </GroupBox>
         </StackPanel>
     </ScrollViewer>

@@ -52,32 +52,32 @@
                     Content="{materialDesign:PackIcon FilterRemoveOutline}"
                     ToolTip="フィルター解除"
                 />
-                <ComboBox Style="{StaticResource GwFilterForUnitComboBox}" />
-                <ComboBox Style="{StaticResource GwFilterTagComboBox}" />
-                <ComboBox Style="{StaticResource GwFilterSupportBadgeComboBox}">
+                <ComboBox Style="{StaticResource GwFilter.ForUnitComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.TagComboBox}" />
+                <ComboBox Style="{StaticResource GwFilter.SupportBadgeComboBox}">
                     <ComboBox.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                        <GroupStyle HeaderTemplate="{StaticResource Gw.ComboBox.GroupHeaderTemplate}" />
                     </ComboBox.GroupStyle>
                 </ComboBox>
-                <ComboBox Style="{StaticResource GwFilterSupportSlotComboBox}">
+                <ComboBox Style="{StaticResource GwFilter.SupportSlotComboBox}">
                     <ComboBox.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                        <GroupStyle HeaderTemplate="{StaticResource Gw.ComboBox.GroupHeaderTemplate}" />
                     </ComboBox.GroupStyle>
                 </ComboBox>
-                <!--<ComboBox Style="{StaticResource GwFilterUnlockSlotComboBox}">
+                <!--<ComboBox Style="{StaticResource GwFilter.UnlockSlotComboBox}">
                     <ComboBox.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                        <GroupStyle HeaderTemplate="{StaticResource Gw.ComboBox.GroupHeaderTemplate}" />
                     </ComboBox.GroupStyle>
                 </ComboBox>
-                <ComboBox Style="{StaticResource GwFilterBonusSlotComboBox}">
+                <ComboBox Style="{StaticResource GwFilter.BonusSlotComboBox}">
                     <ComboBox.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GwComboBoxGroupHeaderTemplate}" />
+                        <GroupStyle HeaderTemplate="{StaticResource Gw.ComboBox.GroupHeaderTemplate}" />
                     </ComboBox.GroupStyle>
                 </ComboBox>-->
-                <ToggleButton Style="{StaticResource GwFilterHasMemoToggleButton}" />
-                <ToggleButton Style="{StaticResource GwFilterHasNoMobileToggleButton}" />
-                <ToggleButton Style="{StaticResource GwFilterIsNotPinnedToggleButton}" />
-                <ComboBox Style="{StaticResource GwFilterSerialComboBox}" />
+                <ToggleButton Style="{StaticResource GwFilter.HasMemoToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilter.HasNoMobileToggleButton}" />
+                <ToggleButton Style="{StaticResource GwFilter.IsNotPinnedToggleButton}" />
+                <ComboBox Style="{StaticResource GwFilter.SerialComboBox}" />
             </ToolBar>
         </ToolBarTray>
         <commons:StatusBarView DockPanel.Dock="Bottom" />

@@ -4,6 +4,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
 	>
+    <!--https://honstock.net/color-pattern-gundam-cca-->
     <!--白 #ffFAFAF8-->
     <!--黒 #ff13131F-->
     <!--黄 #ffF99427-->

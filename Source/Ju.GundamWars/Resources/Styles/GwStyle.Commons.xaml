@@ -1,0 +1,73 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
+	>
+
+    <DataTemplate x:Key="Gw.GradeTemplate">
+        <!-- TODO: <TextBlock VerticalAlignment="Center">-->
+        <TextBlock>
+            <Run Text="★" Foreground="{Binding GradeColor}" />
+            <Run Text="{Binding GradeText, Mode=OneWay}" />
+        </TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Gw.IconNameTemplate">
+        <StackPanel Orientation="Horizontal" >
+            <materialDesign:PackIcon Margin="0 0 8 0" VerticalAlignment="Center" Kind="{Binding Icon}" />
+            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- #region Border -->
+
+    <Style x:Key="Gw.Border" TargetType="{x:Type Border}">
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="8 0" />
+    </Style>
+
+    <!-- #endregion -->
+
+    <!-- #region Button -->
+
+    <Style x:Key="Gw.CancelButtonBase" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignPaperButton}">
+        <Setter Property="Width" Value="96" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Content" Value="Cancel" />
+        <Setter Property="IsCancel" Value="True" />
+    </Style>
+
+    <!-- #endregion -->
+
+    <!-- #region TextBox -->
+
+    <Style x:Key="Gw.TextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="Height" Value="32" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="InputMethod.PreferredImeState" Value="Off" />
+        <Setter Property="materialDesign:ValidationAssist.Background" Value="Transparent" />
+        <Setter Property="materialDesign:ValidationAssist.FontSize" Value="11" />
+        <Setter Property="materialDesign:ValidationAssist.UsePopup" Value="True" />
+    </Style>
+
+    <!-- #endregion -->
+
+    <!-- #region ComboBox -->
+
+    <DataTemplate x:Key="Gw.ComboBox.GroupHeaderTemplate">
+        <TextBlock Padding="8 4" Text="{Binding Name}" Foreground="{DynamicResource PrimaryHueMidBrush}" />
+    </DataTemplate>
+
+    <Style x:Key="Gw.ComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+        <Setter Property="Height" Value="32" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="IsSynchronizedWithCurrentItem" Value="False" />
+        <Setter Property="materialDesign:ValidationAssist.Background" Value="Transparent" />
+    </Style>
+
+    <!-- #endregion -->
+
+</ResourceDictionary>
