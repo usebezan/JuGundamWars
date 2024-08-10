@@ -10,17 +10,16 @@ using System.Windows.Data;
 
 namespace Ju.GundamWars.CoMobiles.View;
 
-internal abstract partial class CoMobileListViewModelBase : BizListViewModelBase2<CoMobile, CoMobileViewModel, CoMobileEntryViewModel>
+internal abstract partial class CoMobileListViewModelBase : BizListViewModelBase2<CoMobile, CoMobileViewState>
 {
 
     public CoMobileListViewModelBase(
-        CoMobileViewModel pageControllerViewModel,
-        CoMobileEntryViewModel entryViewModel,
+        CoMobileViewState viewState,
         CoMobileInventory itemInventory,
         SerialInventory serialInventory,
         RoleInventory roleInventory,
         TagInventory tagInventory)
-        : base(pageControllerViewModel, entryViewModel, itemInventory, tagInventory)
+        : base(viewState, itemInventory, tagInventory)
     {
         Serials = new(serialInventory);
         Roles = new(roleInventory) { Filter = FilterRole, };

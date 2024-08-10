@@ -1,7 +1,11 @@
 ﻿using Ju.GundamWars.Client;
 using Ju.GundamWars.Client.CoMobiles.Domain;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
+using Ju.GundamWars.Commons.Application;
 using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.Domain.Service.Mapping;
+using Ju.GundamWars.Commons.Presentation;
+using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.CoMobiles.Domain.Service;
@@ -95,16 +99,19 @@ public partial class App : Application
                         options.UseSqlite($@"Filename={systemOption.TxnDbFilePath}");
                     });
 
+                    services.AddSingleton(typeof(ICancelEntryUseCase<>), typeof(CancelEntryInteractor<>));
+                    services.AddSingleton<ICancelEntryPresenter, CancelEntryPresenter>();
+
                     // Domain.Service
-                    services.AddSingleton<CoMobileM2MMapper>();
+                    services.AddSingleton<IMapper<CoMobile, CoMobile>, CoMobileM2MMapper>();
                     // Presentation
                     services.AddSingleton<IDeletePresenter<CoMobile>, DeleteCoMobilePresenter>();
                     services.AddSingleton<IInsertPresenter<CoMobile>, InsertCoMobilePresenter>();
                     services.AddSingleton<IUpdatePresenter<CoMobile>, UpdateCoMobilePresenter>();
                     // View
-                    services.AddSingleton<CoMobileEntryViewModel>();
                     services.AddSingleton<CoMobileListViewModel>();
                     services.AddSingleton<CoMobileViewModel>();
+                    services.AddSingleton<CoMobileViewState>();
 
                     // Domain.Service
                     services.AddSingleton<CuspaM2MMapper>();

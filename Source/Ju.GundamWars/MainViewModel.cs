@@ -2,6 +2,7 @@
 using Ju.GundamWars.Client.Systems.UseCase.InputPort;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
+using Ju.GundamWars.Commons.View;
 using Ju.GundamWars.CoMobiles.View;
 using Ju.GundamWars.Systems.Domain;
 using Microsoft.Extensions.Options;

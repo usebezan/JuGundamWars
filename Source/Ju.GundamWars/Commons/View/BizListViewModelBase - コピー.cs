@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Ju.Collections.ObjectModel;
 using Ju.GundamWars.Client.Commons.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 using System.ComponentModel;
 using System.Reactive.Linq;
@@ -10,16 +11,15 @@ using System.Windows.Data;
 
 namespace Ju.GundamWars.Commons.View;
 
-internal abstract partial class BizListViewModelBase2<TBiz, TPageControllerViewModel, TEntryViewModel> : ModelBase
+internal abstract partial class BizListViewModelBase2<TBiz, TViewState> : ModelBase
     where TBiz : BizBase, new()
-    where TPageControllerViewModel : PageControllerViewModelBase2
-    where TEntryViewModel : BizEntryViewModelBase2<TBiz>
+    where TViewState : BizViewStateBase
 {
 
-    public BizListViewModelBase2(TPageControllerViewModel pageControllerViewModel, TEntryViewModel entryViewModel, ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tagInventory)
+    public BizListViewModelBase2(TViewState viewState, ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tagInventory)
     {
-        PageControllerViewModel = pageControllerViewModel;
-        EntryViewModel = entryViewModel;
+        IsIdle = false;
+        ViewState = viewState;
         Items = items;
         ItemsView = new(items) { Filter = FilterItem, };
         Tags = new(tagInventory) { Filter = FilterTag, };
@@ -31,9 +31,12 @@ internal abstract partial class BizListViewModelBase2<TBiz, TPageControllerViewM
     }
 
 
-    protected bool IsIdle { get; set; } = false;
-    protected TPageControllerViewModel PageControllerViewModel { get; }
-    protected TEntryViewModel EntryViewModel { get; }
+    protected bool IsIdle { get; set; }
+    protected TViewState ViewState { get; }
+
+    protected Func<IDisposable>? CreateEntryViewModelAsNew { get; set; } = null;
+    protected Func<TBiz, IDisposable>? CreateEntryViewModelAsEdit { get; set; } = null;
+    protected Func<TBiz, IDisposable>? CreateEntryViewModelAsCopy { get; set; } = null;
 
     public ObservableItemPropertyChangedCollection<TBiz> Items { get; }
     public ListCollectionView ItemsView { get; }
@@ -52,7 +55,7 @@ internal abstract partial class BizListViewModelBase2<TBiz, TPageControllerViewM
 
     partial void OnTagFilterChanged(Tag? value) => Refresh();
 
-    private void WhenIsCheckedChanged(PropertyChangedEventArgs e) => SetCount();
+    private void WhenIsCheckedChanged(PropertyChangedEventArgs _) => SetCount();
 
     protected abstract bool FilterItem(object obj);
     protected abstract bool FilterTag(object obj);
@@ -65,7 +68,6 @@ internal abstract partial class BizListViewModelBase2<TBiz, TPageControllerViewM
         SetCount();
     }
 
-
     public void SetCount()
     {
         if (!IsCountableChecked) return;
@@ -75,44 +77,33 @@ internal abstract partial class BizListViewModelBase2<TBiz, TPageControllerViewM
 
     [RelayCommand]
     private void ClearFilter() => ClearFilterCore();
+    [RelayCommand]
+    private void CheckAll() => ItemsView.OfType<TBiz>().ToList().ForEach(i => i.IsChecked = true);
+    [RelayCommand]
+    private void UncheckAll() => ItemsView.OfType<TBiz>().ToList().ForEach(i => i.IsChecked = false);
 
     [RelayCommand]
-    private void CheckAll()
-    {
-        foreach (var item in ItemsView.OfType<TBiz>().ToList())
+    private Task OpenEntryAsNewAsync() =>
+        Task.Run(() =>
         {
-            item.IsChecked = true;
-        }
-    }
+            ViewState.EntryContent = CreateEntryViewModelAsNew?.Invoke();
+            ViewState.PageIndexType = PageIndexType.Entry;
+        });
 
     [RelayCommand]
-    private void UncheckAll()
-    {
-        foreach (var item in ItemsView.OfType<TBiz>().ToList())
+    private Task OpenEntryAsEditAsync(TBiz model) =>
+        Task.Run(() =>
         {
-            item.IsChecked = false;
-        }
-    }
+            ViewState.EntryContent = CreateEntryViewModelAsEdit?.Invoke(model);
+            ViewState.PageIndexType = PageIndexType.Entry;
+        });
 
     [RelayCommand]
-    private async Task OpenEntryAsNewAsync()
-    {
-        await EntryViewModel.OpenEntryAsNewAsync();
-        PageControllerViewModel.PageIndex = 1;
-    }
-
-    [RelayCommand]
-    private async Task OpenEntryAsEditAsync(TBiz model)
-    {
-        await EntryViewModel.OpenEntryAsEditAsync(model);
-        PageControllerViewModel.PageIndex = 1;
-    }
-
-    [RelayCommand]
-    private async Task OpenEntryAsCopyAsync(TBiz model)
-    {
-        await EntryViewModel.OpenEntryAsCopyAsync(model);
-        PageControllerViewModel.PageIndex = 1;
-    }
+    private Task OpenEntryAsCopyAsync(TBiz model) =>
+        Task.Run(() =>
+        {
+            ViewState.EntryContent = CreateEntryViewModelAsCopy?.Invoke(model);
+            ViewState.PageIndexType = PageIndexType.Entry;
+        });
 
 }

@@ -7,7 +7,7 @@ using Ju.GundamWars.CoMobiles.View;
 namespace Ju.GundamWars.CoMobiles.Presentation;
 
 internal class UpdateCoMobilePresenter(
-    CoMobileViewModel pageControllerViewModel,
+    CoMobileViewState coMobileViewState,
     ProgressViewModel progressViewModel,
     MessageViewModel messageViewModel,
     ViewState viewState) : IUpdatePresenter<CoMobile>
@@ -57,7 +57,7 @@ internal class UpdateCoMobilePresenter(
 
     public void Complete(CoMobile output)
     {
-        pageControllerViewModel.PageIndex = 0;
+        coMobileViewState.PageIndexType = PageIndexType.List;
     }
 
 }

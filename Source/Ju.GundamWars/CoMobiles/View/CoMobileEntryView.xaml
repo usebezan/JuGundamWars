@@ -15,11 +15,6 @@
     >
     <UserControl.Resources>
         <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource GwEntry.GroupBox}" />
-        <Style x:Key="GwEntryCoMobileUpgradedCountComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntry.ComboBox}">
-            <Setter Property="Width" Value="120" />
-            <Setter Property="HorizontalContentAlignment" Value="Right" />
-            <Setter Property="ItemsSource" Value="{Binding UpgradedCounts}" />
-        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -32,24 +27,9 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="50" Orientation="Horizontal">
-            <Button
-                Style="{StaticResource GwEntry.CancelButton}"
-                Margin="16 0"
-                VerticalAlignment="Center"
-                Command="{Binding CancelCommand}"
-            />
-            <Button
-                Style="{StaticResource GwEntry.EnterButton}"
-                Margin="16 0"
-                VerticalAlignment="Center"
-                Command="{Binding EnterCommand}"
-            />
-            <Button
-                Style="{StaticResource GwEntry.DeleteButton}"
-                Margin="16 0"
-                VerticalAlignment="Center"
-                Command="{Binding DeleteCommand}"
-            />
+            <Button Style="{StaticResource GwEntry.CancelButton}" Command="{Binding CancelCommand}" />
+            <Button Style="{StaticResource GwEntry.EnterButton}" Command="{Binding EnterCommand}" />
+            <Button Style="{StaticResource GwEntry.DeleteButton}" Command="{Binding DeleteCommand}" />
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="0" Margin="16">
             <Grid.RowDefinitions>
@@ -62,7 +42,7 @@
                     <TextBox Style="{StaticResource GwEntry.FullTextBox}" Text="{Binding Model.Name}" />
                 </DockPanel>
             </GroupBox>
-            <TabControl Grid.Row="1" SelectedIndex="{Binding TabIndex, Mode=OneWay}">
+            <TabControl Grid.Row="1" SelectedIndex="{Binding TabIndex}">
                 <TabItem Header="Default">
                     <coMobiles:CoMobileEntryDefaultView Margin="0 16 0 0" />
                 </TabItem>

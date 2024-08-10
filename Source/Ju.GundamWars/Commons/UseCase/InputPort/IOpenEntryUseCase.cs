@@ -1,4 +1,4 @@
-﻿namespace Ju.GundamWars.Client.Commons.UseCase.InputPort;
+﻿namespace Ju.GundamWars.Commons.UseCase.InputPort;
 
 public interface IOpenEntryUseCase<TIn>
 {

@@ -7,7 +7,7 @@ using Ju.GundamWars.CoMobiles.View;
 namespace Ju.GundamWars.CoMobiles.Presentation;
 
 internal class DeleteCoMobilePresenter(
-    CoMobileViewModel pageControllerViewModel,
+    CoMobileViewState coMobileViewState,
     CoMobileInventory coMobileInventory,
     ProgressViewModel progressViewModel,
     MessageViewModel messageViewModel,
@@ -59,7 +59,7 @@ internal class DeleteCoMobilePresenter(
     public void Complete(CoMobile output)
     {
         coMobileInventory.Remove(output);
-        pageControllerViewModel.PageIndex = 0;
+        coMobileViewState.PageIndexType = PageIndexType.List;
     }
 
 }

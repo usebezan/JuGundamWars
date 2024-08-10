@@ -14,8 +14,8 @@
     d:DesignWidth="800"
     >
     <Grid>
-        <Grid Height="50" VerticalAlignment="Top" Background="{DynamicResource MaterialDesign.Brush.ToolBar.Background}" />
-        <materialDesign:Transitioner SelectedIndex="{Binding PageIndex}">
+        <Grid Height="50" VerticalAlignment="Top" Background="{StaticResource MaterialDesign.Brush.ToolBar.Background}" />
+        <materialDesign:Transitioner SelectedIndex="{Binding ViewState.PageIndex, Mode=OneWay}">
             <!-- List -->
             <materialDesign:TransitionerSlide>
                 <materialDesign:TransitionerSlide.ForwardWipe>
@@ -34,7 +34,7 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:SlideWipe Direction="Right" />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <coMobiles:CoMobileEntryView />
+                <coMobiles:CoMobileEntryView DataContext="{Binding ViewState.EntryContent}" />
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
     </Grid>

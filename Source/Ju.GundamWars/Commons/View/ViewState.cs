@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 using MaterialDesignThemes.Wpf;
 
-namespace Ju.GundamWars.Commons.Domain;
+namespace Ju.GundamWars.Commons.View;
 
 internal partial class ViewState : ModelBase
 {
@@ -27,13 +28,8 @@ internal partial class ViewState : ModelBase
     public string VersionText => string.IsNullOrEmpty(Version) ? string.Empty : $"Ver.{Version}";
     public bool HasVersionMessage => !string.IsNullOrEmpty(VersionMessage);
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(SlideIndex))]
-    private SlideIndexType _SlideIndexType = SlideIndexType.Main;
-
     [ObservableProperty, NotifyPropertyChangedFor(nameof(MenuIndexType))]
     private int _MenuIndex = MenuIndexType.Mobile.ToValue();
-
-    public int SlideIndex => SlideIndexType.ToValue();
     public MenuIndexType MenuIndexType => MenuIndex.ToMenuIndexType();
 
 

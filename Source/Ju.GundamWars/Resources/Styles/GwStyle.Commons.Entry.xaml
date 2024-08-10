@@ -13,7 +13,7 @@
         <Setter Property="Width" Value="480" />
         <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
         <Setter Property="materialDesign:ColorZoneAssist.Mode" Value="Custom" />
-        <!--<Setter Property="materialDesign:ColorZoneAssist.Foreground" Value="{DynamicResource MaterialDesignBody}" />-->
+        <!--<Setter Property="materialDesign:ColorZoneAssist.Foreground" Value="{StaticResource MaterialDesignBody}" />-->
         <!--<Setter Property="materialDesign:ColorZoneAssist.Background" Value="Transparent" />-->
         <!--<Setter Property="HeaderTemplate">
                 <Setter.Value>
@@ -31,6 +31,7 @@
     <!-- #region Button -->
 
     <Style x:Key="GwEntry.ToolButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignToolForegroundButton}">
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinWidth" Value="24" />
         <Setter Property="Height" Value="24" />
         <Setter Property="FontWeight" Value="Regular" />
@@ -40,17 +41,22 @@
         <Setter Property="Command" Value="{Binding CancelCommand, Mode=OneTime}" />
     </Style>
 
-    <Style x:Key="GwEntry.DeleteButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
+    <Style x:Key="GwEntry.DeleteButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignOutlinedSecondaryButton}" x:Shared="False">
+        <Setter Property="Margin" Value="16 0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Width" Value="96" />
         <Setter Property="Height" Value="32" />
-        <Setter Property="Content" Value="Delete" />
+        <Setter Property="Content" Value="削除" />
         <Setter Property="Command" Value="{Binding DeleteCommand, Mode=OneTime}" />
+        <Setter Property="Visibility" Value="{Binding IsEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Style>
 
-    <Style x:Key="GwEntry.EnterButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
+    <Style x:Key="GwEntry.EnterButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatSecondaryMidBgButton}" x:Shared="False">
+        <Setter Property="Margin" Value="16 0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Width" Value="96" />
         <Setter Property="Height" Value="32" />
-        <Setter Property="Content" Value="Enter" />
+        <Setter Property="Content" Value="登録" />
         <Setter Property="Command" Value="{Binding EnterCommand, Mode=OneTime}" />
     </Style>
 

@@ -4,6 +4,8 @@ using Ju.GundamWars.Client.CoMobiles.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Roles.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.Domain.Service.Mapping;
 using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
@@ -18,26 +20,22 @@ internal partial class CoMobileEntryViewModel : BizEntryViewModelBase2<CoMobile>
 {
 
     public CoMobileEntryViewModel(
-        IInsertPresentableUseCase<CoMobile, CoMobileWebClient, IInsertPresenter<CoMobile>> insertCoMobileClientUseCase,
-        IUpdatePresentableUseCase<CoMobile, CoMobileWebClient, IUpdatePresenter<CoMobile>> updateCoMobileClientUseCase,
-        IDeletePresentableUseCase<CoMobile, CoMobile, CoMobileWebClient, IDeletePresenter<CoMobile>> deleteCoMobileClientUseCase,
-        CoMobileM2MMapper mapper,
+        EntryMode mode,
+        CoMobile model,
+        IInsertPresentableUseCase<CoMobile, CoMobileWebClient, IInsertPresenter<CoMobile>> insertClientUseCase,
+        IUpdatePresentableUseCase<CoMobile, CoMobileWebClient, IUpdatePresenter<CoMobile>> updateClientUseCase,
+        IDeletePresentableUseCase<CoMobile, CoMobile, CoMobileWebClient, IDeletePresenter<CoMobile>> deleteClientUseCase,
+        ICancelEntryUseCase<CoMobile> cancelClientUseCase,
+        IMapper<CoMobile, CoMobile> mapper,
         SerialInventory serialInventory,
         RoleInventory roleInventory,
-        TagInventory tagInventory) : base(insertCoMobileClientUseCase, updateCoMobileClientUseCase, deleteCoMobileClientUseCase, mapper, tagInventory)
+        TagInventory tagInventory) : base(mode, model, insertClientUseCase, updateClientUseCase, deleteClientUseCase, cancelClientUseCase, mapper, tagInventory)
     {
-        this.insertCoMobileClientUseCase = insertCoMobileClientUseCase;
-        this.updateCoMobileClientUseCase = updateCoMobileClientUseCase;
-        this.deleteCoMobileClientUseCase = deleteCoMobileClientUseCase;
         Serials = new(serialInventory);
         Roles = new(roleInventory) { Filter = FilterRole, };
         UpgradedCounts = [0, 1, 2, 3, 4, 5,];
     }
 
-
-    private readonly IInsertPresentableUseCase<CoMobile, CoMobileWebClient, IInsertPresenter<CoMobile>> insertCoMobileClientUseCase;
-    private readonly IUpdatePresentableUseCase<CoMobile, CoMobileWebClient, IUpdatePresenter<CoMobile>> updateCoMobileClientUseCase;
-    private readonly IDeletePresentableUseCase<CoMobile, CoMobile, CoMobileWebClient, IDeletePresenter<CoMobile>> deleteCoMobileClientUseCase;
 
     public ListCollectionView Serials { get; }
     public ListCollectionView Roles { get; }
@@ -57,19 +55,7 @@ internal partial class CoMobileEntryViewModel : BizEntryViewModelBase2<CoMobile>
         return item.TagGroupType.ForCoMobile();
     }
 
-    public override Task CancelAsyncCore() =>
-        Task.Run(() =>
-        {
-            //if (Mode == EntryMode.Edit && Origin != null)
-            //{
-            //    mapper.Map(Origin, Model);
-            //}
-        });
-
     [RelayCommand]
     private void ClearUpgraded() => Model.ClearUpgraded();
-
-    [RelayCommand]
-    private void UncheckAllTags() => TagInventory.UncheckAll();
 
 }

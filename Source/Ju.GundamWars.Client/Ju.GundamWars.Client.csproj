@@ -11,17 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Commons\ViewModel\**" />
-    <EmbeddedResource Remove="Commons\ViewModel\**" />
-    <None Remove="Commons\ViewModel\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Commons\EntryMode.cs" />
-    <Compile Remove="Commons\SlideIndexType.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Ju.GundamWars.Client.Const\Ju.GundamWars.Client.Const.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Client.Master\Ju.GundamWars.Client.Master.csproj" />
     <ProjectReference Include="..\Ju.GundamWars.Client.Transaction\Ju.GundamWars.Client.Transaction.csproj" />

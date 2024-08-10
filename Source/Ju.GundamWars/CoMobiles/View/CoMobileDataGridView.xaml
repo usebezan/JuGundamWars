@@ -13,50 +13,12 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     >
-    <UserControl.Resources>
-        <DataTemplate x:Key="GwCoMobileListNameTemplate">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center">
-                        <Hyperlink
-                            Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                            CommandParameter="{Binding}"
-                            >
-                            <TextBlock Text="{Binding Name}" />
-                        </Hyperlink>
-                    </TextBlock>
-                <materialDesign:PackIcon x:Name="pin" Width="12" VerticalAlignment="Top" Kind="Pin" Visibility="Collapsed" />
-            </StackPanel>
-            <DataTemplate.Triggers>
-                <DataTrigger Binding="{Binding IsPinned}" Value="True">
-                    <Setter TargetName="pin" Property="Visibility" Value="Visible" />
-                </DataTrigger>
-            </DataTemplate.Triggers>
-        </DataTemplate>
-        <DataTemplate x:Key="GwCoMobileListNameCellTemplate">
-            <Grid VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <ContentControl Grid.Column="0" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwCoMobileListNameTemplate}" />
-                <ContentControl Grid.Column="1" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.MemoTemplate}" />
-                <Button
-                    Style="{StaticResource GwList.CopyButton}"
-                    Grid.Column="2"
-                    Margin="8 0 0 0"
-                    Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                    CommandParameter="{Binding}"
-                />
-            </Grid>
-        </DataTemplate>
-    </UserControl.Resources>
     <Grid>
         <DataGrid ItemsSource="{Binding ItemsView}" FrozenColumnCount="2">
             <DataGrid.Columns>
                 <DataGridTemplateColumn CellTemplate="{StaticResource GwList.CheckTemplate}" />
-                <DataGridTemplateColumn Header="Name"
-                    CellTemplate="{StaticResource GwCoMobileListNameCellTemplate}"
+                <DataGridTemplateColumn Header="{x:Static core:GwText.Name}"
+                    CellTemplate="{StaticResource GwList.CoMobileNameCellTemplate}"
                     SortMemberPath="Name"
                     SortDirection="Ascending"
                 />
@@ -67,219 +29,213 @@
                     Width="120"
                 />
                 -->
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Hp}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.Hp}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.HpText}"
+                    Binding="{Binding UpgradedCount.HpText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.Hp"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.Hp}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Hp}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamAttack}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.BeamAttack}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.BeamAttackText}"
+                    Binding="{Binding UpgradedCount.BeamAttackText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.BeamAttack"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.BeamAttack}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.BeamAttack}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalAttack}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.PhysicalAttack}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.PhysicalAttackText}"
+                    Binding="{Binding UpgradedCount.PhysicalAttackText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.PhysicalAttack"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.PhysicalAttack}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.PhysicalAttack}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamDefence}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.BeamDefence}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.BeamDefenceText}"
+                    Binding="{Binding UpgradedCount.BeamDefenceText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.BeamDefence"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.BeamDefence}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.BeamDefence}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalDefence}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.PhysicalDefence}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.PhysicalDefenceText}"
+                    Binding="{Binding UpgradedCount.PhysicalDefenceText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.PhysicalDefence"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.PhysicalDefence}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.PhysicalDefence}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalDamage}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.CriticalDamage}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.CriticalDamageText}"
+                    Binding="{Binding UpgradedCount.CriticalDamageText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.CriticalDamage"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.CriticalDamage}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.CriticalDamage}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Accuracy}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.Accuracy}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.AccuracyText}"
+                    Binding="{Binding UpgradedCount.AccuracyText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.Accuracy"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.Accuracy}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Accuracy}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Evasion}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.Evasion}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.EvasionText}"
+                    Binding="{Binding UpgradedCount.EvasionText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.Evasion"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.Evasion}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Evasion}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Mobility}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.Mobility}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.MobilityText}"
+                    Binding="{Binding UpgradedCount.MobilityText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.Mobility"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.Mobility}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Mobility}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.StartupText}"
+                    Binding="{Binding UpgradedCount.StartupText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.Startup"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.Startup}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Startup}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding UpgradedCount.SuperMoveText}"
+                    Binding="{Binding UpgradedCount.SuperMoveText, Mode=OneWay}"
                     SortMemberPath="UpgradedCount.SuperMove"
                     >
                     <DataGridTextColumn.Header>
                         <TextBlock>
-                            <Run Text="{Binding Source={x:Static core:GwText.Upgraded}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.Upgraded}" />
                             <LineBreak />
-                            <Run Text="{Binding Source={x:Static core:GwText.SuperMove}, Mode=OneWay}" />
+                            <Run Text="{x:Static core:GwText.SuperMove}" />
                         </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="改修&#x0a;回数"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding UpgradedCountTotal}"
+                    Binding="{Binding UpgradedCountTotal, Mode=OneWay}"
                 />
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Level}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.Level}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding Level}"
+                    Binding="{Binding Level, Mode=OneWay}"
                 />
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Role}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.Role}"
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding Role.Name}"
+                    Binding="{Binding Role.Name, Mode=OneWay}"
                     SortMemberPath="Role.Value"
                 />
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Serial}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.Serial}"
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding Serial.Name}"
+                    Binding="{Binding Serial.Name, Mode=OneWay}"
                     SortMemberPath="Serial.Order"
                 />
-                <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Tag}}"
+                <DataGridTextColumn Header="{x:Static core:GwText.Tag}"
                     ElementStyle="{StaticResource GwList.TextColumn}"
-                    Binding="{Binding TagsText}"
+                    Binding="{Binding TagsText, Mode=OneWay}"
                 />
             </DataGrid.Columns>
         </DataGrid>
         <materialDesign:PopupBox Margin="16" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel>
-                <Button
-                    Command="{Binding CheckAllCommand}"
-                    Content="Check all"
-                />
-                <Button
-                    Command="{Binding UncheckAllCommand}"
-                    Content="Uncheck all"
-                />
+                <Button Command="{Binding CheckAllCommand, Mode=OneTime}" Content="すべて選択" />
+                <Button Command="{Binding UncheckAllCommand, Mode=OneTime}" Content="すべて解除" />
             </StackPanel>
         </materialDesign:PopupBox>
     </Grid>

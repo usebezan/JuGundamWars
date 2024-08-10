@@ -23,16 +23,16 @@
     BorderThickness="0"
     ResizeMode="CanResizeWithGrip"
     SaveWindowPosition="True"
-    Background="{DynamicResource MaterialDesign.Brush.Background}"
-    WindowTitleBrush="{DynamicResource GwPrimaryBrush}"
-    NonActiveWindowTitleBrush="{DynamicResource GwPrimaryBrush}"
+    Background="{StaticResource MaterialDesign.Brush.Background}"
+    WindowTitleBrush="{StaticResource GwPrimaryBrush}"
+    NonActiveWindowTitleBrush="{StaticResource GwPrimaryBrush}"
     SnapsToDevicePixels="True"
     >
     <mahApps:MetroWindow.TitleTemplate>
         <DataTemplate>
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <Image Margin="0 0 4 0" VerticalAlignment="Center" Width="24" Height="24" Source="/Ju.GundamWars;component/Resources/JuGundamWars.ico" />
-                <TextBlock VerticalAlignment="Center" FontSize="{DynamicResource MahApps.Font.Size.Window.Title}" Text="J.U GUNDAM WARS" />
+                <TextBlock VerticalAlignment="Center" FontSize="{StaticResource MahApps.Font.Size.Window.Title}" Text="J.U GUNDAM WARS" />
             </StackPanel>
         </DataTemplate>
     </mahApps:MetroWindow.TitleTemplate>
@@ -47,7 +47,7 @@
                     <TextBlock Text="{Binding Text}" TextAlignment="Center" TextWrapping="Wrap" />
                 </DataTemplate>
             </Style.Resources>
-            <Setter Property="Background" Value="{DynamicResource GwPrimaryBrush}" />
+            <Setter Property="Background" Value="{StaticResource GwPrimaryBrush}" />
             <Setter Property="ItemsSource" Value="{Binding Menus}" />
             <Setter Property="SelectedIndex" Value="{Binding ViewState.MenuIndex}" />
             <Setter Property="ItemContainerStyle" Value="{StaticResource GwMenuItemContainer}" />
@@ -62,7 +62,7 @@
         <mahApps:WindowCommands ShowSeparators="False">
             <Button Command="{Binding ReloadCommand}" Content="{materialDesign:PackIcon Kind=Refresh}" ToolTip="最新の情報に更新" />
             <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" FontSize="12" Text="{Binding ViewState.VersionText}" />
-            <materialDesign:PackIcon VerticalAlignment="Center" Kind="AlertBox" Foreground="{DynamicResource SecondaryHueMidBrush}" ToolTip="{Binding ViewState.VersionMessage}" Visibility="{Binding ViewState.HasVersionMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <materialDesign:PackIcon VerticalAlignment="Center" Kind="AlertBox" Foreground="{StaticResource SecondaryHueMidBrush}" ToolTip="{Binding ViewState.VersionMessage}" Visibility="{Binding ViewState.HasVersionMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </mahApps:WindowCommands>
     </mahApps:MetroWindow.LeftWindowCommands>
     <mahApps:MetroWindow.RightWindowCommands>

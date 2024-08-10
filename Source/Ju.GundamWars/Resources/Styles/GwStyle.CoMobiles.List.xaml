@@ -5,4 +5,42 @@
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
 	>
 
+    <DataTemplate x:Key="GwList.CoMobileNameTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center">
+                <Hyperlink
+                    Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=OneTime}"
+                    CommandParameter="{Binding}"
+                    >
+                    <TextBlock Text="{Binding Name, Mode=OneWay}" />
+                </Hyperlink>
+            </TextBlock>
+            <materialDesign:PackIcon x:Name="pin" Width="12" VerticalAlignment="Top" Kind="Pin" Visibility="Collapsed" />
+        </StackPanel>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsPinned, Mode=OneWay}" Value="True">
+                <Setter TargetName="pin" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GwList.CoMobileNameCellTemplate">
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ContentControl Grid.Column="0" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.CoMobileNameTemplate}" />
+            <ContentControl Grid.Column="1" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.MemoTemplate}" />
+            <Button
+                Style="{StaticResource GwList.CopyButton}"
+                Grid.Column="2"
+                Margin="8 0 0 0"
+                Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=OneTime}"
+                CommandParameter="{Binding}"
+            />
+        </Grid>
+    </DataTemplate>
+
 </ResourceDictionary>

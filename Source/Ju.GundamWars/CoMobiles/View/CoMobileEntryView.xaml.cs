@@ -10,6 +10,5 @@ public partial class CoMobileEntryView : UserControl
     public CoMobileEntryView()
     {
         InitializeComponent();
-        DataContext = App.GetRequiredService<CoMobileEntryViewModel>();
     }
 }

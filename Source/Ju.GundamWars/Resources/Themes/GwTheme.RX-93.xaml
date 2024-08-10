@@ -16,11 +16,11 @@
     <Color x:Key="GwErrorColor">#ffE7233A</Color>
 
     <!-- Brush -->
-    <SolidColorBrush x:Key="GwPrimaryBrush" Color="{DynamicResource GwPrimaryColor}" po:Freeze="True" />
-    <SolidColorBrush x:Key="GwSecondaryBrush" Color="{DynamicResource GwSecondaryColor}" po:Freeze="True" />
-    <SolidColorBrush x:Key="GwValidationErrorBrush" Color="{DynamicResource GwErrorColor}" po:Freeze="True" />
+    <SolidColorBrush x:Key="GwPrimaryBrush" Color="{StaticResource GwPrimaryColor}" po:Freeze="True" />
+    <SolidColorBrush x:Key="GwSecondaryBrush" Color="{StaticResource GwSecondaryColor}" po:Freeze="True" />
+    <SolidColorBrush x:Key="GwValidationErrorBrush" Color="{StaticResource GwErrorColor}" po:Freeze="True" />
 
     <Color x:Key="GwCheckedBackgroundColor">#ff27273f</Color>
-    <SolidColorBrush x:Key="GwCheckedBackgroundBrush" Color="{DynamicResource GwCheckedBackgroundColor}" po:Freeze="True" />
+    <SolidColorBrush x:Key="GwCheckedBackgroundBrush" Color="{StaticResource GwCheckedBackgroundColor}" po:Freeze="True" />
 
 </ResourceDictionary>

@@ -23,7 +23,7 @@
 
 
     <DataTemplate x:Key="GwList.CheckTemplate">
-        <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Id}" />
+        <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Id, Mode=OneWay}" />
     </DataTemplate>
 
     <DataTemplate x:Key="GwList.ForUnitTemplate">

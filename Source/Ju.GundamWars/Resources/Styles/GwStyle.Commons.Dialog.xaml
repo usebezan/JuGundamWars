@@ -11,21 +11,27 @@
         <Setter Property="Command" Value="{Binding CancelCommand, Mode=OneTime}" />
     </Style>
 
-    <Style x:Key="GwDialog.NoButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}" x:Shared="False">
+    <Style x:Key="GwDialog.NoButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatMidBgButton}" x:Shared="False">
+        <Setter Property="Margin" Value="8 0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Width" Value="96" />
         <Setter Property="Height" Value="32" />
         <Setter Property="Content" Value="No" />
         <Setter Property="Command" Value="{Binding NoCommand, Mode=OneTime}" />
     </Style>
 
-    <Style x:Key="GwDialog.OkButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
+    <Style x:Key="GwDialog.OkButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatSecondaryMidBgButton}" x:Shared="False">
+        <Setter Property="Margin" Value="8 0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Width" Value="96" />
         <Setter Property="Height" Value="32" />
         <Setter Property="Content" Value="OK" />
         <Setter Property="Command" Value="{Binding OkCommand, Mode=OneTime}" />
     </Style>
 
-    <Style x:Key="GwDialog.YesButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}" x:Shared="False">
+    <Style x:Key="GwDialog.YesButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatSecondaryMidBgButton}" x:Shared="False">
+        <Setter Property="Margin" Value="8 0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Width" Value="96" />
         <Setter Property="Height" Value="32" />
         <Setter Property="Content" Value="Yes" />

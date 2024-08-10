@@ -5,4 +5,14 @@
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
 	>
 
+    <Style x:Key="GwEntry.CoMobileUpgradedCountComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntry.ComboBox}">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="ItemsSource" Value="{Binding UpgradedCounts}" />
+    </Style>
+
+    <Style x:Key="GwEntry.CoMobileStatusTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntry.StatusTextBox}">
+        <Setter Property="Margin" Value="8 0 8 20" />
+    </Style>
+
 </ResourceDictionary>

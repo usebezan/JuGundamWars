@@ -53,7 +53,7 @@
                 <ResourceDictionary Source="Resources/Styles/GwStyle.Supports.List.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!--<SolidColorBrush x:Key="MaterialDesign.Brush.ToolBar.Background" Color="{DynamicResource GwPrimaryColor}" />-->
+            <!--<SolidColorBrush x:Key="MaterialDesign.Brush.ToolBar.Background" Color="{StaticResource GwPrimaryColor}" />-->
 
             <!-- Converter -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -93,7 +93,7 @@
                 <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
                 <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
                 <Setter Property="EnableRowVirtualization" Value="True" />
-                <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />-->
+                <!--<Setter Property="Background" Value="{StaticResource MahApps.Brushes.ThemeBackground}" />-->
                 <Setter Property="RowStyle">
                     <Setter.Value>
                         <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
@@ -103,7 +103,7 @@
                                         <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="False" />
                                         <Condition Binding="{Binding IsChecked}" Value="True" />
                                     </MultiDataTrigger.Conditions>
-                                    <Setter Property="Background" Value="{DynamicResource GwCheckedBackgroundBrush}"/>
+                                    <Setter Property="Background" Value="{StaticResource GwCheckedBackgroundBrush}"/>
                                 </MultiDataTrigger>
                             </Style.Triggers>
                         </Style>

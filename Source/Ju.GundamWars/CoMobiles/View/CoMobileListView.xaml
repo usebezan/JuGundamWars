@@ -19,16 +19,16 @@
                 <Button
                     FontSize="14"
                     FontWeight="Medium"
-                    Command="{Binding OpenEntryAsNewCommand}"
+                    Command="{Binding OpenEntryAsNewCommand, Mode=OneTime}"
                     >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="PlusBoxOutline" />
-                        <TextBlock VerticalAlignment="Center" Text="New" />
+                        <TextBlock VerticalAlignment="Center" Text="追加" />
                     </StackPanel>
                 </Button>
                 <Separator Margin="4" />
                 <Button
-                    Command="{Binding ClearFilterCommand}"
+                    Command="{Binding ClearFilterCommand, Mode=OneTime}"
                     Content="{materialDesign:PackIcon FilterRemoveOutline}"
                     ToolTip="フィルター解除"
                 />

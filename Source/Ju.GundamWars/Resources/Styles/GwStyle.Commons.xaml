@@ -23,7 +23,7 @@
     <!-- #region Border -->
 
     <Style x:Key="Gw.Border" TargetType="{x:Type Border}">
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+        <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="Padding" Value="8 0" />
@@ -33,7 +33,9 @@
 
     <!-- #region Button -->
 
-    <Style x:Key="Gw.CancelButtonBase" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignPaperButton}">
+    <Style x:Key="Gw.CancelButtonBase" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+        <Setter Property="Margin" Value="16 0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Width" Value="96" />
         <Setter Property="Height" Value="32" />
         <Setter Property="Content" Value="Cancel" />
@@ -58,7 +60,7 @@
     <!-- #region ComboBox -->
 
     <DataTemplate x:Key="Gw.ComboBox.GroupHeaderTemplate">
-        <TextBlock Padding="8 4" Text="{Binding Name}" Foreground="{DynamicResource PrimaryHueMidBrush}" />
+        <TextBlock Padding="8 4" Text="{Binding Name}" Foreground="{StaticResource PrimaryHueMidBrush}" />
     </DataTemplate>
 
     <Style x:Key="Gw.ComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
