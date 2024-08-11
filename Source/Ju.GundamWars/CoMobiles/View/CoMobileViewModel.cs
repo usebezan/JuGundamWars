@@ -1,10 +1,11 @@
 ﻿using Ju.GundamWars.Commons.Domain.Model;
+using Ju.GundamWars.Commons.View;
 
 namespace Ju.GundamWars.CoMobiles.View;
 
-internal partial class CoMobileViewModel(CoMobileViewState viewState) : ModelBase
+internal partial class CoMobileViewModel(ViewState viewState) : ModelBase
 {
 
-    public CoMobileViewState ViewState { get; } = viewState;
+    public ViewState ViewState { get; } = viewState;
 
 }

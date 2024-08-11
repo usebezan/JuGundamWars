@@ -13,15 +13,48 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     >
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Height="50" Orientation="Horizontal">
-            <Button
-                Style="{StaticResource GwEntry.CancelButton}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Command="{Binding DataContext.CancelCommand, RelativeSource={StaticResource GwCuspaListRelativeSource}}"
-            />
+    <UserControl.Resources>
+        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource GwEntry.GroupBox}" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="50" Orientation="Horizontal">
+            <Button Style="{StaticResource GwEntry.CancelButton}" Command="{Binding CancelCommand}" />
+            <Button Style="{StaticResource GwEntry.EnterButton}" Command="{Binding EnterCommand}" />
+            <Button Style="{StaticResource GwEntry.DeleteButton}" Command="{Binding DeleteCommand}" />
         </StackPanel>
-        <Grid />
-    </DockPanel>
+        <Grid Grid.Row="1" Grid.Column="0" Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Margin="0 0 0 16" HorizontalAlignment="Left" Header="{x:Static core:GwText.Name}">
+                <TextBlock Style="{StaticResource GwEntry.TextBlock}" Text="{Binding Model.Name}" />
+            </GroupBox>
+            <TabControl Grid.Row="1" SelectedIndex="{Binding TabIndex}">
+                <TabItem Header="Default">
+                    <cuspas:CuspaEntryDefaultView Margin="0 16 0 0" />
+                </TabItem>
+                <TabItem Header="Leveling">
+                    <cuspas:CuspaEntryLevelingView Margin="0 16 0 0" />
+                </TabItem>
+                <TabItem Header="Custom">
+                    <cuspas:CuspaEntryCustomView Margin="0 16 0 0" />
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <!--<ScrollViewer Grid.Row="1" Grid.Column="1" Margin="16 0 0 0" VerticalScrollBarVisibility="Auto">
+            <Border Style="{StaticResource GwSummaryBorder}" DataContext="{Binding Entry}">
+                <local:CuspaSummaryUserControl />
+            </Border>
+        </ScrollViewer>-->
+    </Grid>
 </UserControl>

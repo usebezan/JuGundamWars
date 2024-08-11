@@ -15,7 +15,7 @@
     >
     <Grid>
         <Grid Height="50" VerticalAlignment="Top" Background="{StaticResource MaterialDesign.Brush.ToolBar.Background}" />
-        <materialDesign:Transitioner SelectedIndex="{Binding ViewState.PageIndex, Mode=OneWay}">
+        <materialDesign:Transitioner SelectedIndex="{Binding ViewState.CoMobilePageIndex, Mode=OneWay}">
             <!-- List -->
             <materialDesign:TransitionerSlide>
                 <materialDesign:TransitionerSlide.ForwardWipe>
@@ -34,7 +34,7 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:SlideWipe Direction="Right" />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <coMobiles:CoMobileEntryView DataContext="{Binding ViewState.EntryContent}" />
+                <coMobiles:CoMobileEntryView DataContext="{Binding ViewState.CoMobileEntryContent}" />
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
     </Grid>

@@ -27,6 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Cuspas\Presentation\DeleteCoMobilePresenter.cs" />
+    <Compile Include="Cuspas\Presentation\InsertCoMobilePresenter.cs" />
+    <Compile Include="Cuspas\Presentation\UpdateCoMobilePresenter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\JuGundamWars.ico" />
   </ItemGroup>
 
@@ -37,11 +43,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ju.GundamWars.Client\Ju.GundamWars.Client.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mobiles\Presentation\" />
-    <Folder Include="Tags\Presentation\" />
   </ItemGroup>
 
   <ItemGroup>

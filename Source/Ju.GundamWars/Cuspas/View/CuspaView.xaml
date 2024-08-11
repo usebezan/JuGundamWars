@@ -15,7 +15,7 @@
     >
     <Grid>
         <Grid Height="50" VerticalAlignment="Top" Background="{StaticResource MaterialDesign.Brush.ToolBar.Background}" />
-        <materialDesign:Transitioner SelectedIndex="{Binding PageIndex}">
+        <materialDesign:Transitioner SelectedIndex="{Binding ViewState.CuspaPageIndex, Mode=OneWay}">
             <!-- List -->
             <materialDesign:TransitionerSlide>
                 <materialDesign:TransitionerSlide.ForwardWipe>
@@ -34,7 +34,7 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:SlideWipe Direction="Right" />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <cuspas:CuspaEntryView />
+                <cuspas:CuspaEntryView DataContext="{Binding ViewState.CuspaEntryContent}" />
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
     </Grid>

@@ -13,29 +13,31 @@ using System.Windows.Data;
 
 namespace Ju.GundamWars.Cuspas.View;
 
-internal partial class CuspaListViewModelBase : BizListViewModelBase<Cuspa>
+internal abstract partial class CuspaListViewModelBase : BizListViewModelBase2<Cuspa>
 {
 
     public CuspaListViewModelBase(
-        CuspaInventory items,
-        UnitInventory units,
-        CuspaKindInventory cuspaKinds,
-        BoostStatusInventory boostStatuses,
-        TagInventory tags)
-        : base(items, tags)
+        CuspaInventory itemInventory,
+        UnitInventory unitInventory,
+        CuspaKindInventory cuspaKindInventory,
+        BoostStatusInventory boostStatusInventory,
+        TagInventory tagInventory,
+        ViewState viewState)
+        : base(itemInventory, tagInventory, viewState)
     {
-        ForUnits = new(units) { Filter = FilterForUnit, };
-        CuspaKinds = new(cuspaKinds);
-        BoostStatuses = new(boostStatuses) { Filter = FilterBoostStatus, };
+        IsFixedForUnitFilter = false;
 
-        IsIdle = true;
+        ForUnits = new(unitInventory) { Filter = FilterForUnit, };
+        CuspaKinds = new(cuspaKindInventory);
+        BoostStatuses = new(boostStatusInventory) { Filter = FilterBoostStatus, };
     }
 
+
+    protected bool IsFixedForUnitFilter { get; set; }
 
     public ListCollectionView ForUnits { get; }
     public ListCollectionView CuspaKinds { get; }
     public ListCollectionView BoostStatuses { get; }
-    public bool IsFixedForUnitFilter { get; protected set; } = false;
 
     [ObservableProperty]
     private Unit? _ForUnitFilter = null;
@@ -82,7 +84,7 @@ internal partial class CuspaListViewModelBase : BizListViewModelBase<Cuspa>
         return item.TagGroupType.ForCuspa();
     }
 
-    public override void ClearFilter()
+    protected override void ClearFilterCore()
     {
         IsIdle = false;
         TagFilter = null;

@@ -1,15 +1,16 @@
-﻿using Ju.GundamWars.Client.CoMobiles.Domain;
+﻿using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.CoMobiles.View;
+using Ju.GundamWars.Cuspas.View;
 
-namespace Ju.GundamWars.CoMobiles.Presentation;
+namespace Ju.GundamWars.Cuspas.Presentation;
 
-internal class UpdateCoMobilePresenter(
+internal class InsertCuspaPresenter(
+    CuspaInventory coMobileInventory,
     ProgressViewModel progressViewModel,
     MessageViewModel messageViewModel,
-    ViewState viewState) : IUpdatePresenter<CoMobile>
+    ViewState viewState) : IInsertPresenter<Cuspa>
 {
 
     public void Initialize()
@@ -54,8 +55,9 @@ internal class UpdateCoMobilePresenter(
         progressViewModel.Message = string.Empty;
     }
 
-    public void Complete(CoMobile output)
+    public void Complete(Cuspa output)
     {
+        coMobileInventory.Add(output);
         viewState.CloseEntry();
     }
 

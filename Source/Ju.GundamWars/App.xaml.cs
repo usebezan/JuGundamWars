@@ -1,24 +1,21 @@
 ﻿using Ju.GundamWars.Client;
 using Ju.GundamWars.Client.CoMobiles.Domain;
+using Ju.GundamWars.Client.Cuspas.Domain;
 using Ju.GundamWars.Client.Systems.UseCase.OutputPort;
 using Ju.GundamWars.Commons.Application;
 using Ju.GundamWars.Commons.Domain;
-using Ju.GundamWars.Commons.Domain.Service.Mapping;
 using Ju.GundamWars.Commons.Presentation;
 using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.CoMobiles.Domain.Service;
 using Ju.GundamWars.CoMobiles.Presentation;
 using Ju.GundamWars.CoMobiles.View;
-using Ju.GundamWars.Cuspas.Domain.Service;
+using Ju.GundamWars.Cuspas.Presentation;
 using Ju.GundamWars.Cuspas.View;
 using Ju.GundamWars.Mobiles.View;
-using Ju.GundamWars.Pilots.Domain.Service;
 using Ju.GundamWars.Pilots.View;
 using Ju.GundamWars.Server;
 using Ju.GundamWars.Server.Commons.Infrastructure.Persistence;
-using Ju.GundamWars.Supports.Domain.Service;
 using Ju.GundamWars.Supports.View;
 using Ju.GundamWars.Systems.Domain;
 using Ju.GundamWars.Systems.Presentation;
@@ -102,8 +99,6 @@ public partial class App : Application
                     services.AddSingleton(typeof(ICancelEntryUseCase<>), typeof(CancelEntryInteractor<>));
                     services.AddSingleton<ICancelEntryPresenter, CancelEntryPresenter>();
 
-                    // Domain.Service
-                    services.AddSingleton<IMapper<CoMobile, CoMobile>, CoMobileM2MMapper>();
                     // Presentation
                     services.AddSingleton<IDeletePresenter<CoMobile>, DeleteCoMobilePresenter>();
                     services.AddSingleton<IInsertPresenter<CoMobile>, InsertCoMobilePresenter>();
@@ -111,24 +106,20 @@ public partial class App : Application
                     // View
                     services.AddSingleton<CoMobileListViewModel>();
                     services.AddSingleton<CoMobileViewModel>();
-                    services.AddSingleton<CoMobileViewState>();
 
-                    // Domain.Service
-                    services.AddSingleton<CuspaM2MMapper>();
+                    // Presentation
+                    services.AddSingleton<IDeletePresenter<Cuspa>, DeleteCuspaPresenter>();
+                    services.AddSingleton<IInsertPresenter<Cuspa>, InsertCuspaPresenter>();
+                    services.AddSingleton<IUpdatePresenter<Cuspa>, UpdateCuspaPresenter>();
                     // View
-                    services.AddSingleton<CuspaEntryViewModel>();
                     services.AddSingleton<CuspaListViewModel>();
                     services.AddSingleton<CuspaViewModel>();
 
-                    // Domain.Service
-                    services.AddSingleton<PilotM2MMapper>();
                     // View
                     services.AddSingleton<PilotEntryViewModel>();
                     services.AddSingleton<PilotListViewModel>();
                     services.AddSingleton<PilotViewModel>();
 
-                    // Domain.Service
-                    services.AddSingleton<SupportM2MMapper>();
                     // View
                     services.AddSingleton<SupportEntryViewModel>();
                     services.AddSingleton<SupportListViewModel>();

@@ -44,6 +44,10 @@
 
     <!-- #endregion -->
 
+    <Style x:Key="Gw.TextBlock" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignTextBlock}">
+        <Setter Property="Height" Value="32" />
+    </Style>
+
     <!-- #region TextBox -->
 
     <Style x:Key="Gw.TextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">

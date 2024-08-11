@@ -3,11 +3,11 @@
 namespace Ju.GundamWars.Cuspas.View;
 
 /// <summary>
-/// CuspaEntryView.xaml の相互作用ロジック
+/// CuspaEntryStatusView.xaml の相互作用ロジック
 /// </summary>
-public partial class CuspaEntryView : UserControl
+public partial class CuspaEntryStatusView : UserControl
 {
-    public CuspaEntryView()
+    public CuspaEntryStatusView()
     {
         InitializeComponent();
     }

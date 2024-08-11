@@ -11,10 +11,8 @@ using Ju.GundamWars.Server.Pilots.Infrastructure.Persistence;
 using Ju.GundamWars.Server.Supports.Domain.Gateway;
 using Ju.GundamWars.Server.Supports.Infrastructure.Persistence;
 using Ju.GundamWars.Share;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
 
 namespace Ju.GundamWars.Server;
 

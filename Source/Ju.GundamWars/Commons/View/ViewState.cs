@@ -16,10 +16,6 @@ internal partial class ViewState : ModelBase
 
     public SnackbarMessageQueue SnackbarMessageQueue { get; }
 
-    [ObservableProperty]
-    private bool _IsDialogOpen;
-    [ObservableProperty]
-    private object? _DialogContent;
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(VersionText))]
     private string _Version = string.Empty;
@@ -57,5 +53,96 @@ internal partial class ViewState : ModelBase
     //private string _StatusbarIcon = GwIcon.Information;
     //[ObservableProperty]
     //private string _StatusbarMessage = string.Empty;
+
+    #region Dialog
+
+    [ObservableProperty]
+    private bool _IsDialogOpen;
+    [ObservableProperty]
+    private object? _DialogContent;
+
+    public void OpenDialog(object content)
+    {
+        DialogContent = content;
+        IsDialogOpen = true;
+    }
+
+    public void CloseDialog()
+    {
+        IsDialogOpen = false;
+        DialogContent = null;
+    }
+
+    #endregion
+
+    #region Entry
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CoMobilePageIndex))]
+    private PageIndexType _CoMobilePageIndexType = PageIndexType.List;
+
+    [ObservableProperty]
+    private IDisposable? _CoMobileEntryContent;
+
+    public int CoMobilePageIndex => CoMobilePageIndexType.ToValue();
+
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CuspaPageIndex))]
+    private PageIndexType _CuspaPageIndexType = PageIndexType.List;
+
+    [ObservableProperty]
+    private IDisposable? _CuspaEntryContent;
+
+    public int CuspaPageIndex => CuspaPageIndexType.ToValue();
+
+
+    public void OpenEntry(IDisposable content)
+    {
+        switch (MenuIndexType)
+        {
+            case MenuIndexType.Mobile:
+                break;
+            case MenuIndexType.Pilot:
+                break;
+            case MenuIndexType.Support:
+                break;
+            case MenuIndexType.CoMobile:
+                CoMobileEntryContent = content;
+                CoMobilePageIndexType = PageIndexType.Entry;
+                break;
+            case MenuIndexType.Cuspa:
+                CuspaEntryContent = content;
+                CuspaPageIndexType = PageIndexType.Entry;
+                break;
+            case MenuIndexType.Tag:
+                break;
+        }
+    }
+
+    public void CloseEntry()
+    {
+        switch (MenuIndexType)
+        {
+            case MenuIndexType.Mobile:
+                break;
+            case MenuIndexType.Pilot:
+                break;
+            case MenuIndexType.Support:
+                break;
+            case MenuIndexType.CoMobile:
+                CoMobilePageIndexType = PageIndexType.List;
+                CoMobileEntryContent?.Dispose();
+                CoMobileEntryContent = null;
+                break;
+            case MenuIndexType.Cuspa:
+                CuspaPageIndexType = PageIndexType.List;
+                CuspaEntryContent?.Dispose();
+                CuspaEntryContent = null;
+                break;
+            case MenuIndexType.Tag:
+                break;
+        }
+    }
+
+    #endregion
 
 }

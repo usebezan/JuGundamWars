@@ -7,11 +7,12 @@ using Ju.GundamWars.Client.Cuspas.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Pilots.Domain;
 using Ju.GundamWars.Client.Pilots.Domain.Service;
 using Ju.GundamWars.Client.Pilots.Infrastructure.WebClient;
-using Ju.GundamWars.Client.Supports.Domain.Service;
 using Ju.GundamWars.Client.Supports.Domain;
+using Ju.GundamWars.Client.Supports.Domain.Service;
 using Ju.GundamWars.Client.Supports.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Tags.Infrastructure.WebClient;
+using Ju.GundamWars.Commons.Domain.Service.Mapping;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -29,6 +30,7 @@ public static class TransactionClientHosting
                     .AddSingleton<CoMobileInventory>()
                     // Domain.Service
                     .AddSingleton<CoMobileDtoMapper>()
+                    .AddSingleton<IMapper<CoMobile, CoMobile>, CoMobileM2MMapper>()
                     .AddSingleton<CoMobileModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<CoMobileWebClient>()
@@ -40,6 +42,7 @@ public static class TransactionClientHosting
                     .AddSingleton<CuspaInventory>()
                     // Domain.Service
                     .AddSingleton<CuspaDtoMapper>()
+                    .AddSingleton<IMapper<Cuspa, Cuspa>, CuspaM2MMapper>()
                     .AddSingleton<CuspaModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<CuspaWebClient>()
@@ -51,6 +54,7 @@ public static class TransactionClientHosting
                     .AddSingleton<PilotInventory>()
                     // Domain.Service
                     .AddSingleton<PilotDtoMapper>()
+                    .AddSingleton<PilotM2MMapper>()
                     .AddSingleton<PilotModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<PilotWebClient>()
@@ -62,6 +66,7 @@ public static class TransactionClientHosting
                     .AddSingleton<SupportInventory>()
                     // Domain.Service
                     .AddSingleton<SupportDtoMapper>()
+                    .AddSingleton<SupportM2MMapper>()
                     .AddSingleton<SupportModelMapper>()
                     // Infrastructure.WebClient
                     .AddSingleton<SupportWebClient>()

@@ -1,9 +1,9 @@
 ﻿using Ju.GundamWars.Client.Pilots.Domain;
+using Ju.GundamWars.Client.Pilots.Domain.Service;
 using Ju.GundamWars.Client.Roles.Domain;
 using Ju.GundamWars.Client.Serials.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Pilots.Domain.Service;
 using Ju.GundamWars.Share.Roles.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
 using System.Windows.Data;

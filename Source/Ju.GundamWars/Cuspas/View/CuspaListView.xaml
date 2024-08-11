@@ -18,7 +18,7 @@
             <ToolBar>
                 <materialDesign:SplitButton
                     Style="{StaticResource MaterialDesignFlatSplitButton}"
-                    Command="{Binding DataContext.OpenEntryAsNewCommand, RelativeSource={StaticResource GwCuspaListRelativeSource}}"
+                    Command="{Binding OpenEntryAsNewCommand, Mode=OneTime}"
                     PopupPlacementMode="BottomAndAlignRightEdges"
                     >
                     <StackPanel Orientation="Horizontal">
@@ -27,20 +27,16 @@
                     </StackPanel>
                     <materialDesign:SplitButton.PopupContent>
                         <StackPanel>
-                            <Button
-                                Command="{Binding DataContext.OpenEntryAsNewCommand, RelativeSource={StaticResource GwCuspaListRelativeSource}}"
-                                >
+                            <Button Command="{Binding OpenEntryAsNewCommand, Mode=OneTime}">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="{Binding Source={x:Static core:GwIcon.Mobile}}" />
-                                    <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static core:GwText.Mobile}}" />
+                                    <TextBlock VerticalAlignment="Center" Text="{x:Static core:GwText.Mobile}" />
                                 </StackPanel>
                             </Button>
-                            <Button
-                                Command="{Binding DataContext.OpenEntryAsNewForBsCommand, RelativeSource={StaticResource GwCuspaListRelativeSource}}"
-                                >
+                            <Button Command="{Binding OpenEntryAsNewForBsCommand, Mode=OneTime}">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon VerticalAlignment="Center" Margin="0 0 8 0" Kind="{Binding Source={x:Static core:GwIcon.Battleship}}" />
-                                    <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static core:GwText.Battleship}}" />
+                                    <TextBlock VerticalAlignment="Center" Text="{x:Static core:GwText.Battleship}" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -48,7 +44,7 @@
                 </materialDesign:SplitButton>
                 <Separator Margin="4" />
                 <Button
-                    Command="{Binding DataContext.ClearFilterCommand, RelativeSource={StaticResource GwCuspaListRelativeSource}}"
+                    Command="{Binding ClearFilterCommand, Mode=OneTime}"
                     Content="{materialDesign:PackIcon FilterRemoveOutline}"
                     ToolTip="フィルター解除"
                 />

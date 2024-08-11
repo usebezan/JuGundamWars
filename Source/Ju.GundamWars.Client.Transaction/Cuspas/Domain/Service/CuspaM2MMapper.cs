@@ -1,7 +1,6 @@
-﻿using Ju.GundamWars.Client.Cuspas.Domain;
-using Ju.GundamWars.Share.Cuspas.Domain.Service;
+﻿using Ju.GundamWars.Share.Cuspas.Domain.Service;
 
-namespace Ju.GundamWars.Cuspas.Domain.Service;
+namespace Ju.GundamWars.Client.Cuspas.Domain.Service;
 
 public class CuspaM2MMapper : CuspaMapperBase<Cuspa, CuspaStatus, Cuspa, CuspaStatus>
 {

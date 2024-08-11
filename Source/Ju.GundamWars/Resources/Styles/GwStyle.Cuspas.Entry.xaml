@@ -5,4 +5,10 @@
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
 	>
 
+    <Style x:Key="GwEntry.CuspaKindComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwEntry.ComboBox}">
+        <Setter Property="DisplayMemberPath" Value="Name" />
+        <Setter Property="ItemsSource" Value="{Binding CuspaKinds}" />
+        <Setter Property="SelectedItem" Value="{Binding Model.CuspaKind}" />
+    </Style>
+
 </ResourceDictionary>

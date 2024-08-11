@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using Ju.Collections.ObjectModel;
 using Ju.GundamWars.Client.Commons.Domain;
 using Ju.GundamWars.Client.Tags.Domain;
-using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.Domain.Model;
 using System.ComponentModel;
 using System.Reactive.Linq;
@@ -11,12 +10,11 @@ using System.Windows.Data;
 
 namespace Ju.GundamWars.Commons.View;
 
-internal abstract partial class BizListViewModelBase2<TBiz, TViewState> : ModelBase
+internal abstract partial class BizListViewModelBase2<TBiz> : ModelBase
     where TBiz : BizBase, new()
-    where TViewState : BizViewStateBase
 {
 
-    public BizListViewModelBase2(TViewState viewState, ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tagInventory)
+    public BizListViewModelBase2(ObservableItemPropertyChangedCollection<TBiz> items, TagInventory tagInventory, ViewState viewState)
     {
         IsIdle = false;
         ViewState = viewState;
@@ -32,11 +30,8 @@ internal abstract partial class BizListViewModelBase2<TBiz, TViewState> : ModelB
 
 
     protected bool IsIdle { get; set; }
-    protected TViewState ViewState { get; }
-
-    protected Func<IDisposable>? CreateEntryViewModelAsNew { get; set; } = null;
-    protected Func<TBiz, IDisposable>? CreateEntryViewModelAsEdit { get; set; } = null;
-    protected Func<TBiz, IDisposable>? CreateEntryViewModelAsCopy { get; set; } = null;
+    protected bool IsCountableChecked { get; set; }
+    protected ViewState ViewState { get; }
 
     public ObservableItemPropertyChangedCollection<TBiz> Items { get; }
     public ListCollectionView ItemsView { get; }
@@ -45,8 +40,6 @@ internal abstract partial class BizListViewModelBase2<TBiz, TViewState> : ModelB
     [ObservableProperty]
     private Tag? _TagFilter = null;
 
-    [ObservableProperty]
-    private bool _IsCountableChecked = false;
     [ObservableProperty]
     private int _CheckedCount = 0;
     [ObservableProperty]
@@ -60,6 +53,9 @@ internal abstract partial class BizListViewModelBase2<TBiz, TViewState> : ModelB
     protected abstract bool FilterItem(object obj);
     protected abstract bool FilterTag(object obj);
     protected abstract void ClearFilterCore();
+    protected abstract IDisposable CreateEntryViewModelAsNew();
+    protected abstract IDisposable CreateEntryViewModelAsEdit(TBiz model);
+    protected abstract IDisposable CreateEntryViewModelAsCopy(TBiz model);
 
     protected void Refresh()
     {
@@ -81,29 +77,11 @@ internal abstract partial class BizListViewModelBase2<TBiz, TViewState> : ModelB
     private void CheckAll() => ItemsView.OfType<TBiz>().ToList().ForEach(i => i.IsChecked = true);
     [RelayCommand]
     private void UncheckAll() => ItemsView.OfType<TBiz>().ToList().ForEach(i => i.IsChecked = false);
-
     [RelayCommand]
-    private Task OpenEntryAsNewAsync() =>
-        Task.Run(() =>
-        {
-            ViewState.EntryContent = CreateEntryViewModelAsNew?.Invoke();
-            ViewState.PageIndexType = PageIndexType.Entry;
-        });
-
+    private Task OpenEntryAsNewAsync() => Task.Run(() => ViewState.OpenEntry(CreateEntryViewModelAsNew()));
     [RelayCommand]
-    private Task OpenEntryAsEditAsync(TBiz model) =>
-        Task.Run(() =>
-        {
-            ViewState.EntryContent = CreateEntryViewModelAsEdit?.Invoke(model);
-            ViewState.PageIndexType = PageIndexType.Entry;
-        });
-
+    private Task OpenEntryAsEditAsync(TBiz model) => Task.Run(() => ViewState.OpenEntry(CreateEntryViewModelAsEdit(model)));
     [RelayCommand]
-    private Task OpenEntryAsCopyAsync(TBiz model) =>
-        Task.Run(() =>
-        {
-            ViewState.EntryContent = CreateEntryViewModelAsCopy?.Invoke(model);
-            ViewState.PageIndexType = PageIndexType.Entry;
-        });
+    private Task OpenEntryAsCopyAsync(TBiz model) => Task.Run(() => ViewState.OpenEntry(CreateEntryViewModelAsCopy(model)));
 
 }

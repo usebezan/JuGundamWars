@@ -16,6 +16,7 @@ public static class GwText
     public readonly static string UpgradedCount = "改修回数";
     public readonly static string UpgradedStatus = "改修ステータス";
     public readonly static string Memo = "メモ";
+    public readonly static string BonusStatus = "ボーナス ステータス";
 
 
     public readonly static string Startup = "スタートアップ";

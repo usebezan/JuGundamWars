@@ -9,7 +9,6 @@ using Ju.GundamWars.Commons.Domain.Service.Mapping;
 using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.CoMobiles.Domain.Service;
 using Ju.GundamWars.Share.Roles.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
 using System.Windows.Data;
@@ -29,7 +28,8 @@ internal partial class CoMobileEntryViewModel : BizEntryViewModelBase2<CoMobile>
         IMapper<CoMobile, CoMobile> mapper,
         SerialInventory serialInventory,
         RoleInventory roleInventory,
-        TagInventory tagInventory) : base(mode, model, insertClientUseCase, updateClientUseCase, deleteClientUseCase, cancelClientUseCase, mapper, tagInventory)
+        TagInventory tagInventory)
+        : base(mode, model, insertClientUseCase, updateClientUseCase, deleteClientUseCase, cancelClientUseCase, mapper, tagInventory)
     {
         Serials = new(serialInventory);
         Roles = new(roleInventory) { Filter = FilterRole, };

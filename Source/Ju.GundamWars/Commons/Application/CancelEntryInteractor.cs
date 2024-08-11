@@ -13,7 +13,8 @@ namespace Ju.GundamWars.Commons.Application;
 public class CancelEntryInteractor<T>(
     IMapper<T, T> mapper,
     ICancelEntryPresenter presenter,
-    ILogger<CancelEntryInteractor<T>> logger) : IGw, ICancelEntryUseCase<T>
+    ILogger<CancelEntryInteractor<T>> logger)
+    : IGw, ICancelEntryUseCase<T>
 {
 
     private static readonly JsonSerializerOptions options = new()
@@ -24,13 +25,13 @@ public class CancelEntryInteractor<T>(
     };
 
 
-    public Task HandleAsync((EntryMode, T, T?) input) =>
+    public Task HandleAsync((T @new, T? org) input) =>
         this.Execute(logger, async () =>
         {
             presenter.Initialize();
-            var curString = JsonSerializer.Serialize(input.Item2, options);
-            var newString = JsonSerializer.Serialize(input.Item3, options);
-            if (curString != newString)
+            var newString = JsonSerializer.Serialize(input.@new, options);
+            var orgString = JsonSerializer.Serialize(input.org, options);
+            if (newString != orgString)
             {
                 var answer = await presenter.ShowMessageAsync(MessageAnswer.OkCancel);
                 if (answer != MessageAnswer.Ok)
@@ -39,9 +40,9 @@ public class CancelEntryInteractor<T>(
                     presenter.Cancel();
                     return;
                 }
-                if (input.Item1 == EntryMode.Edit)
+                if (input.org != null)
                 {
-                    mapper.Map(input.Item3!, input.Item2);
+                    mapper.Map(input.org, input.@new);
                 }
             }
             presenter.Complete();

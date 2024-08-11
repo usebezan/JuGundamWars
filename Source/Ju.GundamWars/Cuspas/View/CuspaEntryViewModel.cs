@@ -1,43 +1,48 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using Ju.GundamWars.Client.Boosts.Domain;
+using Ju.GundamWars.Client.CuspaKinds.Domain;
 using Ju.GundamWars.Client.Cuspas.Domain;
-using Ju.GundamWars.Client.Roles.Domain;
-using Ju.GundamWars.Client.Serials.Domain;
+using Ju.GundamWars.Client.Cuspas.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Tags.Domain;
+using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.Domain.Service.Mapping;
+using Ju.GundamWars.Commons.UseCase.InputPort;
+using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Cuspas.Domain.Service;
-using Ju.GundamWars.Share.Roles.Domain;
+using Ju.GundamWars.Share.Boosts.Domain;
 using Ju.GundamWars.Share.Tags.Domain;
 using System.Windows.Data;
 
 namespace Ju.GundamWars.Cuspas.View;
 
-internal partial class CuspaEntryViewModel : BizEntryViewModelBase<Cuspa>
+internal partial class CuspaEntryViewModel : BizEntryViewModelBase2<Cuspa>
 {
 
     public CuspaEntryViewModel(
-        CuspaM2MMapper mapper,
-        SerialInventory serialInventory,
-        RoleInventory roleInventory,
-        TagInventory tagInventory) : base(tagInventory)
+        EntryMode mode,
+        Cuspa model,
+        IInsertPresentableUseCase<Cuspa, CuspaWebClient, IInsertPresenter<Cuspa>> insertClientUseCase,
+        IUpdatePresentableUseCase<Cuspa, CuspaWebClient, IUpdatePresenter<Cuspa>> updateClientUseCase,
+        IDeletePresentableUseCase<Cuspa, Cuspa, CuspaWebClient, IDeletePresenter<Cuspa>> deleteClientUseCase,
+        ICancelEntryUseCase<Cuspa> cancelClientUseCase,
+        IMapper<Cuspa, Cuspa> mapper,
+        CuspaKindInventory cuspaKindInventory,
+        BoostStatusInventory boostStatusInventory,
+        TagInventory tagInventory)
+        : base(mode, model, insertClientUseCase, updateClientUseCase, deleteClientUseCase, cancelClientUseCase, mapper, tagInventory)
     {
-        this.mapper = mapper;
-        Serials = new(serialInventory);
-        Roles = new(roleInventory) { Filter = FilterRole, };
-        UpgradedCounts = [0, 1, 2, 3, 4, 5,];
+        CuspaKinds = new(cuspaKindInventory);
+        BoostStatuses = new(boostStatusInventory) { Filter = FilterBoostStatus, };
     }
 
 
-    private readonly CuspaM2MMapper mapper;
-
-    public ListCollectionView Serials { get; }
-    public ListCollectionView Roles { get; }
-    public List<int> UpgradedCounts { get; }
+    public ListCollectionView CuspaKinds { get; }
+    public ListCollectionView BoostStatuses { get; }
 
 
-    private bool FilterRole(object obj)
+    private bool FilterBoostStatus(object obj)
     {
-        if (obj is not Role item) return false;
-        return item.Type.ForMobileSuit();
+        if (obj is not BoostStatus item) return false;
+        return item.Type.ForCuspa();
     }
 
     protected override bool FilterTag(object obj)
@@ -45,48 +50,6 @@ internal partial class CuspaEntryViewModel : BizEntryViewModelBase<Cuspa>
         if (obj is not Tag item) return false;
         if (string.IsNullOrEmpty(item.Name)) return false;
         return item.TagGroupType.ForCuspa();
-    }
-
-    public override Task OpenEntryAsNewAsync() =>
-        Task.Run(() =>
-        {
-            Mode = Commons.Domain.EntryMode.New;
-            Model = new();
-            Origin = null;
-            ResetTags(Model);
-        });
-
-    public override Task OpenEntryAsEditAsync(Cuspa model) =>
-        Task.Run(() =>
-        {
-            Mode = Commons.Domain.EntryMode.Edit;
-            Model = model;
-            Origin = mapper.Map(model, new());
-            ResetTags(Model);
-        });
-
-    public override Task OpenEntryAsCopyAsync(Cuspa model) =>
-        Task.Run(() =>
-        {
-            Mode = Commons.Domain.EntryMode.Copy;
-            Model = mapper.Map(model, new());
-            Origin = null;
-            ResetTags(Model);
-        });
-
-    public override Task CancelAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override Task EnterAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override Task DeleteAsync()
-    {
-        throw new NotImplementedException();
     }
 
 }

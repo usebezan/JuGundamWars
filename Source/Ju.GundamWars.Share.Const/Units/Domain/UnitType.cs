@@ -1,6 +1,4 @@
-﻿using Ju.GundamWars.Share.Roles.Domain;
-
-namespace Ju.GundamWars.Share.Units.Domain;
+﻿namespace Ju.GundamWars.Share.Units.Domain;
 
 [Flags]
 public enum UnitType : byte

@@ -33,13 +33,13 @@ public partial class CoMobile : BizBase, ICoMobile<CoMobileStatus, CoMobileUpgra
     [ObservableProperty]
     private string _Name = string.Empty;
     [ObservableProperty]
-    private int _SerialId;
+    private int _SerialId = 1;
     [ObservableProperty]
-    private RoleType _RoleType;
+    private RoleType _RoleType = RoleType.Defensive;
     [ObservableProperty]
-    private byte _Level;
+    private byte _Level = 60;
     [ObservableProperty]
-    private bool _IsPinned;
+    private bool _IsPinned = true;
 
     #endregion
 

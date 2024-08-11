@@ -1,7 +1,6 @@
-﻿using Ju.GundamWars.Client.CoMobiles.Domain;
-using Ju.GundamWars.Share.CoMobiles.Domain.Service;
+﻿using Ju.GundamWars.Share.CoMobiles.Domain.Service;
 
-namespace Ju.GundamWars.CoMobiles.Domain.Service;
+namespace Ju.GundamWars.Client.CoMobiles.Domain.Service;
 
 public class CoMobileM2MMapper : CoMobileMapperBase<CoMobile, CoMobileStatus, CoMobileUpgradedCount, CoMobile, CoMobileStatus, CoMobileUpgradedCount>
 {

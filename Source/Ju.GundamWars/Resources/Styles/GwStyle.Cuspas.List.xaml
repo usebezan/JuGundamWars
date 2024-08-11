@@ -5,4 +5,36 @@
     xmlns:core="clr-namespace:Ju.GundamWars;assembly=Ju.GundamWars.Core"
 	>
 
+    <DataTemplate x:Key="GwList.CuspaNameTemplate">
+        <TextBlock VerticalAlignment="Center">
+            <Hyperlink
+                Command="{Binding DataContext.OpenEntryAsEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=OneTime}"
+                CommandParameter="{Binding}"
+                >
+                <TextBlock Text="{Binding Name, Mode=OneWay}" />
+            </Hyperlink>
+        </TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GwList.CuspaNameCellTemplate">
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ContentControl Grid.Column="0" VerticalAlignment="Center" Content="{Binding}" ContentTemplate="{StaticResource GwList.ForUnitTemplate}" />
+            <ContentControl Grid.Column="1" Margin="8 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.CuspaNameTemplate}" />
+            <ContentControl Grid.Column="2" Margin="4 0 0 0" Content="{Binding}" ContentTemplate="{StaticResource GwList.MemoTemplate}" />
+            <Button
+                Style="{StaticResource GwList.CopyButton}"
+                Grid.Column="3"
+                Margin="8 0 0 0"
+                Command="{Binding DataContext.OpenEntryAsCopyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=OneTime}"
+                CommandParameter="{Binding}"
+            />
+        </Grid>
+    </DataTemplate>
+
 </ResourceDictionary>

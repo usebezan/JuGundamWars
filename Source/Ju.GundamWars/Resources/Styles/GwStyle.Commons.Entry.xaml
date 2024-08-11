@@ -9,21 +9,21 @@
 
     <Style x:Key="GwEntry.GroupBox" TargetType="{x:Type GroupBox}" BasedOn="{StaticResource MaterialDesignCardGroupBox}">
         <Setter Property="Margin" Value="0 0 0 16" />
-        <!--<Setter Property="Padding" Value="8 4" />-->
+        <Setter Property="Padding" Value="8 4" />
         <Setter Property="Width" Value="480" />
         <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
         <Setter Property="materialDesign:ColorZoneAssist.Mode" Value="Custom" />
-        <!--<Setter Property="materialDesign:ColorZoneAssist.Foreground" Value="{StaticResource MaterialDesignBody}" />-->
-        <!--<Setter Property="materialDesign:ColorZoneAssist.Background" Value="Transparent" />-->
-        <!--<Setter Property="HeaderTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <Grid Height="24">
-                            <TextBlock Text="{Binding}" />
-                        </Grid>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>-->
+        <Setter Property="materialDesign:ColorZoneAssist.Foreground" Value="{StaticResource MaterialDesignBody}" />
+        <Setter Property="materialDesign:ColorZoneAssist.Background" Value="Transparent" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid Height="24">
+                        <TextBlock VerticalAlignment="Center" Text="{Binding}" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- #endregion -->
@@ -62,6 +62,12 @@
 
     <!-- #endregion -->
 
+    <Style x:Key="GwEntry.TextBlock" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Gw.TextBlock}">
+        <Setter Property="Margin" Value="8 0 8 8" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
     <!-- #region TextBox -->
 
     <Style x:Key="GwEntry.TextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource Gw.TextBox}">
@@ -82,15 +88,17 @@
 
     <Style x:Key="GwEntry.LevelTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntry.RightTextBox}">
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Width" Value="40" />
+        <Setter Property="Width" Value="60" />
         <Setter Property="Text" Value="{Binding Model.Level}" />
     </Style>
 
     <Style x:Key="GwEntry.MemoTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource GwEntry.FullTextBox}">
+        <Setter Property="MinHeight" Value="32" />
         <Setter Property="Height" Value="Auto" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="AcceptsReturn" Value="True" />
         <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
         <Setter Property="Text" Value="{Binding Model.Memo}" />
     </Style>
 

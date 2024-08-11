@@ -15,24 +15,26 @@
     >
     <ScrollViewer VerticalScrollBarVisibility="Visible">
         <StackPanel>
-            <GroupBox>
-                <GroupBox.Header>
-                    <DockPanel>
-                        <Button
-                            DockPanel.Dock="Right"
-                            Style="{StaticResource GwEntry.ToolButton}"
-                            Command="{Binding ClearUpgradedCommand, Mode=OneTime}"
-                            Content="{materialDesign:PackIcon CircleOutline}"
-                            ToolTip="クリア"
-                        />
-                        <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0 0 32 0">
-                            <Run Text="{Binding Model.UpgradedCountTotal, Mode=OneWay}" />
-                            <Run Text="/" />
-                            <Run Text="10" />
-                        </TextBlock>
-                        <TextBlock Text="{x:Static core:GwText.UpgradedCount}" />
-                    </DockPanel>
-                </GroupBox.Header>
+            <GroupBox Header="{Binding}">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <DockPanel Height="24">
+                            <Button
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource GwEntry.ToolButton}"
+                                Command="{Binding ClearUpgradedCommand, Mode=OneTime}"
+                                Content="{materialDesign:PackIcon CircleOutline}"
+                                ToolTip="クリア"
+                            />
+                            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0 0 32 0">
+                                <Run Text="{Binding Model.UpgradedCountTotal, Mode=OneWay}" />
+                                <Run Text="/" />
+                                <Run Text="10" />
+                            </TextBlock>
+                            <TextBlock Text="{x:Static core:GwText.UpgradedCount}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -81,19 +83,21 @@
                     <TextBox Grid.Column="2" Grid.Row="2" Style="{StaticResource GwEntry.CoMobileStatusTextBox}" Text="{Binding UpgradedStatus.Mobility}" materialDesign:TextFieldAssist.PrefixText="{x:Static core:GwText.Mobility}" materialDesign:HintAssist.HelperText="{Binding UpgradedDefaultStatus.Mobility}" />
                 </Grid>
             </GroupBox>
-            <GroupBox>
-                <GroupBox.Header>
-                    <DockPanel>
-                        <Button
-                            DockPanel.Dock="Right"
-                            Style="{StaticResource GwEntry.ToolButton}"
-                            Command="{Binding UncheckAllTagsCommand, Mode=OneTime}"
-                            Content="{materialDesign:PackIcon CircleOutline}"
-                            ToolTip="すべて解除"
-                        />
-                        <TextBlock Text="{x:Static core:GwText.Tag}" />
-                    </DockPanel>
-                </GroupBox.Header>
+            <GroupBox Header="{Binding}">
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <DockPanel Height="24">
+                            <Button
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource GwEntry.ToolButton}"
+                                Command="{Binding UncheckAllTagsCommand, Mode=OneTime}"
+                                Content="{materialDesign:PackIcon CircleOutline}"
+                                ToolTip="すべて解除"
+                            />
+                            <TextBlock Text="{x:Static core:GwText.Tag}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
                 <ListBox Style="{StaticResource GwEntry.TagListBox}" />
             </GroupBox>
             <GroupBox Header="{x:Static core:GwText.Memo}">

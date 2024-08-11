@@ -1,7 +1,6 @@
-﻿using Ju.GundamWars.Client.Supports.Domain;
-using Ju.GundamWars.Share.Supports.Domain.Service;
+﻿using Ju.GundamWars.Share.Supports.Domain.Service;
 
-namespace Ju.GundamWars.Supports.Domain.Service;
+namespace Ju.GundamWars.Client.Supports.Domain.Service;
 
 public class SupportM2MMapper : SupportMapperBase<Support, Support>
 {

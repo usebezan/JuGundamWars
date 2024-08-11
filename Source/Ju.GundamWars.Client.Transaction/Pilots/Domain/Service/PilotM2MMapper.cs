@@ -1,7 +1,6 @@
-﻿using Ju.GundamWars.Client.Pilots.Domain;
-using Ju.GundamWars.Share.Pilots.Domain.Service;
+﻿using Ju.GundamWars.Share.Pilots.Domain.Service;
 
-namespace Ju.GundamWars.Pilots.Domain.Service;
+namespace Ju.GundamWars.Client.Pilots.Domain.Service;
 
 public class PilotM2MMapper : PilotMapperBase<Pilot, PilotStatus, Pilot, PilotStatus>
 {

@@ -22,7 +22,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="529" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
@@ -36,7 +36,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <GroupBox Grid.Row="0" Margin="0 0 0 16" HorizontalAlignment="Left" Header="Name">
+            <GroupBox Grid.Row="0" Margin="0 0 0 16" HorizontalAlignment="Left" Header="{x:Static core:GwText.Name}">
                 <DockPanel>
                     <ToggleButton DockPanel.Dock="Right" IsChecked="{Binding Model.IsPinned}" Content="{materialDesign:PackIcon Kind=PinOutline}" materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Pin}" />
                     <TextBox Style="{StaticResource GwEntry.FullTextBox}" Text="{Binding Model.Name}" />

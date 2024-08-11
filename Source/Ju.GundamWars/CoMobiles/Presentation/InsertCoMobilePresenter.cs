@@ -7,7 +7,6 @@ using Ju.GundamWars.CoMobiles.View;
 namespace Ju.GundamWars.CoMobiles.Presentation;
 
 internal class InsertCoMobilePresenter(
-    CoMobileViewState coMobileViewState,
     CoMobileInventory coMobileInventory,
     ProgressViewModel progressViewModel,
     MessageViewModel messageViewModel,
@@ -59,7 +58,7 @@ internal class InsertCoMobilePresenter(
     public void Complete(CoMobile output)
     {
         coMobileInventory.Add(output);
-        coMobileViewState.PageIndexType = PageIndexType.List;
+        viewState.CloseEntry();
     }
 
 }

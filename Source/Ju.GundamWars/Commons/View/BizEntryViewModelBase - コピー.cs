@@ -90,14 +90,13 @@ internal abstract partial class BizEntryViewModelBase2<TBiz> : ModelBase
     [RelayCommand]
     private Task EnterAsync()
     {
+        Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
         if (IsAdd)
         {
-            Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
             return InsertClientUseCase.HandleAsync(Model);
         }
         else if (IsEdit)
         {
-            Model.ReAddTags(TagInventory.Where(i => i.IsChecked).ToList());
             return UpdateClientUseCase.HandleAsync(Model);
         }
         else
@@ -109,6 +108,6 @@ internal abstract partial class BizEntryViewModelBase2<TBiz> : ModelBase
     [RelayCommand]
     private Task DeleteAsync() => DeleteClientUseCase.HandleAsync(Model);
     [RelayCommand]
-    private Task CancelAsync() => CancelClientUseCase.HandleAsync((Mode, Model, Origin));
+    private Task CancelAsync() => CancelClientUseCase.HandleAsync((Model, Origin));
 
 }
