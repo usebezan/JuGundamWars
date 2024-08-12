@@ -13,8 +13,8 @@ public class CoMobileModelMapper(SerialInventory serials, RoleInventory roles, T
         {
             model.IsChecked = false;
             MapCore(dto, model);
+            model.Tags.ReAddRange(dto.TagLinks.Select(d => tags.FirstOrDefault(i => i.Id == d.TagId)).Where(i => i != null).Select(i => i!));
             model.Serial = serials.FirstOrDefault(i => i.Id == dto.SerialId);
             model.Role = roles.FirstOrDefault(i => i.Type == dto.RoleType);
-            model.Tags.ReAddRange(dto.TagLinks.Select(d => tags.FirstOrDefault(i => i.Id == d.TagId)).Where(i => i != null).Select(i => i!));
         });
 }

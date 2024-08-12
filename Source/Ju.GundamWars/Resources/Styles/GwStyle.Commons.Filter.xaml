@@ -39,7 +39,7 @@
         <!-- TODO: <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.BoostStatus}}" />-->
     </Style>
 
-    <Style x:Key="GwFilter.ForUnitComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilter.ComboBox}">
+    <Style x:Key="GwFilter.ForUnitComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilter.ComboBox}" x:Shared="False">
         <Setter Property="Width" Value="88" />
         <Setter Property="ItemTemplate">
             <Setter.Value>
@@ -56,7 +56,7 @@
         <!-- TODO: <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.ForUnit}}" />-->
     </Style>
 
-    <Style x:Key="GwFilter.RoleComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilter.ComboBox}">
+    <Style x:Key="GwFilter.RoleComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilter.ComboBox}" x:Shared="False">
         <Setter Property="Width" Value="80" />
         <Setter Property="DisplayMemberPath" Value="Name" />
         <Setter Property="ItemsSource" Value="{Binding Roles}" />
@@ -64,7 +64,7 @@
         <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Role}}" />
     </Style>
 
-    <Style x:Key="GwFilter.SerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilter.ComboBox}">
+    <Style x:Key="GwFilter.SerialComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilter.ComboBox}" x:Shared="False">
         <Setter Property="Width" Value="300" />
         <Setter Property="DisplayMemberPath" Value="Name" />
         <Setter Property="ItemsSource" Value="{Binding Serials}" />
@@ -72,7 +72,7 @@
         <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding Source={x:Static core:GwText.Serial}}" />
     </Style>
 
-    <Style x:Key="GwFilter.TagComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilter.ComboBox}">
+    <Style x:Key="GwFilter.TagComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource GwFilter.ComboBox}" x:Shared="False">
         <Setter Property="Width" Value="144" />
         <Setter Property="DisplayMemberPath" Value="Name" />
         <Setter Property="ItemsSource" Value="{Binding Tags}" />
@@ -90,21 +90,21 @@
     </Style>
 
 
-    <Style x:Key="GwFilter.HasMemoToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilter.ToggleButton}">
+    <Style x:Key="GwFilter.HasMemoToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilter.ToggleButton}" x:Shared="False">
         <Setter Property="IsChecked" Value="{Binding HasMemoFilter}" />
         <Setter Property="ToolTip" Value="メモあり" />
         <Setter Property="Content" Value="{materialDesign:PackIcon Kind=TooltipTextOutline}" />
         <Setter Property="materialDesign:ToggleButtonAssist.OnContent" Value="{materialDesign:PackIcon Kind=TooltipText}" />
     </Style>
 
-    <Style x:Key="GwFilter.HasNoMobileToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilter.ToggleButton}">
+    <Style x:Key="GwFilter.HasNoMobileToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilter.ToggleButton}" x:Shared="False">
         <Setter Property="IsChecked" Value="{Binding HasNoMobileFilter}" />
         <Setter Property="ToolTip" Value="機体未設定" />
         <Setter Property="Content" Value="{materialDesign:PackIcon Kind=RobotOffOutline}" />
         <Setter Property="materialDesign:ToggleButtonAssist.OnContent" Value="{materialDesign:PackIcon Kind=RobotOff}" />
     </Style>
 
-    <Style x:Key="GwFilter.IsNotPinnedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilter.ToggleButton}">
+    <Style x:Key="GwFilter.IsNotPinnedToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource GwFilter.ToggleButton}" x:Shared="False">
         <Setter Property="IsChecked" Value="{Binding IsNotPinnedFilter}" />
         <Setter Property="ToolTip" Value="ピン止め" />
         <Setter Property="Content" Value="{materialDesign:PackIcon Kind=PinOffOutline}" />

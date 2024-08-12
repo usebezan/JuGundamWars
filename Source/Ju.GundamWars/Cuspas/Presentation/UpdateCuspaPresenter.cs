@@ -2,15 +2,13 @@
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Cuspas.View;
 
 namespace Ju.GundamWars.Cuspas.Presentation;
 
-internal class DeleteCuspaPresenter(
-    CuspaInventory coMobileInventory,
+internal class UpdateCuspaPresenter(
     ProgressViewModel progressViewModel,
     MessageViewModel messageViewModel,
-    ViewState viewState) : IDeletePresenter<Cuspa>
+    ViewState viewState) : IUpdatePresenter<Cuspa>
 {
 
     public void Initialize()
@@ -26,7 +24,7 @@ internal class DeleteCuspaPresenter(
 
     public async Task<MessageAnswer> ShowMessageAsync(MessageAnswer choices)
     {
-        messageViewModel.Message = "削除します。よろしいですか？";
+        messageViewModel.Message = "登録します。よろしいですか？";
         messageViewModel.Type = choices;
         viewState.DialogContent = messageViewModel;
         viewState.IsDialogOpen = true;
@@ -57,7 +55,6 @@ internal class DeleteCuspaPresenter(
 
     public void Complete(Cuspa output)
     {
-        coMobileInventory.Remove(output);
         viewState.CloseEntry();
     }
 

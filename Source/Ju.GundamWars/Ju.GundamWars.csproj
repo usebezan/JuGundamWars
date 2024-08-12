@@ -27,9 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Cuspas\Presentation\DeleteCoMobilePresenter.cs" />
-    <Compile Include="Cuspas\Presentation\InsertCoMobilePresenter.cs" />
-    <Compile Include="Cuspas\Presentation\UpdateCoMobilePresenter.cs" />
+    <Compile Include="Cuspas\Presentation\DeleteCuspaPresenter.cs" />
+    <Compile Include="Cuspas\Presentation\InsertCuspaPresenter.cs" />
+    <Compile Include="Cuspas\Presentation\UpdateCuspaPresenter.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,18 +9,14 @@
     xmlns:commons="clr-namespace:Ju.GundamWars.Commons.View"
     xmlns:cuspas="clr-namespace:Ju.GundamWars.Cuspas.View"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance cuspas:CuspaListViewModel}"
+    d:DataContext="{d:DesignInstance cuspas:CuspaEntryViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     >
     <ScrollViewer VerticalScrollBarVisibility="Visible">
         <StackPanel>
             <GroupBox Header="Kind">
-                <ComboBox Style="{StaticResource GwEntry.CuspaKindComboBox}">
-                    <ComboBox.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource Gw.ComboBox.GroupHeaderTemplate}" />
-                    </ComboBox.GroupStyle>
-                </ComboBox>
+                <ComboBox Style="{StaticResource GwEntry.CuspaKindComboBox}" />
             </GroupBox>
         </StackPanel>
     </ScrollViewer>

@@ -10,5 +10,7 @@ public class CuspaM2MMapper : CuspaMapperBase<Cuspa, CuspaStatus, Cuspa, CuspaSt
             dest.IsChecked = src.IsChecked;
             MapCore(src, dest);
             dest.Tags.ReAddRange(src.Tags);
+            dest.CuspaKind = src.CuspaKind;
+            dest.BoostStatus = src.BoostStatus;
         });
 }

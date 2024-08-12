@@ -9,8 +9,8 @@ public class CoMobileM2MMapper : CoMobileMapperBase<CoMobile, CoMobileStatus, Co
         {
             dest.IsChecked = src.IsChecked;
             MapCore(src, dest);
+            dest.Tags.ReAddRange(src.Tags);
             dest.Serial = src.Serial;
             dest.Role = src.Role;
-            dest.Tags.ReAddRange(src.Tags);
         });
 }

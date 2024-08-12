@@ -21,7 +21,7 @@
                 <Run Text="items" />
             </TextBlock>
         </StatusBarItem>
-        <StatusBarItem Visibility="{Binding IsCountableChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <StatusBarItem Margin="8 0 0 0" Visibility="{Binding IsCountableChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TextBlock Margin="0" VerticalAlignment="Center">
                 <Run Text="{Binding FilteredCheckedCount, Mode=OneWay}"/>
                 <Run Text="/" />

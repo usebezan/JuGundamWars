@@ -30,7 +30,6 @@ internal abstract partial class BizListViewModelBase2<TBiz> : ModelBase
 
 
     protected bool IsIdle { get; set; }
-    protected bool IsCountableChecked { get; set; }
     protected ViewState ViewState { get; }
 
     public ObservableItemPropertyChangedCollection<TBiz> Items { get; }
@@ -40,6 +39,8 @@ internal abstract partial class BizListViewModelBase2<TBiz> : ModelBase
     [ObservableProperty]
     private Tag? _TagFilter = null;
 
+    [ObservableProperty]
+    private bool _IsCountableChecked = false;
     [ObservableProperty]
     private int _CheckedCount = 0;
     [ObservableProperty]

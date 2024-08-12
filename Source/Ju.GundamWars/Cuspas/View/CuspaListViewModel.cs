@@ -1,19 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Ju.GundamWars.Client.Boosts.Domain;
-using Ju.GundamWars.Client.Cuspas.Domain;
-using Ju.GundamWars.Client.Cuspas.Infrastructure.WebClient;
 using Ju.GundamWars.Client.CuspaKinds.Domain;
 using Ju.GundamWars.Client.Cuspas.Domain;
-using Ju.GundamWars.Client.Roles.Domain;
-using Ju.GundamWars.Client.Serials.Domain;
+using Ju.GundamWars.Client.Cuspas.Infrastructure.WebClient;
 using Ju.GundamWars.Client.Tags.Domain;
 using Ju.GundamWars.Client.Units.Domain;
-using Ju.GundamWars.Commons.Domain.Service.Mapping;
 using Ju.GundamWars.Commons.Domain;
+using Ju.GundamWars.Commons.Domain.Service.Mapping;
 using Ju.GundamWars.Commons.UseCase.InputPort;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.Cuspas.View;
 using Ju.GundamWars.Share.Units.Domain;
 
 namespace Ju.GundamWars.Cuspas.View;
@@ -30,7 +26,7 @@ internal partial class CuspaListViewModel : CuspaListViewModelBase
         ViewState viewState)
         : base(itemInventory, unitInventory, cuspaKindInventory, boostStatusInventory, tagInventory, viewState)
     {
-        IsCountableChecked = true;
+        IsCountableChecked = false;
         IsFixedForUnitFilter = false;
         IsIdle = true;
     }

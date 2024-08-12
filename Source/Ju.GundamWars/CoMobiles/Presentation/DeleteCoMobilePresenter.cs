@@ -2,7 +2,6 @@
 using Ju.GundamWars.Commons.Domain;
 using Ju.GundamWars.Commons.UseCase.OutputPort;
 using Ju.GundamWars.Commons.View;
-using Ju.GundamWars.CoMobiles.View;
 
 namespace Ju.GundamWars.CoMobiles.Presentation;
 

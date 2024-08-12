@@ -15,62 +15,62 @@
     >
     <DataGrid ItemsSource="{Binding ItemsView}" FrozenColumnCount="1">
         <DataGrid.Columns>
-            <DataGridTemplateColumn Header="Name"
+            <DataGridTemplateColumn Header="{x:Static core:GwText.Name}"
                 CellTemplate="{StaticResource GwList.CuspaNameCellTemplate}"
                 SortMemberPath="Name"
                 SortDirection="Ascending"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Hp}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.Hp}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.Hp, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamAttack}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.BeamAttack}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.BeamAttack, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalAttack}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.PhysicalAttack}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.PhysicalAttack, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.BeamDefence}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.BeamDefence}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.BeamDefence, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.PhysicalDefence}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.PhysicalDefence}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.PhysicalDefence, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalRate}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.CriticalRate}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.CriticalRate, StringFormat={}{0:N0}%}"
+                Binding="{Binding ActualStatus.CriticalRate, StringFormat={}{0:N0}%, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.CriticalDamage}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.CriticalDamage}"
                     ElementStyle="{StaticResource GwList.RightTextColumn}"
-                    Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}}"
+                    Binding="{Binding ActualStatus.CriticalDamage, StringFormat={}{0:N0}, Mode=OneWay}"
                 />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Accuracy}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.Accuracy}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.Accuracy, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Evasion}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.Evasion}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.Evasion, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Mobility}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.Mobility}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.Mobility, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.EnRecovery}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.EnRecovery}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding ActualStatus.EnRecovery, StringFormat={}{0:N0}}"
+                Binding="{Binding ActualStatus.EnRecovery, StringFormat={}{0:N0}, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Level}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.Level}"
                 ElementStyle="{StaticResource GwList.RightTextColumn}"
-                Binding="{Binding Level}"
+                Binding="{Binding Level, Mode=OneWay}"
             />
-            <DataGridTextColumn Header="{Binding Source={x:Static core:GwText.Tag}}"
+            <DataGridTextColumn Header="{x:Static core:GwText.Tag}"
                 ElementStyle="{StaticResource GwList.TextColumn}"
-                Binding="{Binding TagsText}"
+                Binding="{Binding TagsText, Mode=OneWay}"
             />
         </DataGrid.Columns>
     </DataGrid>

@@ -13,8 +13,8 @@ public class CuspaModelMapper(CuspaKindInventory cuspaKinds, BoostStatusInventor
         {
             model.IsChecked = false;
             MapCore(dto, model);
+            model.Tags.ReAddRange(dto.TagLinks.Select(d => tags.FirstOrDefault(i => i.Id == d.TagId)).Where(i => i != null).Select(i => i!));
             model.CuspaKind = cuspaKinds.FirstOrDefault(i => i.Type == dto.CuspaKindType);
             model.BoostStatus = boostStatuses.FirstOrDefault(i => i.Type == dto.BoostStatusType);
-            model.Tags.ReAddRange(dto.TagLinks.Select(d => tags.FirstOrDefault(i => i.Id == d.TagId)).Where(i => i != null).Select(i => i!));
         });
 }
